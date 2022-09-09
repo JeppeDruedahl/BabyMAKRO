@@ -240,8 +240,8 @@ literal "false"
 \end_inset
 
 ) and the model is thus relevant for further academic studies.
- The similarity to the grown-up MAKRO make it relevant for potential future
- job tasks and the public debate.
+ The similarity to the grown-up MAKRO modelmake it relevant for potential
+ future job tasks and the public debate.
 \end_layout
 
 \begin_layout Abstract
@@ -458,6 +458,16 @@ There is
 perfect foresight
 \emph default
  in the economy.
+ I.e.
+ the value of all current and future variables are known.
+ This is a strong assumption, and in many ways the model should be considered
+ a first order approximation to a full model with both idiosyncratic and
+ aggregate risk.
+ It can be relevant to introduce model elements, which proxy for the effects
+ of risks.
+ Utility-of-wealth can e.g.
+ proxy for the precautionary saving motive.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -509,6 +519,46 @@ equation system
 \end_inset
 
  onward are at their steady state value.
+ The economy can be out of steady state both because 
+\emph on
+endogenous 
+\emph default
+variables initially are not at their steady state values and/or because
+ the 
+\emph on
+exogenous
+\emph default
+ variables are out-of-steady state.
+ We talk of an 
+\emph on
+impulse response
+\emph default
+ when the economy starts at the steady state, but some exogenous variables
+ 
+\emph on
+temporarily
+\emph default
+ deviate from the steady state following some converging auto-regressive
+ process.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This is also called an MIT shock.
+ A shock in a model with perfect foresight is to some degree a contradiction
+ in terms.
+ The assumption is that even though the agents experiences a shock, they
+ expect that there will never be a shock again.
+ Accounting for expecting of future shocks is much more complicated.
+ Some realism can be mimicked by studying impulse response to shocks about
+ the future, which when the future comes never materialized as a new opposite
+ signed shock negates it.
+ Multiple shocks arriving sequentially can also be studied.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -558,6 +608,18 @@ an additional equation must be considered a target instead of being used
  In the limit, all variables can be considered as unknowns and all equations
  as targets.
  This is inefficient as the number of variables can be very large.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Modeling systems such as GAMS can combined with a state-of-the-art solver
+ such as CONOOPT automatically analyze the structure of the equation system
+ and thereby ripe the benefits we get from manually ordering the blocks.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -721,7 +783,53 @@ import price of
 \uwave default
 \noun default
 \color inherit
-consumption
+private consumption
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ component good
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\text{P_{t}^{M,G} }$
+\end_inset
+
+, 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+import price of 
+\family default
+\series default
+\shape default
+\size default
+\emph on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+public consumption
 \family roman
 \series medium
 \shape up
@@ -813,7 +921,7 @@ import price of
 \uwave default
 \noun default
 \color inherit
-investment
+export
 \family roman
 \series medium
 \shape up
@@ -860,6 +968,20 @@ foreign
 foreign
 \emph default
  demand shifter
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $G_{t}$
+\end_inset
+
+, public spending
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\tilde{\tau}_{t}$
+\end_inset
+
+, tax rate (before adjustment)
 \end_layout
 
 \begin_layout Subsection
@@ -926,7 +1048,7 @@ The chosen
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $B_{t}^{q}$
+\begin_inset Formula $B_{t}^{R,q}$
 \end_inset
 
 , inheritance flow (
@@ -1227,7 +1349,7 @@ The labor agency firms post vacancies,
 The labor agency problem is:
 \begin_inset Formula 
 \begin{align*}
-V(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \frac{1}{1+r^{\text{firm}}}\left[w_{t}^{\ell}\ell_{t}-w_{t}^{\text{hh}}L_{t}\right]\\
+V(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \frac{1}{1+r^{\text{firm}}}\left[r_{t}^{\ell}\ell_{t}-w_{t}L_{t}\right]\\
 \ell_{t} & =L_{t}-\kappa^{L}v_{t}\\
 L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}.
 \end{align*}
@@ -1536,8 +1658,12 @@ The output good,
 \begin_inset Formula $Y_{t}$
 \end_inset
 
-, can be used for either consumption, 
+, can be used for either private consumption, 
 \begin_inset Formula $C_{t}$
+\end_inset
+
+, public consumption, 
+\begin_inset Formula $G_{t}$
 \end_inset
 
 , investment, 
@@ -1585,7 +1711,7 @@ Inputs:
 \end_inset
 
  for 
-\begin_inset Formula $\bullet\in\{C,I,X\}$
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
 \end_inset
 
 
@@ -1601,13 +1727,13 @@ Output:
 \end_inset
 
  for 
-\begin_inset Formula $\bullet\in\{C,I,X\}$
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
 \end_inset
 
 
 \begin_inset Formula 
 \begin{equation}
-P_{t}^{\bullet}=\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}.\label{eq:CIX_P}
+P_{t}^{\bullet}=\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}.\label{eq:CGIX_P}
 \end{equation}
 
 \end_inset
@@ -1819,7 +1945,109 @@ The variable
 \end_layout
 
 \begin_layout Subsection
-Block VIII.
+BloV VIII.
+ Government
+\end_layout
+
+\begin_layout Standard
+The government budget is given by
+\begin_inset Formula 
+\begin{equation}
+B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}-\tau_{t}w_{t}L_{t}\label{eq:government_budget}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $r^{B}$
+\end_inset
+
+ is the interest rate on government debt determined in the foreign economy.
+ We assume the government have the exogenous tax rate 
+\begin_inset Formula $\tilde{\tau}_{t}$
+\end_inset
+
+ for 
+\begin_inset Formula $t_{B}$
+\end_inset
+
+ and then begin to adjust taxes to get back to steady state debt.
+ For 
+\begin_inset Formula $\Delta_{B}$
+\end_inset
+
+ years this is done gradually, and thereafter it is done fully-
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Inputs: 
+\series default
+
+\begin_inset Formula $\left\{ \tilde{\tau}_{t}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ P_{t}^{G}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ w_{t}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ L_{t}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Outputs:
+\series default
+ 
+\begin_inset Formula $\{\tau_{t}\}$
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ \overline{\tau}_{t}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ B_{t}\right\} $
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\overline{\tau}_{t} & =\tau_{ss}\left(B_{t-1}/B_{ss}\right)^{\varepsilon_{B}}\label{eq:tau_bar}\\
+\tau_{t} & =\begin{cases}
+\tilde{\tau}_{t} & \text{hvis }t<t_{B}\\
+(1-\omega_{t})\tilde{\tau}_{t}+\omega_{t}\overline{\tau}_{t} & \text{hvis }t\in[t_{B,}t_{B}+\Delta_{B}]\\
+\overline{\tau}_{t} & \text{hvis }t>t_{B}+\Delta_{B}
+\end{cases}\label{eq:tau}\\
+ & \omega_{t}=3\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{2}-2\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{3}\nonumber \\
+B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}-\tau_{t}w_{t}L_{t}\label{eq:B-1}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The variable 
+\begin_inset Formula $B_{-1}$
+\end_inset
+
+ is pre-determined.
+\end_layout
+
+\begin_layout Subsection
+Block IX.
  Households - consumption -saving
 \begin_inset CommandInset label
 LatexCommand label
@@ -1831,12 +2059,28 @@ name "subsec:Block-VIII.-Households"
 \end_layout
 
 \begin_layout Standard
-The households earns income from labor, 
+There is a share of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ hands-to-mouth household and a share of unconstrained 
+\begin_inset Formula $1-\lambda$
+\end_inset
+
+ Ricardian households.
+\end_layout
+
+\begin_layout Standard
+The Ricardian households earns income from labor, 
 \begin_inset Formula $w_{t}L_{a,t}$
 \end_inset
 
+, pays taxes, 
+\begin_inset Formula $\tau_{t}w_{t}L_{a,t}$
+\end_inset
+
 , gets an evenly divided inheritance, 
-\begin_inset Formula $\frac{B_{t}^{q}}{A}$
+\begin_inset Formula $\frac{(1-\lambda)B_{t}^{R,q}}{A}$
 \end_inset
 
 , buys consumption goods at the price 
@@ -1852,18 +2096,18 @@ The households earns income from labor,
 \begin_inset Formula $r^{\text{hh }}.$
 \end_inset
 
- The household of making the first decision in period 
+ The Ricardian household making its first decision in period 
 \begin_inset Formula $t_{0}$
 \end_inset
 
  solves the problem
 \begin_inset Formula 
 \begin{align*}
-V_{t_{0}} & =\max_{\left\{ C_{a,t=t_{0}+a}\right\} _{a=0}^{A-1}}\sum_{a=0}^{A-1}\beta^{a}\left[\frac{C_{t}^{1-\sigma}}{1-\sigma}+\boldsymbol{1}_{a=A-1}\mu^{B}\frac{\left(B_{a,t}\right)^{1-\sigma}}{1-\sigma}\right]\\
+V_{t_{0}} & =\max_{\left\{ C_{a,t=t_{0}+a}\right\} _{a=0}^{A-1}}\sum_{a=0}^{A-1}\beta^{a}\left[\frac{\left(C_{t}^{R}\right)^{1-\sigma}}{1-\sigma}+\boldsymbol{1}_{a=A-1}\mu^{B}\frac{\left(B_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}\right]\\
  & \text{s.t.}\\
 t & =t_{0}+a\\
-B_{-1,t} & =0\\
-B_{a,t} & =(1+r^{hh})B_{a-1,t-1}+w_{t}L_{a,t}+\frac{B_{t}^{q}}{A}-P_{t}^{C}C_{a,t}.
+B_{-1,t}^{R} & =0\\
+B_{a,t}^{R} & =(1+r^{hh})B_{a-1,t-1}^{R}+(1-\tau_{t})w_{t}L_{a,t}+\frac{(1-\lambda)B_{t}^{R,q}}{A}-P_{t}^{C}C_{a,t}^{R}.
 \end{align*}
 
 \end_inset
@@ -1872,6 +2116,22 @@ B_{a,t} & =(1+r^{hh})B_{a-1,t-1}+w_{t}L_{a,t}+\frac{B_{t}^{q}}{A}-P_{t}^{C}C_{a,
 \end_layout
 
 \begin_layout Standard
+The hands-too-mouth household consume all their income
+\begin_inset Formula 
+\[
+C_{a,t}^{\text{HtM}}=(1-\tau_{t})w_{t}L_{a,t}+\frac{(1-\lambda)B_{t}^{R,q}}{A}
+\]
+
+\end_inset
+
+Total consumption is
+\begin_inset Formula 
+\begin{align*}
+C_{a,t} & =\lambda C_{a,t}^{\text{HtM}}+(1-\lambda)C_{a,t}^{R}
+\end{align*}
+
+\end_inset
+
 Using the FOC for 
 \begin_inset Formula $C_{t}$
 \end_inset
@@ -1892,6 +2152,8 @@ block
 
 \series bold
 Inputs: 
+\series default
+
 \begin_inset Formula $\left\{ L_{a,t}\right\} $
 \end_inset
 
@@ -1904,9 +2166,15 @@ Inputs:
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ B_{t}^{q}\right\} $
+\begin_inset Formula $\left\{ \tau_{t}\right\} $
 \end_inset
 
+, 
+\begin_inset Formula $\left\{ B_{t}^{R,q}\right\} $
+\end_inset
+
+
+\series bold
  
 \end_layout
 
@@ -1920,19 +2188,27 @@ Outputs:
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ C_{a,t}\right\} ,$
+\begin_inset Formula $\left\{ C_{a,t}^{\text{HtM}}\right\} ,$
 \end_inset
 
  
-\begin_inset Formula $\left\{ B_{a,t}\right\} $
+\begin_inset Formula $\left\{ C_{a,t}^{R}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ B_{a,t}^{R}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ C_{t}^{R}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ B_{t}^{R}\right\} $
 \end_inset
 
 , 
 \begin_inset Formula $\left\{ C_{t}\right\} $
-\end_inset
-
-, 
-\begin_inset Formula $\left\{ B_{t}\right\} $
 \end_inset
 
 
@@ -1944,7 +2220,8 @@ Calculate
 \begin_inset Formula 
 \begin{align}
 \pi_{t}^{hh} & =\frac{p_{t}^{C}}{p_{t-1}^{C}}-1\label{eq:pi_hh}\\
-B_{A-1,t} & =B_{t}^{q}\label{eq:Bq-1}
+B_{A-1,t}^{\text{R}} & =B_{t}^{R,q}\label{eq:Bq-1}\\
+C_{a,t}^{\text{HtM}} & =(1-\tau_{t})w_{t}L_{a,t}+\frac{(1-\lambda)B_{t}^{R,q}}{A}\label{eq:C_htm}
 \end{align}
 
 \end_inset
@@ -1956,10 +2233,10 @@ B_{A-1,t} & =B_{t}^{q}\label{eq:Bq-1}
 Use FOCs backwards
 \begin_inset Formula 
 \[
-C_{a,t}=\begin{cases}
-\left(\mu^{B}\left(B_{t}^{q}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=A-1\\
-\left(\beta\frac{1+r_{hh}}{1+\pi_{ss}^{hh}}C_{a+1,ss}^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
-\left(\beta\frac{1+r_{hh}}{1+\pi_{t+1}^{hh}}C_{a+1,t+1}^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
+C_{a,t}^{R}=\begin{cases}
+\left(\mu^{B}\left(B_{t}^{R,q}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=A-1\\
+\left(\beta\frac{1+r_{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
+\left(\beta\frac{1+r_{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
 \end{cases}
 \]
 
@@ -1971,9 +2248,18 @@ C_{a,t}=\begin{cases}
 \begin_layout Standard
 Calculate savings forwards
 \begin_inset Formula 
-\[
-B_{a,t}=(1+r^{hh})B_{a-1,t-1}+w_{t}L_{a,t}+\frac{B_{t}^{q}}{A}-P_{t}^{C}C_{a,t}
-\]
+\begin{equation}
+B_{a,t}^{R}=(1+r^{hh})B_{a-1,t-1}^{R}+(1-\tau_{t})w_{t}L_{a,t}+\frac{(1-\lambda)B_{t}^{R,q}}{A}-P_{t}^{C}C_{a,t}^{R}\label{eq:BR}
+\end{equation}
+
+\end_inset
+
+Calculate total consumption
+\begin_inset Formula 
+\begin{align}
+C_{a,t} & =\lambda C_{a,t}^{\text{HtM}}+(1-\lambda)C_{a,t}^{R}\label{eq:Ca}\\
+C_{t} & =\sum_{a}C_{a,t}\label{eq:C}
+\end{align}
 
 \end_inset
 
@@ -2010,7 +2296,7 @@ For
 \end_layout
 
 \begin_layout Subsection
-Block IX.
+Block X.
  Repacking firms - components
 \end_layout
 
@@ -2065,7 +2351,7 @@ Inputs:
 \end_inset
 
  for 
-\begin_inset Formula $\bullet\in\{C,I,X\}$
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
 \end_inset
 
 
@@ -2085,14 +2371,14 @@ Output:
 \end_inset
 
  for 
-\begin_inset Formula $\bullet\in\{C,I,X\}$
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
 \end_inset
 
 
 \begin_inset Formula 
 \begin{align}
-\bullet_{t}^{M} & =\mu^{M,C}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CIX_M}\\
-\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CIX_Y}
+\bullet_{t}^{M} & =\mu^{M,\bullet}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_M}\\
+\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_Y}
 \end{align}
 
 \end_inset
@@ -2101,7 +2387,7 @@ Output:
 \end_layout
 
 \begin_layout Subsection
-Block X.
+Block XI.
  Goods market clearing
 \end_layout
 
@@ -2125,27 +2411,15 @@ block
 Inputs:
 \series default
  
-\begin_inset Formula $\left\{ C_{t}^{M}\right\} $
+\begin_inset Formula $\left\{ \bullet_{t}^{Y}\right\} $
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ C_{t}^{Y}\right\} $
+\begin_inset Formula $\left\{ \bullet_{t}^{X}\right\} $
 \end_inset
 
-, 
-\begin_inset Formula $\left\{ I_{t}^{M}\right\} $
-\end_inset
-
-, 
-\begin_inset Formula $\left\{ I_{t}^{Y}\right\} $
-\end_inset
-
-, 
-\begin_inset Formula $\left\{ X_{t}^{M}\right\} $
-\end_inset
-
-, 
-\begin_inset Formula $\left\{ X_{t}^{Y}\right\} $
+ for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
 \end_inset
 
 
@@ -2163,7 +2437,7 @@ Outputs:
 
 \begin_inset Formula 
 \begin{equation}
-M_{t}=C_{t}^{M}+I_{t}^{M}+X_{t}^{M}\label{eq:M}
+M_{t}=\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{M}\label{eq:M}
 \end{equation}
 
 \end_inset
@@ -2179,7 +2453,7 @@ Targets:
 
 \begin_inset Formula 
 \begin{align}
-Y_{t} & =C_{t}^{Y}+I_{t}^{Y}+X_{t}^{Y}\label{eq:Y_clearing}
+Y_{t} & =\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{Y}\label{eq:Y_clearing}
 \end{align}
 
 \end_inset
@@ -2261,6 +2535,18 @@ name "sec:Steady-state"
 \end_layout
 
 \begin_layout Standard
+We set 
+\begin_inset Formula $B_{ss}=0$
+\end_inset
+
+ and let 
+\begin_inset Formula $G_{ss}$
+\end_inset
+
+ be chosen freely.
+\end_layout
+
+\begin_layout Standard
 We want the job-finding probability to be 
 \begin_inset Formula $m_{ss}^{s}$
 \end_inset
@@ -2273,7 +2559,7 @@ We want the job-finding probability to be
 Price price normalization:
 \begin_inset Formula 
 \[
-P_{ss}^{Y}=P_{ss}^{F}=P_{ss}^{M,\bullet}=1,\,\bullet\in\{C,I,X\}
+P_{ss}^{Y}=P_{ss}^{F}=P_{ss}^{M,\bullet}=1,\,\bullet\in\{C,G,I,X\}
 \]
 
 \end_inset
@@ -2285,7 +2571,7 @@ P_{ss}^{Y}=P_{ss}^{F}=P_{ss}^{M,\bullet}=1,\,\bullet\in\{C,I,X\}
 The pricing behavior of repacking firms then implies
 \begin_inset Formula 
 \begin{align*}
-P_{ss}^{\bullet} & =1,\,\bullet\in\{C,I,X\}\\
+P_{ss}^{\bullet} & =1,\,\bullet\in\{C,G,I,X\}\\
 \pi_{ss}^{hh} & =0
 \end{align*}
 
@@ -2364,6 +2650,18 @@ w_{ss} & =r_{ss}^{\ell}\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}
 \end_layout
 
 \end_deeper
+\begin_layout Enumerate
+Find the tax rate
+\begin_inset Formula 
+\[
+\tau_{ss}=\frac{r_{B}B_{ss}+P_{ss}^{G}G_{ss}}{w_{ss}L_{ss}}
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Enumerate
 We guess on on 
 \begin_inset Formula $B_{ss}^{q}$
@@ -2445,7 +2743,7 @@ Determine
  to get market clearing
 \begin_inset Formula 
 \begin{align*}
-X_{ss}^{Y} & =Y_{ss}-\left(C_{ss}^{Y}+I_{ss}^{Y}\right)\\
+\chi_{ss}=X_{ss}^{Y} & =Y_{ss}-\left(C_{ss}^{Y}+I_{ss}^{Y}\right)\\
 X_{ss} & =\frac{X_{ss}^{Y}}{1-\mu^{M,X}}\\
 X_{ss}^{M} & =\mu^{M,X}X_{ss}\\
 M_{ss} & =C_{ss}^{M}+I_{ss}^{M}+I_{ss}^{M}
