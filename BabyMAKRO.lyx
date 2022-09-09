@@ -2275,7 +2275,7 @@ Targets
 
 \begin_inset Formula 
 \begin{align}
-B_{t}^{q} & =B_{a,t}\label{eq:Bq}
+B_{t}^{R,q} & =B_{a,t}^{R}\label{eq:Bq}
 \end{align}
 
 \end_inset
@@ -2289,7 +2289,7 @@ For
 \end_inset
 
 , we have that the variable 
-\begin_inset Formula $B_{a-1,t-1}$
+\begin_inset Formula $B_{a-1,t-1}^{R}$
 \end_inset
 
  is pre-determined.
