@@ -1349,7 +1349,7 @@ The labor agency firms post vacancies,
 The labor agency problem is:
 \begin_inset Formula 
 \begin{align*}
-V(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \frac{1}{1+r^{\text{firm}}}\left[r_{t}^{\ell}\ell_{t}-w_{t}L_{t}\right]\\
+V(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \frac{1}{(1+r^{\text{firm})^{t}}}\left[r_{t}^{\ell}\ell_{t}-w_{t}L_{t}\right]\\
 \ell_{t} & =L_{t}-\kappa^{L}v_{t}\\
 L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}.
 \end{align*}
@@ -1584,7 +1584,7 @@ The target wage in the bargaining is specified ad hoc as a weighted average
 \end_inset
 
 .
- The bargained wage is a again a weighted average of the past wage and the
+ The bargained wage is again a weighted average of the past wage and the
  current target wage to create a real rigidity.
 \end_layout
 
@@ -1850,7 +1850,7 @@ The capital agency firm buys investment goods,
  The capital agency takes prices as given, and its problem thus is:
 \begin_inset Formula 
 \begin{align*}
-V_{0} & \left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{\left(1+r^{\text{firm}}\right)^{t}}\left[r_{t}^{K}K_{t}-p_{t}^{I}(\iota_{t}+\Psi(\iota_{t},K_{t-1}))\right]\\
+V_{0} & \left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{\left(1+r^{\text{firm}}\right)^{t}}\left[r_{t}^{K}K_{t}-P_{t}^{I}(\iota_{t}+\Psi(\iota_{t},K_{t-1}))\right]\\
  & \text{s.t.}\\
  & I_{t}=\iota_{t}+\Psi(\iota_{t},K_{t-1})\\
  & K_{t}=(1-\delta^{K})K_{t-1}+\iota_{t}.
@@ -2025,9 +2025,9 @@ Outputs:
 \begin{align}
 \overline{\tau}_{t} & =\tau_{ss}\left(B_{t-1}/B_{ss}\right)^{\varepsilon_{B}}\label{eq:tau_bar}\\
 \tau_{t} & =\begin{cases}
-\tilde{\tau}_{t} & \text{hvis }t<t_{B}\\
-(1-\omega_{t})\tilde{\tau}_{t}+\omega_{t}\overline{\tau}_{t} & \text{hvis }t\in[t_{B,}t_{B}+\Delta_{B}]\\
-\overline{\tau}_{t} & \text{hvis }t>t_{B}+\Delta_{B}
+\tilde{\tau}_{t} & \text{if }t<t_{B}\\
+(1-\omega_{t})\tilde{\tau}_{t}+\omega_{t}\overline{\tau}_{t} & \text{if }t\in[t_{B,}t_{B}+\Delta_{B}]\\
+\overline{\tau}_{t} & \text{if }t>t_{B}+\Delta_{B}
 \end{cases}\label{eq:tau}\\
  & \omega_{t}=3\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{2}-2\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{3}\nonumber \\
 B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}-\tau_{t}w_{t}L_{t}\label{eq:B-1}
@@ -2219,7 +2219,7 @@ Outputs:
 Calculate
 \begin_inset Formula 
 \begin{align}
-\pi_{t}^{hh} & =\frac{p_{t}^{C}}{p_{t-1}^{C}}-1\label{eq:pi_hh}\\
+\pi_{t}^{hh} & =\frac{P_{t}^{C}}{P_{t-1}^{C}}-1\label{eq:pi_hh}\\
 B_{A-1,t}^{\text{R}} & =B_{t}^{R,q}\label{eq:Bq-1}\\
 C_{a,t}^{\text{HtM}} & =(1-\tau_{t})w_{t}L_{a,t}+\frac{(1-\lambda)B_{t}^{R,q}}{A}\label{eq:C_htm}
 \end{align}
@@ -2503,17 +2503,17 @@ noprefix "false"
 , 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:Y_clearing"
+reference "eq:Bq"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-, and and 
+, and 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:Bq"
+reference "eq:Y_clearing"
 plural "false"
 caps "false"
 noprefix "false"
@@ -2586,7 +2586,7 @@ The exogenous labor supply and search-and-matching implies
 \begin{align*}
 S_{a,ss} & =\begin{cases}
 1 & \text{if }a=0\\
-\delta_{a}^{L}L_{a-1,ss} & \text{if }a<A_{R}\\
+1-L_{a-1,ss}+\delta_{a}^{L}L_{a-1,ss} & \text{if }a<A_{R}\\
 0 & \text{else}
 \end{cases}\\
 \underline{L}_{a,ss} & =\begin{cases}
