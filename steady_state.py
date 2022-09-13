@@ -75,7 +75,7 @@ def find_ss(par,ss,m_s,do_print=True):
 
     ss.delta_L = (ss.L-ss.L_ubar)/ss.L
     ss.curlyM = ss.delta_L*ss.L
-    ss.v = (ss.m_s**(1/par.sigma_m)*ss.S**(1/par.sigma_m)/(1-ss.m_s**(1/par.sigma_m)))**par.sigma_m
+    ss.v = ss.m_s*ss.S/((1-ss.m_s**(1/par.sigma_m)))**par.sigma_m
     ss.m_v = ss.curlyM/ss.v
 
     if do_print:

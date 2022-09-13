@@ -143,7 +143,17 @@ def labor_agency(par,ini,ss,sol):
     # evaluations
     m_v_plus = lead(m_v,ss.m_v)
 
-    r_ell[:] = w / (1-par.kappa_L/m_v+(1-delta_L)/(1+par.r_firm)*par.kappa_L/m_v_plus)
+    for k in range(par.T):
+
+        t = par.T-1-k
+
+        if k == 0:
+            r_ell_plus = ss.r_ell
+        else:
+            r_ell_plus = r_ell[t+1]
+        
+        r_ell[t] = 1/(1-par.kappa_L/m_v[t])*(w[t] - ((1-delta_L[t])/(1+par.r_firm)*r_ell_plus*par.kappa_L/m_v_plus[t])) 
+
     ell[:] = L-par.kappa_L*v
 
 @nb.njit
@@ -251,10 +261,30 @@ def capital_agency(par,ini,ss,sol):
     iota_plus = lead(iota,ss.iota)
 
     term_a = -P_I*(1+adj_cost_iota(iota,K_lag,par.Psi_0,par.delta_K))
-    term_b = (1-par.delta_K)*P_I*(1+adj_cost_iota(iota_plus,K,par.Psi_0,par.delta_K))
-    term_c = -P_I_plus*adj_cost(iota_plus,K,par.Psi_0,par.delta_K)
+    term_b = (1-par.delta_K)*P_I_plus*(1+adj_cost_iota(iota_plus,K,par.Psi_0,par.delta_K))
+    term_c = -P_I_plus*adj_cost_K(iota_plus,K,par.Psi_0,par.delta_K)
     
     FOC_capital_agency[:] = term_a + 1/(1+par.r_firm)*(r_K_plus + term_b + term_c)
+
+@nb.njit
+def Government(par,ini,ss,sol):
+
+    # inputs
+    # tau_tilde = sol.tau_tilde
+    # P_G = sol.P_G
+    w = sol.w
+    L = sol.L
+
+
+    # outputs
+    # tau = sol.tau
+    #tau_bar = sol.tau_bar
+    # B = sol.B
+
+    # evaluations
+
+    # targets
+
 
 @nb.njit
 def households_consumption(par,ini,ss,sol):    
@@ -291,7 +321,7 @@ def households_consumption(par,ini,ss,sol):
             # RHS
             if i == 0:
 
-                RHS = par.mu_B*Bq[t]**(-par.sigma)
+                RHS = par.mu_B*Bq[t]**(-par.sigma) 
 
             else:
 
