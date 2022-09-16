@@ -4,7 +4,7 @@ import numba as nb
 #######################
 # auxiliary functions #
 #######################
-#TEST
+
 @nb.njit
 def lag(ssvalue,pathvalue):
     return np.hstack((np.array([ssvalue]),pathvalue[:-1]))
@@ -267,23 +267,39 @@ def capital_agency(par,ini,ss,sol):
     FOC_capital_agency[:] = term_a + 1/(1+par.r_firm)*(r_K_plus + term_b + term_c)
 
 @nb.njit
-def Government(par,ini,ss,sol):
+def government(par,ini,ss,sol):
 
     # inputs
     # tau_tilde = sol.tau_tilde
     # P_G = sol.P_G
+    # G = sol.G
     w = sol.w
     L = sol.L
 
 
     # outputs
     # tau = sol.tau
-    #tau_bar = sol.tau_bar
+    # tau_bar = sol.tau_bar
     # B = sol.B
 
     # evaluations
+    # B_lag = lag(ini.B,B)
+    # omega = 3*((t-tb)/delta_B)**2 - 2*((t-tb)/delta_B)**3
+    # tau_bar = ss.tau*(B_lag/ss.B)**par.epsilon_B
 
-    # targets
+    # for t in range(par.T):
+
+    #     if t<par.tb:
+    #         tau=tau_tilde
+        
+    #     elif t>par.tb+par.delta_B:
+    #         tau=tau_bar
+        
+    #     else:
+    #         omega = 3*((t-par.tb)/par.delta_B)**2 - 2*((t-par.tb)/par.delta_B)**3
+    #         tau=(1-omega)*tau_tilde+omega*tau_bar
+    
+    # B = (1+par.rb)*B_lag+P_G*G-tau*w*L
 
 
 @nb.njit

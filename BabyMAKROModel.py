@@ -34,6 +34,7 @@ class BabyMAKROModelClass(EconModelClass):
             'repacking_firms_prices',
             'foreign_economy',
             'capital_agency',
+            'government',
             'households_consumption',
             'repacking_firms_components',
             'goods_market_clearing',
@@ -46,8 +47,10 @@ class BabyMAKROModelClass(EconModelClass):
             'chi',
             'P_F',
             'P_M_C',
+            'P_M_G',
             'P_M_I',
             'P_M_X',
+            'G',
         ]
         
         # unknowns
@@ -84,6 +87,7 @@ class BabyMAKROModelClass(EconModelClass):
             'FOC_C',
             'FOC_capital_agency',
             'FOC_K_ell',
+            'G',
             'I_M',
             'I_Y',
             'I',
@@ -97,9 +101,11 @@ class BabyMAKROModelClass(EconModelClass):
             'mkt_clearing',            
             'MPL',
             'P_C',
+            'P_G',
             'P_F',
             'P_I',
             'P_M_C',
+            'P_M_G',
             'P_M_I',
             'P_M_X',
             'P_X',
@@ -108,6 +114,7 @@ class BabyMAKROModelClass(EconModelClass):
             'r_ell',
             'r_K',
             'S',
+            'tau'
             'v',
             'w_ast',
             'w',
@@ -156,9 +163,18 @@ class BabyMAKROModelClass(EconModelClass):
         # d. capital agency
         par.Psi_0 = 0.5 # adjustment costs
 
+        # e. government
+        par.r_b = 0.04 # rate of return on government debt
+        #par.tau_tilde = 0.40 exogeneous tax rate
+        par.t_b = 10 # number of years with tau_tilde
+        par.delta_B = 5 # number of adjustment years
+        par.epsilon_B = 0.4 #   
+
         # e. repacking
         par.mu_M_C = 0.30 # weight on imports in C
         par.sigma_C = 1.5 # substitution
+        par.mu_M_G = 0.30 # weight on imports in G
+        par.sigma_G = 1.5 # substitution
         par.mu_M_I = 0.35 # weight on imports in I
         par.sigma_I = 1.5 # substitution
         par.mu_M_X = 0.40 # weight on imports in X
