@@ -4,7 +4,7 @@ import numba as nb
 #######################
 # auxiliary functions #
 #######################
-
+#TEST
 @nb.njit
 def lag(ssvalue,pathvalue):
     return np.hstack((np.array([ssvalue]),pathvalue[:-1]))
