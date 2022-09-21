@@ -2103,7 +2103,7 @@ The Ricardian households earns income from labor,
  solves the problem
 \begin_inset Formula 
 \begin{align*}
-V_{t_{0}} & =\max_{\left\{ C_{a,t},B_{a,t}\right\} _{a=0}^{A-1}}\sum_{a=0}^{A-1}\beta^{a}\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\boldsymbol{1}_{a=A-1}\mu^{B}\frac{\left(B_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}\right]\\
+V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R},B_{a,t}^{R}\right\} _{a=0}^{A-1}}\sum_{a=0}^{A-1}\beta^{a}\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\boldsymbol{1}_{a=A-1}\mu^{B}\frac{\left(B_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}\right]\\
  & \text{s.t.}\\
 t & =t_{0}+a\\
 B_{-1,t}^{R} & =0\\
