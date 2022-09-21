@@ -2103,7 +2103,7 @@ The Ricardian households earns income from labor,
  solves the problem
 \begin_inset Formula 
 \begin{align*}
-V_{t_{0}} & =\max_{\left\{ C_{a,t=t_{0}+a}\right\} _{a=0}^{A-1}}\sum_{a=0}^{A-1}\beta^{a}\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\boldsymbol{1}_{a=A-1}\mu^{B}\frac{\left(B_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}\right]\\
+V_{t_{0}} & =\max_{\left\{ C_{a,t},B_{a,t}\right\} _{a=0}^{A-1}}\sum_{a=0}^{A-1}\beta^{a}\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\boldsymbol{1}_{a=A-1}\mu^{B}\frac{\left(B_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}\right]\\
  & \text{s.t.}\\
 t & =t_{0}+a\\
 B_{-1,t}^{R} & =0\\
@@ -2726,8 +2726,8 @@ Y_{ss}=\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{ss}^{\frac{\sigma^{Y}
 Determine package components for consumption and investment
 \begin_inset Formula 
 \begin{align*}
-\bullet_{ss}^{M} & =\mu^{M,\bullet}\bullet_{ss},\,\text{for }\bullet\in\{C,I\}\\
-\bullet_{ss}^{Y} & =(1-\mu^{M,\bullet})\bullet_{ss},\,\text{for }\bullet\in\{C,I\}
+\bullet_{ss}^{M} & =\mu^{M,\bullet}\bullet_{ss},\,\text{for }\bullet\in\{C,G,I\}\\
+\bullet_{ss}^{Y} & =(1-\mu^{M,\bullet})\bullet_{ss},\,\text{for }\bullet\in\{C,G,I\}
 \end{align*}
 
 \end_inset
@@ -2743,10 +2743,10 @@ Determine
  to get market clearing
 \begin_inset Formula 
 \begin{align*}
-\chi_{ss}=X_{ss}^{Y} & =Y_{ss}-\left(C_{ss}^{Y}+I_{ss}^{Y}\right)\\
-X_{ss} & =\frac{X_{ss}^{Y}}{1-\mu^{M,X}}\\
+X_{ss}^{Y} & =Y_{ss}-\left(C_{ss}^{Y}+G_{ss}^{Y}+I_{ss}^{Y}\right)\\
+\chi_{ss}=X_{ss} & =\frac{X_{ss}^{Y}}{1-\mu^{M,X}}\\
 X_{ss}^{M} & =\mu^{M,X}X_{ss}\\
-M_{ss} & =C_{ss}^{M}+I_{ss}^{M}+I_{ss}^{M}
+M_{ss} & =C_{ss}^{M}+G_{ss}^{M}+I_{ss}^{M}+X_{ss}^{M}
 \end{align*}
 
 \end_inset

@@ -6,8 +6,10 @@ import blocks
 
 def household_ss(Bq,par,ss):
     """ household behavior in steady state """
+    # Problem for lambda = 1
 
     ss.Bq = Bq
+    ss.C_HTM = ss.w*ss.L_a+(1-par.Lambda)*Bq/par.A # (1-tau)* Government
 
     # a. find consumption using final savings and Euler
     for i in range(par.A):
@@ -16,9 +18,10 @@ def household_ss(Bq,par,ss):
         if i == 0:
             RHS = par.mu_B*Bq**(-par.sigma)
         else:
-            RHS = par.beta*(1+par.r_hh)*ss.C_a[a+1]**(-par.sigma)
+            RHS = par.beta*(1+par.r_hh)/(1+ss.pi_hh)*ss.C_R[a+1]**(-par.sigma)
 
-        ss.C_a[a] = RHS**(-1/par.sigma)
+        ss.C_R[a] = RHS**(-1/par.sigma)
+        ss.C_a[a] = par.Lambda*ss.C_HTM[a]+(1-par.Lambda)*ss.C_R[a]
 
     # b. find implied savings
     for a in range(par.A):
@@ -28,7 +31,7 @@ def household_ss(Bq,par,ss):
         else: 
             B_lag = ss.B_a[a-1]
         
-        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + ss.w*ss.L_a[a] + ss.Bq/par.A - ss.P_C*ss.C_a[a]        
+        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + ss.w*ss.L_a[a] + (1-par.Lambda)*Bq/par.A - ss.P_C*ss.C_a[a] #Government
 
     # c. aggreagtes
     ss.C = np.sum(ss.C_a)
@@ -106,16 +109,16 @@ def find_ss(par,ss,m_s,do_print=True):
     if do_print: print(f'{ss.w = :.2f}')
 
     # g. government tax rate
-    ss.B = 0
-    ss.G = 100
-    ss.tau = (par.r_b*ss.B+ss.P_G*ss.G)/(ss.w*ss.L)
-    if do_print: print(f'{ss.G = :.2f}')
-    if do_print: print(f'{ss.tau = :.2f}')
+    # ss.B = 0
+    # ss.G = 100.0
+    # ss.tau = (par.r_b*ss.B+ss.P_G*ss.G)/(ss.w*ss.L)
+    # if do_print: print(f'{ss.G = :.2f}')
+    # if do_print: print(f'{ss.tau = :.2f}')
 
     # h. household behavior
     if do_print: print(f'solving for household behavior:',end='')
 
-    result = optimize.root_scalar(household_ss,bracket=[0.01,100],method='brentq',args=(par,ss,))
+    result = optimize.root_scalar(household_ss,bracket=[0.1,100],method='brentq',args=(par,ss,))
     if do_print: print(f' {result.converged = }')
     
     household_ss(result.root,par,ss)
@@ -148,14 +151,10 @@ def find_ss(par,ss,m_s,do_print=True):
     ss.I_M = blocks.CES_demand(par.mu_M_I,ss.P_M_I,ss.P_I,ss.I,par.sigma_I)
     ss.I_Y = blocks.CES_demand(1-par.mu_M_I,ss.P_Y,ss.P_I,ss.I,par.sigma_I)
 
-    ss.X_M = par.mu_M_X*ss.X
-    ss.X_Y = (1-par.mu_M_X)*ss.X
-
     # m. market clearing
-    X_Y = blocks.CES_demand(1-par.mu_M_X,ss.P_Y,ss.P_X,1.0,par.sigma_X)
-
     ss.X_Y = ss.Y - (ss.C_Y+ss.I_Y)
-    ss.chi = ss.X_Y/X_Y
+    ss.chi = ss.X_Y/(1-par.mu_M_X)
+    ss.X = ss.X_Y/(1-par.mu_M_X)
     ss.X_M = blocks.CES_demand(par.mu_M_X,ss.P_M_X,ss.P_X,ss.X,par.sigma_X)
     
     ss.M = ss.C_M+ss.I_M+ss.X_M
