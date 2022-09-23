@@ -2536,7 +2536,7 @@ name "sec:Steady-state"
 
 \begin_layout Standard
 We set 
-\begin_inset Formula $B_{ss}=0$
+\begin_inset Formula $B_{ss}=0.5$
 \end_inset
 
  and let 

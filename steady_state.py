@@ -9,7 +9,7 @@ def household_ss(Bq,par,ss):
     # Problem for lambda = 1
 
     ss.Bq = Bq
-    ss.C_HTM = ss.w*ss.L_a+(1-par.Lambda)*Bq/par.A # (1-tau)* Government
+    ss.C_HTM = (1-ss.tau)*ss.w*ss.L_a+(1-par.Lambda)*Bq/par.A 
 
     # a. find consumption using final savings and Euler
     for i in range(par.A):
@@ -31,7 +31,7 @@ def household_ss(Bq,par,ss):
         else: 
             B_lag = ss.B_a[a-1]
         
-        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + ss.w*ss.L_a[a] + (1-par.Lambda)*Bq/par.A - ss.P_C*ss.C_a[a] #Government
+        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + (1-ss.tau)*ss.w*ss.L_a[a] + (1-par.Lambda)*Bq/par.A - ss.P_C*ss.C_a[a] 
 
     # c. aggreagtes
     ss.C = np.sum(ss.C_a)
@@ -109,11 +109,12 @@ def find_ss(par,ss,m_s,do_print=True):
     if do_print: print(f'{ss.w = :.2f}')
 
     # g. government tax rate
-    # ss.B = 0
-    # ss.G = 100.0
-    # ss.tau = (par.r_b*ss.B+ss.P_G*ss.G)/(ss.w*ss.L)
-    # if do_print: print(f'{ss.G = :.2f}')
-    # if do_print: print(f'{ss.tau = :.2f}')
+    ss.B_G = 0.5
+    ss.G = 100.0
+    ss.tau = (par.r_b*ss.B_G+ss.P_G*ss.G)/(ss.w*ss.L)
+    if do_print: print(f'{ss.B_G = :.2f}')
+    if do_print: print(f'{ss.G = :.2f}')
+    if do_print: print(f'{ss.tau = :.2f}')
 
     # h. household behavior
     if do_print: print(f'solving for household behavior:',end='')
@@ -152,12 +153,12 @@ def find_ss(par,ss,m_s,do_print=True):
     ss.I_Y = blocks.CES_demand(1-par.mu_M_I,ss.P_Y,ss.P_I,ss.I,par.sigma_I)
 
     # m. market clearing
-    ss.X_Y = ss.Y - (ss.C_Y+ss.I_Y)
+    ss.X_Y = ss.Y - (ss.C_Y + ss.G_Y + ss.I_Y)
     ss.chi = ss.X_Y/(1-par.mu_M_X)
     ss.X = ss.X_Y/(1-par.mu_M_X)
     ss.X_M = blocks.CES_demand(par.mu_M_X,ss.P_M_X,ss.P_X,ss.X,par.sigma_X)
     
-    ss.M = ss.C_M+ss.I_M+ss.X_M
+    ss.M = ss.C_M + ss.G + ss.I_M + ss.X_M
 
     if do_print: print(f'{ss.X = :.2f}')
     if do_print: print(f'{ss.M = :.2f}')

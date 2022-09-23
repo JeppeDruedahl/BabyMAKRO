@@ -210,18 +210,18 @@ def repacking_firms_prices(par,ini,ss,sol):
     # inputs
     P_Y = sol.P_Y
     P_M_C = sol.P_M_C
-    # P_M_G = sol.P_M_G Government
+    P_M_G = sol.P_M_G 
     P_M_I = sol.P_M_I
     P_M_X = sol.P_M_X
 
     # outputs
     P_C = sol.P_C
-    # P_G = sol.P_G Government
+    P_G = sol.P_G
     P_I = sol.P_I
     P_X = sol.P_X
 
     P_C[:] = CES_P(P_M_C,P_Y,par.mu_M_C,par.sigma_C)
-    # P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G) Government
+    P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G)
     P_I[:] = CES_P(P_M_I,P_Y,par.mu_M_I,par.sigma_I)
     P_X[:] = CES_P(P_M_X,P_Y,par.mu_M_X,par.sigma_X)
 
@@ -280,30 +280,35 @@ def government(par,ini,ss,sol):
     w = sol.w
     L = sol.L
 
-
     # outputs
     tau = sol.tau
     tau_bar = sol.tau_bar
-    B = sol.B
+    B_G = sol.B_G
 
     # evaluations
-    B_lag = lag(ini.B,B)
-    tau_bar = ss.tau*(B_lag/ss.B)**par.epsilon_B
+    tau_tilde = 0.4
 
     for t in range(par.T):
-        omega = 3*((t-par.t_b)/par.delta_B)**2 - 2*((t-par.t_b)/par.delta_B)**3
 
-        if t<par.t_b:
-            tau=tau_tilde
-        
-        elif t>par.t_b+par.delta_B:
-            tau=tau_bar
+        if t == 0:
+            B_G_lag = 0.5
         
         else:
-            omega = 3*((t-par.t_b)/par.delta_B)**2 - 2*((t-par.t_b)/par.delta_B)**3
-            tau=(1-omega)*tau_tilde+omega*tau_bar
-    
-    B = (1+par.r_b)*B_lag+P_G*G-tau*w*L
+            B_G_lag = B_G[t-1]
+        
+        tau_bar[t] = ss.tau*(B_G_lag/ss.B_G)**par.epsilon_B
+        omega = 3*((t-par.t_b)/par.delta_B)**2 - 2*((t-par.t_b)/par.delta_B)**3
+
+        if t < par.t_b:
+            tau[t]=tau_tilde
+        
+        elif t > par.t_b + par.delta_B:
+            tau[t]=tau_bar[t]
+        
+        else:
+            tau[t]=(1-omega)*tau_tilde+omega*tau_bar[t]
+        
+        B_G[t] = (1+par.r_b)*B_G_lag + P_G[t]*G[t] - tau[t]*w[t]*L[t]
 
 
 @nb.njit
@@ -314,7 +319,7 @@ def households_consumption(par,ini,ss,sol):
     P_C = sol.P_C
     w = sol.w
     Bq = sol.Bq
-    # tau = sol.tau Government
+    tau = sol.tau
 
     # outputs
     pi_hh = sol.pi_hh
@@ -331,7 +336,7 @@ def households_consumption(par,ini,ss,sol):
     pi_hh = P_C/P_C_lag-1
     pi_hh_plus = lead(pi_hh,ss.pi_hh)
 
-    C_HTM = w*L_a+(1-par.Lambda)*Bq/par.A #(1-tau)* Government
+    C_HTM = (1-tau)*w*L_a+(1-par.Lambda)*Bq/par.A 
 
     # targets
     Bq_match = sol.Bq_match
@@ -346,7 +351,7 @@ def households_consumption(par,ini,ss,sol):
             # RHS
             if i == 0:
 
-                RHS = par.mu_B*Bq[t]**(-par.sigma) 
+                RHS = par.mu_B*Bq[t]**(-par.sigma)
 
             else:
 
@@ -373,7 +378,7 @@ def households_consumption(par,ini,ss,sol):
             else:
                 B_a_lag = B_a[a-1,t-1]
             
-            B_a[a,t] = (1+par.r_hh)*B_a_lag + w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/par.A - P_C[t]*C_a[a,t]
+            B_a[a,t] = (1+par.r_hh)*B_a_lag + (1-tau[t])*w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/par.A - P_C[t]*C_a[a,t]
 
     # aggregate
     C[:] = np.sum(C_a,axis=0)
@@ -391,9 +396,9 @@ def repacking_firms_components(par,ini,ss,sol):
     P_C = sol.P_C
     C = sol.C
 
-    # P_M_G = sol.P_M_G Government 
-    # P_G = sol.P_G
-    # G = sol.G
+    P_M_G = sol.P_M_G
+    P_G = sol.P_G
+    G = sol.G
 
     P_M_I = sol.P_M_I
     P_I = sol.P_I
@@ -405,22 +410,23 @@ def repacking_firms_components(par,ini,ss,sol):
 
     # outputs
     C_M = sol.C_M
-    # G_M = sol.G_M Government
+    G_M = sol.G_M 
     I_M = sol.I_M
     X_M = sol.X_M
 
     C_Y = sol.C_Y
+    G_Y = sol.G_Y
     I_Y = sol.I_Y
     X_Y = sol.X_Y
 
     # evaluations
     C_M[:] = CES_demand(par.mu_M_C,P_M_C,P_C,C,par.sigma_C)
-    # G_M[:] = CES_demand(par.mu_M_G,P_M_G,P_G,G,par.sigma_G) Government
+    G_M[:] = CES_demand(par.mu_M_G,P_M_G,P_G,G,par.sigma_G)
     I_M[:] = CES_demand(par.mu_M_I,P_M_I,P_I,I,par.sigma_I)
     X_M[:] = CES_demand(par.mu_M_X,P_M_X,P_X,X,par.sigma_X)
 
     C_Y[:] = CES_demand(1-par.mu_M_C,P_Y,P_C,C,par.sigma_C)
-    # G_Y[:] = CES_demand(1-par.mu_M_G,P_Y,P_G,G,par.sigma_G) Government
+    G_Y[:] = CES_demand(1-par.mu_M_G,P_Y,P_G,G,par.sigma_G)
     I_Y[:] = CES_demand(1-par.mu_M_I,P_Y,P_I,I,par.sigma_I)
     X_Y[:] = CES_demand(1-par.mu_M_X,P_Y,P_X,X,par.sigma_X)
     
@@ -431,12 +437,12 @@ def goods_market_clearing(par,ini,ss,sol):
     Y = sol.Y
     
     C_M = sol.C_M
-    # G_M = sol.G_M Government
+    G_M = sol.G_M
     I_M = sol.I_M
     X_M = sol.X_M
 
     C_Y = sol.C_Y
-    # G_Y = sol.G_Y Government
+    G_Y = sol.G_Y
     I_Y = sol.I_Y
     X_Y = sol.X_Y
 
@@ -447,6 +453,6 @@ def goods_market_clearing(par,ini,ss,sol):
     mkt_clearing = sol.mkt_clearing
 
     # evalautions
-    M[:] = C_M + I_M + X_M # + G_M Government
+    M[:] = C_M + G_M + I_M + X_M
     
-    mkt_clearing[:] = Y - (C_Y + I_Y + X_Y) # + G_Y Government
+    mkt_clearing[:] = Y - (C_Y + G_Y + I_Y + X_Y)
