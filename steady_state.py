@@ -109,8 +109,8 @@ def find_ss(par,ss,m_s,do_print=True):
     if do_print: print(f'{ss.w = :.2f}')
 
     # g. government tax rate
-    ss.B_G = 0.5
-    ss.G = 100.0
+    ss.B_G = 100.0
+    ss.G = 50.0
     ss.tau = (par.r_b*ss.B_G+ss.P_G*ss.G)/(ss.w*ss.L)
     if do_print: print(f'{ss.B_G = :.2f}')
     if do_print: print(f'{ss.G = :.2f}')
@@ -152,6 +152,10 @@ def find_ss(par,ss,m_s,do_print=True):
     ss.I_M = blocks.CES_demand(par.mu_M_I,ss.P_M_I,ss.P_I,ss.I,par.sigma_I)
     ss.I_Y = blocks.CES_demand(1-par.mu_M_I,ss.P_Y,ss.P_I,ss.I,par.sigma_I)
 
+    if do_print: print(f'{ss.C_Y = :.2f}')
+    if do_print: print(f'{ss.G_Y = :.2f}')
+    if do_print: print(f'{ss.I_Y = :.2f}')
+
     # m. market clearing
     ss.X_Y = ss.Y - (ss.C_Y + ss.G_Y + ss.I_Y)
     ss.chi = ss.X_Y/(1-par.mu_M_X)
@@ -161,6 +165,7 @@ def find_ss(par,ss,m_s,do_print=True):
     ss.M = ss.C_M + ss.G + ss.I_M + ss.X_M
 
     if do_print: print(f'{ss.X = :.2f}')
+    if do_print: print(f'{ss.X_Y = :.2f}')
     if do_print: print(f'{ss.M = :.2f}')
 
     # n. bargaining

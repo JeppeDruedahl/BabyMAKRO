@@ -291,8 +291,7 @@ def government(par,ini,ss,sol):
     for t in range(par.T):
 
         if t == 0:
-            B_G_lag = 0.5
-        
+            B_G_lag = 0.0
         else:
             B_G_lag = B_G[t-1]
         
@@ -346,7 +345,7 @@ def households_consumption(par,ini,ss,sol):
         
         a = par.A-1-i
 
-        for t in range(par.T):    
+        for t in range(par.T): 
             
             # RHS
             if i == 0:

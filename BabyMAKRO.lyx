@@ -1134,7 +1134,7 @@ before matching
 The aggregate job-separation rate is
 \begin_inset Formula 
 \[
-\delta_{t}^{L}=\frac{\underline{L}_{t}-L_{t-1}}{L_{t-1}}.
+\delta_{t}^{L}=\frac{L_{t-1}-\underline{L}_{t}}{L_{t-1}}.
 \]
 
 \end_inset
@@ -2536,7 +2536,7 @@ name "sec:Steady-state"
 
 \begin_layout Standard
 We set 
-\begin_inset Formula $B_{ss}=0$
+\begin_inset Formula $B_{ss}=0.5$
 \end_inset
 
  and let 
