@@ -174,9 +174,9 @@ class BabyMAKROModelClass(EconModelClass):
 
         # e. government
         par.r_b = 0.04 # rate of return on government debt
-        par.t_b = 10 # number of years with tau_tilde
+        par.t_b = 501 # number of years with tau_tilde
         par.delta_B = 5 # number of adjustment years
-        par.epsilon_B = 1.0 #   
+        par.epsilon_B = 0.2 #   
 
         # e. repacking
         par.mu_M_C = 0.30 # weight on imports in C

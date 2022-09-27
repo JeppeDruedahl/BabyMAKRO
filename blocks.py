@@ -143,17 +143,13 @@ def labor_agency(par,ini,ss,sol):
     
     # evaluations
     m_v_plus = lead(m_v,ss.m_v)
+    r_ell_plus = lead(r_ell,ss.r_ell)
 
     for k in range(par.T):
 
         t = par.T-1-k
-
-        if k == 0:
-            r_ell_plus = ss.r_ell
-        else:
-            r_ell_plus = r_ell[t+1]
         
-        r_ell[t] = 1/(1-par.kappa_L/m_v[t])*(w[t] - ((1-delta_L[t])/(1+par.r_firm)*r_ell_plus*par.kappa_L/m_v_plus[t])) 
+        r_ell[t] = 1/(1-par.kappa_L/m_v[t])*(w[t] - ((1-delta_L[t])/(1+par.r_firm)*r_ell_plus[t]*par.kappa_L/m_v_plus[t])) 
 
     ell[:] = L-par.kappa_L*v
 
@@ -286,7 +282,7 @@ def government(par,ini,ss,sol):
     B_G = sol.B_G
 
     # evaluations
-    tau_tilde = 0.4
+    tau_tilde = 0
 
     for t in range(par.T):
 
@@ -295,7 +291,7 @@ def government(par,ini,ss,sol):
         else:
             B_G_lag = B_G[t-1]
         
-        tau_bar[t] = ss.tau*(B_G_lag/ss.B_G)**par.epsilon_B
+        tau_bar[t] = ss.tau*(B_G_lag/ss.B_G)**par.epsilon_B #problem for negative værdier af B_G_lag
         omega = 3*((t-par.t_b)/par.delta_B)**2 - 2*((t-par.t_b)/par.delta_B)**3
 
         if t < par.t_b:
@@ -345,15 +341,15 @@ def households_consumption(par,ini,ss,sol):
         
         a = par.A-1-i
 
-        for t in range(par.T): 
+        for j in range(par.T): 
+
+            t = par.T-1-j
             
             # RHS
             if i == 0:
-
                 RHS = par.mu_B*Bq[t]**(-par.sigma)
 
             else:
-
                 if t == par.T-1:
                     C_R_plus = ss.C_R[a+1]
                 else:
@@ -391,6 +387,7 @@ def repacking_firms_components(par,ini,ss,sol):
 
     # inputs
     P_Y = sol.P_Y
+
     P_M_C = sol.P_M_C
     P_C = sol.P_C
     C = sol.C
