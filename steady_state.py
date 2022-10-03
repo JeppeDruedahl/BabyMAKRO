@@ -1,5 +1,3 @@
-from email.header import Header
-from tkinter import font
 import numpy as np
 from scipy import optimize
 
@@ -11,10 +9,9 @@ class Fonttype:
 
 def household_ss(Bq,par,ss):
     """ household behavior in steady state """
-    # Problem for lambda = 1
 
     ss.Bq = Bq
-    ss.C_HTM = (1-ss.tau)*ss.w*ss.L_a+(1-par.Lambda)*Bq/par.A 
+    ss.C_HTM = ss.w*ss.L_a+(1-par.Lambda)*Bq/par.A #(1-ss.tau)*
 
     # a. find consumption using final savings and Euler
     for i in range(par.A):
@@ -23,10 +20,10 @@ def household_ss(Bq,par,ss):
         if i == 0:
             RHS = par.mu_B*Bq**(-par.sigma)
         else:
-            RHS = par.beta*(1+par.r_hh)/(1+ss.pi_hh)*ss.C_R[a+1]**(-par.sigma)
+            RHS = par.beta*(1+par.r_hh)*ss.C_R[a+1]**(-par.sigma)
 
         ss.C_R[a] = RHS**(-1/par.sigma)
-        ss.C_a[a] = par.Lambda*ss.C_HTM[a]+(1-par.Lambda)*ss.C_R[a]
+        ss.C_a[a] = par.Lambda*ss.C_HTM[a]+(1-par.Lambda)*ss.C_R[a] 
 
     # b. find implied savings
     for a in range(par.A):
@@ -36,7 +33,7 @@ def household_ss(Bq,par,ss):
         else: 
             B_lag = ss.B_a[a-1]
         
-        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + (1-ss.tau)*ss.w*ss.L_a[a] + (1-par.Lambda)*Bq/par.A - ss.P_C*ss.C_a[a] 
+        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + ss.w*ss.L_a[a] + (1-par.Lambda)*ss.Bq/par.A - ss.P_C*ss.C_R[a] #(1-ss.tau)*        
 
     # c. aggreagtes
     ss.C = np.sum(ss.C_a)
@@ -85,7 +82,7 @@ def find_ss(par,ss,m_s,do_print=True):
 
     ss.delta_L = (ss.L-ss.L_ubar)/ss.L
     ss.curlyM = ss.delta_L*ss.L
-    ss.v = ss.m_s*ss.S/((1-ss.m_s**(1/par.sigma_m)))**par.sigma_m
+    ss.v = (ss.m_s**(1/par.sigma_m)*ss.S**(1/par.sigma_m)/(1-ss.m_s**(1/par.sigma_m)))**par.sigma_m
     ss.m_v = ss.curlyM/ss.v
 
     if do_print:
@@ -99,6 +96,7 @@ def find_ss(par,ss,m_s,do_print=True):
         print(Fonttype.HEADER + 'Capital agency FOC:' + Fonttype.END)
         print(f'{ss.r_K = :.2f}')
 
+
     # e. production firm pricing
     ss.r_ell = ((1-par.mu_K*(ss.r_K)**(1-par.sigma_Y))/(1-par.mu_K))**(1/(1-par.sigma_Y))
 
@@ -108,7 +106,7 @@ def find_ss(par,ss,m_s,do_print=True):
 
     # f. labor agency
     ss.ell = ss.L - par.kappa_L*ss.v
-    ss.w = ss.r_ell*(1-par.kappa_L/ss.m_v + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
+    ss.w = ss.r_ell*par.kappa_L/ss.m_v
 
     if do_print: 
         print(Fonttype.HEADER + 'Labor agency:' + Fonttype.END)
@@ -127,7 +125,7 @@ def find_ss(par,ss,m_s,do_print=True):
         print(Fonttype.HEADER + 'Households:' + Fonttype.END)
         print(f'solving for household behavior:',end='')
 
-    result = optimize.root_scalar(household_ss,bracket=[0.1,100],method='brentq',args=(par,ss,))
+    result = optimize.root_scalar(household_ss,bracket=[0.01,100],method='brentq',args=(par,ss,))
     if do_print: print(f' {result.converged = }')
     
     household_ss(result.root,par,ss)
@@ -160,19 +158,19 @@ def find_ss(par,ss,m_s,do_print=True):
     ss.C_M = blocks.CES_demand(par.mu_M_C,ss.P_M_C,ss.P_C,ss.C,par.sigma_C)
     ss.C_Y = blocks.CES_demand(1-par.mu_M_C,ss.P_Y,ss.P_C,ss.C,par.sigma_C)
 
-    ss.G_M = blocks.CES_demand(par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G)
-    ss.G_Y = blocks.CES_demand(1-par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G)
+    # ss.G_M = blocks.CES_demand(par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G)
+    # ss.G_Y = blocks.CES_demand(1-par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G)
 
     ss.I_M = blocks.CES_demand(par.mu_M_I,ss.P_M_I,ss.P_I,ss.I,par.sigma_I)
     ss.I_Y = blocks.CES_demand(1-par.mu_M_I,ss.P_Y,ss.P_I,ss.I,par.sigma_I)
 
     # m. market clearing
-    ss.X_Y = ss.Y - (ss.C_Y + ss.G_Y + ss.I_Y)
+    ss.X_Y = ss.Y - (ss.C_Y + ss.I_Y) #+ ss.G_Y 
     ss.chi = ss.X_Y/(1-par.mu_M_X)
     ss.X = ss.X_Y/(1-par.mu_M_X)
     ss.X_M = blocks.CES_demand(par.mu_M_X,ss.P_M_X,ss.P_X,ss.X,par.sigma_X)
     
-    ss.M = ss.C_M + ss.G_M + ss.I_M + ss.X_M
+    ss.M = ss.C_M + ss.I_M + ss.X_M #+ ss.G_M
 
     if do_print: 
         print(Fonttype.HEADER + 'Market clearing:' + Fonttype.END)

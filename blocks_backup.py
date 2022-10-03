@@ -149,17 +149,11 @@ def labor_agency(par,ini,ss,sol):
 
         if k==0:
             r_ell_plus = ss.r_ell
-            w_plus =ss.w
-            delta_L_plus =ss.delta_L
-
         else:
             r_ell_plus = r_ell[t+1]
-            w_plus = w[t+1]
-            delta_L_plus = delta_L[t+1]
         
-        r_ell[t] = m_v[t]/par.kappa_L*(w[t]-(1-delta_L_plus)/(1+par.r_firm)*(par.kappa_L/m_v_plus[t]*r_ell_plus-w_plus))
+        r_ell[t] = 1/(1-par.kappa_L/m_v[t])*(w[t] - ((1-delta_L[t])/(1+par.r_firm)*r_ell_plus*par.kappa_L/m_v_plus[t])) 
 
-    # r_ell[:] = w / (1-par.kappa_L/m_v+(1-delta_L)/(1+par.r_firm)*par.kappa_L/m_v_plus)
     ell[:] = L-par.kappa_L*v
 
 @nb.njit
@@ -215,15 +209,18 @@ def repacking_firms_prices(par,ini,ss,sol):
     # inputs
     P_Y = sol.P_Y
     P_M_C = sol.P_M_C
+    # P_M_G = sol.P_M_G 
     P_M_I = sol.P_M_I
     P_M_X = sol.P_M_X
 
     # outputs
     P_C = sol.P_C
+    # P_G = sol.P_G
     P_I = sol.P_I
     P_X = sol.P_X
 
     P_C[:] = CES_P(P_M_C,P_Y,par.mu_M_C,par.sigma_C)
+    # P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G)
     P_I[:] = CES_P(P_M_I,P_Y,par.mu_M_I,par.sigma_I)
     P_X[:] = CES_P(P_M_X,P_Y,par.mu_M_X,par.sigma_X)
 
@@ -273,6 +270,46 @@ def capital_agency(par,ini,ss,sol):
     FOC_capital_agency[:] = term_a + 1/(1+par.r_firm)*(r_K_plus + term_b + term_c)
 
 @nb.njit
+def government(par,ini,ss,sol):
+
+    # inputs
+    tau_tilde = sol.tau_tilde
+    P_G = sol.P_G
+    G = sol.G
+    w = sol.w
+    L = sol.L
+
+    # outputs
+    tau = sol.tau
+    tau_bar = sol.tau_bar
+    B_G = sol.B_G
+
+    # evaluations
+    tau_tilde = 0
+
+    for t in range(par.T):
+
+        if t == 0:
+            B_G_lag = 0.0
+        else:
+            B_G_lag = B_G[t-1]
+        
+        tau_bar[t] = ss.tau*(B_G_lag/ss.B_G)**par.epsilon_B #problem for negative værdier af B_G_lag
+        omega = 3*((t-par.t_b)/par.delta_B)**2 - 2*((t-par.t_b)/par.delta_B)**3
+
+        if t < par.t_b:
+            tau[t]=tau_tilde
+        
+        elif t > par.t_b + par.delta_B:
+            tau[t]=tau_bar[t]
+        
+        else:
+            tau[t]=(1-omega)*tau_tilde+omega*tau_bar[t]
+        
+        B_G[t] = (1+par.r_b)*B_G_lag + P_G[t]*G[t] - tau[t]*w[t]*L[t]
+
+
+@nb.njit
 def households_consumption(par,ini,ss,sol):    
 
     # inputs
@@ -280,6 +317,7 @@ def households_consumption(par,ini,ss,sol):
     P_C = sol.P_C
     w = sol.w
     Bq = sol.Bq
+    tau = sol.tau
 
     # outputs
     pi_hh = sol.pi_hh
@@ -295,21 +333,22 @@ def households_consumption(par,ini,ss,sol):
 
     pi_hh = P_C/P_C_lag-1
     pi_hh_plus = lead(pi_hh,ss.pi_hh)
-    C_HTM = w*L_a+(1-par.Lambda)*Bq/par.A #(1-tau)*
+
+    # C_HTM = w*L_a+(1-par.Lambda)*Bq/par.A #(1-tau)*
 
     # targets
     Bq_match = sol.Bq_match
 
     # find consumption backwards
-    for i in range(par.A): 
+    for i in range(par.A):
         
-        a = par.A-1-i
+        a = par.A-1-i 
 
-        for t in range(par.T):    
-            
+        for t in range(par.T): 
+
             # RHS
             if i == 0:
-
+                
                 RHS = par.mu_B*Bq[t]**(-par.sigma)
 
             else:
@@ -323,7 +362,7 @@ def households_consumption(par,ini,ss,sol):
 
             # invert
             C_R[a,t] = RHS**(-1/par.sigma)
-            C_a[a,t] = par.Lambda*C_HTM[a,t]+(1-par.Lambda)*C_R[a,t]
+            C_a[a,t] = (1-par.Lambda)*C_R[a,t] #par.Lambda*C_HTM[a,t]+
 
     # find savings forward (and aggregates)
     for t in range(par.T):
@@ -332,16 +371,18 @@ def households_consumption(par,ini,ss,sol):
 
             if a == 0:
                 B_a_lag = 0.0
-            elif t == 0:
+            elif t==0:
                 B_a_lag = ini.B_a[a-1]
             else:
                 B_a_lag = B_a[a-1,t-1]
-            
-            B_a[a,t] = (1+par.r_hh)*B_a_lag + w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/par.A - P_C[t]*C_a[a,t]
+                
+            B_a[a,t] = (1+par.r_hh)*B_a_lag + w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/par.A - P_C[t]*C_a[a,t] #(1-tau[t])*
+        
 
     # aggregate
     C[:] = np.sum(C_a,axis=0)
     B[:] = np.sum(B_a,axis=0)  
+
 
     # matching Bq
     Bq_match[:] = Bq - B_a[-1,:]
@@ -351,9 +392,14 @@ def repacking_firms_components(par,ini,ss,sol):
 
     # inputs
     P_Y = sol.P_Y
+
     P_M_C = sol.P_M_C
     P_C = sol.P_C
     C = sol.C
+
+    # P_M_G = sol.P_M_G
+    # P_G = sol.P_G
+    # G = sol.G
 
     P_M_I = sol.P_M_I
     P_I = sol.P_I
@@ -365,19 +411,23 @@ def repacking_firms_components(par,ini,ss,sol):
 
     # outputs
     C_M = sol.C_M
+    # G_M = sol.G_M 
     I_M = sol.I_M
     X_M = sol.X_M
 
     C_Y = sol.C_Y
+    # G_Y = sol.G_Y
     I_Y = sol.I_Y
     X_Y = sol.X_Y
 
     # evaluations
     C_M[:] = CES_demand(par.mu_M_C,P_M_C,P_C,C,par.sigma_C)
+    # G_M[:] = CES_demand(par.mu_M_G,P_M_G,P_G,G,par.sigma_G)
     I_M[:] = CES_demand(par.mu_M_I,P_M_I,P_I,I,par.sigma_I)
     X_M[:] = CES_demand(par.mu_M_X,P_M_X,P_X,X,par.sigma_X)
 
     C_Y[:] = CES_demand(1-par.mu_M_C,P_Y,P_C,C,par.sigma_C)
+    # G_Y[:] = CES_demand(1-par.mu_M_G,P_Y,P_G,G,par.sigma_G)
     I_Y[:] = CES_demand(1-par.mu_M_I,P_Y,P_I,I,par.sigma_I)
     X_Y[:] = CES_demand(1-par.mu_M_X,P_Y,P_X,X,par.sigma_X)
     
@@ -388,10 +438,12 @@ def goods_market_clearing(par,ini,ss,sol):
     Y = sol.Y
     
     C_M = sol.C_M
+    # G_M = sol.G_M
     I_M = sol.I_M
     X_M = sol.X_M
 
     C_Y = sol.C_Y
+    # G_Y = sol.G_Y
     I_Y = sol.I_Y
     X_Y = sol.X_Y
 
@@ -402,6 +454,6 @@ def goods_market_clearing(par,ini,ss,sol):
     mkt_clearing = sol.mkt_clearing
 
     # evalautions
-    M[:] = C_M + I_M + X_M
+    M[:] = C_M + I_M + X_M #+ G_M
     
-    mkt_clearing[:] = Y - (C_Y + I_Y + X_Y)
+    mkt_clearing[:] = Y - (C_Y + I_Y + X_Y) #+ G_Y

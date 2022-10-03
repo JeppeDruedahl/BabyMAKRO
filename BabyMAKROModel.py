@@ -34,7 +34,7 @@ class BabyMAKROModelClass(EconModelClass):
             'repacking_firms_prices',
             'foreign_economy',
             'capital_agency',
-            'government',
+            # 'government',
             'households_consumption',
             'repacking_firms_components',
             'goods_market_clearing',
@@ -158,7 +158,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.r_hh = 0.04 # nominal return rate
         par.delta_L_a = 0.05*np.ones(par.A_R) # separation probabilities
         par.w_U = 0.25 # outside option in bargaining
-        par.Lambda = 0.0 # Share of hands-to-mouth households
+        par.Lambda = 0.00 # Share of hands-to-mouth households
 
         # b. production firm
         par.r_firm = 0.04 # internal rate of return
@@ -174,7 +174,7 @@ class BabyMAKROModelClass(EconModelClass):
 
         # e. government
         par.r_b = 0.04 # rate of return on government debt
-        par.t_b = 501 # number of years with tau_tilde
+        par.t_b = 10 # number of years with tau_tilde
         par.delta_B = 5 # number of adjustment years
         par.epsilon_B = 0.2 #   
 

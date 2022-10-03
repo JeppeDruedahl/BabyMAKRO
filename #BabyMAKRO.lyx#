@@ -1351,7 +1351,13 @@ The labor agency problem is:
 \begin{align*}
 V_{0}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \frac{1}{(1+r^{\text{firm})^{t}}}\left[r_{t}^{\ell}\ell_{t}-w_{t}L_{t}\right]\\
 \ell_{t} & =L_{t}-\kappa^{L}v_{t}\\
-L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}.
+L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}.\\
+\\
+V_{0}= & \frac{1}{(1+r^{firm})^{t}}\left(r_{t}^{\ell}\frac{\kappa^{L}}{m_{t}^{v}}(L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1})-w_{t}L_{t}\right)+\frac{1}{(1+r^{firm})^{t+1}}\left(r_{t+1}(L_{t+1}-\frac{\kappa^{L}}{m_{t+1}^{v}}(L_{t+1}-\left(1-\delta_{t+1}^{L}\right)L_{t}))-w_{t+1}\left(1-\delta_{t}^{L}\right)L_{t}\right)\\
+\frac{\partial V_{0}}{\partial L_{t}}= & \frac{1}{(1+r^{firm})^{t}}(r_{t}^{\ell}\frac{\kappa^{L}}{m_{t}^{v}}-w_{t})+\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})^{t+1}}\left(\frac{\kappa^{L}}{m_{t+1}^{v}}r_{t+1}^{\ell}-w_{t+1}\right)=0\\
+\Leftrightarrow & r_{t}^{\ell}=\frac{m_{t}^{v}}{\kappa^{L}}\left(w_{t}-\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})}\left(\frac{\kappa^{L}}{m_{t+1}^{v}}r_{t+1}^{\ell}-w_{t+1}\right)\right)\\
+r_{ss}^{\ell}(1+\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})})= & (1+\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})})\frac{m_{ss}^{v}}{\kappa^{L}}w_{ss}\\
+r_{ss}^{\ell} & =\frac{m_{ss}^{v}}{\kappa^{L}}w_{ss}
 \end{align*}
 
 \end_inset
@@ -1863,7 +1869,7 @@ We choose
 \begin{align*}
 \Psi(\iota_{t},K_{t-1}) & =\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta\right)^{2}K_{t-1}\\
 \Psi_{\iota}(\iota_{t},K_{t-1}) & =\Psi_{0}\left(\frac{\iota_{t}}{K_{t-1}}-\delta\right)\\
-\Psi_{K}(\iota_{t},K_{t}) & =\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta\right)^{2}-\Psi_{0}\left(\frac{\iota_{t}}{K_{t-1}}-\delta\right)\frac{\iota_{t}}{K_{t-1}}
+\Psi_{K}(\iota_{t},K_{t-1}) & =\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta\right)^{2}-\Psi_{0}\left(\frac{\iota_{t}}{K_{t-1}}-\delta\right)\frac{\iota_{t}}{K_{t-1}}
 \end{align*}
 
 \end_inset
@@ -2415,7 +2421,7 @@ Inputs:
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ \bullet_{t}^{X}\right\} $
+\begin_inset Formula $\left\{ \bullet_{t}^{M}\right\} $
 \end_inset
 
  for 
