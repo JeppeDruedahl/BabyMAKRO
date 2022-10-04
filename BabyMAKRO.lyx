@@ -1349,15 +1349,9 @@ The labor agency firms post vacancies,
 The labor agency problem is:
 \begin_inset Formula 
 \begin{align*}
-V_{0}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \frac{1}{(1+r^{\text{firm})^{t}}}\left[r_{t}^{\ell}\ell_{t}-w_{t}L_{t}\right]\\
+V_{0}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \frac{1}{\left(1+r^{\text{firm}}\right)^{t}}\left[r_{t}^{\ell}\ell_{t}-w_{t}L_{t}\right]\\
 \ell_{t} & =L_{t}-\kappa^{L}v_{t}\\
-L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}.\\
-\\
-V_{0}= & \frac{1}{(1+r^{firm})^{t}}\left(r_{t}^{\ell}\frac{\kappa^{L}}{m_{t}^{v}}(L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1})-w_{t}L_{t}\right)+\frac{1}{(1+r^{firm})^{t+1}}\left(r_{t+1}(L_{t+1}-\frac{\kappa^{L}}{m_{t+1}^{v}}(L_{t+1}-\left(1-\delta_{t+1}^{L}\right)L_{t}))-w_{t+1}\left(1-\delta_{t}^{L}\right)L_{t}\right)\\
-\frac{\partial V_{0}}{\partial L_{t}}= & \frac{1}{(1+r^{firm})^{t}}(r_{t}^{\ell}\frac{\kappa^{L}}{m_{t}^{v}}-w_{t})+\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})^{t+1}}\left(\frac{\kappa^{L}}{m_{t+1}^{v}}r_{t+1}^{\ell}-w_{t+1}\right)=0\\
-\Leftrightarrow & r_{t}^{\ell}=\frac{m_{t}^{v}}{\kappa^{L}}\left(w_{t}-\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})}\left(\frac{\kappa^{L}}{m_{t+1}^{v}}r_{t+1}^{\ell}-w_{t+1}\right)\right)\\
-r_{ss}^{\ell}(1+\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})})= & (1+\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})})\frac{m_{ss}^{v}}{\kappa^{L}}w_{ss}\\
-r_{ss}^{\ell} & =\frac{m_{ss}^{v}}{\kappa^{L}}w_{ss}
+L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}.
 \end{align*}
 
 \end_inset
@@ -1366,6 +1360,36 @@ r_{ss}^{\ell} & =\frac{m_{ss}^{v}}{\kappa^{L}}w_{ss}
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{\left(1+r^{\text{firm}}\right)^{t}}\left[r_{t}^{\ell}\ell(L_{t},L_{t-1})-w_{t}L_{t}\right]\\
+ & \text{s.t.}\\
+\ell(L_{t},L_{t-1}) & =L_{t}-\frac{\kappa^{L}}{m_{t}^{v}}\left[L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}\right]
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial V_{0}}{\partial L_{t}} & =0\\
+\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-w_{t}\right]+\left(1+r^{\text{firm}}\right)^{-(t+1)}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\\
+\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-w_{t}\right]+\left(1+r^{\text{firm}}\right)^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\\
+r_{t}^{\ell} & =\frac{w_{t}-(1+r^{\text{firm}})^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}}}{\frac{\partial\ell_{t}}{\partial L_{t}}}\\
+r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[w_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
 Using the FOC to 
 \begin_inset Formula $L_{t}$
 \end_inset
@@ -1421,9 +1445,28 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[w_{t}-\frac{1-\delta_{t}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}r_{t+1}^{\ell}\right]\label{eq:w_ell}\\
+r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[w_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]\label{eq:w_ell}\\
 \ell_{t} & =L_{t}-\kappa^{L}v_{t}.\label{eq:ell}
 \end{align}
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+r_{ss}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{ss}^{v}}}\left[w_{ss}-r_{ss}^{\ell}\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right]\\
+\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}\right)r_{ss}^{\ell} & =w_{ss}-r_{ss}^{\ell}\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\\
+\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right) & r_{ss}^{\ell}=w_{ss}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 

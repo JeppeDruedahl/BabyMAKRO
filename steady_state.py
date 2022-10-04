@@ -106,7 +106,7 @@ def find_ss(par,ss,m_s,do_print=True):
 
     # f. labor agency
     ss.ell = ss.L - par.kappa_L*ss.v
-    ss.w = ss.r_ell*par.kappa_L/ss.m_v
+    ss.w = ss.r_ell*(1-par.kappa_L/ss.m_v+(1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
 
     if do_print: 
         print(Fonttype.HEADER + 'Labor agency:' + Fonttype.END)

@@ -162,7 +162,7 @@ class BabyMAKROModelClass(EconModelClass):
 
         # b. production firm
         par.r_firm = 0.04 # internal rate of return
-        par.delta_K = 0.10 # discount factor
+        par.delta_K = 0.10 # depreciation rate
         par.mu_K = 1/3 # weigth on capital
         par.sigma_Y = 1.01 # substitution
 

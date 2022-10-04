@@ -141,26 +141,25 @@ def labor_agency(par,ini,ss,sol):
     ell = sol.ell
     
     # evaluations
-    m_v_plus = lead(m_v,ss.m_v)
+    ell[:] = L-par.kappa_L*v
 
     for k in range(par.T):
 
         t = par.T-1-k
 
-        if k==0:
+        if k == 0:
             r_ell_plus = ss.r_ell
-            w_plus = ss.w
             delta_L_plus = ss.delta_L
-
+            m_v_plus = ss.m_v
         else:
             r_ell_plus = r_ell[t+1]
-            w_plus = w[t+1]
             delta_L_plus = delta_L[t+1]
+            m_v_plus = m_v[t+1]
         
-        r_ell[t] = m_v[t]/par.kappa_L*(w[t]-(1-delta_L_plus)/(1+par.r_firm)*(par.kappa_L/m_v_plus[t]*r_ell_plus-w_plus))
+        fac = 1/(1-par.kappa_L/m_v[t])
+        term = r_ell_plus*(1-delta_L_plus)/(1+par.r_firm)*par.kappa_L/m_v_plus
 
-    # r_ell[:] = w / (1-par.kappa_L/m_v+(1-delta_L)/(1+par.r_firm)*par.kappa_L/m_v_plus)
-    ell[:] = L-par.kappa_L*v
+        r_ell[t] = fac*(w[t]-term)
 
 @nb.njit
 def production_firm(par,ini,ss,sol):
@@ -193,6 +192,7 @@ def bargaining(par,ini,ss,sol):
     w = sol.w
     Y = sol.Y
     ell = sol.ell
+    P_Y = sol.P_Y
 
     # outputs
     MPL = sol.MPL
@@ -204,7 +204,7 @@ def bargaining(par,ini,ss,sol):
     # evaluations
     w_lag = lag(ini.w,w)
 
-    MPL[:] = ((1-par.mu_K)*Y/ell)**(1/par.sigma_Y)
+    MPL[:] = P_Y*((1-par.mu_K)*Y/ell)**(1/par.sigma_Y)
     w_ast[:] = par.phi*MPL + (1-par.phi)*par.w_U
 
     bargaining_cond[:] = w - (par.gamma_w*w_lag + (1-par.gamma_w)*w_ast)
@@ -297,7 +297,7 @@ def households_consumption(par,ini,ss,sol):
     # evaluations
     P_C_lag = lag(ini.P_C,P_C)
 
-    pi_hh = P_C/P_C_lag-1
+    pi_hh[:] = P_C/P_C_lag-1
     pi_hh_plus = lead(pi_hh,ss.pi_hh)
     C_HTM = w*L_a+(1-par.Lambda)*Bq/par.A #(1-tau)*
 
