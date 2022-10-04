@@ -149,8 +149,8 @@ def labor_agency(par,ini,ss,sol):
 
         if k==0:
             r_ell_plus = ss.r_ell
-            w_plus =ss.w
-            delta_L_plus =ss.delta_L
+            w_plus = ss.w
+            delta_L_plus = ss.delta_L
 
         else:
             r_ell_plus = r_ell[t+1]
@@ -214,16 +214,20 @@ def repacking_firms_prices(par,ini,ss,sol):
 
     # inputs
     P_Y = sol.P_Y
+    
     P_M_C = sol.P_M_C
+    # P_M_G = sol.P_M_G 
     P_M_I = sol.P_M_I
     P_M_X = sol.P_M_X
 
     # outputs
     P_C = sol.P_C
+    # P_G = sol.P_G
     P_I = sol.P_I
     P_X = sol.P_X
 
     P_C[:] = CES_P(P_M_C,P_Y,par.mu_M_C,par.sigma_C)
+    # P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G)
     P_I[:] = CES_P(P_M_I,P_Y,par.mu_M_I,par.sigma_I)
     P_X[:] = CES_P(P_M_X,P_Y,par.mu_M_X,par.sigma_X)
 
@@ -337,7 +341,7 @@ def households_consumption(par,ini,ss,sol):
             else:
                 B_a_lag = B_a[a-1,t-1]
             
-            B_a[a,t] = (1+par.r_hh)*B_a_lag + w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/par.A - P_C[t]*C_a[a,t]
+            B_a[a,t] = (1+par.r_hh)*B_a_lag + w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/par.A - P_C[t]*C_a[a,t] #(1-tau[t])*
 
     # aggregate
     C[:] = np.sum(C_a,axis=0)
@@ -351,9 +355,14 @@ def repacking_firms_components(par,ini,ss,sol):
 
     # inputs
     P_Y = sol.P_Y
+
     P_M_C = sol.P_M_C
     P_C = sol.P_C
     C = sol.C
+
+    # P_M_G = sol.P_M_G
+    # P_G = sol.P_G
+    # G = sol.G
 
     P_M_I = sol.P_M_I
     P_I = sol.P_I
@@ -365,19 +374,23 @@ def repacking_firms_components(par,ini,ss,sol):
 
     # outputs
     C_M = sol.C_M
+    # G_M = sol.G_M 
     I_M = sol.I_M
     X_M = sol.X_M
 
     C_Y = sol.C_Y
+    # G_Y = sol.G_Y
     I_Y = sol.I_Y
     X_Y = sol.X_Y
 
     # evaluations
     C_M[:] = CES_demand(par.mu_M_C,P_M_C,P_C,C,par.sigma_C)
+    # G_M[:] = CES_demand(par.mu_M_G,P_M_G,P_G,G,par.sigma_G)
     I_M[:] = CES_demand(par.mu_M_I,P_M_I,P_I,I,par.sigma_I)
     X_M[:] = CES_demand(par.mu_M_X,P_M_X,P_X,X,par.sigma_X)
 
     C_Y[:] = CES_demand(1-par.mu_M_C,P_Y,P_C,C,par.sigma_C)
+    # G_Y[:] = CES_demand(1-par.mu_M_G,P_Y,P_G,G,par.sigma_G)
     I_Y[:] = CES_demand(1-par.mu_M_I,P_Y,P_I,I,par.sigma_I)
     X_Y[:] = CES_demand(1-par.mu_M_X,P_Y,P_X,X,par.sigma_X)
     
@@ -388,10 +401,12 @@ def goods_market_clearing(par,ini,ss,sol):
     Y = sol.Y
     
     C_M = sol.C_M
+    # G_M = sol.G_M
     I_M = sol.I_M
     X_M = sol.X_M
 
     C_Y = sol.C_Y
+    # G_Y = sol.G_Y
     I_Y = sol.I_Y
     X_Y = sol.X_Y
 
@@ -402,6 +417,6 @@ def goods_market_clearing(par,ini,ss,sol):
     mkt_clearing = sol.mkt_clearing
 
     # evalautions
-    M[:] = C_M + I_M + X_M
+    M[:] = C_M + I_M + X_M #+ G_M
     
-    mkt_clearing[:] = Y - (C_Y + I_Y + X_Y)
+    mkt_clearing[:] = Y - (C_Y + I_Y + X_Y) #+ G_Y

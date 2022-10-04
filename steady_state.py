@@ -113,7 +113,7 @@ def find_ss(par,ss,m_s,do_print=True):
         print(f'{ss.ell = :.2f}' ',  ' f'{ss.w = :.2f}')
 
     # g. government
-    ss.B_G = 1.0
+    ss.B_G = 0.0
     ss.G = 0.0
     ss.tau = (par.r_b*ss.B_G+ss.P_G*ss.G)/(ss.w*ss.L)
     if do_print: 
@@ -158,19 +158,19 @@ def find_ss(par,ss,m_s,do_print=True):
     ss.C_M = blocks.CES_demand(par.mu_M_C,ss.P_M_C,ss.P_C,ss.C,par.sigma_C)
     ss.C_Y = blocks.CES_demand(1-par.mu_M_C,ss.P_Y,ss.P_C,ss.C,par.sigma_C)
 
-    # ss.G_M = blocks.CES_demand(par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G)
-    # ss.G_Y = blocks.CES_demand(1-par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G)
+    ss.G_M = blocks.CES_demand(par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G)
+    ss.G_Y = blocks.CES_demand(1-par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G)
 
     ss.I_M = blocks.CES_demand(par.mu_M_I,ss.P_M_I,ss.P_I,ss.I,par.sigma_I)
     ss.I_Y = blocks.CES_demand(1-par.mu_M_I,ss.P_Y,ss.P_I,ss.I,par.sigma_I)
 
     # m. market clearing
-    ss.X_Y = ss.Y - (ss.C_Y + ss.I_Y) #+ ss.G_Y 
+    ss.X_Y = ss.Y - (ss.C_Y + ss.G_Y + ss.I_Y) 
     ss.chi = ss.X_Y/(1-par.mu_M_X)
     ss.X = ss.X_Y/(1-par.mu_M_X)
     ss.X_M = blocks.CES_demand(par.mu_M_X,ss.P_M_X,ss.P_X,ss.X,par.sigma_X)
     
-    ss.M = ss.C_M + ss.I_M + ss.X_M #+ ss.G_M
+    ss.M = ss.C_M + ss.G_M + ss.I_M + ss.X_M
 
     if do_print: 
         print(Fonttype.HEADER + 'Market clearing:' + Fonttype.END)

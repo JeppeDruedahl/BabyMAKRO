@@ -1270,7 +1270,7 @@ Outputs:
 \begin{align}
 S_{a,t} & =\begin{cases}
 1 & \text{if }a=0\\
-(1-L_{a-1})+\delta_{a}^{L}L_{a-1,t-1} & \text{if }a<A_{R}\\
+(1-L_{a-1,t-1})+\delta_{a}^{L}L_{a-1,t-1} & \text{if }a<A_{R}\\
 0 & \text{if }a\geq A_{R}
 \end{cases}\label{eq:S_a}\\
 \underline{L}_{a,t} & =\begin{cases}
@@ -1353,9 +1353,11 @@ V_{0}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \frac{1}{(1+r^
 \ell_{t} & =L_{t}-\kappa^{L}v_{t}\\
 L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}.\\
 \\
-V_{0}= & \frac{1}{(1+r^{firm})^{t}}(r_{t}^{\ell}(L_{t}-k^{L}v_{t})-w_{t}L_{t})+\frac{1}{(1+r^{firm})^{t+1}}(r_{t+1}^{\ell}((1-\delta_{t+1})L_{t}+(m_{t+1}^{v}-k^{L})v_{t+1})-w_{t+1}((1-\delta_{t+1}^{L})L_{t}+m_{t+1}^{v}v_{t})\\
-\frac{\partial V_{0}}{\partial L_{t}}= & \frac{1}{(1+r^{firm})^{t}}(r_{t}^{\ell}-w_{t})+\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})^{t+1}}(r_{t+1}^{\ell}-w_{t+1})=0\\
-\Leftrightarrow & w_{t}-\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})}(r_{t+1}^{\ell}-w_{t+1})=r_{t}^{\ell}\\
+V_{0}= & \frac{1}{(1+r^{firm})^{t}}\left(r_{t}^{\ell}\frac{\kappa^{L}}{m_{t}^{v}}(L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1})-w_{t}L_{t}\right)+\frac{1}{(1+r^{firm})^{t+1}}\left(r_{t+1}(L_{t+1}-\frac{\kappa^{L}}{m_{t+1}^{v}}(L_{t+1}-\left(1-\delta_{t+1}^{L}\right)L_{t}))-w_{t+1}\left(1-\delta_{t}^{L}\right)L_{t}\right)\\
+\frac{\partial V_{0}}{\partial L_{t}}= & \frac{1}{(1+r^{firm})^{t}}(r_{t}^{\ell}\frac{\kappa^{L}}{m_{t}^{v}}-w_{t})+\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})^{t+1}}\left(\frac{\kappa^{L}}{m_{t+1}^{v}}r_{t+1}^{\ell}-w_{t+1}\right)=0\\
+\Leftrightarrow & r_{t}^{\ell}=\frac{m_{t}^{v}}{\kappa^{L}}\left(w_{t}-\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})}\left(\frac{\kappa^{L}}{m_{t+1}^{v}}r_{t+1}^{\ell}-w_{t+1}\right)\right)\\
+r_{ss}^{\ell}(1+\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})})= & (1+\frac{(1-\delta_{t+1}^{L})}{(1+r^{firm})})\frac{m_{ss}^{v}}{\kappa^{L}}w_{ss}\\
+r_{ss}^{\ell} & =\frac{m_{ss}^{v}}{\kappa^{L}}w_{ss}
 \end{align*}
 
 \end_inset
