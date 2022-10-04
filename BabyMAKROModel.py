@@ -155,9 +155,9 @@ class BabyMAKROModelClass(EconModelClass):
         par.sigma = 2.0 # CRRA coefficient
         par.sigma_m = 2.0 #CRRA coefficient from matching function
         par.mu_B = 2.5 # weight on bequest motive
-        par.r_hh = 0.04 # nominal return rate
-        par.delta_L_a = 0.05*np.ones(par.A_R) # separation probabilities
-        par.w_U = 0.25 # outside option in bargaining
+        par.r_hh = 0.04 # nominal return rate                               - Note: Meget afgørende for resultaterne (ved 0.08 er der ingen løsnings)
+        par.delta_L_a = 0.05*np.ones(par.A_R) # separation probabilities    - Note: Umiddelbart mindre sensitiv efter seneste ændre i labor agency
+        par.w_U = 0.25 # outside option in bargaining                       - Note: Hvorfor er outside-option meget lavere end w_ss? Burde de et eller andet sted ikke ligge tæt på hinanden?
         par.Lambda = 0.00 # Share of hands-to-mouth households
 
         # b. production firm

@@ -1910,9 +1910,9 @@ V_{0} & \left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\fr
 We choose
 \begin_inset Formula 
 \begin{align*}
-\Psi(\iota_{t},K_{t-1}) & =\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta\right)^{2}K_{t-1}\\
-\Psi_{\iota}(\iota_{t},K_{t-1}) & =\Psi_{0}\left(\frac{\iota_{t}}{K_{t-1}}-\delta\right)\\
-\Psi_{K}(\iota_{t},K_{t-1}) & =\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta\right)^{2}-\Psi_{0}\left(\frac{\iota_{t}}{K_{t-1}}-\delta\right)\frac{\iota_{t}}{K_{t-1}}
+\Psi(\iota_{t},K_{t-1}) & =\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)^{2}K_{t-1}\\
+\Psi_{\iota}(\iota_{t},K_{t-1}) & =\Psi_{0}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)\\
+\Psi_{K}(\iota_{t},K_{t-1}) & =\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)^{2}-\Psi_{0}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)\frac{\iota_{t}}{K_{t-1}}
 \end{align*}
 
 \end_inset
