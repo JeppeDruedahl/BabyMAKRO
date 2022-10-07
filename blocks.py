@@ -299,7 +299,8 @@ def households_consumption(par,ini,ss,sol):
 
     pi_hh[:] = P_C/P_C_lag-1
     pi_hh_plus = lead(pi_hh,ss.pi_hh)
-    C_HTM = w*L_a+par.Lambda*Bq/par.A #(1-tau)*
+    C_HTM = par.Lambda*(w*L_a+Bq/par.A) #(1-tau)*
+    #Note: Jeg har ganget lambda på arbejderne, således de kun modtager løn tilsvarende til deres andel
 
     # targets
     Bq_match = sol.Bq_match
@@ -341,7 +342,8 @@ def households_consumption(par,ini,ss,sol):
             else:
                 B_a_lag = B_a[a-1,t-1]
             
-            B_a[a,t] = (1+par.r_hh)*B_a_lag + w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/par.A - P_C[t]*C_R[a,t] #(1-tau[t])*
+            B_a[a,t] = (1+par.r_hh)*B_a_lag + (1-par.Lambda)*w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/par.A - P_C[t]*C_R[a,t] #(1-tau[t])* 
+            #Note: Jeg har ganget (1-lambda) på arbejderne, således de kun modtager løn tilsvarende til deres andel
 
     # aggregate
     C[:] = np.sum(C_a,axis=0)

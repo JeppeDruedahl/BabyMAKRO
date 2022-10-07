@@ -227,10 +227,10 @@ class BabyMAKROModelClass(EconModelClass):
     # steady state #
     ################
     
-    def find_ss(self,m_s,do_print=False):
+    def find_ss(self,do_print=False):
         """ find steady state """
 
-        steady_state.find_ss(self.par,self.ss,m_s,do_print=do_print)
+        steady_state.find_ss(self.par,self.ss,do_print=do_print)
 
     #################
     # set functions #
