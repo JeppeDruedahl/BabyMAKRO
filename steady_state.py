@@ -11,7 +11,7 @@ def household_ss(Bq,par,ss):
     """ household behavior in steady state """
 
     ss.Bq = Bq
-    ss.C_HTM = ss.w*ss.L_a+(1-par.Lambda)*Bq/par.A #(1-ss.tau)*
+    ss.C_HTM = ss.w*ss.L_a+par.Lambda*Bq/par.A #(1-ss.tau)*
 
     # a. find consumption using final savings and Euler
     for i in range(par.A):
