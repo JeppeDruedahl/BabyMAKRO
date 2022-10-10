@@ -11,16 +11,25 @@ def household_ss(Bq,par,ss):
     """ household behavior in steady state """
 
     ss.Bq = Bq
-    ss.C_HTM = (ss.w*ss.L_a+par.Lambda*Bq/par.A)/ss.P_C #(1-ss.tau)*
+    
+    for i in range(par.A):
+        if i < par.A_R:
+            ss.zeta_a[i] = 0
+            ss.N_a[i] = 1.0
+        else:
+            ss.zeta_a[i] = ((i+1-par.A_R)/(par.A-par.A_R))**3
+            ss.N_a[i] = (1-ss.zeta_a[i])*ss.N_a[i-1]
+
+    ss.N = np.sum(ss.N_a)
+    ss.C_HTM = (ss.w*ss.L_a+par.Lambda*Bq/ss.N)/ss.P_C #(1-ss.tau)*
 
     # a. find consumption using final savings and Euler
     for i in range(par.A):
-
         a = par.A-1-i
         if i == 0:
             RHS = par.mu_B*Bq**(-par.sigma)
         else:
-            RHS = par.beta*(1+par.r_hh)*ss.C_R[a+1]**(-par.sigma)
+            RHS = par.beta*(1-ss.zeta_a[a])*(1+par.r_hh)*ss.C_R[a+1]**(-par.sigma)
 
         ss.C_R[a] = RHS**(-1/par.sigma)
         ss.C_a[a] = par.Lambda*ss.C_HTM[a]+(1-par.Lambda)*ss.C_R[a] 
@@ -33,13 +42,16 @@ def household_ss(Bq,par,ss):
         else: 
             B_lag = ss.B_a[a-1]
         
-        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + ss.w*ss.L_a[a] + (1-par.Lambda)*ss.Bq/par.A - ss.P_C*ss.C_R[a] #(1-ss.tau)*     
+        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + ss.w*ss.L_a[a] + (1-par.Lambda)*ss.Bq/ss.N - ss.P_C*ss.C_R[a] #(1-ss.tau)*
+             
 
     # c. aggreagtes
     ss.C = np.sum(ss.C_a)
     ss.B = np.sum(ss.B_a)
+    ss.B_target = np.sum(ss.zeta_a*ss.N_a*ss.B_a)
 
-    return ss.Bq-ss.B_a[-1]
+
+    return ss.Bq-ss.B_target
 
 def find_ss(par,ss,do_print=True):
 

@@ -2274,7 +2274,7 @@ Calculate
 \begin{align}
 N_{a} & =\begin{cases}
 1 & \text{if }a<A_{R}\\
-(1-\zeta_{a})N_{a} & \text{else}
+(1-\zeta_{a})N_{a-1} & \text{else}
 \end{cases}\label{eq:pi_hh}\\
 \zeta_{a} & =\begin{cases}
 0 & \text{if }a<A_{R}\\
@@ -2735,7 +2735,7 @@ We guess on
  by
 \begin_inset Formula 
 \begin{align*}
-C_{a,ss}^{HtM} & =(1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a}}\\
+C_{a,ss}^{HtM} & =\frac{1}{P_{ss}^{C}}\left((1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a}}\right)\\
 C_{a,ss}^{R} & =\begin{cases}
 \left(\mu^{B}\left(B_{ss}^{q}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=A-1\\
 \left(\beta\frac{1+r_{hh}}{1+\pi_{ss}^{hh}}C_{a+1,ss}^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}

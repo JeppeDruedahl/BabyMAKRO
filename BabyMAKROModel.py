@@ -75,6 +75,7 @@ class BabyMAKROModelClass(EconModelClass):
         self.varlist = [
             'B',
             'B_G',
+            'B_target',
             'bargaining_cond',
             'Bq_match',
             'Bq',
@@ -103,6 +104,7 @@ class BabyMAKROModelClass(EconModelClass):
             'M',
             'mkt_clearing',            
             'MPL',
+            'N',
             'P_C',
             'P_G',
             'P_F',
@@ -138,7 +140,9 @@ class BabyMAKROModelClass(EconModelClass):
             'FOC_C',
             'L_a',
             'L_ubar_a',
+            'N_a',
             'S_a',
+            'zeta_a',
         ]
 
     def setup(self):
@@ -154,7 +158,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.beta = 0.95 # discount factor
         par.sigma = 2.0 # CRRA coefficient
         par.sigma_m = 2.0 #CRRA coefficient from matching function
-        par.mu_B = 2.5 # weight on bequest motive
+        par.mu_B = 2.55 # weight on bequest motive                          
         par.r_hh = 0.04 # nominal return rate                               - Note: Meget afgørende for resultaterne (ved 0.08 er der ingen løsnings)
         par.delta_L_a = 0.05*np.ones(par.A_R) # separation probabilities    - Note: Umiddelbart mindre sensitiv efter seneste ændre i labor agency
         par.w_U = 0.25 # outside option in bargaining                       - Note: Hvorfor er outside-option meget lavere end w_ss? Burde de et eller andet sted ikke ligge tæt på hinanden?
