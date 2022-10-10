@@ -11,8 +11,7 @@ def household_ss(Bq,par,ss):
     """ household behavior in steady state """
 
     ss.Bq = Bq
-    ss.C_HTM = par.Lambda*(ss.w*ss.L_a+Bq/par.A) #(1-ss.tau)*
-    #Note: Jeg har ganget (1-lambda) på arbejderne, således de kun modtager løn tilsvarende til deres andel
+    ss.C_HTM = (ss.w*ss.L_a+par.Lambda*Bq/par.A)/ss.P_C #(1-ss.tau)*
 
     # a. find consumption using final savings and Euler
     for i in range(par.A):
@@ -34,8 +33,7 @@ def household_ss(Bq,par,ss):
         else: 
             B_lag = ss.B_a[a-1]
         
-        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + (1-par.Lambda)*ss.w*ss.L_a[a] + (1-par.Lambda)*ss.Bq/par.A - ss.P_C*ss.C_R[a] #(1-ss.tau)*
-        #Note: Jeg har ganget (1-lambda) på arbejderne, således de kun modtager løn tilsvarende til deres andel        
+        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + ss.w*ss.L_a[a] + (1-par.Lambda)*ss.Bq/par.A - ss.P_C*ss.C_R[a] #(1-ss.tau)*     
 
     # c. aggreagtes
     ss.C = np.sum(ss.C_a)
