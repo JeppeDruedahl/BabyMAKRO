@@ -216,18 +216,18 @@ def repacking_firms_prices(par,ini,ss,sol):
     P_Y = sol.P_Y
     
     P_M_C = sol.P_M_C
-    # P_M_G = sol.P_M_G 
+    P_M_G = sol.P_M_G 
     P_M_I = sol.P_M_I
     P_M_X = sol.P_M_X
 
     # outputs
     P_C = sol.P_C
-    # P_G = sol.P_G
+    P_G = sol.P_G
     P_I = sol.P_I
     P_X = sol.P_X
 
     P_C[:] = CES_P(P_M_C,P_Y,par.mu_M_C,par.sigma_C)
-    # P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G)
+    P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G)
     P_I[:] = CES_P(P_M_I,P_Y,par.mu_M_I,par.sigma_I)
     P_X[:] = CES_P(P_M_X,P_Y,par.mu_M_X,par.sigma_X)
 
@@ -243,7 +243,7 @@ def foreign_economy(par,ini,ss,sol):
     X = sol.X
     
     # evaluations
-    X[:] = chi*(P_Y/P_F)**(-par.sigma_F)
+    X[:] = chi*(P_Y/P_F)**(-par.sigma_F) #Hvorfor er det at eksporten ikke er i nominel værdi?: /P_X
 
 @nb.njit
 def capital_agency(par,ini,ss,sol):
@@ -277,6 +277,42 @@ def capital_agency(par,ini,ss,sol):
     FOC_capital_agency[:] = term_a + 1/(1+par.r_firm)*(r_K_plus + term_b + term_c)
 
 @nb.njit
+def government(par,ini,ss,sol):
+
+    # inputs
+    P_G = sol.P_G
+    G = sol.G
+    w = sol.w
+    L = sol.L
+
+    # outputs
+    tau = sol.tau
+    tau_bar = sol.tau_bar
+    B_G = sol.B_G
+
+    # evaluations
+    tau_tilde = ss.tau                                      #Jeg har snydt og sat den til ss, da det løser eventuelle problemer
+
+    for t in range(par.T):
+
+        if t == 0:
+            B_G_lag = ss.B_G                                 #Jeg har snydt og sat den til ss, da det løser eventuelle problemer
+        else:
+            B_G_lag = B_G[t-1]
+        
+        tau_bar[t] = ss.tau*(B_G_lag/ss.B_G)**par.epsilon_B #problem for negative værdier af B_G_lag
+        omega = 3*((t-par.t_b)/par.delta_B)**2 - 2*((t-par.t_b)/par.delta_B)**3
+
+        if t < par.t_b:
+            tau[t] = tau_tilde
+        elif t > par.t_b + par.delta_B:
+            tau[t] = tau_bar[t]
+        else:
+            tau[t] = (1-omega)*tau_tilde+omega*tau_bar[t]
+        
+        B_G[t] = (1+par.r_b)*B_G_lag + P_G[t]*G[t] - tau[t]*w[t]*L[t]
+
+@nb.njit
 def households_consumption(par,ini,ss,sol):    
 
     # inputs
@@ -284,18 +320,19 @@ def households_consumption(par,ini,ss,sol):
     P_C = sol.P_C
     w = sol.w
     Bq = sol.Bq
+    tau = sol.tau
 
     # outputs
-    N_a = sol.N_a
+    pi_hh = sol.pi_hh       
+    N_a = sol.N_a 
     N = sol.N
     zeta_a = sol.zeta_a
-    pi_hh = sol.pi_hh
     C_HTM = sol.C_HTM
     C_R = sol.C_R
     C_a = sol.C_a
-    B_a = sol.B_a
     C = sol.C
     B = sol.B
+    B_a = sol.B_a
     B_target = sol.B_target
     B_target_a = sol.B_target_a
 
@@ -304,16 +341,16 @@ def households_consumption(par,ini,ss,sol):
     pi_hh[:] = P_C/P_C_lag-1
     pi_hh_plus = lead(pi_hh,ss.pi_hh)
 
-    for i in range(par.A):
-        if i < par.A_R:
-            zeta_a[i] = 0
-            N_a[i] = 1.0
+    for a in range(par.A):
+        if a < par.A_R:
+            zeta_a[a] = 0
+            N_a[a] = 1.0
         else:
-            zeta_a[i] = ((i+1-par.A_R)/(par.A-par.A_R))**5
-            N_a[i] = (1-ss.zeta_a[i])*N_a[i-1]
+            zeta_a[a] = ((a+1-par.A_R)/(par.A-par.A_R))**6
+            N_a[a] = (1-ss.zeta_a[a])*N_a[a-1]
     
     N = np.sum(N_a,axis=0)
-    C_HTM = (w*L_a+(1-par.Lambda)*Bq/N)/P_C #(1-tau)*
+    C_HTM = ((1-tau)*w*L_a+(1-par.Lambda)*Bq/N)/P_C 
 
     # targets
     Bq_match = sol.Bq_match
@@ -337,7 +374,7 @@ def households_consumption(par,ini,ss,sol):
                 else:
                     C_R_plus = C_R[a+1,t+1]
 
-                RHS = par.beta*(1-zeta_a[a])*(1+par.r_hh)/(1+pi_hh_plus[t])*C_R_plus**(-par.sigma)    
+                RHS = par.beta*(1-zeta_a[a,t])*(1+par.r_hh)/(1+pi_hh_plus[t])*C_R_plus**(-par.sigma)    
 
             # invert
             C_R[a,t] = RHS**(-1/par.sigma)
@@ -358,7 +395,7 @@ def households_consumption(par,ini,ss,sol):
                 B_a_lag = B_a[a-1,t-1]
                 N_a_lag = N_a[a-1,t-1]
             
-            B_a[a,t] = (1+par.r_hh)*B_a_lag + w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/N[t] - P_C[t]*C_R[a,t] #(1-tau[t])*
+            B_a[a,t] = (1+par.r_hh)*B_a_lag + (1-tau[t])*w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/N[t] - P_C[t]*C_R[a,t]
             B_target_a[a,t] = zeta_a[a,t]*N_a_lag*B_a[a,t]
 
     # aggregate
@@ -380,9 +417,9 @@ def repacking_firms_components(par,ini,ss,sol):
     P_C = sol.P_C
     C = sol.C
 
-    # P_M_G = sol.P_M_G
-    # P_G = sol.P_G
-    # G = sol.G
+    P_M_G = sol.P_M_G
+    P_G = sol.P_G
+    G = sol.G
 
     P_M_I = sol.P_M_I
     P_I = sol.P_I
@@ -394,23 +431,23 @@ def repacking_firms_components(par,ini,ss,sol):
 
     # outputs
     C_M = sol.C_M
-    # G_M = sol.G_M 
+    G_M = sol.G_M 
     I_M = sol.I_M
     X_M = sol.X_M
 
     C_Y = sol.C_Y
-    # G_Y = sol.G_Y
+    G_Y = sol.G_Y
     I_Y = sol.I_Y
     X_Y = sol.X_Y
 
     # evaluations
     C_M[:] = CES_demand(par.mu_M_C,P_M_C,P_C,C,par.sigma_C)
-    # G_M[:] = CES_demand(par.mu_M_G,P_M_G,P_G,G,par.sigma_G)
+    G_M[:] = CES_demand(par.mu_M_G,P_M_G,P_G,G,par.sigma_G)
     I_M[:] = CES_demand(par.mu_M_I,P_M_I,P_I,I,par.sigma_I)
     X_M[:] = CES_demand(par.mu_M_X,P_M_X,P_X,X,par.sigma_X)
 
     C_Y[:] = CES_demand(1-par.mu_M_C,P_Y,P_C,C,par.sigma_C)
-    # G_Y[:] = CES_demand(1-par.mu_M_G,P_Y,P_G,G,par.sigma_G)
+    G_Y[:] = CES_demand(1-par.mu_M_G,P_Y,P_G,G,par.sigma_G)
     I_Y[:] = CES_demand(1-par.mu_M_I,P_Y,P_I,I,par.sigma_I)
     X_Y[:] = CES_demand(1-par.mu_M_X,P_Y,P_X,X,par.sigma_X)
     
@@ -421,12 +458,12 @@ def goods_market_clearing(par,ini,ss,sol):
     Y = sol.Y
     
     C_M = sol.C_M
-    # G_M = sol.G_M
+    G_M = sol.G_M
     I_M = sol.I_M
     X_M = sol.X_M
 
     C_Y = sol.C_Y
-    # G_Y = sol.G_Y
+    G_Y = sol.G_Y
     I_Y = sol.I_Y
     X_Y = sol.X_Y
 
@@ -437,6 +474,6 @@ def goods_market_clearing(par,ini,ss,sol):
     mkt_clearing = sol.mkt_clearing
 
     # evalautions
-    M[:] = C_M + I_M + X_M #+ G_M
+    M[:] = C_M + G_M + I_M + X_M 
     
-    mkt_clearing[:] = Y - (C_Y + I_Y + X_Y) #+ G_Y
+    mkt_clearing[:] = Y - (C_Y + G_Y + I_Y + X_Y)

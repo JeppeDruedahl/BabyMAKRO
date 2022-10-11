@@ -17,11 +17,11 @@ def household_ss(Bq,par,ss):
             ss.zeta_a[i] = 0
             ss.N_a[i] = 1.0
         else:
-            ss.zeta_a[i] = ((i+1-par.A_R)/(par.A-par.A_R))**5
+            ss.zeta_a[i] = ((i+1-par.A_R)/(par.A-par.A_R))**6
             ss.N_a[i] = (1-ss.zeta_a[i])*ss.N_a[i-1]
 
     ss.N = np.sum(ss.N_a)
-    ss.C_HTM = (ss.w*ss.L_a+par.Lambda*Bq/ss.N)/ss.P_C #(1-ss.tau)*
+    ss.C_HTM = ((1-ss.tau)*ss.w*ss.L_a+par.Lambda*Bq/ss.N)/ss.P_C
 
     # a. find consumption using final savings and Euler
     for i in range(par.A):
@@ -44,7 +44,7 @@ def household_ss(Bq,par,ss):
             B_lag = ss.B_a[a-1]
             N_lag = ss.N_a[a-1]
         
-        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + ss.w*ss.L_a[a] + (1-par.Lambda)*ss.Bq/ss.N - ss.P_C*ss.C_R[a] #(1-ss.tau)*
+        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + (1-ss.tau)*ss.w*ss.L_a[a] + (1-par.Lambda)*ss.Bq/ss.N - ss.P_C*ss.C_R[a]
         ss.B_target_a[a] = ss.zeta_a[a]*N_lag*ss.B_a[a]
              
 
@@ -127,8 +127,8 @@ def find_ss(par,ss,do_print=True):
         print(f'{ss.ell = :.2f}' ',  ' f'{ss.w = :.2f}')
 
     # g. government
-    ss.B_G = 0.0
-    ss.G = 0.0
+    ss.B_G = 10.0
+    ss.G = 10.0
     ss.tau = (par.r_b*ss.B_G+ss.P_G*ss.G)/(ss.w*ss.L)
     if do_print: 
         print(Fonttype.HEADER + 'Government:' + Fonttype.END)
