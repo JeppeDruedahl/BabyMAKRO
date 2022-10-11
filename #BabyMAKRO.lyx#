@@ -2274,7 +2274,7 @@ Calculate
 \begin{align}
 N_{a} & =\begin{cases}
 1 & \text{if }a<A_{R}\\
-(1-\zeta_{a})N_{a} & \text{else}
+(1-\zeta_{a})N_{a-1} & \text{else}
 \end{cases}\label{eq:pi_hh}\\
 \zeta_{a} & =\begin{cases}
 0 & \text{if }a<A_{R}\\
@@ -2282,7 +2282,7 @@ N_{a} & =\begin{cases}
 \end{cases}\\
 \pi_{t}^{hh} & =\frac{P_{t}^{C}}{P_{t-1}^{C}}-1\\
 B_{t}^{R,q} & =\sum_{a=0}^{A-1}\zeta_{a}N_{a}B_{a,t}^{R}\label{eq:Bq-1}\\
-C_{a,t}^{\text{HtM}} & =\frac{1}{P_{t}^{C}}\left((1-\tau_{t})w_{t}L_{a,t}+\frac{\lambda B_{t}^{R,q}}{\sum_{a=0}^{A-1}N_{a}}\right)\ksi\label{eq:C_htm}
+C_{a,t}^{\text{HtM}} & =\frac{1}{P_{t}^{C}}\left((1-\tau_{t})w_{t}L_{a,t}+\frac{\lambda B_{t}^{R,q}}{\sum_{a=0}^{A-1}N_{a}}\right)\label{eq:C_htm}
 \end{align}
 
 \end_inset
@@ -2336,7 +2336,7 @@ Targets
 
 \begin_inset Formula 
 \begin{align}
-B_{t}^{R,q} & =\sum_{a=0}^{A-1}\zeta_{a}N_{a}B_{a,t}^{R}\label{eq:Bq}
+B_{t}^{R,q} & =\sum_{a=0}^{A-1}\zeta_{a}N_{a-1}B_{a,t}^{R}\label{eq:Bq}
 \end{align}
 
 \end_inset
@@ -2735,13 +2735,13 @@ We guess on
  by
 \begin_inset Formula 
 \begin{align*}
-C_{a,ss}^{HtM} & =\frac{1}{P_{ss}^{C}}\left((1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a}}\right)\\
+C_{a,ss}^{HtM} & =\frac{1}{P_{ss}^{C}}\left((1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a,ss}}\right)\\
 C_{a,ss}^{R} & =\begin{cases}
 \left(\mu^{B}\left(B_{ss}^{q}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=A-1\\
 \left(\beta\frac{1+r_{hh}}{1+\pi_{ss}^{hh}}C_{a+1,ss}^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
 \end{cases}\\
 C_{a,ss} & =\lambda C_{a,ss}^{\text{HtM}}+(1-\lambda)C_{a,ss}^{R}\\
-B_{a,ss} & =(1+r^{hh})B_{a-1,ss}+(1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a}}-P_{ss}^{C}C_{a,ss}
+B_{a,ss} & =(1+r^{hh})B_{a-1,ss}+(1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a,ss}}-P_{ss}^{C}C_{a,ss}
 \end{align*}
 
 \end_inset

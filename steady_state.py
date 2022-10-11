@@ -17,7 +17,7 @@ def household_ss(Bq,par,ss):
             ss.zeta_a[i] = 0
             ss.N_a[i] = 1.0
         else:
-            ss.zeta_a[i] = ((i+1-par.A_R)/(par.A-par.A_R))**3
+            ss.zeta_a[i] = ((i+1-par.A_R)/(par.A-par.A_R))**5
             ss.N_a[i] = (1-ss.zeta_a[i])*ss.N_a[i-1]
 
     ss.N = np.sum(ss.N_a)
@@ -39,16 +39,19 @@ def household_ss(Bq,par,ss):
 
         if a == 0:
             B_lag = 0.0
+            N_lag = 1.
         else: 
             B_lag = ss.B_a[a-1]
+            N_lag = ss.N_a[a-1]
         
         ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + ss.w*ss.L_a[a] + (1-par.Lambda)*ss.Bq/ss.N - ss.P_C*ss.C_R[a] #(1-ss.tau)*
+        ss.B_target_a[a] = ss.zeta_a[a]*N_lag*ss.B_a[a]
              
 
     # c. aggreagtes
     ss.C = np.sum(ss.C_a)
     ss.B = np.sum(ss.B_a)
-    ss.B_target = np.sum(ss.zeta_a*ss.N_a*ss.B_a)
+    ss.B_target = np.sum(ss.B_target_a)
 
 
     return ss.Bq-ss.B_target
@@ -141,8 +144,8 @@ def find_ss(par,ss,do_print=True):
     
     household_ss(result.root,par,ss)
 
-    if do_print: 
-        print(f'{ss.C = :.2f}' ',  ' f'{ss.B = :.2f}')
+    if do_print:
+        print(f'{ss.C = :.2f}' ',  ' f'{ss.B = :.2f}' ',  ' f'{ss.N = :.2f}' ',  ' f'{ss.B_target = :.2f}')
     
     # i. production firm FOCs
     ss.K = par.mu_K/(1-par.mu_K)*(ss.r_ell/ss.r_K)**par.sigma_Y*ss.ell

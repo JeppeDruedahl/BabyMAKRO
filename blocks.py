@@ -297,6 +297,7 @@ def households_consumption(par,ini,ss,sol):
     C = sol.C
     B = sol.B
     B_target = sol.B_target
+    B_target_a = sol.B_target_a
 
     # evaluations
     P_C_lag = lag(ini.P_C,P_C)
@@ -308,11 +309,11 @@ def households_consumption(par,ini,ss,sol):
             zeta_a[i] = 0
             N_a[i] = 1.0
         else:
-            zeta_a[i] = ((i+1-par.A_R)/(par.A-par.A_R))**3
+            zeta_a[i] = ((i+1-par.A_R)/(par.A-par.A_R))**5
             N_a[i] = (1-ss.zeta_a[i])*N_a[i-1]
     
-    N = np.sum(N_a)
-    C_HTM = (w*L_a+par.Lambda*Bq/N)/P_C #(1-tau)*
+    N = np.sum(N_a,axis=0)
+    C_HTM = (w*L_a+(1-par.Lambda)*Bq/N)/P_C #(1-tau)*
 
     # targets
     Bq_match = sol.Bq_match
@@ -336,7 +337,7 @@ def households_consumption(par,ini,ss,sol):
                 else:
                     C_R_plus = C_R[a+1,t+1]
 
-                RHS = par.beta*(1-zeta_a[a,t])*(1+par.r_hh)/(1+pi_hh_plus[t])*C_R_plus**(-par.sigma)    
+                RHS = par.beta*(1-zeta_a[a])*(1+par.r_hh)/(1+pi_hh_plus[t])*C_R_plus**(-par.sigma)    
 
             # invert
             C_R[a,t] = RHS**(-1/par.sigma)
@@ -349,18 +350,21 @@ def households_consumption(par,ini,ss,sol):
 
             if a == 0:
                 B_a_lag = 0.0
+                N_a_lag = 1.0
             elif t == 0:
                 B_a_lag = ini.B_a[a-1]
+                N_a_lag = ini.N_a[a-1]
             else:
                 B_a_lag = B_a[a-1,t-1]
+                N_a_lag = N_a[a-1,t-1]
             
-            B_a[a,t] = (1+par.r_hh)*B_a_lag + w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/N - P_C[t]*C_R[a,t] #(1-tau[t])*
-        
-        B_target[t] = np.sum(zeta_a[:,t]*N_a[:,t]*B_a[:,t])
+            B_a[a,t] = (1+par.r_hh)*B_a_lag + w[t]*L_a[a,t] + (1-par.Lambda)*Bq[t]/N[t] - P_C[t]*C_R[a,t] #(1-tau[t])*
+            B_target_a[a,t] = zeta_a[a,t]*N_a_lag*B_a[a,t]
 
     # aggregate
     C[:] = np.sum(C_a,axis=0)
-    B[:] = np.sum(B_a,axis=0)  
+    B[:] = np.sum(B_a,axis=0)
+    B_target[:] = np.sum(B_target_a,axis=0)  
     
 
     # matching Bq
