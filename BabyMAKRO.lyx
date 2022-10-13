@@ -183,6 +183,10 @@ status collapsed
 \begin_layout Plain Layout
 Help from Martin Kirk Bonde and Peter Stephensen from the DREAM group have
  been invaluable for writing this note.
+ Anders Buch Jürs has provided excellent research assistance.
+ Comments from students working with the model has also improved it considerably
+ (Andreas Marius Laursen, Hans Christian Jul Lehmann, Mathias Held Berg,
+ Nicholas Stampe Meier, Olivier Ding, Ufuk Yasin).
 \end_layout
 
 \end_inset
@@ -353,7 +357,6 @@ overlapping generations
 \end_inset
 
  and the frequency is annual.
- 
 \end_layout
 
 \begin_layout Standard
@@ -361,7 +364,7 @@ overlapping generations
 \emph on
 Households
 \emph default
- live for 
+ live for up to 
 \begin_inset Formula $A$
 \end_inset
 
@@ -370,7 +373,11 @@ Households
 \end_inset
 
 .
- The population is constant.
+ The age dependent mortality is 
+\begin_inset Formula $\zeta_{a}\in(0,1)$
+\end_inset
+
+ and the population and demographic structure is constant.
  Households exogenously search for jobs and supply labor, receives inheritances
  and choose consumption and savings to get utility from consumption and
  bequests.
@@ -383,7 +390,6 @@ foreign economy
 \emph default
  provides a fixed nominal rate of return, sell import goods at fixed prices,
  and have a demand curve for the domestic export good.
- 
 \end_layout
 
 \begin_layout Standard
@@ -467,7 +473,6 @@ perfect foresight
  of risks.
  Utility-of-wealth can e.g.
  proxy for the precautionary saving motive.
- 
 \end_layout
 
 \begin_layout Subsection
@@ -486,7 +491,7 @@ The
 \emph on
 equilibrium path
 \emph default
- in the economy is a set of path for all variables, which satisfies all
+ in the economy is a set of paths for all variables, which satisfies all
  accounting identities, optimal firm and household behavior in terms of
  first order conditions, and implies market clearing.
  When all variables are constant over time, the equilibrium path is a 
@@ -519,16 +524,16 @@ equation system
 \end_inset
 
  onward are at their steady state value.
- The economy can be out of steady state both because 
+ The economy can be out of steady state both because lagged 
 \emph on
 endogenous 
 \emph default
-variables initially are not at their steady state values and/or because
+variables are initially not at their steady state values and/or because
  the 
 \emph on
 exogenous
 \emph default
- variables are out-of-steady state.
+ variables are not at their steady state values.
  We talk of an 
 \emph on
 impulse response
@@ -588,11 +593,25 @@ targets
  blocks as input variables.
  In the end we collect all the targets.
  The number of unknown variables must equal the number of target variables.
- We then use a 
-\emph on
-numerical equation system solver
-\emph default
- to first find the steady state and then equilibrium path.
+\end_layout
+
+\begin_layout Standard
+To solve the model, we must first find the steady state.
+ As explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Steady-state"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, this can be done by manually choosing values for a selection of the endogenous
+ variables and the deriving the rest from closed form expressions or solving
+ sub-systems with a numerical equation system solver.
+ Next, we solve for the equilibrium path again using a numerical equation
+ system solver.
 \end_layout
 
 \begin_layout Standard
@@ -670,7 +689,7 @@ profit maximization
  problem of the firm is
 \begin_inset Formula 
 \begin{equation}
-\max_{X_{i},X_{j}}PX-P_{i}X_{i}-P_{j}X_{j}\text{ s.t. }X=\left(\mu_{i}^{\frac{1}{\sigma}}X_{i}^{\frac{\sigma-1}{\sigma}}+\mu_{j}^{\frac{1}{\sigma}}X_{j}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{\sigma}{\sigma-1}},\,\,\,\mu_{i}+\mu_{j}=1,\,\mu_{i}>0,\,\sigma>0,\,\sigma\neq1\label{eq:CES}
+\max_{X_{i},X_{j}}PX-P_{i}X_{i}-P_{j}X_{j}\text{ s.t. }X=\Gamma\left(\mu_{i}^{\frac{1}{\sigma}}X_{i}^{\frac{\sigma-1}{\sigma}}+\mu_{j}^{\frac{1}{\sigma}}X_{j}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{\sigma}{\sigma-1}},\,\,\,\mu_{i}+\mu_{j}=1,\,\mu_{i}>0,\,\sigma>0,\,\sigma\neq1,\Gamma>0\label{eq:CES}
 \end{equation}
 
 \end_inset
@@ -682,10 +701,10 @@ first order condition
  is
 \begin_inset Formula 
 \begin{align}
-0 & =P\mu_{i}^{\frac{1}{\sigma}}X_{i}^{\frac{\sigma-1}{\sigma}-1}\left(\mu_{i}^{\frac{1}{\sigma}}X_{i}^{\frac{\sigma-1}{\sigma}}+\mu_{j}^{\frac{1}{\sigma}}X_{j}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{\sigma}{\sigma-1}-1}-P_{i}\Leftrightarrow\nonumber \\
-P_{i} & =P\mu_{i}^{\frac{1}{\sigma}}X_{i}^{-\frac{1}{\sigma}}\left(\mu_{i}^{\frac{1}{\sigma}}X_{i}^{\frac{\sigma-1}{\sigma}}+\mu_{j}^{\frac{1}{\sigma}}X_{j}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{1}{\sigma-1}}\Leftrightarrow\nonumber \\
-P_{i} & =P\mu_{i}^{\frac{1}{\sigma}}X_{i}^{-\frac{1}{\sigma}}X^{\frac{1}{\sigma}}\Leftrightarrow\nonumber \\
-X_{i} & =\mu_{i}\left(\frac{P}{P_{i}}\right)^{\sigma}X.\label{eq:CES_FOC_i}
+0 & =P\mu_{i}^{\frac{1}{\sigma}}X_{i}^{\frac{\sigma-1}{\sigma}-1}\Gamma\left(\mu_{i}^{\frac{1}{\sigma}}X_{i}^{\frac{\sigma-1}{\sigma}}+\mu_{j}^{\frac{1}{\sigma}}X_{j}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{\sigma}{\sigma-1}-1}-P_{i}\Leftrightarrow\nonumber \\
+P_{i} & =P\mu_{i}^{\frac{1}{\sigma}}X_{i}^{-\frac{1}{\sigma}}\Gamma\left(\mu_{i}^{\frac{1}{\sigma}}X_{i}^{\frac{\sigma-1}{\sigma}}+\mu_{j}^{\frac{1}{\sigma}}X_{j}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{1}{\sigma-1}}\Leftrightarrow\nonumber \\
+P_{i} & =P\mu_{i}^{\frac{1}{\sigma}}X_{i}^{-\frac{1}{\sigma}}\Gamma^{\frac{\sigma-1}{\sigma}}X^{\frac{1}{\sigma}}\Leftrightarrow\nonumber \\
+X_{i} & =\mu_{i}\left(\frac{P}{P_{i}}\right)^{\sigma}\Gamma^{\sigma-1}X.\label{eq:CES_FOC_i}
 \end{align}
 
 \end_inset
@@ -713,17 +732,13 @@ zero profits
 \begin{align}
 0 & =PX-P_{i}X_{i}-P_{j}X_{j}\Leftrightarrow\nonumber \\
 P & =\frac{P_{i}X_{i}+P_{j}X_{j}}{X}\nonumber \\
- & =\mu_{i}\left(\frac{P}{P_{i}}\right)^{\sigma}P_{i}+\mu_{j}\left(\frac{P}{P_{j}}\right)^{\sigma}P_{j}\Leftrightarrow\nonumber \\
-P^{1-\sigma} & =\mu_{i}P_{i}^{1-\sigma}+\mu_{j}P_{j}^{1-\sigma}\Leftrightarrow\nonumber \\
-P & =\left(\mu_{i}P_{i}^{1-\sigma}+\mu_{j}P_{j}^{1-\sigma}\right)^{\frac{1}{1-\sigma}}.\label{eq:CES_P}
+ & =\mu_{i}\left(\frac{P}{P_{i}}\right)^{\sigma}\Gamma^{\sigma-1}P_{i}+\mu_{j}\left(\frac{P}{P_{j}}\right)^{\sigma}\Gamma^{\sigma-1}P_{j}\Leftrightarrow\nonumber \\
+\left(\Gamma P\right)^{1-\sigma} & =\mu_{i}P_{i}^{1-\sigma}+\mu_{j}P_{j}^{1-\sigma}\Leftrightarrow\nonumber \\
+P & =\frac{1}{\Gamma}\left(\mu_{i}P_{i}^{1-\sigma}+\mu_{j}P_{j}^{1-\sigma}\right)^{\frac{1}{1-\sigma}}.\label{eq:CES_P}
 \end{align}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Section
 Blocks
 \begin_inset CommandInset label
 LatexCommand label
@@ -978,10 +993,10 @@ foreign
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $\tilde{\tau}_{t}$
+\begin_inset Formula $\Gamma_{t}$
 \end_inset
 
-, tax rate (before adjustment)
+, technology
 \end_layout
 
 \begin_layout Subsection
@@ -1001,6 +1016,28 @@ The chosen
  unknown
 \emph default
  variables are:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $A_{t}^{\text{death}}$
+\end_inset
+
+, wealth of households at 
+\begin_inset Formula $a=\#-1$
+\end_inset
+
+ (
+\begin_inset Formula $T$
+\end_inset
+
+ unknowns)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $A_{t}^{q}$
+\end_inset
+
+, inheritance flow
 \end_layout
 
 \begin_layout Enumerate
@@ -1037,7 +1074,7 @@ The chosen
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $w_{t}$
+\begin_inset Formula $W_{t}$
 \end_inset
 
 , wage (
@@ -1047,23 +1084,45 @@ The chosen
  unknowns)
 \end_layout
 
-\begin_layout Enumerate
-\begin_inset Formula $B_{t}^{R,q}$
-\end_inset
-
-, inheritance flow (
-\begin_inset Formula $T$
-\end_inset
-
- unknowns)
-\end_layout
-
 \begin_layout Standard
 The total number of unknowns thus is 
-\begin_inset Formula $5T$
+\begin_inset Formula $6T$
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Subsection
+Demographics
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Demographics"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We normalize the number of households to 1 at age 
+\begin_inset Formula $a=0$
+\end_inset
+
+.
+ The demographic structure and population is then given by
+\begin_inset Formula 
+\begin{align*}
+N_{a} & =\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})N_{a} & \text{if }a>0
+\end{cases}\\
+N & =\sum_{a=0}^{\#-1}N_{a}\\
+N_{\text{work}} & =\sum_{a=0}^{\#_{\text{work}}-1}N_{a}
+\end{align*}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1103,7 +1162,7 @@ The quantity of searchers are
 \begin{align*}
 S_{a,t} & =\begin{cases}
 1 & \text{if }a=0\\
-(1-L_{a-1,t-1})+\delta_{a}^{L}L_{a-1,t-1} & \text{if }a<A_{R}\\
+(1-\zeta_{a-1})\left[(N_{a}-L_{a,t})+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<A_{R}\\
 0 & \text{if }a\geq A_{R}
 \end{cases}\\
 S_{t} & =\sum_{a}S_{a,t}.
@@ -1123,7 +1182,7 @@ before matching
 \begin{align*}
 \underline{L}_{a,t} & =\begin{cases}
 0 & \text{if }a=0\\
-(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<A_{R}\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<A_{R}\\
 0 & \text{if }a\geq A_{R}
 \end{cases}\\
 \underline{L}_{t} & =\sum_{a}\underline{L}_{a,t}.
@@ -1131,7 +1190,8 @@ before matching
 
 \end_inset
 
-The aggregate job-separation rate is
+The aggregate job-separation rate incl.
+ mortality is
 \begin_inset Formula 
 \[
 \delta_{t}^{L}=\frac{L_{t-1}-\underline{L}_{t}}{L_{t-1}}.
@@ -1154,11 +1214,19 @@ matching function
 
 \begin_inset Formula 
 \[
-\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}.
+\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}},
 \]
 
 \end_inset
 
+where 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is the efficiency of vacancies.
+\end_layout
+
+\begin_layout Standard
 The job-filling rate, 
 \begin_inset Formula $m_{t}^{v},$
 \end_inset
@@ -1182,9 +1250,9 @@ m_{t}^{s} & =\frac{\mathcal{M}_{t}}{S_{t}}.
 \begin_layout Standard
 The number of employed therefore is
 \begin_inset Formula 
-\[
-L_{a,t}=\underline{L}_{a,t}+m_{t}^{s}S_{a,t}.
-\]
+\begin{align*}
+L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}.
+\end{align*}
 
 \end_inset
 
@@ -1259,6 +1327,14 @@ Outputs:
 \begin_inset Formula $\left\{ L_{a,t}\right\} $
 \end_inset
 
+, 
+\begin_inset Formula $\left\{ U_{a,t}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ U_{t}\right\} $
+\end_inset
+
 
 \end_layout
 
@@ -1270,22 +1346,27 @@ Outputs:
 \begin{align}
 S_{a,t} & =\begin{cases}
 1 & \text{if }a=0\\
-(1-L_{a-1,t-1})+\delta_{a}^{L}L_{a-1,t-1} & \text{if }a<A_{R}\\
+(1-\zeta_{a-1})\left[(N_{a}-L_{a,t})+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<A_{R}\\
 0 & \text{if }a\geq A_{R}
 \end{cases}\label{eq:S_a}\\
 \underline{L}_{a,t} & =\begin{cases}
 0 & \text{if }a=0\\
-(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<A_{R}\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<A_{R}\\
 0 & \text{if }a\geq A_{R}
 \end{cases}\label{eq:Lubar_a}\\
-S_{t} & =\sum_{a}S_{a,t}.\label{eq:S}\\
-\underline{L}_{t} & =\sum_{a}\underline{L}_{a,t}.\label{eq:L_ubar}\\
+S_{t} & =\sum_{a=0}^{\#-1}S_{a,t}.\label{eq:S}\\
+\underline{L}_{t} & =\sum_{a=0}^{\#-1}\underline{L}_{a,t}.\label{eq:L_ubar}\\
 \delta_{t}^{L} & =\frac{L_{t-1}-\underline{L}_{t}}{L_{t-1}}\label{eq:delta_L}\\
 \mathbb{\mathcal{M}}_{t} & =L_{t}-\underline{L}_{t}\label{eq:curlyM}\\
 m_{t}^{s} & =\frac{\mathcal{M}_{t}}{S_{t}}\nonumber \\
-v_{t} & =\left(\frac{\left(m_{t}^{s}\right)^{\frac{1}{\sigma^{m}}}S_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(m_{t}^{s}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}\label{eq:v}\\
+v_{t} & =\frac{1}{\nu}\left(\frac{\left(m_{t}^{s}\right)^{\frac{1}{\sigma^{m}}}S_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(m_{t}^{s}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}\label{eq:v}\\
 m_{t}^{v} & =\frac{\mathbb{\mathcal{M}}_{t}}{v_{t}}\label{eq:m_v}\\
-L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}.\label{eq:L_a}
+L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}.\label{eq:L_a}\\
+U_{a,t} & =\begin{cases}
+N_{a}-L_{a,t} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}\label{eq:U_a}\\
+U_{t} & =\sum_{a=0}^{\#-1}U_{a,t}.\label{eq:U}
 \end{align}
 
 \end_inset
@@ -1323,35 +1404,71 @@ The labor agency firms post vacancies,
 \begin_inset Formula $v_{t}$
 \end_inset
 
-, at the cost 
-\begin_inset Formula $\kappa^{L}$
-\end_inset
-
- to hire labor, 
+, to hire labor 
 \begin_inset Formula $L_{t}$
 \end_inset
 
-, at the wage 
-\begin_inset Formula $w_{t}$
+.
+ The costs of each vacancy is 
+\begin_inset Formula $\kappa^{L}$
 \end_inset
 
-, determined by bargaining, and renting it out to production firms at the
- rental price 
+ in units of labor.
+ The firms can therefore rent out 
+\begin_inset Formula $\ell_{t}=L_{t}-\kappa^{L}v_{t}$
+\end_inset
+
+ units of labor to the production firms at the rental price is 
 \begin_inset Formula $r_{t}^{\ell}$
 \end_inset
 
 .
+ Labor follows the law-of-motion 
+\begin_inset Formula $L_{t}=\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}$
+\end_inset
+
+.
+ The wage, 
+\begin_inset Formula $w_{t}$
+\end_inset
+
+, is determined by bargaining.
  Matching occurs according to a matching function, and the firms take the
  job-filling rate and prices as given.
+ Since lagged employment, 
+\begin_inset Formula $L_{t-1}$
+\end_inset
+
+, is pre-determined and the separation rate, 
+\begin_inset Formula $\delta_{t}^{L}$
+\end_inset
+
+, and the vacancy filling rate, 
+\begin_inset Formula $m_{t}^{v}$
+\end_inset
+
+, are taken as given, we consider 
+\begin_inset Formula $L_{t}$
+\end_inset
+
+ to be the choice value, and derive the required number of vacancies, 
+\begin_inset Formula $v_{t}$
+\end_inset
+
+, and the implied labor for rent, 
+\begin_inset Formula $\ell_{t}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-The labor agency problem is:
+The labor agency problem then is:
 \begin_inset Formula 
 \begin{align*}
-V_{0}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \frac{1}{\left(1+r^{\text{firm}}\right)^{t}}\left[r_{t}^{\ell}\ell_{t}-w_{t}L_{t}\right]\\
-\ell_{t} & =L_{t}-\kappa^{L}v_{t}\\
-L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}.
+V_{0}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-w_{t}L_{t}\right]\\
+v_{t} & =\frac{L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}}{m_{t}^{v}}\\
+\ell_{t} & =L_{t}-\kappa^{L}v_{t}.
 \end{align*}
 
 \end_inset
@@ -1366,7 +1483,7 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{align*}
-V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{\left(1+r^{\text{firm}}\right)^{t}}\left[r_{t}^{\ell}\ell(L_{t},L_{t-1})-w_{t}L_{t}\right]\\
+V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell(L_{t},L_{t-1})-w_{t}L_{t}\right]\\
  & \text{s.t.}\\
 \ell(L_{t},L_{t-1}) & =L_{t}-\frac{\kappa^{L}}{m_{t}^{v}}\left[L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}\right]
 \end{align*}
@@ -1376,11 +1493,11 @@ V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{\left
 
 \begin_inset Formula 
 \begin{align*}
-\frac{\partial V_{0}}{\partial L_{t}} & =0\\
-\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-w_{t}\right]+\left(1+r^{\text{firm}}\right)^{-(t+1)}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\\
-\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-w_{t}\right]+\left(1+r^{\text{firm}}\right)^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\\
+\frac{\partial V_{0}}{\partial L_{t}} & =0\Leftrightarrow\\
+\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-w_{t}\right]+\left(1+r^{\text{firm}}\right)^{-(t+1)}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\Leftrightarrow\\
+\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-w_{t}\right]+\left(1+r^{\text{firm}}\right)^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\Leftrightarrow\\
 r_{t}^{\ell} & =\frac{w_{t}-(1+r^{\text{firm}})^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}}}{\frac{\partial\ell_{t}}{\partial L_{t}}}\\
-r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[w_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
+ & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[w_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
 \end{align*}
 
 \end_inset
@@ -1445,7 +1562,7 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[w_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]\label{eq:w_ell}\\
+r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]\label{eq:w_ell}\\
 \ell_{t} & =L_{t}-\kappa^{L}v_{t}.\label{eq:ell}
 \end{align}
 
@@ -1458,9 +1575,9 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{align*}
-r_{ss}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{ss}^{v}}}\left[w_{ss}-r_{ss}^{\ell}\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right]\\
-\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}\right)r_{ss}^{\ell} & =w_{ss}-r_{ss}^{\ell}\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\\
-\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right) & r_{ss}^{\ell}=w_{ss}
+r_{ss}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{ss}^{v}}}\left[W_{ss}-r_{ss}^{\ell}\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right]\Leftrightarrow\\
+\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right)r_{ss}^{\ell} & =W_{ss}\Leftrightarrow\\
+ & r_{ss}^{\ell}=\frac{W_{ss}}{\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right)}
 \end{align*}
 
 \end_inset
@@ -1517,7 +1634,6 @@ The production firms uses capital,
 
 .
  The firm is a price taker in all markets and free entry implies zero profits.
- 
 \end_layout
 
 \begin_layout Standard
@@ -1568,7 +1684,7 @@ Outputs:
 
 \series default
 , 
-\begin_inset Formula $\left\{ P_{t}^{Y}\right\} $
+\begin_inset Formula $\left\{ P_{t}^{Y,0}\right\} $
 \end_inset
 
 
@@ -1576,8 +1692,8 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-Y_{t} & =\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\label{eq:Y}\\
-P_{t}^{Y} & =\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{t}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}.\label{eq:PY}
+Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\label{eq:Y}\\
+P_{t}^{Y,0} & =\frac{1}{\Gamma}\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{t}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}.\label{eq:PY}
 \end{align}
 
 \end_inset
@@ -1612,6 +1728,65 @@ The variable
 
 \begin_layout Subsection
 Block IV.
+ Phillips Curve
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Block-IV.-Phillips"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+To be added
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Inputs: 
+\begin_inset Formula $\left\{ Y_{t}\right\} ,\left\{ P_{t}^{Y,0}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Outputs:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Targets:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}+\frac{2}{1+r^{\text{firm}}}\eta\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\label{eq:FOC_K_ell-1}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The variable 
+\begin_inset Formula $K_{-1}$
+\end_inset
+
+ is pre-determined.
+\end_layout
+
+\begin_layout Subsection
+Block V.
  Bargaining
 \begin_inset CommandInset label
 LatexCommand label
@@ -1624,12 +1799,9 @@ name "subsec:Block-IV.-Bargaining"
 
 \begin_layout Standard
 The target wage in the bargaining is specified ad hoc as a weighted average
- of the marginal product of labor for production firm, 
-\begin_inset Formula $\text{MPL}_{t}$
-\end_inset
-
-, and the worker outside option 
-\begin_inset Formula $w^{U}$
+ of the profit the firm get from a marginal unit of labor, and the worker's
+ outside option 
+\begin_inset Formula $W^{U}$
 \end_inset
 
 .
@@ -1643,7 +1815,7 @@ The target wage in the bargaining is specified ad hoc as a weighted average
 Inputs: 
 \series default
 
-\begin_inset Formula $\left\{ w_{t}\right\} $
+\begin_inset Formula $\left\{ W_{t}\right\} $
 \end_inset
 
 , 
@@ -1661,14 +1833,15 @@ Inputs:
 
 \series bold
 Outputs: 
-\begin_inset Formula $\{w_{t}^{\ast}\}$
+\begin_inset Formula $\{\overline{W}_{t},\underline{W}_{t},W_{t}^{\ast}\}$
 \end_inset
 
 
 \begin_inset Formula 
 \begin{align}
-\text{MPL}_{t} & =\left(\left(1-\mu_{K}\right)\frac{Y_{t}}{\ell_{t}}\right)^{\frac{1}{\sigma^{Y}}}\label{eq:MPL}\\
-w_{t}^{\ast} & =\psi\text{MPL}_{t}+(1-\psi)w^{U}\label{eq:w_ast}
+\overline{W}_{t} & =P_{t}^{Y}\left(\left(1-\mu_{K}\right)\Gamma^{1-\sigma^{Y}}\frac{Y_{t}}{\ell_{t}}\right)^{\frac{1}{\sigma^{Y}}}\label{eq:MPL}\\
+\underline{W}_{t} & =W^{U}\\
+W_{t}^{\ast} & =\psi\overline{W}_{t}+(1-\psi)\underline{W}_{t}\label{eq:w_ast}
 \end{align}
 
 \end_inset
@@ -1682,7 +1855,7 @@ w_{t}^{\ast} & =\psi\text{MPL}_{t}+(1-\psi)w^{U}\label{eq:w_ast}
 Targets:
 \begin_inset Formula 
 \begin{equation}
-w_{t}=\gamma^{w}w_{t-1}+(1-\gamma^{w})w_{t}^{\ast}\label{eq:w}
+W_{t}=\gamma^{w}W_{t-1}+(1-\gamma^{w})W_{t}^{\ast}\label{eq:w}
 \end{equation}
 
 \end_inset
@@ -1691,7 +1864,7 @@ w_{t}=\gamma^{w}w_{t-1}+(1-\gamma^{w})w_{t}^{\ast}\label{eq:w}
 \end_layout
 
 \begin_layout Subsection
-Block V.
+Block VI.
  Repacking firms - prices
 \begin_inset CommandInset label
 LatexCommand label
@@ -1791,7 +1964,7 @@ P_{t}^{\bullet}=\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\
 \end_layout
 
 \begin_layout Subsection
-Block VI.
+Block VII.
  Foreign economy
 \begin_inset CommandInset label
 LatexCommand label
@@ -1857,7 +2030,7 @@ X_{t} & =\chi_{t}\left(\frac{P_{t}^{Y}}{P_{t}^{F}}\right)^{-\sigma^{F}}\label{eq
 \end_layout
 
 \begin_layout Subsection
-Block VII.
+Block VIII.
  Capital agency
 \begin_inset CommandInset label
 LatexCommand label
@@ -1899,7 +2072,7 @@ The capital agency firm buys investment goods,
  The capital agency takes prices as given, and its problem thus is:
 \begin_inset Formula 
 \begin{align*}
-V_{0} & \left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{\left(1+r^{\text{firm}}\right)^{t}}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}(\iota_{t}+\Psi(\iota_{t},K_{t-1}))\right]\\
+V_{0} & \left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}(\iota_{t}+\Psi(\iota_{t},K_{t-1}))\right]\\
  & \text{s.t.}\\
  & I_{t}=\iota_{t}+\Psi(\iota_{t},K_{t-1})\\
  & K_{t}=(1-\delta^{K})K_{t-1}+\iota_{t}.
@@ -1977,7 +2150,7 @@ Targets:
 
 \begin_inset Formula 
 \begin{equation}
-0=-P_{t}^{I}\left(1+\Psi_{\iota}\left(\iota_{t},K_{t-1}\right)\right)+\frac{1}{1+r^{\text{firm}}}\left[r_{t+1}^{k}+(1-\delta^{K})P_{t+1}^{I}(1+\Psi_{\iota}(\iota_{t+1},K_{t}))-P_{t+1}^{I}\Psi_{K}\left(\iota_{t+1},K_{t}\right)\right]\label{eq:FOC_K}
+0=-P_{t}^{I}\left(1+\Psi_{\iota}\left(\iota_{t},K_{t-1}\right)\right)+\left(1+r^{\text{firm}}\right)^{-1}\left[r_{t+1}^{k}+(1-\delta^{K})P_{t+1}^{I}(1+\Psi_{\iota}(\iota_{t+1},K_{t}))-P_{t+1}^{I}\Psi_{K}\left(\iota_{t+1},K_{t}\right)\right]\label{eq:FOC_K}
 \end{equation}
 
 \end_inset
@@ -1994,7 +2167,7 @@ The variable
 \end_layout
 
 \begin_layout Subsection
-Block VIII.
+Block IX.
  Government
 \end_layout
 
@@ -2002,7 +2175,7 @@ Block VIII.
 The government budget is given by
 \begin_inset Formula 
 \begin{equation}
-B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}-\tau_{t}w_{t}L_{t}\label{eq:government_budget}
+B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+W_{U}U_{t}-\tau_{t}W_{t}L_{t}\label{eq:government_budget}
 \end{equation}
 
 \end_inset
@@ -2025,7 +2198,7 @@ where
 \begin_inset Formula $\Delta_{B}$
 \end_inset
 
- years this is done gradually, and thereafter it is done fully-
+ years this is done gradually, and thereafter it is done fully.
 \end_layout
 
 \begin_layout Itemize
@@ -2076,14 +2249,15 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-\overline{\tau}_{t} & =\tau_{ss}\left(B_{t-1}/B_{ss}\right)^{\varepsilon_{B}}\label{eq:tau_bar}\\
+\tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{ss})W_{U}W_{t}U_{t}++(1-\tau_{ss})W_{R}W_{t}U_{t}-\tau_{ss}W_{t}L_{t}\nonumber \\
+\tilde{\tau}_{t} & =\tau_{ss}+\varepsilon_{B}\frac{\tilde{B}_{t}-B_{ss}}{W_{t}L_{t}+W_{U}W_{t}U_{t}+W_{R}W_{t}U_{t}}\nonumber \\
 \tau_{t} & =\begin{cases}
-\tilde{\tau}_{t} & \text{if }t<t_{B}\\
-(1-\omega_{t})\tilde{\tau}_{t}+\omega_{t}\overline{\tau}_{t} & \text{if }t\in[t_{B,}t_{B}+\Delta_{B}]\\
+\tau_{ss} & \text{if }t<t_{B}\\
+(1-\omega_{t})\tau_{ss}+\omega_{t}\tilde{\tau}_{t} & \text{if }t\in[t_{B,}t_{B}+\Delta_{B}]\\
 \overline{\tau}_{t} & \text{if }t>t_{B}+\Delta_{B}
 \end{cases}\label{eq:tau}\\
-\omega_{t} & =3\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{2}-2\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{3}\nonumber \\
-B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}-\tau_{t}w_{t}L_{t}\label{eq:B-1}
+\omega_{t} & =3\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{2}-2\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{3}\in(0,1)\nonumber \\
+B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{t}U_{t}+(1-\tau_{t})W_{R}W_{t}U_{t}-\tau_{t}W_{t}L_{t}\label{eq:B}
 \end{align}
 
 \end_inset
@@ -2100,7 +2274,7 @@ The variable
 \end_layout
 
 \begin_layout Subsection
-Block IX.
+Block X.
  Households - consumption -saving
 \begin_inset CommandInset label
 LatexCommand label
@@ -2112,89 +2286,157 @@ name "subsec:Block-VIII.-Households"
 \end_layout
 
 \begin_layout Standard
-There is a share of 
+The model has two types of households.
+ A share of 
 \begin_inset Formula $\lambda$
 \end_inset
 
- hand-to-mouth household and a share of unconstrained 
+ of households are hands-to-mouth and a share of 
 \begin_inset Formula $1-\lambda$
 \end_inset
 
- Ricardian households.
+ households are unconstrained (Ricardian).
+ All households has three sources of income:
 \end_layout
 
-\begin_layout Standard
-The Ricardian households earns income from labor, 
-\begin_inset Formula $w_{t}L_{a,t}$
+\begin_layout Enumerate
+Post-tax labor income, 
+\begin_inset Formula $\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}$
 \end_inset
 
-, pays taxes, 
-\begin_inset Formula $\tau_{t}w_{t}L_{a,t}$
+
+\end_layout
+
+\begin_layout Enumerate
+Unemployment benefits, 
+\begin_inset Formula $\left(1-\tau_{t}\right)W^{U}W_{t}\frac{U_{a,t}}{N_{a}}$
 \end_inset
 
-, gets an evenly divided inheritance, 
-\begin_inset Formula $\frac{(1-\lambda)B_{t}^{R,q}}{A}$
+
+\end_layout
+
+\begin_layout Enumerate
+Unemployment benefits, 
+\begin_inset Formula $\left(1-\tau_{t}\right)W^{R}W_{t}1_{\left\{ a\geq\#_{\text{work}}\right\} }$
 \end_inset
 
-, buys consumption goods at the price 
-\begin_inset Formula $P_{t}^{C}$
-\end_inset
 
- and has end-of-period savings, 
-\begin_inset Formula $B_{a,t}$
-\end_inset
+\end_layout
 
-.
- It gets a fixed nominal return on savings given by 
-\begin_inset Formula $r^{\text{hh }}.$
-\end_inset
-
- The Ricardian household making its first decision in period 
-\begin_inset Formula $t_{0}$
-\end_inset
-
- solves the problem
-\begin_inset Formula 
-\begin{align*}
-V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R},B_{a,t}^{R}\right\} _{a=0}^{A-1}}\sum_{a=0}^{A-1}\beta^{a}\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\boldsymbol{1}_{a=A-1}\mu^{B}\frac{\left(B_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}\right]\\
- & \text{s.t.}\\
-t & =t_{0}+a\\
-B_{-1,t}^{R} & =0\\
-B_{a,t}^{R} & =(1+r^{hh})B_{a-1,t-1}^{R}+(1-\tau_{t})w_{t}L_{a,t}+\frac{(1-\lambda)B_{t}^{R,q}}{A}-P_{t}^{C}C_{a,t}^{R}.
-\end{align*}
-
+\begin_layout Enumerate
+Equally divided inheritance, 
+\begin_inset Formula $\frac{A_{t}^{q}}{N}$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-The hand-to-mouth household consume all their income
+Total income is
 \begin_inset Formula 
 \[
-C_{a,t}^{\text{HtM}}=(1-\tau_{t})w_{t}L_{a,t}+\frac{(1-\lambda)B_{t}^{R,q}}{A}
+\text{inc}_{a,t}=\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{t}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{t}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}
 \]
 
 \end_inset
 
-Total consumption is
+
+\end_layout
+
+\begin_layout Standard
+The price consumption of consumption goods is 
+\begin_inset Formula $P_{t}^{C}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Consumption is 
+\begin_inset Formula $C_{a,t}^{\bullet}$
+\end_inset
+
+ and end-of-period nominal savings is 
+\begin_inset Formula $A_{a,t}^{\bullet}$
+\end_inset
+
+, where 
+\begin_inset Formula $\bullet\in\{\text{HtM},R\}$
+\end_inset
+
+.
+ The behavior of 
+\emph on
+surviving 
+\emph default
+hands-to-mouth households are
 \begin_inset Formula 
 \begin{align*}
-C_{a,t} & =\lambda C_{a,t}^{\text{HtM}}+(1-\lambda)C_{a,t}^{R}
+C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\\
+A_{a,t}^{\text{HtM}} & 0.
 \end{align*}
 
 \end_inset
 
-Using the FOC for 
-\begin_inset Formula $C_{t}$
+
+\end_layout
+
+\begin_layout Standard
+The Ricardian households making their first decision in period 
+\begin_inset Formula $t_{0}$
 \end_inset
 
- to the household problem, aggregation, and that inheritance inflows must
- match bequest outflows, 
-\begin_inset Formula $B_{t}^{q}=B_{A-1,t}$
+ solve the problem
+\begin_inset Formula 
+\begin{align*}
+V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R},A_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
+ & \text{s.t.}\\
+t & =t_{0}+a\\
+A_{-1,t}^{R} & =0\\
+A_{a,t}^{R} & =(1+r^{hh})A_{a-1,t-1}^{R}+\text{inc}_{a,t}-P_{t}^{C}C_{a,t}^{R}.
+\end{align*}
+
 \end_inset
 
-, let us write the 
+
+\end_layout
+
+\begin_layout Standard
+Aggregation implies
+\begin_inset Formula 
+\begin{align*}
+C_{a,t} & =\lambda C_{a,t}^{\text{HtM}}+(1-\lambda)C_{a,t}^{R}\\
+A_{a,t} & =\lambda A_{a,t}^{\text{HtM}}+(1-\lambda)A_{a,t}^{R}
+\end{align*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{align*}
+C_{t} & =\sum_{a=0}^{\#-1}N_{a}C_{a,t}\\
+A_{t} & =\sum_{a=0}^{\#-1}N_{a}C_{a,t}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bequests are
+\begin_inset Formula 
+\[
+A_{t}^{q}=\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using the FOC for we can write the 
 \series bold
 block
 \series default
@@ -2211,11 +2453,15 @@ Inputs:
 \end_inset
 
 , 
+\begin_inset Formula $\left\{ U_{a,t}\right\} $
+\end_inset
+
+, 
 \begin_inset Formula $\{P_{t}^{C}\}$
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ w_{t}\right\} $
+\begin_inset Formula $\left\{ W_{t}\right\} $
 \end_inset
 
 , 
@@ -2223,12 +2469,14 @@ Inputs:
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ B_{t}^{R,q}\right\} $
+\begin_inset Formula $\left\{ A_{t}^{q}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ A_{\#-1,t}^{R}\right\} $
 \end_inset
 
 
-\series bold
- 
 \end_layout
 
 \begin_layout Enumerate
@@ -2249,7 +2497,11 @@ Outputs:
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ B_{a,t}^{R}\right\} $
+\begin_inset Formula $\left\{ A_{a,t}^{\text{HtM}}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ A_{a,t}^{R}\right\} $
 \end_inset
 
 , 
@@ -2257,11 +2509,15 @@ Outputs:
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ B_{t}^{R}\right\} $
+\begin_inset Formula $\left\{ A_{t}^{R}\right\} $
 \end_inset
 
 , 
 \begin_inset Formula $\left\{ C_{t}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ A_{t}\right\} $
 \end_inset
 
 
@@ -2272,17 +2528,10 @@ Outputs:
 Calculate
 \begin_inset Formula 
 \begin{align}
-N_{a} & =\begin{cases}
-1 & \text{if }a<A_{R}\\
-(1-\zeta_{a})N_{a-1} & \text{else}
-\end{cases}\label{eq:pi_hh}\\
-\zeta_{a} & =\begin{cases}
-0 & \text{if }a<A_{R}\\
-\frac{a-A_{R}}{A-A_{R}} & \text{else}
-\end{cases}\\
-\pi_{t}^{hh} & =\frac{P_{t}^{C}}{P_{t-1}^{C}}-1\\
-B_{t}^{R,q} & =\sum_{a=0}^{A-1}\zeta_{a}N_{a-1}B_{a,t}^{R}\label{eq:Bq-1}\\
-C_{a,t}^{\text{HtM}} & =\frac{1}{P_{t}^{C}}\left((1-\tau_{t})w_{t}L_{a,t}+\frac{\lambda B_{t}^{R,q}}{\sum_{a=0}^{A-1}N_{a}}\right)\label{eq:C_htm}
+\pi_{t}^{hh} & =\frac{P_{t}^{C}}{P_{t-1}^{C}}-1\label{eq:pi_hh-1}\\
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{t}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{t}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\\
+C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\label{eq:C_HtM}\\
+A_{a,t}^{\text{HtM}} & =0\label{eq:A_HtM}
 \end{align}
 
 \end_inset
@@ -2291,15 +2540,36 @@ C_{a,t}^{\text{HtM}} & =\frac{1}{P_{t}^{C}}\left((1-\tau_{t})w_{t}L_{a,t}+\frac{
 \end_layout
 
 \begin_layout Standard
-Use FOCs backwards
+For each birthcohort 
+\begin_inset Formula $t_{0}\in\{-\#+1,-\#+1\dots,T-1\}$
+\end_inset
+
+ iterate backwards from 
+\begin_inset Formula $a=\#-1$
+\end_inset
+
+ with 
+\begin_inset Formula $t=t_{0}+a$
+\end_inset
+
+, but skipping steps where 
+\begin_inset Formula $t<0$
+\end_inset
+
+ or 
+\begin_inset Formula $t>T-1$
+\end_inset
+
+:
 \begin_inset Formula 
-\[
-C_{a,t}^{R}=\begin{cases}
-\left(\mu^{B}\left(B_{t}^{R,q}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=A-1\\
-\left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
-\left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
-\end{cases}
-\]
+\begin{align*}
+C_{a,t}^{R} & =\begin{cases}
+\left(\mu^{A^{q}}\left(\frac{A_{t}^{\text{death}}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
+\left((1-\zeta_{a})\beta\frac{1+r^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
+\left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{t,ss}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
+\end{cases}\\
+A_{a-1,t-1}^{R} & =\frac{A_{a,t}^{R}-\text{inc}_{a,t}+P_{t}^{C}C_{a,t}^{R}}{1+r^{hh}}
+\end{align*}
 
 \end_inset
 
@@ -2307,19 +2577,27 @@ C_{a,t}^{R}=\begin{cases}
 \end_layout
 
 \begin_layout Standard
-Calculate savings forwards
+Aggregates
 \begin_inset Formula 
-\begin{equation}
-B_{a,t}^{R}=(1+r^{hh})B_{a-1,t-1}^{R}+(1-\tau_{t})w_{t}L_{a,t}+\frac{(1-\lambda)B_{t}^{R,q}}{\sum_{a=0}^{A-1}N_{a}}-P_{t}^{C}C_{a,t}^{R}\label{eq:BR}
-\end{equation}
+\begin{align}
+C_{a,t} & =\lambda C_{a,t}^{\text{HtM}}+(1-\lambda)C_{a,t}^{R}\label{eq:C_a}\\
+A_{a,t} & =\lambda A_{a,t}^{\text{HtM}}+(1-\lambda)A_{a,t}^{R}\label{eq:A_a}\\
+\text{inc}_{t} & =\sum_{a=0}^{\#-1}N_{a}\text{inc}_{a,t}\label{eq:C}\\
+C_{t} & =\sum_{a=0}^{\#-1}N_{a}C_{a,t}\\
+A_{t} & =\sum_{a=0}^{\#-1}N_{a}C_{a,t}\label{eq:A}
+\end{align}
 
 \end_inset
 
-Calculate total consumption
+
+\series bold
+Targets
+\series default
+
 \begin_inset Formula 
 \begin{align}
-C_{a,t} & =\lambda C_{a,t}^{\text{HtM}}+(1-\lambda)C_{a,t}^{R}\label{eq:Ca}\\
-C_{t} & =\sum_{a}C_{a,t}\label{eq:C}
+0 & =A_{t}^{q}-\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t-1}\label{eq:A_q}\\
+0 & =\sum_{t_{0}=-\#+1}^{-1}\left(A_{-t_{0}-1,-1}^{R}-A_{-t_{0}-1,ss}\right)+\sum_{0}^{T-1-\#+1}\left(A_{-1,t_{0}}^{R}-0.0\right)
 \end{align}
 
 \end_inset
@@ -2328,36 +2606,20 @@ C_{t} & =\sum_{a}C_{a,t}\label{eq:C}
 \end_layout
 
 \end_deeper
-\begin_layout Enumerate
-
-\series bold
-Targets
-\series default
-
-\begin_inset Formula 
-\begin{align}
-B_{t}^{R,q} & =\sum_{a=0}^{A-1}\zeta_{a}N_{a-1}B_{a,t}^{R}\label{eq:Bq}
-\end{align}
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 For 
 \begin_inset Formula $t=0$
 \end_inset
 
 , we have that the variable 
-\begin_inset Formula $B_{a-1,t-1}^{R}$
+\begin_inset Formula $A_{a,t-1}^{R}$
 \end_inset
 
  is pre-determined.
 \end_layout
 
 \begin_layout Subsection
-Block X.
+Block XI.
  Repacking firms - components
 \end_layout
 
@@ -2448,7 +2710,7 @@ Output:
 \end_layout
 
 \begin_layout Subsection
-Block XI.
+Block XII.
  Goods market clearing
 \end_layout
 
@@ -2564,7 +2826,7 @@ noprefix "false"
 , 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:Bq"
+reference "eq:A_q"
 plural "false"
 caps "false"
 noprefix "false"
@@ -2593,6 +2855,12 @@ name "sec:Steady-state"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Not updated
 \end_layout
 
 \begin_layout Standard
@@ -2870,25 +3138,13 @@ Potential extensions include
 \series bold
 Extend household problem: 
 \series default
-Add gradual mortality and habit formation.
+Add habit formation.
 \end_layout
 
 \begin_layout Enumerate
 
 \series bold
-Add hand-to-mouth households.
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-Add government with taxes and spending.
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-Make export demand more rigid.
+Add more government with taxes and spending.
 \end_layout
 
 \begin_layout Enumerate

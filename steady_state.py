@@ -7,168 +7,217 @@ class Fonttype:
     HEADER = '\033[1m' + '\033[94m'
     END = '\033[0m'
 
-def household_ss(Bq,par,ss):
-    """ household behavior in steady state """
-
-    ss.Bq = Bq
+def find_household_consumption_ss(model):
+    """ find household behavior in steady state given """
     
-    for i in range(par.A):
-        if i < par.A_R:
-            ss.zeta_a[i] = 0
-            ss.N_a[i] = 1.0
-        else:
-            ss.zeta_a[i] = ((i+1-par.A_R)/(par.A-par.A_R))**6
-            ss.N_a[i] = (1-ss.zeta_a[i])*ss.N_a[i-1]
+    par = model.par
+    ss = model.ss
 
-    ss.N = np.sum(ss.N_a)
-    ss.C_HTM = ((1-ss.tau)*ss.w*ss.L_a+par.Lambda*Bq/ss.N)/ss.P_C
+    result = optimize.root_scalar(household_consumption_ss,
+        bracket=[0.0001,1000],method='brentq',args=(par,ss,))
+    
+    household_consumption_ss(result.root,par,ss)
+    ss.A_R_death = ss.A_R_a[-1]
 
-    # a. find consumption using final savings and Euler
-    for i in range(par.A):
-        a = par.A-1-i
-        if i == 0:
-            RHS = par.mu_B*Bq**(-par.sigma)
-        else:
-            RHS = par.beta*(1-ss.zeta_a[a])*(1+par.r_hh)*ss.C_R[a+1]**(-par.sigma)
+    return result
 
-        ss.C_R[a] = RHS**(-1/par.sigma)
-        ss.C_a[a] = par.Lambda*ss.C_HTM[a]+(1-par.Lambda)*ss.C_R[a] 
+def household_consumption_ss(A_R_death,par,ss):
+    """ find household behavior in steady state given A_death """
 
-    # b. find implied savings
-    for a in range(par.A):
+    # a. income
+    ss.inc_a[:] = (1-ss.tau)*ss.W*ss.L_a/par.N_a + (1-ss.tau)*par.W_U*ss.W*ss.U_a/par.N_a + ss.Aq/par.N
+    ss.inc_a[par.work_life_span:] += (1-ss.tau)*par.W_R*ss.W
 
-        if a == 0:
-            B_lag = 0.0
-            N_lag = 1.
-        else: 
-            B_lag = ss.B_a[a-1]
-            N_lag = ss.N_a[a-1]
+    # a. HtM
+    ss.C_HtM_a[:] = ss.inc_a/ss.P_C
+    ss.A_HtM_a[:] = np.zeros(par.life_span)
+
+    # b. Ricardian
+    A_R_ini_error = np.nan
+    ss.A_R_a[-1] = A_R_death
+    for i in range(par.life_span):
+
+        a = par.life_span-1-i
+
+        # i. consumption
+        RHS = par.zeta_a[a]*par.mu_Aq*(ss.A_R_a[a]/ss.P_C)**(-par.sigma)
         
-        ss.B_a[a] = (1+par.r_hh)/(1+ss.pi_hh)*B_lag + (1-ss.tau)*ss.w*ss.L_a[a] + (1-par.Lambda)*ss.Bq/ss.N - ss.P_C*ss.C_R[a]
-        ss.B_target_a[a] = ss.zeta_a[a]*N_lag*ss.B_a[a]
-             
+        if a < par.life_span-1: 
+            RHS += (1-par.zeta_a[a])*par.beta*(1+ss.real_r_hh)*ss.C_R_a[a+1]**(-par.sigma)
 
-    # c. aggreagtes
-    ss.C = np.sum(ss.C_a)
-    ss.B = np.sum(ss.B_a)
-    ss.B_target = np.sum(ss.B_target_a)
+        ss.C_R_a[a] = RHS**(-1/par.sigma)
 
+        # ii. assets
+        A_R_lag = (ss.A_R_a[a] + ss.P_C*ss.C_R_a[a] - ss.inc_a[a])/(1+par.r_hh)         
+        if a > 0:
+            ss.A_R_a[a-1] = A_R_lag
+        else:
+            A_R_ini_error = A_R_lag-0.0
 
-    return ss.Bq-ss.B_target
+    # c. aggregate
+    ss.C_a = par.Lambda*ss.C_HtM_a+(1-par.Lambda)*ss.C_R_a 
+    ss.A_a = par.Lambda*ss.A_HtM_a+(1-par.Lambda)*ss.A_R_a 
 
-def find_ss(par,ss,do_print=True):
+    ss.inc = np.sum(par.N_a*ss.inc_a)
+    ss.C = np.sum(par.N_a*ss.C_a)
+    ss.C_HtM = np.sum(par.N_a*ss.C_HtM_a)
+    ss.C_R = np.sum(par.N_a*ss.C_R_a)
+    ss.A = np.sum(par.N_a*ss.A_a)
+
+    return A_R_ini_error
+
+def find_Aq_ss(Aq,model):
+    """ find Aq in steady state """
+
+    par = model.par
+    ss = model.ss
+
+    # a. initial guess
+    ss.Aq = Aq
+
+    # b. iterate
+    it = 0
+    while True:
+
+        old_Aq = ss.Aq
+
+        # i. solve     
+        find_household_consumption_ss(model)
+
+        # ii. update
+        ss.Aq = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*ss.A_a)
+
+        # iii. converged?
+        if np.abs(ss.Aq-old_Aq) < 1e-12: 
+            find_household_consumption_ss(model)
+            Aq = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*ss.A_a)
+            ss.Aq_diff = Aq - ss.Aq_diff
+            break
+
+        it += 1
+        if it > 100: raise ValueError(f'search for ss.Aq did not converge')
+
+def household_search_ss(par,ss):
+    """ find labor supply in steady state """
+
+    for a in range(par.life_span):
+        
+        if a == 0:
+            ss.S_a[a] = 1.0
+            ss.L_ubar_a[a] = 0.0
+        elif a >= par.work_life_span:
+            ss.S_a[a] = 0.0
+            ss.L_ubar_a[a] = 0.0            
+        else:
+            ss.S_a[a] = (1-par.zeta_a[a-1])*((par.N_a[a-1]-ss.L_a[a-1]) + par.delta_L_a[a]*ss.L_a[a-1])
+            ss.L_ubar_a[a] = (1-par.zeta_a[a-1])*(1-par.delta_L_a[a])*ss.L_a[a-1]
+
+        ss.L_a[a] = ss.L_ubar_a[a] + ss.m_s*ss.S_a[a]
+
+        if a >= par.work_life_span:
+            ss.U_a[a] = 0.0
+        else:
+            ss.U_a[a] = par.N_a[a]-ss.L_a[a]
+
+    ss.S = np.sum(par.N_a*ss.S_a)
+    ss.L_ubar = np.sum(par.N_a*ss.L_ubar_a)
+    ss.L = np.sum(par.N_a*ss.L_a)
+    ss.U = np.sum(par.N_a*ss.U_a)
+
+def find_ss(model,do_print=True):
+
+    par = model.par
+    ss = model.ss
 
     # a. price noramlizations
-    ss.P_Y = 1.0
+    ss.P_Y = 1.0 
     ss.P_F = 1.0
     ss.P_M_C = 1.0
     ss.P_M_G = 1.0
     ss.P_M_I = 1.0
     ss.P_M_X = 1.0
     
-    # b. pricing in repacking firms
+    # b. fixed variables
+    ss.W = par.W_ss
+    ss.pi_hh = par.pi_hh_ss
+    ss.m_s = par.m_s_ss
+    ss.m_v = par.m_v_ss
+    ss.B = par.B_ss
+
+    # c. pricing in repacking firms
     ss.P_C = blocks.CES_P(ss.P_M_C,ss.P_Y,par.mu_M_C,par.sigma_C)
     ss.P_G = blocks.CES_P(ss.P_M_G,ss.P_Y,par.mu_M_G,par.sigma_G)
     ss.P_I = blocks.CES_P(ss.P_M_I,ss.P_Y,par.mu_M_I,par.sigma_I)
     ss.P_X = blocks.CES_P(ss.P_M_X,ss.P_Y,par.mu_M_X,par.sigma_X)
 
-    ss.pi_hh = 0.0  #Set inflation in steady state to 0
-    ss.m_s = 0.50   #Set the job finding rate in steady state to 0.5
-
-    # c. labor supply and search and matching
-    for a in range(par.A):
-        
-        if a == 0:
-            ss.S_a[a] = 1.0
-            ss.L_ubar_a[a] = 0.0
-        elif a >= par.A_R:
-            ss.S_a[a] = 0.0
-            ss.L_ubar_a[a] = 0.0            
-        else:
-            ss.S_a[a] = (1-ss.L_a[a-1]) + par.delta_L_a[a]*ss.L_a[a-1]
-            ss.L_ubar_a[a] = (1-par.delta_L_a[a])*ss.L_a[a-1]
-
-        ss.L_a[a] = ss.L_ubar_a[a] + ss.m_s*ss.S_a[a]
-
-    ss.S = np.sum(ss.S_a)
-    ss.L_ubar = np.sum(ss.L_ubar_a)
-    ss.L = np.sum(ss.L_a)
+    # d. labor supply, search and matching
+    household_search_ss(par,ss)
 
     ss.delta_L = (ss.L-ss.L_ubar)/ss.L
     ss.curlyM = ss.delta_L*ss.L
-    ss.v = (ss.m_s**(1/par.sigma_m)*ss.S**(1/par.sigma_m)/(1-ss.m_s**(1/par.sigma_m)))**par.sigma_m
-    ss.m_v = ss.curlyM/ss.v
+    
+    ss.v = ss.curlyM/ss.m_v
+    par.nu = (ss.m_s**(1/par.sigma_m)*ss.S**(1/par.sigma_m)/(1-ss.m_s**(1/par.sigma_m)))**par.sigma_m/ss.v
 
     if do_print:
-        print(Fonttype.HEADER + 'Labor supply and search and matching:' + Fonttype.END)
-        print(f'{ss.S = :.2f}' ',  ' f'{ss.L = :.2f}' ',  ' f'{ss.delta_L = :.2f}' ',  ' f'{ss.v = :.2f}' ',  ' f'{ss.m_v = :.2f}')
+        print(Fonttype.HEADER + 'Labor supply, search and matching:' + Fonttype.END)
+        print(f'{ss.S/par.N_work = :.2f}, {ss.L/par.N_work = :.2f}, {ss.U/par.N_work = :.2f}')
+        print(f'{ss.delta_L = :.2f}, {ss.m_s = :.2f}, {ss.m_v = :.2f}, {ss.v = :.2f}')
 
-    # d. capital agency FOC
+    # e. capital agency FOC
     ss.r_K = (par.r_firm + par.delta_K)*ss.P_I
 
     if do_print: 
         print(Fonttype.HEADER + 'Capital agency FOC:' + Fonttype.END)
         print(f'{ss.r_K = :.2f}')
-
-
-    # e. production firm pricing
-    ss.r_ell = ((1-par.mu_K*(ss.r_K)**(1-par.sigma_Y))/(1-par.mu_K))**(1/(1-par.sigma_Y))
-
-    if do_print: 
-        print(Fonttype.HEADER + 'Production firm pricing:' + Fonttype.END)
-        print(f'{ss.r_ell = :.2f}')
-
-    # f. labor agency
+    
+    # f. labor agency FOC
+    ss.r_ell = ss.W / (1 - par.kappa_L/ss.m_v + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
     ss.ell = ss.L - par.kappa_L*ss.v
-    ss.w = ss.r_ell*(1-par.kappa_L/ss.m_v+(1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
 
     if do_print: 
-        print(Fonttype.HEADER + 'Labor agency:' + Fonttype.END)
-        print(f'{ss.ell = :.2f}' ',  ' f'{ss.w = :.2f}')
+        print(Fonttype.HEADER + 'Labor agency FOC:' + Fonttype.END)
+        print(f'{ss.r_ell = :.2f}, {(ss.L-ss.ell)/par.N_work*100 = :.2f}')
+    
+    # g. production firm
+    P_Y_0 = blocks.CES_P(ss.r_K,ss.r_ell,par.mu_K,par.sigma_Y,Gamma=1.0)
+    ss.Gamma = P_Y_0*(1+par.theta)
+    ss.P_Y_0 = blocks.CES_P(ss.r_K,ss.r_ell,par.mu_K,par.sigma_Y,Gamma=ss.Gamma)
+    P_Y = (1+par.theta)*ss.P_Y_0
+    assert np.isclose(P_Y,ss.P_Y)
 
-    # g. government
-    ss.B_G = 10.0
-    ss.G = 10.0
-    ss.tau = (par.r_b*ss.B_G+ss.P_G*ss.G)/(ss.w*ss.L)
+    ss.K = par.mu_K/(1-par.mu_K)*(ss.r_ell/ss.r_K)**par.sigma_Y*ss.ell
+    ss.Y = blocks.CES_Y(ss.K,ss.ell,par.mu_K,par.sigma_Y,Gamma=ss.Gamma)
+
+    if do_print: 
+        print(Fonttype.HEADER + 'Production firm:' + Fonttype.END)
+        print(f'{ss.Gamma = :.2f}, {ss.Y = :.2f}, {ss.K = :.2f}')
+
+    # h. capital accumulation
+    ss.iota = ss.I = par.delta_K*ss.K
+    
+    if do_print: 
+        print(Fonttype.HEADER + 'Capital accumulation:' + Fonttype.END)
+        print(f'{ss.iota = :.2f}, {ss.I = :.2f}')
+
+    # i. government
+    ss.G = par.G_share_ss*ss.Y
+    ss.tau = (par.r_b*ss.B+ss.P_G*ss.G+par.W_U*ss.U+par.W_R*(par.N-par.N_work))/(ss.W*ss.L+par.W_U*ss.U+par.W_R*(par.N-par.N_work))
+
     if do_print: 
         print(Fonttype.HEADER + 'Government:' + Fonttype.END)
-        print(f'{ss.B_G = :.2f}' ',  ' f'{ss.G = :.2f}' ',  ' f'{ss.tau = :.2f}')
+        print(f'{ss.B = :.2f}, {ss.G = :.2f}, {ss.tau = :.2f}')
 
-    # h. household behavior
-    if do_print: 
-        print(Fonttype.HEADER + 'Households:' + Fonttype.END)
-        print(f'solving for household behavior:',end='')
-
-    result = optimize.root_scalar(household_ss,bracket=[0.01,100],method='brentq',args=(par,ss,))
-    if do_print: print(f' {result.converged = }')
-    
-    household_ss(result.root,par,ss)
+    # j. household behavior
+    ss.real_W = ss.W/ss.P_C
+    ss.real_r_hh = (1+par.r_firm)/(1+ss.pi_hh)-1
+    find_Aq_ss(0.0,model)
 
     if do_print:
-        print(f'{ss.C = :.2f}' ',  ' f'{ss.B = :.2f}' ',  ' f'{ss.N = :.2f}' ',  ' f'{ss.B_target = :.2f}')
-    
-    # i. production firm FOCs
-    ss.K = par.mu_K/(1-par.mu_K)*(ss.r_ell/ss.r_K)**par.sigma_Y*ss.ell
+        print(Fonttype.HEADER + 'Households:' + Fonttype.END)
+        print(f'{ss.Aq/par.N = :.2f}, {ss.C = :.2f}, {ss.A = :.2f}')
 
-    if do_print: 
-        print(Fonttype.HEADER + 'Production firm FOCs:' + Fonttype.END)
-        print(f'{ss.K = :.2f}')
-
-    # j. capital accumulation equation
-    ss.iota = ss.I = par.delta_K*ss.K
-
-    if do_print: 
-        print(Fonttype.HEADER + 'Capital accumulation equation:' + Fonttype.END)
-        print(f'{ss.I = :.2f}')
-
-    # k. output in production firm
-    ss.Y = blocks.CES_Y(ss.K,ss.ell,par.mu_K,par.sigma_Y)
-
-    if do_print: 
-        print(Fonttype.HEADER + 'Output in production firm:' + Fonttype.END)
-        print(f'{ss.Y = :.2f}')
-
-    # l. CES demand in packing firms
+    # k. CES demand in packing firms
     ss.C_M = blocks.CES_demand(par.mu_M_C,ss.P_M_C,ss.P_C,ss.C,par.sigma_C)
     ss.C_Y = blocks.CES_demand(1-par.mu_M_C,ss.P_Y,ss.P_C,ss.C,par.sigma_C)
 
@@ -178,7 +227,10 @@ def find_ss(par,ss,do_print=True):
     ss.I_M = blocks.CES_demand(par.mu_M_I,ss.P_M_I,ss.P_I,ss.I,par.sigma_I)
     ss.I_Y = blocks.CES_demand(1-par.mu_M_I,ss.P_Y,ss.P_I,ss.I,par.sigma_I)
 
-    # m. market clearing
+    if do_print: 
+        print(Fonttype.HEADER + 'Re-packing firms:' + Fonttype.END)
+
+    # l. market clearing
     ss.X_Y = ss.Y - (ss.C_Y + ss.G_Y + ss.I_Y) 
     ss.chi = ss.X_Y/(1-par.mu_M_X)
     ss.X = ss.X_Y/(1-par.mu_M_X)
@@ -188,14 +240,17 @@ def find_ss(par,ss,do_print=True):
 
     if do_print: 
         print(Fonttype.HEADER + 'Market clearing:' + Fonttype.END)
-        print(f'{ss.C_Y = :.2f}' ',  ' f'{ss.G_Y = :.2f}' ',  ' f'{ss.I_Y = :.2f}' ',  ' f'{ss.X_Y = :.2f}')
-        print('[ ' f'{ss.C_M = :.2f}' ',  ' f'{ss.G_M = :.2f}' ',  ' f'{ss.I_M = :.2f}' ',  ' f'{ss.X_M = :.2f}' ' ] = ' f'{ss.M = :.2f}')
-        print(f'{ss.X = :.2f}')
+        print(f'{ss.C_Y/ss.C = :.2f}, {ss.G_Y/ss.G = :.2f}, {ss.I_Y/ss.I = :.2f}, {ss.X_Y/ss.X = :.2f}')
+        print(f'{ss.X/ss.Y = :.2f}, {ss.M/ss.Y = :.2f}')
 
-    # n. bargaining
-    ss.w_ast = ss.w
-    ss.MPL = ((1-par.mu_K)*ss.Y/ss.ell)**(1/par.sigma_Y)
-    par.phi = (ss.w-par.w_U)/(ss.MPL-par.w_U)
+    # m. bargaining
+    W_ast = ss.W
+
+    W_obar = ss.P_Y*( (1-par.mu_K)*ss.Gamma**(par.sigma_Y-1)*ss.Y/ss.ell )**(1/par.sigma_Y)
+    W_ubar = par.W_U
+
+    par.phi = (W_ast-par.W_U)/(W_obar-W_ubar)
+
     if do_print: 
         print(Fonttype.HEADER + 'Bargaining:' + Fonttype.END)
         print(f'{par.phi = :.3f}')

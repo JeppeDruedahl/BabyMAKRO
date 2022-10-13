@@ -1,9 +1,13 @@
-from multiprocessing.sharedctypes import Value
 import time
 import numpy as np
 
 from EconModel import EconModelClass, jit
 from consav import elapsed
+
+import matplotlib.pyplot as plt   
+plt.style.use('seaborn-whitegrid')
+prop_cycle = plt.rcParams['axes.prop_cycle']
+colors = prop_cycle.by_key()['color']
 
 # local
 import blocks
@@ -27,15 +31,16 @@ class BabyMAKROModelClass(EconModelClass):
 
         # b. blocks
         self.blocks = [
-            'household_search',
+            'search_and_match',
             'labor_agency',
             'production_firm',
+            'phillips_curve',
             'bargaining',
             'repacking_firms_prices',
             'foreign_economy',
             'capital_agency',
             'government',
-            'households_consumption',
+            'household_consumption',
             'repacking_firms_components',
             'goods_market_clearing',
         ]
@@ -50,38 +55,46 @@ class BabyMAKROModelClass(EconModelClass):
             'P_M_G',
             'P_M_I',
             'P_M_X',
+            'Gamma',
             'G',
         ]
         
         # unknowns
         self.unknowns = [
-            'Bq',
+            'Aq',
+            'A_R_death',
             'K',
             'L',
             'r_K',
-            'w',
+            'W',
+            'P_Y',
         ]
 
         # targets
         self.targets = [
+            'A_R_ini_error',
+            'Aq_diff',
             'bargaining_cond',
-            'Bq_match',
             'FOC_capital_agency',
             'FOC_K_ell',
             'mkt_clearing',
+            'PC',
         ]
 
         # all non-household variables
         self.varlist = [
+            'A_R_death',
+            'A_R_ini_error',
+            'A',
+            'Aq_diff',
+            'Aq',
             'B',
-            'B_G',
-            'B_target',
             'bargaining_cond',
-            'Bq_match',
-            'Bq',
             'C_M',
             'C_Y',
             'C',
+            'C_HtM',
+            'C_R',
             'chi',
             'curlyM',
             'delta_L',
@@ -89,12 +102,14 @@ class BabyMAKROModelClass(EconModelClass):
             'FOC_C',
             'FOC_capital_agency',
             'FOC_K_ell',
-            'G',
             'G_M',
             'G_Y',
+            'G',
+            'Gamma',
             'I_M',
             'I_Y',
             'I',
+            'inc',
             'iota',
             'K',
             'L_ubar',
@@ -103,11 +118,11 @@ class BabyMAKROModelClass(EconModelClass):
             'm_v',
             'M',
             'mkt_clearing',            
-            'MPL',
             'N',
+            'PC',
             'P_C',
-            'P_G',
             'P_F',
+            'P_G',
             'P_I',
             'P_M_C',
             'P_M_G',
@@ -115,15 +130,17 @@ class BabyMAKROModelClass(EconModelClass):
             'P_M_X',
             'P_X',
             'P_Y',
+            'P_Y_0',
             'pi_hh',
             'r_ell',
             'r_K',
+            'real_W',
+            'real_r_hh',
             'S',
             'tau',
-            'tau_bar',
+            'U',
             'v',
-            'w_ast',
-            'w',
+            'W',
             'X_M',
             'X_Y',
             'X',
@@ -132,17 +149,17 @@ class BabyMAKROModelClass(EconModelClass):
 
         # all household variables
         self.varlist_hh = [
-            'B_a',
-            'B_target_a',
+            'A_a',
+            'A_HtM_a',
+            'A_R_a',
             'C_a',
-            'C_R',
-            'C_HTM',
-            'FOC_C',
+            'C_HtM_a',
+            'C_R_a',
+            'inc_a',
             'L_a',
             'L_ubar_a',
-            'N_a',
             'S_a',
-            'zeta_a',
+            'U_a',
         ]
 
     def setup(self):
@@ -150,57 +167,73 @@ class BabyMAKROModelClass(EconModelClass):
 
         par = self.par
 
-        par.T = 500 # number of time-periods
+        par.T = 400 # number of time-periods
         
         # a. households
-        par.A = 80 # life-span
-        par.A_R = 60 # work-life-span
+        par.life_span = 70 # life-span
+        par.work_life_span = 50 # work-life-span
+        par.zeta_pow = 6.0 # mortality parameter (-> inf then everybody dies in last period)
+        par.Lambda = 0.25 # share of hands-to-mouth households
+
         par.beta = 0.95 # discount factor
         par.sigma = 2.0 # CRRA coefficient
-        par.sigma_m = 2.0 #CRRA coefficient from matching function
-        par.mu_B = 5 # weight on bequest motive                           - Note: Jeg har ændret vægten fra 2.5 til 5
-        par.r_hh = 0.04 # nominal return rate                               - Note: Meget afgørende for resultaterne (ved 0.08 er der ingen løsnings)
-        par.delta_L_a = 0.05*np.ones(par.A_R) # separation probabilities    - Note: Umiddelbart mindre sensitiv efter seneste ændre i labor agency
-        par.w_U = 0.25 # outside option in bargaining                       - Note: Hvorfor er outside-option meget lavere end w_ss? Burde de et eller andet sted ikke ligge tæt på hinanden?
-        par.Lambda = 0.00 # Share of hands-to-mouth households
+        par.mu_Aq = 100 # weight on bequest motive
 
-        # b. production firm
+        par.r_hh = 0.04 # nominal return rate
+        par.W_U = 0.80 # unemployment benefits (rel. to ss.W)
+        par.W_R = 0.50 # retirement benefits (rel. to ss.W)
+
+        par.delta_L_a_fac = 0.10 # age-specific separation rate (common)
+
+        # b. production firm and phillips curve
         par.r_firm = 0.04 # internal rate of return
         par.delta_K = 0.10 # depreciation rate
         par.mu_K = 1/3 # weigth on capital
         par.sigma_Y = 1.01 # substitution
+        par.theta = 0.1 # mark-up
+        par.eta = 0.1 # PC-slope
 
         # c. labor agency
-        par.kappa_L = 0.025
+        par.kappa_L = 0.05 # cost of vancies in labor units
 
         # d. capital agency
-        par.Psi_0 = 0.5 # adjustment costs
+        par.Psi_0 = 5.0 # adjustment costs
 
         # e. government
         par.r_b = 0.04 # rate of return on government debt
-        par.t_b = 10 # number of years with tau_tilde
-        par.delta_B = 5 # number of adjustment years
-        par.epsilon_B = 0.2 #   
+        par.t_b = 5 # number of years with tau_tilde
+        par.delta_B = 20 # number of adjustment years
+        par.epsilon_B = 0.15 # adjustment speed  
+        par.G_share_ss = 0.30 # share of government spending in Y
 
-        # e. repacking
+        # f. repacking
         par.mu_M_C = 0.30 # weight on imports in C
         par.sigma_C = 1.5 # substitution
-        par.mu_M_G = 0.30 # weight on imports in G
+        par.mu_M_G = 0.10 # weight on imports in G
         par.sigma_G = 1.5 # substitution
         par.mu_M_I = 0.35 # weight on imports in I
         par.sigma_I = 1.5 # substitution
         par.mu_M_X = 0.40 # weight on imports in X
         par.sigma_X = 1.5 # substitution
 
-        # f. foreign
+        # g. foreign
         par.sigma_F = 1.5 # substitution in export demand
+        par.gamma_X = 0.50 # export persistence
 
-        # g. matching
-        par.sigma_m = 1.5 # curvature
+        # h. matching
+        par.sigma_m = 1.1 # curvature in matching function
+        par.nu = np.nan # efficiency of vancies (determined when finding steady state)
 
-        # h. bargaining
-        par.gamma_w = 0.75 # wage persistence
+        # i. bargaining
         par.phi = np.nan # bargaining power of firms (determined when finding steady state)
+        par.gamma_W = 0.80 # wage persistence
+
+        # j. steady state
+        par.W_ss = 1.0 # wage
+        par.pi_hh_ss = 0.00 # inflation
+        par.m_s_ss = 0.75 # job-finding rate
+        par.m_v_ss = 0.75 # job-filling rate
+        par.B_ss = 0.0 # government debt
 
     def allocate(self):
         """ allocate model """
@@ -210,7 +243,32 @@ class BabyMAKROModelClass(EconModelClass):
         ss = self.ss
         sol = self.sol
 
-        # a. non-household variables
+        # a. demographics
+
+        # mortality
+        par.zeta_a = np.zeros(par.life_span)
+        par.zeta_a[-1] = 1.0 # everybody dies in last period
+
+        for a in range(par.life_span-1):
+            if a < par.work_life_span: # no death before retirement
+                par.zeta_a[a] = 0.0
+            else:
+                par.zeta_a[a] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**par.zeta_pow
+
+        # demographic structure    
+        par.N_a = np.zeros(par.life_span)
+        par.N_a[0] = 1.0 # normalization
+             
+        for a in range(1,par.life_span):
+            par.N_a[a] = (1-par.zeta_a[a-1])*par.N_a[a-1]
+                    
+        par.N = np.sum(par.N_a)
+        par.N_work = np.sum(par.N_a[:par.work_life_span])
+
+        # job-separation
+        par.delta_L_a = par.delta_L_a_fac*np.ones(par.work_life_span)
+
+        # b. non-household variables
         for varname in self.varlist:
             setattr(ini,varname,np.nan)
             setattr(ss,varname,np.nan)
@@ -218,11 +276,11 @@ class BabyMAKROModelClass(EconModelClass):
 
         for varname in self.exo: assert varname in self.varlist, varname
 
-        # b. household variables
+        # c. household variables
         for varname in self.varlist_hh:
-            setattr(ini,varname,np.zeros(par.A))
-            setattr(ss,varname,np.zeros(par.A))
-            setattr(sol,varname,np.zeros((par.A,par.T)))            
+            setattr(ini,varname,np.zeros(par.life_span))
+            setattr(ss,varname,np.zeros(par.life_span))
+            setattr(sol,varname,np.zeros((par.life_span,par.T)))            
 
         for varname in self.unknowns: assert varname in self.varlist+self.varlist_hh, varname
         for varname in self.targets: assert varname in self.varlist+self.varlist_hh, varname
@@ -234,7 +292,7 @@ class BabyMAKROModelClass(EconModelClass):
     def find_ss(self,do_print=False):
         """ find steady state """
 
-        steady_state.find_ss(self.par,self.ss,do_print=do_print)
+        steady_state.find_ss(self,do_print=do_print)
 
     #################
     # set functions #
@@ -256,7 +314,7 @@ class BabyMAKROModelClass(EconModelClass):
             if varname in self.varlist:
                 sol.__dict__[varname] = np.repeat(ssvalue,par.T)
             elif varname in self.varlist_hh:
-                sol.__dict__[varname] = np.zeros((par.A,par.T))
+                sol.__dict__[varname] = np.zeros((par.life_span,par.T))
                 for t in range(par.T):
                     sol.__dict__[varname][:,t] = ssvalue
             else:
@@ -302,6 +360,18 @@ class BabyMAKROModelClass(EconModelClass):
     # evaluate #
     ############
 
+    def evaluate_block(self,block,py=False):
+
+        with jit(self) as model: # use jit for faster evaluation
+
+            if not hasattr(blocks,block): raise ValueError(f'{block} is not a valid block')
+            func = getattr(blocks,block)
+
+            if py: # python version for debugging
+                func.py_func(model.par,model.ini,model.ss,model.sol)
+            else:
+                func(model.par,model.ini,model.ss,model.sol)
+
     def evaluate_blocks(self,ini=None,do_print=False,py=False):
         """ evaluate all blocks """
 
@@ -314,19 +384,10 @@ class BabyMAKROModelClass(EconModelClass):
             for varname in self.varlist_hh: self.ini.__dict__[varname] = ini.__dict__[varname].copy() 
 
         # b. evaluate
-        with jit(self) as model: # use jit for faster evaluation
+        for block in self.blocks:
 
-            for block in self.blocks:
-                
-                if not hasattr(blocks,block): raise ValueError(f'{block} is not a valid block')
-                func = getattr(blocks,block)
-
-                if py: # python version for debugging
-                    func.py_func(model.par,model.ini,model.ss,model.sol)
-                else:
-                    func(model.par,model.ini,model.ss,model.sol)
-
-                if do_print: print(f'{block} evaluated')
+            self.evaluate_block(block,py=py)
+            if do_print: print(f'{block} evaluated')
     
     ########
     # IRFs #
@@ -392,3 +453,79 @@ class BabyMAKROModelClass(EconModelClass):
 
         # c. solver
         broyden_solver(obj,x0,self.jac,tol=1e-10,maxiter=100,do_print=True,model=self)
+
+    ###########
+    # figures #
+    ###########
+
+    def plot_IRF(self,varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[]):
+        """ plot IRFs """
+
+        ss = self.ss
+        sol = self.sol
+
+        nrow = len(varlist)//ncol
+        if len(varlist) > nrow*ncol: nrow+=1
+
+        fig = plt.figure(figsize=(ncol*6,nrow*6/1.5))
+        for i,varname in enumerate(varlist):
+
+            ax = fig.add_subplot(nrow,ncol,1+i)
+
+            path = sol.__dict__[varname]
+            ssvalue = ss.__dict__[varname]
+
+            if varname in abs:
+                ax.axhline(ssvalue,color='black')
+                ax.plot(path[:T_IRF],'-o',markersize=3)
+            elif varname in Y_share:
+                ax.plot(path[:T_IRF]/sol.Y[:T_IRF],'-o',markersize=3)   
+                ax.set_ylabel('share of Y')         
+            elif np.isclose(ssvalue,0.0):
+                ax.plot(path[:T_IRF]-ssvalue,'-o',markersize=3)
+                ax.set_ylabel('diff.to ss')
+            else:
+                ax.plot((path[:T_IRF]/ssvalue-1)*100,'-o',markersize=3)
+                ax.set_ylabel('% diff.to ss')
+
+            ax.set_title(varname)
+
+        fig.tight_layout(pad=1.0)
+    
+    def plot_IRF_hh(self,varlist,t0_list=None,ncol=2):
+        """ plot IRFs for household variables """
+
+        par = self.par
+        ss = self.ss
+        sol = self.sol
+
+        if t0_list is None: t0_list = [-par.life_span+1,0,par.life_span]
+
+        nrow = len(varlist)//ncol
+        if len(varlist) > nrow*ncol: nrow+=1
+
+        fig = plt.figure(figsize=(ncol*6,nrow*6/1.5))
+
+        for i,varname in enumerate(varlist):
+
+            ax = fig.add_subplot(nrow,ncol,1+i)
+
+            for t0 in t0_list:
+
+                t_beg = np.fmax(t0,0)
+                t_end = t0 + par.life_span-1
+
+                y = np.zeros(t_end-t_beg)
+                for j,t in enumerate(range(t_beg,t_end)):
+                    a = t-t0
+                    y[j] = sol.__dict__[varname][a,t]-ss.__dict__[varname][a]
+                    
+                ax.plot(np.arange(t_beg-t0,t_end-t0),y,label=f'$t_0$ = {t0}')
+                ax.set_xlabel('age')
+                ax.set_ylabel('diff to ss')
+                ax.set_title(varname)
+
+            if i == 0:
+                ax.legend(frameon=True)
+
+        fig.tight_layout(pad=1.0)
