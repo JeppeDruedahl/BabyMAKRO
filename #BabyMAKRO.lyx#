@@ -1897,19 +1897,6 @@ W_{t}^{\ast} & =\psi\overline{W}_{t}+(1-\psi)\underline{W}_{t}\label{eq:w_ast}
 \end_inset
 
 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Jeg finder, at det er Gamma og ikke Gamma^(1-sigma_Y), som skal bruges i
- W
-\backslash
-bar 
-\end_layout
-
-\end_inset
-
-
 \begin_inset Formula 
 \begin{align*}
 Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\\
@@ -2250,7 +2237,7 @@ Block IX.
 The government budget is given by
 \begin_inset Formula 
 \begin{equation}
-B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t}\label{eq:government_budget}
+B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+W_{U}W_{t}U_{t}+W_{R}W_{t}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t}\label{eq:government_budget}
 \end{equation}
 
 \end_inset
@@ -2340,18 +2327,8 @@ Outputs:
 \tilde{\tau}_{t} & \text{if }t>t_{B}+\Delta_{B}
 \end{cases}\label{eq:tau}\\
 \omega_{t} & =3\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{2}-2\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{3}\in(0,1)\nonumber \\
-B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t}\label{eq:B}
+B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{t}U_{t}+(1-\tau_{t})W_{R}W_{t}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t}\label{eq:B}
 \end{align}
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Checked
-\end_layout
 
 \end_inset
 
@@ -2426,16 +2403,6 @@ Equally divided inheritance,
 
 \begin_layout Standard
 Total income is
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Hvorfor skal retirement benefit ikke deles med N_a?
-\end_layout
-
-\end_inset
-
-
 \begin_inset Formula 
 \[
 \text{inc}_{a,t}=\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{t}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{t}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}

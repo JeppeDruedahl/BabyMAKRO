@@ -278,7 +278,7 @@ def foreign_economy(par,ini,ss,sol):
     # inputs
     P_F = sol.P_F
     chi = sol.chi
-    P_Y = sol.P_Y
+    P_X = sol.P_X
 
     # outputs
     X = sol.X
@@ -291,7 +291,7 @@ def foreign_economy(par,ini,ss,sol):
         else:
             X_lag = X[t-1]
 
-        X[:] = par.gamma_X*X_lag + (1-par.gamma_X)*chi*(P_Y/P_F)**(-par.sigma_F)
+        X[:] = par.gamma_X*X_lag + (1-par.gamma_X)*chi*(P_X/P_F)**(-par.sigma_F)        #Note: Ændret fra P_Y til P_X
         
 @nb.njit
 def capital_agency(par,ini,ss,sol):
