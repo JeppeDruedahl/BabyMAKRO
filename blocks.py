@@ -419,8 +419,8 @@ def household_consumption(par,ini,ss,sol):
 
         for i in range(par.life_span):
             
-            a = par.life_span-1-i
-            t = t0+a
+            a = par.life_span - 1 - i
+            t = t0 + a
 
             if t < 0: continue
             if t > par.T-1: continue
@@ -444,7 +444,7 @@ def household_consumption(par,ini,ss,sol):
             RHS = par.zeta_a[a]*par.mu_Aq*(A_R_a_now/P_C[t])**(-par.sigma)
             
             if a < par.life_span-1: 
-                RHS += (1-par.zeta_a[a])*par.beta*(1+sol.real_r_hh[t])*C_R_a_plus**(-par.sigma)
+                RHS += (1-par.zeta_a[a])*par.beta*(1+real_r_hh[t])*C_R_a_plus**(-par.sigma) #Note: Fjernet sol.real_r_hh
 
             C_R_a[a,t] = RHS**(-1/par.sigma)
 

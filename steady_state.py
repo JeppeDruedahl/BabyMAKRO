@@ -35,6 +35,7 @@ def household_consumption_ss(A_R_death,par,ss):
     # b. Ricardian
     A_R_ini_error = np.nan
     ss.A_R_a[-1] = A_R_death
+
     for i in range(par.life_span):
 
         a = par.life_span-1-i
@@ -130,7 +131,7 @@ def find_ss(model,do_print=True):
     ss = model.ss
 
     # a. price noramlizations
-    ss.P_Y = 1.0 
+    ss.P_Y = 1.0                                                #Note: Er der ikke et problem ved at sætte P_Y, når vi nu bestemmer den i Phillips-kurven? 
     ss.P_F = 1.0
     ss.P_M_C = 1.0
     ss.P_M_G = 1.0
@@ -179,11 +180,11 @@ def find_ss(model,do_print=True):
         print(Fonttype.HEADER + 'Labor agency FOC:' + Fonttype.END)
         print(f'{ss.r_ell = :.2f}, {(ss.L-ss.ell)/par.N_work*100 = :.2f}')
     
-    # g. production firm
+    # g. production firm & phillips-curve
     P_Y_0 = blocks.CES_P(ss.r_K,ss.r_ell,par.mu_K,par.sigma_Y,Gamma=1.0)
     ss.Gamma = P_Y_0*(1+par.theta)
     ss.P_Y_0 = blocks.CES_P(ss.r_K,ss.r_ell,par.mu_K,par.sigma_Y,Gamma=ss.Gamma)
-    P_Y = (1+par.theta)*ss.P_Y_0
+    P_Y = (1+par.theta)*ss.P_Y_0                                                        #Hvorfor P_Y og ikke ss.P_Y
     assert np.isclose(P_Y,ss.P_Y)
 
     ss.K = par.mu_K/(1-par.mu_K)*(ss.r_ell/ss.r_K)**par.sigma_Y*ss.ell
@@ -202,7 +203,7 @@ def find_ss(model,do_print=True):
 
     # i. government
     ss.G = par.G_share_ss*ss.Y
-    ss.tau = (par.r_b*ss.B+ss.P_G*ss.G+par.W_U*ss.U+par.W_R*(par.N-par.N_work))/(ss.W*ss.L+par.W_U*ss.U+par.W_R*(par.N-par.N_work))
+    ss.tau = (par.r_b*ss.B+ss.P_G*ss.G+par.W_U*ss.U+par.W_R*(par.N-par.N_work))/(ss.W*ss.L+par.W_U*ss.U+par.W_R*(par.N-par.N_work))     #Note: Hvorfor er W_ss ikke ganget på benefits?
 
     if do_print: 
         print(Fonttype.HEADER + 'Government:' + Fonttype.END)
@@ -227,9 +228,6 @@ def find_ss(model,do_print=True):
     ss.I_M = blocks.CES_demand(par.mu_M_I,ss.P_M_I,ss.P_I,ss.I,par.sigma_I)
     ss.I_Y = blocks.CES_demand(1-par.mu_M_I,ss.P_Y,ss.P_I,ss.I,par.sigma_I)
 
-    if do_print: 
-        print(Fonttype.HEADER + 'Re-packing firms:' + Fonttype.END)
-
     # l. market clearing
     ss.X_Y = ss.Y - (ss.C_Y + ss.G_Y + ss.I_Y) 
     ss.chi = ss.X_Y/(1-par.mu_M_X)
@@ -249,7 +247,7 @@ def find_ss(model,do_print=True):
     W_obar = ss.P_Y*( (1-par.mu_K)*ss.Gamma**(par.sigma_Y-1)*ss.Y/ss.ell )**(1/par.sigma_Y)
     W_ubar = par.W_U
 
-    par.phi = (W_ast-par.W_U)/(W_obar-W_ubar)
+    par.phi = (W_ast-W_ubar)/(W_obar-W_ubar)
 
     if do_print: 
         print(Fonttype.HEADER + 'Bargaining:' + Fonttype.END)

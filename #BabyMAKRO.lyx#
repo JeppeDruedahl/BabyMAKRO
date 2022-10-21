@@ -1100,6 +1100,16 @@ The total number of unknowns thus is
 \end_inset
 
 .
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Skal Phillips Curve ikke også være med?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1897,6 +1907,19 @@ W_{t}^{\ast} & =\psi\overline{W}_{t}+(1-\psi)\underline{W}_{t}\label{eq:w_ast}
 \end_inset
 
 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Jeg finder, at det er Gamma og ikke Gamma^(1-sigma_Y), som skal bruges i
+ W
+\backslash
+bar 
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{align*}
 Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\\
@@ -2237,7 +2260,7 @@ Block IX.
 The government budget is given by
 \begin_inset Formula 
 \begin{equation}
-B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+W_{U}W_{t}U_{t}+W_{R}W_{t}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t}\label{eq:government_budget}
+B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t}\label{eq:government_budget}
 \end{equation}
 
 \end_inset
@@ -2327,8 +2350,18 @@ Outputs:
 \tilde{\tau}_{t} & \text{if }t>t_{B}+\Delta_{B}
 \end{cases}\label{eq:tau}\\
 \omega_{t} & =3\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{2}-2\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{3}\in(0,1)\nonumber \\
-B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{t}U_{t}+(1-\tau_{t})W_{R}W_{t}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t}\label{eq:B}
+B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t}\label{eq:B}
 \end{align}
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Checked
+\end_layout
 
 \end_inset
 
@@ -2405,7 +2438,7 @@ Equally divided inheritance,
 Total income is
 \begin_inset Formula 
 \[
-\text{inc}_{a,t}=\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{t}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{t}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}
+\text{inc}_{a,t}=\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}
 \]
 
 \end_inset
@@ -2457,6 +2490,17 @@ The Ricardian households making their first decision in period
 \end_inset
 
  solve the problem
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Jeg forstår ikke helt produktet mellem Beta og (1-zeta_j).
+ Hvorfor skal det ikke bare være en del af summen?
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{align*}
 V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R},A_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
@@ -2599,7 +2643,7 @@ Calculate
 \begin_inset Formula 
 \begin{align}
 \pi_{t}^{hh} & =\frac{P_{t}^{C}}{P_{t-1}^{C}}-1\label{eq:pi_hh-1}\\
-\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{t}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{t}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\\
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\\
 C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\label{eq:C_HtM}\\
 A_{a,t}^{\text{HtM}} & =0\label{eq:A_HtM}
 \end{align}
@@ -2611,7 +2655,7 @@ A_{a,t}^{\text{HtM}} & =0\label{eq:A_HtM}
 
 \begin_layout Standard
 For each birthcohort 
-\begin_inset Formula $t_{0}\in\{-\#+1,-\#+1\dots,T-1\}$
+\begin_inset Formula $t_{0}\in\{-\#+1,-\#+2,\dots,T-1\}$
 \end_inset
 
  iterate backwards from 
@@ -2631,12 +2675,23 @@ For each birthcohort
 \end_inset
 
 :
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Burde det ikke være zeta_a+1 og A^R_a+1? Og det skal være A^R_t nederst.
+ Burde P^C være i periode t+1?
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{align*}
 C_{a,t}^{R} & =\begin{cases}
-\left(\mu^{A^{q}}\left(\frac{A_{t}^{\text{death}}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
-\left((1-\zeta_{a})\beta\frac{1+r^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
-\left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{t,ss}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
+\left(\zeta_{a}\mu^{A^{q}}\left(\frac{A_{t}^{\text{death}}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
+\left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
+\left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
 \end{cases}\\
 A_{a-1,t-1}^{R} & =\frac{A_{a,t}^{R}-\text{inc}_{a,t}+P_{t}^{C}C_{a,t}^{R}}{1+r^{hh}}
 \end{align*}
@@ -2667,7 +2722,7 @@ Targets
 \begin_inset Formula 
 \begin{align}
 0 & =A_{t}^{q}-\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t-1}\label{eq:A_q}\\
-0 & =\sum_{t_{0}=-\#+1}^{-1}\left(A_{-t_{0}-1,-1}^{R}-A_{-t_{0}-1,ss}\right)+\sum_{0}^{T-1-\#+1}\left(A_{-1,t_{0}}^{R}-0.0\right)
+0 & =\sum_{t_{0}=-\#+1}^{-1}\left(A_{-t_{0}-1,-1}^{R}-A_{-t_{0}-1,ss}\right)+\sum_{0}^{T-1-\#+1}\left(A_{-1,t_{0}}^{R}-0.0\right)\label{eq:Wealth of Households}
 \end{align}
 
 \end_inset
@@ -2860,7 +2915,7 @@ Total number of targets
 
 \begin_layout Standard
 We have 
-\begin_inset Formula $5\times T$
+\begin_inset Formula $6\times T$
 \end_inset
 
  targets in Equation 
@@ -2903,6 +2958,16 @@ noprefix "false"
 
 \end_inset
 
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Wealth of Households"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
 , and 
 \begin_inset CommandInset ref
 LatexCommand eqref
@@ -2934,23 +2999,52 @@ Not updated
 \end_layout
 
 \begin_layout Standard
-We set 
-\begin_inset Formula $B_{ss}=0.5$
+We fix a number of variables:
+\end_layout
+
+\begin_layout Enumerate
+The nominal wage,
+\begin_inset Formula $W_{ss}=1$
 \end_inset
 
- and let 
-\begin_inset Formula $G_{ss}$
+
+\end_layout
+
+\begin_layout Enumerate
+The inflation, 
+\begin_inset Formula $\pi_{ss}^{hh}=0$
 \end_inset
 
- be chosen freely.
+
+\end_layout
+
+\begin_layout Enumerate
+The job-finding rate, 
+\begin_inset Formula $m_{ss}^{s}=0.75$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The job-filling rate, 
+\begin_inset Formula $m_{ss}^{v}=0.75$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The government debt, 
+\begin_inset Formula $B_{ss}=0$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-We want the job-finding probability to be 
-\begin_inset Formula $m_{ss}^{s}$
-\end_inset
-
- and adjust exogenous variables and other parameters to fit with this.
+We allow for the adjustment of the exogenous variables an other parameters
+ to fit with this.
  We can then find the steady state as follows:
 \end_layout
 
@@ -2970,8 +3064,7 @@ P_{ss}^{Y}=P_{ss}^{F}=P_{ss}^{M,\bullet}=1,\,\bullet\in\{C,G,I,X\}
 The pricing behavior of repacking firms then implies
 \begin_inset Formula 
 \begin{align*}
-P_{ss}^{\bullet} & =1,\,\bullet\in\{C,G,I,X\}\\
-\pi_{ss}^{hh} & =0
+P_{ss}^{\bullet} & =1,\,\bullet\in\{C,G,I,X\}
 \end{align*}
 
 \end_inset
@@ -2985,21 +3078,26 @@ The exogenous labor supply and search-and-matching implies
 \begin{align*}
 S_{a,ss} & =\begin{cases}
 1 & \text{if }a=0\\
-1-L_{a-1,ss}+\delta_{a}^{L}L_{a-1,ss} & \text{if }a<A_{R}\\
+(1-\zeta_{a-1})(N_{a-1}-L_{a-1,ss})+\delta_{a}^{L}L_{a-1,ss} & \text{if }a<\#_{work}\\
 0 & \text{else}
 \end{cases}\\
 \underline{L}_{a,ss} & =\begin{cases}
 0 & \text{if }a=0\\
-(1-\delta_{a}^{L})L_{a-1,ss} & \text{if }a<A_{R}\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,ss} & \text{if }a<\#_{work}\\
 0 & \text{else}
 \end{cases}\\
 L_{a,ss} & =\underline{L}_{a,ss}+m_{ss}^{s}S_{a,ss}\\
+U_{a,ss} & =\begin{cases}
+N_{a}-L_{a,ss} & \text{if }a<\#_{work}\\
+0 & \text{else}
+\end{cases}\\
 L_{ss} & =\sum_{a}L_{a,ss}\\
 S_{ss} & =\sum_{a}S_{a,ss}\\
+U_{ss} & =\sum_{a}U_{a,ss}\\
 \delta_{ss}^{L} & =\frac{L_{ss}-\underline{L}_{ss}}{L_{ss}}\\
 \mathbb{\mathcal{M}}_{ss} & =\delta_{ss}^{L}L_{ss}\\
-v_{ss} & =\frac{m_{ss}^{s}S_{ss}}{\left(1-\left(m_{ss}^{s}\right)^{\frac{1}{\sigma_{m}}}\right)^{\sigma_{m}}}\\
-m_{ss}^{v} & =\frac{\mathbb{\mathcal{M}}_{ss}}{v_{ss}}
+v_{ss} & =\frac{\mathbb{\mathcal{M}}_{ss}}{m_{ss}^{v}}\\
+\nu & =\frac{1}{v_{ss}}\left(\frac{\left(m_{ss}^{s}\right)^{\frac{1}{\sigma^{m}}}S_{ss}^{\frac{1}{\sigma^{m}}}}{1-\left(m_{ss}^{s}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}
 \end{align*}
 
 \end_inset
@@ -3020,27 +3118,11 @@ r_{ss}^{K}=r^{\text{firm}}+\delta^{K}
 \end_layout
 
 \begin_layout Enumerate
-The rental price of labor is
-\begin_inset Formula 
-\[
-r_{ss}^{\ell}=\left(\frac{1-\mu^{K}\left(r_{ss}^{K}\right)^{1-\sigma^{Y}}}{1-\mu^{K}}\right)^{\frac{1}{1-\sigma^{Y}}}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Labor for production and wages are
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
+Labor agency behavior implies
 \begin_inset Formula 
 \begin{align*}
-\ell_{ss} & =L_{ss}-\kappa^{L}v_{ss}.\\
-w_{ss} & =r_{ss}^{\ell}\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right)
+r_{ss}^{\ell} & =\frac{W_{ss}}{1-\left(1-\frac{1-\delta_{ss}^{L}}{1+r^{firm}}\right)\frac{\kappa^{L}}{m_{ss}^{v}}}\\
+\ell_{ss} & =L_{ss}-\kappa^{L}v_{ss}
 \end{align*}
 
 \end_inset
@@ -3048,13 +3130,81 @@ w_{ss} & =r_{ss}^{\ell}\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}
 
 \end_layout
 
-\end_deeper
 \begin_layout Enumerate
-Find the tax rate
+Set the prices using the Phillipps-curve
+\begin_inset Formula 
+\begin{align*}
+P_{ss}^{Y,0} & =\left(\mu^{K}\left(r_{ss}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{ss}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}\\
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Determine the capital and output from the production firm
+\begin_inset Formula 
+\begin{align*}
+K_{ss} & =\frac{\mu_{K}}{1-\mu_{K}}\left(\frac{r_{ss}^{\ell}}{r_{ss}^{K}}\right)^{\sigma^{Y}}\ell_{ss}\\
+Y_{ss} & =\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+From capital accumulation equations
 \begin_inset Formula 
 \[
-\tau_{ss}=\frac{r_{B}B_{ss}+P_{ss}^{G}G_{ss}}{w_{ss}L_{ss}}
+\iota_{ss}=I_{ss}=\delta^{K}K_{ss}
 \]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Exogenously, set the government spending as a share of the output and find
+ the tax rate
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Hvorfor er W_ss ikke ganget på benefits? (W_ss er 1 i ss, så det har ikke
+ betydning for koden)
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+B_{ss} & =(1+r^{B})B_{ss}+P_{ss}^{G}G_{ss}+(1-\tau_{ss})W_{U}W_{ss}U_{ss}+(1-\tau_{ss})W_{R}W_{ss}(N_{ss}-N_{ss}^{work})-\tau_{ss}W_{ss}L_{ss}\\
+\tau_{ss}\left(W_{U}W_{ss}U_{ss}+W_{R}W_{ss}(N_{ss}-N_{ss}^{work})+W_{ss}L_{ss}\right) & =r^{B}B_{ss}+P_{ss}^{G}G_{ss}+W_{U}W_{ss}U_{ss}+W_{R}W_{ss}(N_{ss}-N_{ss}^{work})\\
+\tau_{ss} & =\frac{r^{B}B_{ss}+P_{ss}^{G}G_{ss}+W_{U}W_{ss}U_{ss}+W_{R}W_{ss}(N_{ss}-N_{ss}^{work})}{W_{U}W_{ss}U_{ss}+W_{R}W_{ss}(N_{ss}-N_{ss}^{work})+W_{ss}L_{ss}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+G_{ss} & =G^{share}Y_{ss}\\
+\tau_{ss} & =\frac{r_{B}B_{ss}+P_{ss}^{G}G_{ss}+W_{U}U_{ss}+W_{R}(N_{ss}-N_{ss}^{work})}{W_{ss}L_{ss}+W_{U}U_{ss}+W_{R}(N_{ss}-N_{ss}^{work})}
+\end{align*}
 
 \end_inset
 
@@ -3081,42 +3231,6 @@ C_{a,ss}^{R} & =\begin{cases}
 C_{a,ss} & =\lambda C_{a,ss}^{\text{HtM}}+(1-\lambda)C_{a,ss}^{R}\\
 B_{a,ss} & =(1+r^{hh})B_{a-1,ss}+(1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a,ss}}-P_{ss}^{C}C_{a,ss}
 \end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-From production firm
-\begin_inset Formula 
-\begin{align*}
-K_{ss} & =\frac{\mu_{K}}{1-\mu_{K}}\left(\frac{r_{ss}^{\ell}}{r_{ss}^{K}}\right)^{\sigma^{Y}}\ell_{ss}
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-From capital accumulation equations
-\begin_inset Formula 
-\[
-\iota_{ss}=I_{ss}=\delta^{K}K_{ss}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Determine output
-\begin_inset Formula 
-\[
-Y_{ss}=\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)
-\]
 
 \end_inset
 
@@ -3163,9 +3277,13 @@ Let
  adjust to make bargaining fit
 \begin_inset Formula 
 \begin{align*}
-w_{ss}^{\ast} & =w_{ss}\\
+W_{ss}^{\ast} & =W_{ss}\\
+\overline{W}_{ss} & =P_{ss}^{Y}\left(\left(1-\mu_{K}\right)\Gamma_{ss}^{1-\sigma^{Y}}\frac{Y_{ss}}{\ell_{ss}}\right)^{\frac{1}{\sigma^{Y}}}\\
+\underline{W}_{ss} & =W^{U}W_{ss}^{\ast}\\
+ & =\psi\overline{W}_{t}+(1-\psi)\underline{W}_{t}\\
 \text{MPL}_{ss} & =\left(\left(1-\mu^{K}\right)\frac{Y_{ss}}{\ell_{ss}}\right)^{\frac{1}{\sigma^{Y}}}\\
-\varphi & =\frac{w_{ss}-w^{U}}{\text{MPL}_{ss}-w^{U}}
+\varphi & =\frac{w_{ss}-w^{U}}{\text{MPL}_{ss}-w^{U}}\\
+ & =P_{t}^{Y}\left(\left(1-\mu_{K}\right)\Gamma^{1-\sigma^{Y}}\frac{Y_{t}}{\ell_{t}}\right)^{\frac{1}{\sigma^{Y}}}\underline{W}_{t}=W^{U}W_{t}^{\ast}=\psi\overline{W}_{t}+(1-\psi)\underline{W}_{t}
 \end{align*}
 
 \end_inset
