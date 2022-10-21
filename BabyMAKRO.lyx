@@ -2643,7 +2643,7 @@ Calculate
 \begin_inset Formula 
 \begin{align}
 \pi_{t}^{hh} & =\frac{P_{t}^{C}}{P_{t-1}^{C}}-1\label{eq:pi_hh-1}\\
-\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\\
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\label{eq:inc}\\
 C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\label{eq:C_HtM}\\
 A_{a,t}^{\text{HtM}} & =0\label{eq:A_HtM}
 \end{align}
@@ -3213,16 +3213,20 @@ G_{ss} & =G^{share}Y_{ss}\\
 
 \begin_layout Enumerate
 We guess on 
-\begin_inset Formula $B_{ss}^{q}$
+\begin_inset Formula $A_{ss}^{q}$
 \end_inset
 
  and check 
-\begin_inset Formula $B_{A-1,t}=B_{ss}^{q}$
+\begin_inset Formula $A_{A-1,t}=A_{ss}^{q}$
 \end_inset
 
  by
 \begin_inset Formula 
 \begin{align*}
+\text{inc}_{a,ss} & =\left(1-\tau_{ss}\right)W_{ss}\frac{L_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W^{U}W_{ss}\frac{U_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{ss}^{q}}{N}\\
+C_{a,ss}^{\text{HtM}} & =\frac{\text{inc}_{a,ss}}{P_{ss}^{C}}\\
+A_{a,ss}^{\text{HtM}} & =0\\
+\\
 C_{a,ss}^{HtM} & =\frac{1}{P_{ss}^{C}}\left((1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a,ss}}\right)\\
 C_{a,ss}^{R} & =\begin{cases}
 \left(\mu^{B}\left(B_{ss}^{q}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=A-1\\

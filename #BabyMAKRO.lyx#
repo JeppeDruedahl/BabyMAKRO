@@ -2643,7 +2643,7 @@ Calculate
 \begin_inset Formula 
 \begin{align}
 \pi_{t}^{hh} & =\frac{P_{t}^{C}}{P_{t-1}^{C}}-1\label{eq:pi_hh-1}\\
-\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\\
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\label{eq:inc}\\
 C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\label{eq:C_HtM}\\
 A_{a,t}^{\text{HtM}} & =0\label{eq:A_HtM}
 \end{align}
@@ -3224,6 +3224,10 @@ We guess on
 \begin_inset Formula 
 \begin{align*}
 C_{a,ss}^{HtM} & =\frac{1}{P_{ss}^{C}}\left((1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a,ss}}\right)\\
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\\
+C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\\
+A_{a,t}^{\text{HtM}} & =0\\
+\\
 C_{a,ss}^{R} & =\begin{cases}
 \left(\mu^{B}\left(B_{ss}^{q}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=A-1\\
 \left(\beta\frac{1+r_{hh}}{1+\pi_{ss}^{hh}}C_{a+1,ss}^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
@@ -3280,10 +3284,7 @@ Let
 W_{ss}^{\ast} & =W_{ss}\\
 \overline{W}_{ss} & =P_{ss}^{Y}\left(\left(1-\mu_{K}\right)\Gamma_{ss}^{1-\sigma^{Y}}\frac{Y_{ss}}{\ell_{ss}}\right)^{\frac{1}{\sigma^{Y}}}\\
 \underline{W}_{ss} & =W^{U}W_{ss}^{\ast}\\
- & =\psi\overline{W}_{t}+(1-\psi)\underline{W}_{t}\\
-\text{MPL}_{ss} & =\left(\left(1-\mu^{K}\right)\frac{Y_{ss}}{\ell_{ss}}\right)^{\frac{1}{\sigma^{Y}}}\\
-\varphi & =\frac{w_{ss}-w^{U}}{\text{MPL}_{ss}-w^{U}}\\
- & =P_{t}^{Y}\left(\left(1-\mu_{K}\right)\Gamma^{1-\sigma^{Y}}\frac{Y_{t}}{\ell_{t}}\right)^{\frac{1}{\sigma^{Y}}}\underline{W}_{t}=W^{U}W_{t}^{\ast}=\psi\overline{W}_{t}+(1-\psi)\underline{W}_{t}
+\psi & =\frac{W_{ss}^{\ast}-\underline{W}_{ss}}{\overline{W}_{ss}-\underline{W}_{ss}}
 \end{align*}
 
 \end_inset
