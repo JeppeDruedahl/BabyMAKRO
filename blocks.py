@@ -213,7 +213,7 @@ def phillips_curve(par,ini,ss,sol):
     P_Y_lag_lag = lag(ini.P_Y,P_Y_lag)
     P_Y_plus = lead(P_Y,ss.P_Y)
     Y_plus = lead(Y,ss.Y)
-
+ 
     LHS = P_Y
 
     RHS_0 = (1+par.theta)*P_Y_0
@@ -477,7 +477,7 @@ def household_consumption(par,ini,ss,sol):
         else:
             Aq = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*A_a[:,t-1])
 
-        Aq_diff[t] = Aq-sol.Aq[t]
+        Aq_diff[t] = Aq-sol.Aq[t]                                   #Note: Hvorfor Aq-sol.Aq[t]?
 
 @nb.njit
 def repacking_firms_components(par,ini,ss,sol):

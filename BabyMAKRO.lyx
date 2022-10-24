@@ -1163,8 +1163,8 @@ N_{a} & =\begin{cases}
 \end{cases}\\
 \zeta_{a} & =\begin{cases}
 0 & \text{if }a<\#_{work}\\
-\left(\frac{a-\#_{work}}{\#-\#_{work}}\right)^{\varsigma} & \text{if }a<\#\\
-1 & \text{if }a=\#
+\left(\frac{a+1-\#_{work}}{\#-\#_{work}}\right)^{\varsigma} & \text{if }a<\#-1\\
+1 & \text{if }a=\#-1
 \end{cases}\\
 N & =\sum_{a=0}^{\#-1}N_{a}\\
 N^{work} & =\sum_{a=0}^{\#_{\text{work}}-1}N_{a}
@@ -2679,8 +2679,8 @@ For each birthcohort
 status open
 
 \begin_layout Plain Layout
-Burde det ikke være zeta_a+1 og A^R_a+1? Og det skal være A^R_t nederst.
- Burde P^C være i periode t+1?
+Rettet til A^R_t nederst.
+ 
 \end_layout
 
 \end_inset
@@ -2717,12 +2717,25 @@ A_{t} & =\sum_{a=0}^{\#-1}N_{a}C_{a,t}\label{eq:A}
 
 \series bold
 Targets
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Indsat t_0 i sum.
+ Kunne det give mening at bruge a_0 i den første?
+\end_layout
+
+\end_inset
+
+
 \series default
 
 \begin_inset Formula 
 \begin{align}
 0 & =A_{t}^{q}-\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t-1}\label{eq:A_q}\\
-0 & =\sum_{t_{0}=-\#+1}^{-1}\left(A_{-t_{0}-1,-1}^{R}-A_{-t_{0}-1,ss}\right)+\sum_{0}^{T-1-\#+1}\left(A_{-1,t_{0}}^{R}-0.0\right)\label{eq:Wealth of Households}
+0 & =\sum_{t_{0}=-\#+1}^{-1}\left(A_{-t_{0}-1,-1}^{R}-A_{-t_{0}-1,ss}\right)+\sum_{t_{0}=0}^{T-1-\#+1}\left(A_{-1,t_{0}}^{R}-0.0\right)\label{eq:Wealth of Households}
 \end{align}
 
 \end_inset
@@ -2993,12 +3006,6 @@ name "sec:Steady-state"
 \end_layout
 
 \begin_layout Standard
-
-\emph on
-Not updated
-\end_layout
-
-\begin_layout Standard
 We fix a number of variables:
 \end_layout
 
@@ -3212,28 +3219,34 @@ G_{ss} & =G^{share}Y_{ss}\\
 \end_layout
 
 \begin_layout Enumerate
-We guess on 
+Find the age-specific income for the households, and use this to define
+ the consumption for the hands-to-mouth households.
+\begin_inset Newline newline
+\end_inset
+
+Guess on 
 \begin_inset Formula $A_{ss}^{q}$
 \end_inset
 
  and check 
-\begin_inset Formula $A_{A-1,t}=A_{ss}^{q}$
+\begin_inset Formula $\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t-1}=A_{ss}^{q}$
 \end_inset
 
- by
+ which implies the Ricardian housholds consumption and assets.
+ 
 \begin_inset Formula 
 \begin{align*}
-\text{inc}_{a,ss} & =\left(1-\tau_{ss}\right)W_{ss}\frac{L_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W^{U}W_{ss}\frac{U_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{ss}^{q}}{N}\\
+\text{inc}_{a,ss} & =\left(1-\tau_{ss}\right)W_{ss}\frac{L_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W_{U}W_{ss}\frac{U_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W_{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{ss}^{q}}{N}\\
 C_{a,ss}^{\text{HtM}} & =\frac{\text{inc}_{a,ss}}{P_{ss}^{C}}\\
 A_{a,ss}^{\text{HtM}} & =0\\
-\\
-C_{a,ss}^{HtM} & =\frac{1}{P_{ss}^{C}}\left((1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a,ss}}\right)\\
 C_{a,ss}^{R} & =\begin{cases}
-\left(\mu^{B}\left(B_{ss}^{q}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=A-1\\
-\left(\beta\frac{1+r_{hh}}{1+\pi_{ss}^{hh}}C_{a+1,ss}^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
+\left(\zeta_{a}\mu^{A^{q}}\left(\frac{A_{ss}^{\text{death}}}{P_{ss}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
+\left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
 \end{cases}\\
+A_{a-1,ss}^{R} & =\frac{A_{a,ss}^{R}-\text{inc}_{a,ss}+P_{ss}^{C}C_{a,ss}^{R}}{1+r^{hh}}\\
 C_{a,ss} & =\lambda C_{a,ss}^{\text{HtM}}+(1-\lambda)C_{a,ss}^{R}\\
-B_{a,ss} & =(1+r^{hh})B_{a-1,ss}+(1-\tau_{ss})w_{ss}L_{a,ss}+\frac{(1-\lambda)B_{ss}^{q}}{\sum_{a=0}^{A-1}N_{a,ss}}-P_{ss}^{C}C_{a,ss}
+A_{a,ss} & =\lambda A_{a,ss}^{\text{HtM}}+(1-\lambda)A_{a,ss}^{R}\\
+A_{ss}^{q} & =\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t-1}
 \end{align*}
 
 \end_inset
