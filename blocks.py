@@ -237,6 +237,9 @@ def bargaining(par,ini,ss,sol):
     Y = sol.Y
 
     # outputs
+    W_obar = sol.W_obar
+    W_ubar = sol.W_ubar
+    W_ast = sol.W_ast
 
     # targets
     bargaining_cond = sol.bargaining_cond
@@ -260,6 +263,7 @@ def repacking_firms_prices(par,ini,ss,sol):
     P_M_I = sol.P_M_I
     P_M_X = sol.P_M_X
     P_Y = sol.P_Y
+    Gamma = sol.Gamma
 
     # outputs
     P_C = sol.P_C
@@ -267,10 +271,10 @@ def repacking_firms_prices(par,ini,ss,sol):
     P_I = sol.P_I
     P_X = sol.P_X
 
-    P_C[:] = CES_P(P_M_C,P_Y,par.mu_M_C,par.sigma_C)
-    P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G)
-    P_I[:] = CES_P(P_M_I,P_Y,par.mu_M_I,par.sigma_I)
-    P_X[:] = CES_P(P_M_X,P_Y,par.mu_M_X,par.sigma_X)
+    P_C[:] = CES_P(P_M_C,P_Y,par.mu_M_C,par.sigma_C, Gamma=1)
+    P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G, Gamma=1)
+    P_I[:] = CES_P(P_M_I,P_Y,par.mu_M_I,par.sigma_I, Gamma=1)
+    P_X[:] = CES_P(P_M_X,P_Y,par.mu_M_X,par.sigma_X, Gamma=1)
 
 @nb.njit
 def foreign_economy(par,ini,ss,sol):
@@ -291,7 +295,7 @@ def foreign_economy(par,ini,ss,sol):
         else:
             X_lag = X[t-1]
 
-        X[:] = par.gamma_X*X_lag + (1-par.gamma_X)*chi*(P_X/P_F)**(-par.sigma_F)        #Note: Ændret fra P_Y til P_X
+        X[:] = par.gamma_X*X_lag + (1-par.gamma_X)*chi*(P_X/P_F)**(-par.sigma_F)
         
 @nb.njit
 def capital_agency(par,ini,ss,sol):
@@ -444,7 +448,7 @@ def household_consumption(par,ini,ss,sol):
             RHS = par.zeta_a[a]*par.mu_Aq*(A_R_a_now/P_C[t])**(-par.sigma)
             
             if a < par.life_span-1: 
-                RHS += (1-par.zeta_a[a])*par.beta*(1+real_r_hh[t])*C_R_a_plus**(-par.sigma) #Note: Fjernet sol.real_r_hh
+                RHS += (1-par.zeta_a[a])*par.beta*(1+real_r_hh[t])*C_R_a_plus**(-par.sigma) 
 
             C_R_a[a,t] = RHS**(-1/par.sigma)
 
@@ -473,11 +477,11 @@ def household_consumption(par,ini,ss,sol):
 
         # bequest
         if t == 0:
-            Aq = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*ss.A_a)
+            Aq_implied = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*ss.A_a)
         else:
-            Aq = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*A_a[:,t-1])
+            Aq_implied = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*A_a[:,t-1])
 
-        Aq_diff[t] = Aq-sol.Aq[t]                                   #Note: Hvorfor Aq-sol.Aq[t]?
+        Aq_diff[t] = Aq_implied-Aq[t]                                  
 
 @nb.njit
 def repacking_firms_components(par,ini,ss,sol):
@@ -495,7 +499,8 @@ def repacking_firms_components(par,ini,ss,sol):
     P_M_X = sol.P_M_X
     P_X = sol.P_X
     P_Y = sol.P_Y
-    X = sol.X    
+    X = sol.X
+    Gamma = sol.Gamma    
 
     # outputs
     C_M = sol.C_M
@@ -508,15 +513,15 @@ def repacking_firms_components(par,ini,ss,sol):
     X_Y = sol.X_Y
 
     # evaluations
-    C_M[:] = CES_demand(par.mu_M_C,P_M_C,P_C,C,par.sigma_C)
-    G_M[:] = CES_demand(par.mu_M_G,P_M_G,P_G,G,par.sigma_G)
-    I_M[:] = CES_demand(par.mu_M_I,P_M_I,P_I,I,par.sigma_I)
-    X_M[:] = CES_demand(par.mu_M_X,P_M_X,P_X,X,par.sigma_X)
+    C_M[:] = CES_demand(par.mu_M_C,P_M_C,P_C,C,par.sigma_C,Gamma=1) #Manglende Gamma på dem alle: Tilføjet
+    G_M[:] = CES_demand(par.mu_M_G,P_M_G,P_G,G,par.sigma_G,Gamma=1)
+    I_M[:] = CES_demand(par.mu_M_I,P_M_I,P_I,I,par.sigma_I,Gamma=1)
+    X_M[:] = CES_demand(par.mu_M_X,P_M_X,P_X,X,par.sigma_X,Gamma=1)
 
-    C_Y[:] = CES_demand(1-par.mu_M_C,P_Y,P_C,C,par.sigma_C)
-    G_Y[:] = CES_demand(1-par.mu_M_G,P_Y,P_G,G,par.sigma_G)
-    I_Y[:] = CES_demand(1-par.mu_M_I,P_Y,P_I,I,par.sigma_I)
-    X_Y[:] = CES_demand(1-par.mu_M_X,P_Y,P_X,X,par.sigma_X)
+    C_Y[:] = CES_demand(1-par.mu_M_C,P_Y,P_C,C,par.sigma_C,Gamma=1)
+    G_Y[:] = CES_demand(1-par.mu_M_G,P_Y,P_G,G,par.sigma_G,Gamma=1)
+    I_Y[:] = CES_demand(1-par.mu_M_I,P_Y,P_I,I,par.sigma_I,Gamma=1)
+    X_Y[:] = CES_demand(1-par.mu_M_X,P_Y,P_X,X,par.sigma_X,Gamma=1)
     
 @nb.njit
 def goods_market_clearing(par,ini,ss,sol):

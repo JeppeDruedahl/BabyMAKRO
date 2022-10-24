@@ -131,7 +131,7 @@ def find_ss(model,do_print=True):
     ss = model.ss
 
     # a. price noramlizations
-    ss.P_Y = 1.0                                                #Note: Er der ikke et problem ved at sætte P_Y, når vi nu bestemmer den i Phillips-kurven? 
+    ss.P_Y = 1.0                                                
     ss.P_F = 1.0
     ss.P_M_C = 1.0
     ss.P_M_G = 1.0
@@ -181,11 +181,11 @@ def find_ss(model,do_print=True):
         print(f'{ss.r_ell = :.2f}, {(ss.L-ss.ell)/par.N_work*100 = :.2f}')
     
     # g. production firm & phillips-curve
-    P_Y_0 = blocks.CES_P(ss.r_K,ss.r_ell,par.mu_K,par.sigma_Y,Gamma=1.0)
-    ss.Gamma = P_Y_0*(1+par.theta)
-    ss.P_Y_0 = blocks.CES_P(ss.r_K,ss.r_ell,par.mu_K,par.sigma_Y,Gamma=ss.Gamma)
-    P_Y = (1+par.theta)*ss.P_Y_0                                                        #Hvorfor P_Y og ikke ss.P_Y
-    assert np.isclose(P_Y,ss.P_Y)
+    ss.P_Y_0 = ss.P_Y/(1+par.theta)
+    P_Y_0_NoGamma = blocks.CES_P(ss.r_K,ss.r_ell,par.mu_K,par.sigma_Y,Gamma=1.0)
+    ss.Gamma = P_Y_0_NoGamma/ss.P_Y_0
+    P_Y_0 = blocks.CES_P(ss.r_K,ss.r_ell,par.mu_K,par.sigma_Y,Gamma=ss.Gamma)
+    assert np.isclose(P_Y_0,ss.P_Y_0)
 
     ss.K = par.mu_K/(1-par.mu_K)*(ss.r_ell/ss.r_K)**par.sigma_Y*ss.ell
     ss.Y = blocks.CES_Y(ss.K,ss.ell,par.mu_K,par.sigma_Y,Gamma=ss.Gamma)
@@ -203,7 +203,7 @@ def find_ss(model,do_print=True):
 
     # i. government
     ss.G = par.G_share_ss*ss.Y
-    ss.tau = (par.r_b*ss.B+ss.P_G*ss.G+par.W_U*ss.U+par.W_R*(par.N-par.N_work))/(ss.W*ss.L+par.W_U*ss.U+par.W_R*(par.N-par.N_work))     #Note: Hvorfor er W_ss ikke ganget på benefits?
+    ss.tau = (par.r_b*ss.B+ss.P_G*ss.G+par.W_U*ss.U*ss.W+par.W_R*ss.W*(par.N-par.N_work))/(ss.W*ss.L+par.W_U*ss.U*ss.W+par.W_R*ss.W*(par.N-par.N_work))     
 
     if do_print: 
         print(Fonttype.HEADER + 'Government:' + Fonttype.END)
@@ -219,20 +219,20 @@ def find_ss(model,do_print=True):
         print(f'{ss.Aq/par.N = :.2f}, {ss.C = :.2f}, {ss.A = :.2f}')
 
     # k. CES demand in packing firms
-    ss.C_M = blocks.CES_demand(par.mu_M_C,ss.P_M_C,ss.P_C,ss.C,par.sigma_C)
-    ss.C_Y = blocks.CES_demand(1-par.mu_M_C,ss.P_Y,ss.P_C,ss.C,par.sigma_C)
+    ss.C_M = blocks.CES_demand(par.mu_M_C,ss.P_M_C,ss.P_C,ss.C,par.sigma_C,Gamma=1)          #Indsat Gamma   
+    ss.C_Y = blocks.CES_demand(1-par.mu_M_C,ss.P_Y,ss.P_C,ss.C,par.sigma_C,Gamma=1)
 
-    ss.G_M = blocks.CES_demand(par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G)
-    ss.G_Y = blocks.CES_demand(1-par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G)
+    ss.G_M = blocks.CES_demand(par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G,Gamma=1)
+    ss.G_Y = blocks.CES_demand(1-par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G,Gamma=1)
 
-    ss.I_M = blocks.CES_demand(par.mu_M_I,ss.P_M_I,ss.P_I,ss.I,par.sigma_I)
-    ss.I_Y = blocks.CES_demand(1-par.mu_M_I,ss.P_Y,ss.P_I,ss.I,par.sigma_I)
+    ss.I_M = blocks.CES_demand(par.mu_M_I,ss.P_M_I,ss.P_I,ss.I,par.sigma_I,Gamma=1)
+    ss.I_Y = blocks.CES_demand(1-par.mu_M_I,ss.P_Y,ss.P_I,ss.I,par.sigma_I,Gamma=1)
 
     # l. market clearing
     ss.X_Y = ss.Y - (ss.C_Y + ss.G_Y + ss.I_Y) 
     ss.chi = ss.X_Y/(1-par.mu_M_X)
     ss.X = ss.X_Y/(1-par.mu_M_X)
-    ss.X_M = blocks.CES_demand(par.mu_M_X,ss.P_M_X,ss.P_X,ss.X,par.sigma_X)
+    ss.X_M = blocks.CES_demand(par.mu_M_X,ss.P_M_X,ss.P_X,ss.X,par.sigma_X,Gamma=1)
     
     ss.M = ss.C_M + ss.G_M + ss.I_M + ss.X_M
 

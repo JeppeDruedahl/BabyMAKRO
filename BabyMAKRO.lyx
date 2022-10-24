@@ -365,7 +365,7 @@ overlapping generations
 Households
 \emph default
  live for up to 
-\begin_inset Formula $A$
+\begin_inset Formula $\#$
 \end_inset
 
  periods, and their age is denoted by 
@@ -699,16 +699,6 @@ The generic
 first order condition
 \emph default
  is
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Checked
-\end_layout
-
-\end_inset
-
-
 \begin_inset Formula 
 \begin{align}
 0 & =P\mu_{i}^{\frac{1}{\sigma}}X_{i}^{\frac{\sigma-1}{\sigma}-1}\Gamma\left(\mu_{i}^{\frac{1}{\sigma}}X_{i}^{\frac{\sigma-1}{\sigma}}+\mu_{j}^{\frac{1}{\sigma}}X_{j}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{\sigma}{\sigma-1}-1}-P_{i}\Leftrightarrow\nonumber \\
@@ -1047,7 +1037,11 @@ The chosen
 \begin_inset Formula $A_{t}^{q}$
 \end_inset
 
-, inheritance flow
+, inheritance flow (
+\begin_inset Formula $T$
+\end_inset
+
+ unknowns)
 \end_layout
 
 \begin_layout Enumerate
@@ -1084,6 +1078,17 @@ The chosen
 \end_layout
 
 \begin_layout Enumerate
+\begin_inset Formula $P_{t}^{Y}$
+\end_inset
+
+, price set in Phillips-curve (
+\begin_inset Formula $T$
+\end_inset
+
+ unknowns) 
+\end_layout
+
+\begin_layout Enumerate
 \begin_inset Formula $W_{t}$
 \end_inset
 
@@ -1096,20 +1101,10 @@ The chosen
 
 \begin_layout Standard
 The total number of unknowns thus is 
-\begin_inset Formula $6T$
+\begin_inset Formula $7\times T$
 \end_inset
 
 .
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Skal Phillips Curve ikke også være med?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
@@ -1141,8 +1136,7 @@ The age-specific number of household is
 \begin_inset Formula $\zeta_{a}$
 \end_inset
 
-.
- The potential life-span is 
+, the potential life-span is 
 \begin_inset Formula $\#$
 \end_inset
 
@@ -1205,7 +1199,7 @@ Households search for a job and supply labor exogenously.
 \begin_layout Standard
 The quantity of searchers are
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Man kunne også definere N_[a-1]-L[a-1] = U_[a-1]
@@ -1308,6 +1302,24 @@ The number of employed therefore is
 \begin_inset Formula 
 \begin{align*}
 L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This implies that the number of unemployed is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+U_{a,t} & =\begin{cases}
+N_{a}-L_{a,t} & \text{if }a<\#_{work}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}
 \end{align*}
 
 \end_inset
@@ -1858,15 +1870,26 @@ name "subsec:Block-IV.-Bargaining"
 \end_layout
 
 \begin_layout Standard
-The target wage in the bargaining is specified ad hoc as a weighted average
- of the profit the firm get from a marginal unit of labor, and the worker's
- outside option 
-\begin_inset Formula $W^{U}$
+The target wage, 
+\begin_inset Formula $W_{t}^{*}$
+\end_inset
+
+, in the bargaining is specified ad hoc as a weighted average of the profit
+ the firm get from a marginal unit of labor, 
+\begin_inset Formula $\overline{W}_{t}$
+\end_inset
+
+, and the worker's outside option,
+\begin_inset Formula $\underline{W}_{t}$
 \end_inset
 
 .
- The bargained wage is again a weighted average of the past wage and the
- current target wage to create a real rigidity.
+ The bargained wage, 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+, is again a weighted average of the past wage and the current target wage
+ to create a real rigidity.
 \end_layout
 
 \begin_layout Itemize
@@ -1899,7 +1922,7 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-\overline{W}_{t} & =P_{t}^{Y}\left(\left(1-\mu_{K}\right)\Gamma^{1-\sigma^{Y}}\frac{Y_{t}}{\ell_{t}}\right)^{\frac{1}{\sigma^{Y}}}\label{eq:MPL}\\
+\overline{W}_{t} & =P_{t}^{Y}\left(\left(1-\mu_{K}\right)\Gamma^{\sigma^{Y}-1}\frac{Y_{t}}{\ell_{t}}\right)^{\frac{1}{\sigma^{Y}}}\label{eq:MPL}\\
 \underline{W}_{t} & =W^{U}\label{eq: Outside_option}\\
 W_{t}^{\ast} & =\psi\overline{W}_{t}+(1-\psi)\underline{W}_{t}\label{eq:w_ast}
 \end{align}
@@ -1908,26 +1931,23 @@ W_{t}^{\ast} & =\psi\overline{W}_{t}+(1-\psi)\underline{W}_{t}\label{eq:w_ast}
 
 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
-Jeg finder, at det er Gamma og ikke Gamma^(1-sigma_Y), som skal bruges i
- W
-\backslash
-bar 
-\end_layout
+
+\series bold
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial Y_{t}}{\partial\ell_{t}} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}-1}\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}-1}=\overline{W}_{t}\\
+\overline{W}_{t} & =\Gamma^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\Gamma^{\frac{1}{\sigma^{Y}}}\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{1}{\sigma^{Y}-1}}\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{-1}{\sigma^{Y}}}\\
+\Leftrightarrow\overline{W}_{t} & =\Gamma^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}Y_{t}^{\frac{1}{\sigma^{Y}}}\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{-1}{\sigma^{Y}}}\\
+\overline{W}_{t} & =\left(\left(1-\mu_{K}\right)\Gamma^{\sigma^{Y}-1}\frac{Y_{t}}{\ell_{t}}\right)^{\frac{1}{\sigma^{Y}}}
+\end{align*}
 
 \end_inset
 
 
-\begin_inset Formula 
-\begin{align*}
-Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\\
-\frac{\partial Y_{t}}{\partial\ell_{t}} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}-1}\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}-1}=\overline{W}_{t}\\
-\overline{W}_{t} & =\Gamma^{\sigma^{Y}}\Gamma^{\frac{1}{\sigma^{Y}}}\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{1}{\sigma^{Y}-1}}\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{-1}{\sigma^{Y}}}\\
-\Leftrightarrow\overline{W}_{t} & =\Gamma^{\sigma^{y}}Y_{t}^{\frac{1}{\sigma^{Y}}}\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{-1}{\sigma^{Y}}}\\
-\overline{W}_{t} & =\left(\left(1-\mu_{K}\right)\Gamma\frac{Y_{t}}{\ell_{t}}\right)^{\frac{1}{\sigma^{Y}}}
-\end{align*}
+\end_layout
 
 \end_inset
 
@@ -2002,6 +2022,16 @@ noprefix "false"
 block
 \series default
  for the pricing part of this as:
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Indsat Gamma 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -2040,7 +2070,7 @@ Output:
 
 \begin_inset Formula 
 \begin{equation}
-P_{t}^{\bullet}=\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}.\label{eq:CGIX_P}
+P_{t}^{\bullet}=\frac{1}{\Gamma}\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}.\label{eq:CGIX_P}
 \end{equation}
 
 \end_inset
@@ -2061,7 +2091,7 @@ name "subsec:Block-VI.-Foreign"
 \end_layout
 
 \begin_layout Standard
-The foreign economy have so-called Armington demand the domestic export
+The foreign economy have so-called Armington demand of the domestic export
  good.
  We write the 
 \series bold
@@ -2157,10 +2187,10 @@ The capital agency firm buys investment goods,
  The capital agency takes prices as given, and its problem thus is:
 \begin_inset Formula 
 \begin{align*}
-V_{0} & \left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}(\iota_{t}+\Psi(\iota_{t},K_{t-1}))\right]\\
+V_{0} & \left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}\left(\iota_{t}+\Psi(\iota_{t},K_{t-1})\right)\right]\\
  & \text{s.t.}\\
- & I_{t}=\iota_{t}+\Psi(\iota_{t},K_{t-1})\\
- & K_{t}=(1-\delta^{K})K_{t-1}+\iota_{t}.
+I_{t} & =\iota_{t}+\Psi(\iota_{t},K_{t-1})\\
+K_{t} & =(1-\delta^{K})K_{t-1}+\iota_{t}.
 \end{align*}
 
 \end_inset
@@ -2270,7 +2300,7 @@ where
 \end_inset
 
  is the interest rate on government debt determined in the foreign economy.
- We assume the government have the exogenous tax rate 
+ We assume the government has the exogenous tax rate 
 \begin_inset Formula $\tilde{\tau}_{t}$
 \end_inset
 
@@ -2278,7 +2308,7 @@ where
 \begin_inset Formula $t_{B}$
 \end_inset
 
- and then begin to adjust taxes to get back to steady state debt.
+ years and then begin to adjust taxes to get back to steady state debt.
  For 
 \begin_inset Formula $\Delta_{B}$
 \end_inset
@@ -2356,16 +2386,6 @@ B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t
 \end_inset
 
 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Checked
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2394,11 +2414,11 @@ The model has two types of households.
 \begin_inset Formula $\lambda$
 \end_inset
 
- of households are hands-to-mouth and a share of 
+ of households is hands-to-mouth and a share of 
 \begin_inset Formula $1-\lambda$
 \end_inset
 
- households are unconstrained (Ricardian).
+ households is unconstrained (Ricardian).
  All households has three sources of income:
 \end_layout
 
@@ -2411,7 +2431,7 @@ Post-tax labor income,
 \end_layout
 
 \begin_layout Enumerate
-Unemployment benefits, 
+Post-tax unemployment benefits, 
 \begin_inset Formula $\left(1-\tau_{t}\right)W^{U}W_{t}\frac{U_{a,t}}{N_{a}}$
 \end_inset
 
@@ -2419,8 +2439,20 @@ Unemployment benefits,
 \end_layout
 
 \begin_layout Enumerate
-Retirement benefits, 
+Post-tax retirement benefits, 
 \begin_inset Formula $\left(1-\tau_{t}\right)W^{R}W_{t}1_{\left\{ a\geq\#_{\text{work}}\right\} }$
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Man kunne også define antal pensionister som N_a-(L_a,t+U_a,t).
+ Ved at dividere med N_a får man 1-(L_a,t+U_a,t)/N_a, hvilket kunne bruges
+ i stedet for indikator funktionen.
+\end_layout
+
 \end_inset
 
 
@@ -2435,7 +2467,7 @@ Equally divided inheritance,
 \end_layout
 
 \begin_layout Standard
-Total income is
+The age specific income is
 \begin_inset Formula 
 \[
 \text{inc}_{a,t}=\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}
@@ -2490,17 +2522,6 @@ The Ricardian households making their first decision in period
 \end_inset
 
  solve the problem
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Jeg forstår ikke helt produktet mellem Beta og (1-zeta_j).
- Hvorfor skal det ikke bare være en del af summen?
-\end_layout
-
-\end_inset
-
-
 \begin_inset Formula 
 \begin{align*}
 V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R},A_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
@@ -2599,18 +2620,6 @@ Inputs:
 Outputs: 
 \series default
 
-\begin_inset Formula $\left\{ \pi_{t}^{hh}\right\} $
-\end_inset
-
-, 
-\begin_inset Formula $\left\{ C_{a,t}^{\text{HtM}}\right\} ,$
-\end_inset
-
- 
-\begin_inset Formula $\left\{ C_{a,t}^{R}\right\} $
-\end_inset
-
-, 
 \begin_inset Formula $\left\{ A_{a,t}^{\text{HtM}}\right\} $
 \end_inset
 
@@ -2618,12 +2627,24 @@ Outputs:
 \begin_inset Formula $\left\{ A_{a,t}^{R}\right\} $
 \end_inset
 
-, 
-\begin_inset Formula $\left\{ C_{t}^{R}\right\} $
+,
+\begin_inset Formula $\left\{ A_{a,t}\right\} $
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ A_{t}^{R}\right\} $
+\begin_inset Formula $\left\{ A_{t}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ C_{a,t}^{\text{HtM}}\right\} ,$
+\end_inset
+
+
+\begin_inset Formula $\left\{ C_{a,t}^{R}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ C_{a,t}\right\} $
 \end_inset
 
 , 
@@ -2631,7 +2652,15 @@ Outputs:
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ A_{t}\right\} $
+\begin_inset Formula $\left\{ \text{inc}_{a,t}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ \text{inc}_{t}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ \pi_{t}^{hh}\right\} $
 \end_inset
 
 
@@ -2675,17 +2704,6 @@ For each birthcohort
 \end_inset
 
 :
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Rettet til A^R_t nederst.
- 
-\end_layout
-
-\end_inset
-
-
 \begin_inset Formula 
 \begin{align*}
 C_{a,t}^{R} & =\begin{cases}
@@ -2717,19 +2735,6 @@ A_{t} & =\sum_{a=0}^{\#-1}N_{a}C_{a,t}\label{eq:A}
 
 \series bold
 Targets
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-Indsat t_0 i sum.
- Kunne det give mening at bruge a_0 i den første?
-\end_layout
-
-\end_inset
-
-
 \series default
 
 \begin_inset Formula 
@@ -2788,6 +2793,16 @@ noprefix "false"
 block
 \series default
  as:
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Tilføjet Gamma
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -2838,8 +2853,8 @@ Output:
 
 \begin_inset Formula 
 \begin{align}
-\bullet_{t}^{M} & =\mu^{M,\bullet}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_M}\\
-\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_Y}
+\bullet_{t}^{M} & =\mu^{M,\bullet}\Gamma^{\sigma^{\bullet}-1}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_M}\\
+\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\Gamma^{\sigma^{\bullet}-1}\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_Y}
 \end{align}
 
 \end_inset
@@ -2853,9 +2868,13 @@ Block XII.
 \end_layout
 
 \begin_layout Standard
-The production of the domestic output good must match the about of the output
- good used by the repacking firms.
- Imports are used the sum of the imports of the repacking firms.
+The production of the domestic output good must match the above output goods
+ used by the repacking firms.
+ Imports, 
+\begin_inset Formula $M_{t}$
+\end_inset
+
+, are the sum of the imports used by the repacking firms.
 \end_layout
 
 \begin_layout Standard
@@ -2928,7 +2947,7 @@ Total number of targets
 
 \begin_layout Standard
 We have 
-\begin_inset Formula $6\times T$
+\begin_inset Formula $7\times T$
 \end_inset
 
  targets in Equation 
@@ -2955,6 +2974,16 @@ noprefix "false"
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:FOC_K"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Phillips"
 plural "false"
 caps "false"
 noprefix "false"
@@ -3181,17 +3210,6 @@ Exogenously, set the government spending as a share of the output and find
 status collapsed
 
 \begin_layout Plain Layout
-Hvorfor er W_ss ikke ganget på benefits? (W_ss er 1 i ss, så det har ikke
- betydning for koden)
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
 \begin_inset Formula 
 \begin{align*}
 B_{ss} & =(1+r^{B})B_{ss}+P_{ss}^{G}G_{ss}+(1-\tau_{ss})W_{U}W_{ss}U_{ss}+(1-\tau_{ss})W_{R}W_{ss}(N_{ss}-N_{ss}^{work})-\tau_{ss}W_{ss}L_{ss}\\
@@ -3234,6 +3252,16 @@ Guess on
 
  which implies the Ricardian housholds consumption and assets.
  
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Skriv A_ss^death ud
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{align*}
 \text{inc}_{a,ss} & =\left(1-\tau_{ss}\right)W_{ss}\frac{L_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W_{U}W_{ss}\frac{U_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W_{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{ss}^{q}}{N}\\
@@ -3255,11 +3283,21 @@ A_{ss}^{q} & =\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t-1}
 \end_layout
 
 \begin_layout Enumerate
-Determine package components for consumption and investment
+Determine package components for consumption and investment 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Updated with prices and Gamma
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{align*}
-\bullet_{ss}^{M} & =\mu^{M,\bullet}\bullet_{ss},\,\text{for }\bullet\in\{C,G,I\}\\
-\bullet_{ss}^{Y} & =(1-\mu^{M,\bullet})\bullet_{ss},\,\text{for }\bullet\in\{C,G,I\}
+\bullet_{ss}^{M} & =\mu^{M,\bullet}\Gamma^{\sigma^{\bullet}-1}\left(\frac{P_{ss}^{\bullet}}{P_{ss}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{ss},\,\text{for }\bullet\in\{C,G,I\}\\
+\bullet_{ss}^{Y} & =(1-\mu^{M,\bullet})\Gamma^{\sigma^{\bullet}-1}\left(\frac{P_{ss}^{\bullet}}{P_{ss}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{ss},\,\text{for }\bullet\in\{C,G,I\}
 \end{align*}
 
 \end_inset
@@ -3276,8 +3314,8 @@ Determine
 \begin_inset Formula 
 \begin{align*}
 X_{ss}^{Y} & =Y_{ss}-\left(C_{ss}^{Y}+G_{ss}^{Y}+I_{ss}^{Y}\right)\\
-\chi_{ss}=X_{ss} & =\frac{X_{ss}^{Y}}{1-\mu^{M,X}}\\
-X_{ss}^{M} & =\mu^{M,X}X_{ss}\\
+\chi_{ss}=X_{ss} & =\frac{X_{ss}^{Y}}{(1-\mu^{M,X})\Gamma^{\sigma^{X}-1}}\\
+X_{ss}^{M} & =\mu^{M,X}\Gamma^{\sigma^{X}-1}\left(\frac{P_{ss}^{X}}{P_{ss}^{M,X}}\right)^{\sigma^{X}}X_{ss}\\
 M_{ss} & =C_{ss}^{M}+G_{ss}^{M}+I_{ss}^{M}+X_{ss}^{M}
 \end{align*}
 
