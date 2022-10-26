@@ -2255,6 +2255,49 @@ I_{t} & =\iota_{t}+\Psi(\iota_{t},K_{t-1})\label{eq:I}
 \end_inset
 
 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+We have:
+\begin_inset Formula 
+\[
+V_{0}\left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}\left(\iota_{t}+\Psi\left(\iota_{t},K_{t-1}\right)\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Note:
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial\iota_{t}}{\partial K_{t}} & =\frac{\partial\left(K_{t}-(1-\delta^{K})K_{t-1}\right)}{\partial K_{t}}=1\\
+\frac{\partial\iota_{t+1}}{\partial K_{t}} & =\frac{\partial\left(K_{t+1}-(1-\delta^{K})K_{t}\right)}{\partial K_{t}}=-(1-\delta^{K})
+\end{align*}
+
+\end_inset
+
+The FOC is:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+0= & -P_{t}^{I}\left(1+\Psi_{\iota}\left(\iota_{t},K_{t-1}\right)\right)\\
+ & +\left(1+r^{\text{firm}}\right)^{-1}\left[r_{t+1}^{K}+P_{t+1}^{I}\left(1-\delta^{K}\right)\left(1+\Psi_{\iota}\left(\iota_{t+1},K_{t}\right)\right)-P_{t+1}^{I}\Psi_{K}\left(\iota_{t+1},K_{t}\right)\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -2264,9 +2307,10 @@ Targets:
 \series default
 
 \begin_inset Formula 
-\begin{equation}
-0=-P_{t}^{I}\left(1+\Psi_{\iota}\left(\iota_{t},K_{t-1}\right)\right)+\left(1+r^{\text{firm}}\right)^{-1}\left[r_{t+1}^{k}+(1-\delta^{K})P_{t+1}^{I}(1+\Psi_{\iota}(\iota_{t+1},K_{t}))-P_{t+1}^{I}\Psi_{K}\left(\iota_{t+1},K_{t}\right)\right]\label{eq:FOC_K}
-\end{equation}
+\begin{align}
+0= & -P_{t}^{I}\left(1+\Psi_{\iota}\left(\iota_{t},K_{t-1}\right)\right)\label{eq:FOC_K}\\
+ & +\left(1+r^{\text{firm}}\right)^{-1}\left[r_{t+1}^{k}+P_{t+1}^{I}(1-\delta^{K})(1+\Psi_{\iota}(\iota_{t+1},K_{t}))-P_{t+1}^{I}\Psi_{K}\left(\iota_{t+1},K_{t}\right)\right]\nonumber 
+\end{align}
 
 \end_inset
 
