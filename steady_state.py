@@ -216,10 +216,10 @@ def find_ss(model,do_print=True):
 
     if do_print:
         print(Fonttype.HEADER + 'Households:' + Fonttype.END)
-        print(f'{ss.Aq/par.N = :.2f}, {ss.C = :.2f}, {ss.A = :.2f}')
+        print(f'{ss.Aq/par.N = :.2f}, {ss.real_W = :.2f}, {ss.C = :.2f}, {ss.A = :.2f}')
 
     # k. CES demand in packing firms
-    ss.C_M = blocks.CES_demand(par.mu_M_C,ss.P_M_C,ss.P_C,ss.C,par.sigma_C,Gamma=1)          #Indsat Gamma   
+    ss.C_M = blocks.CES_demand(par.mu_M_C,ss.P_M_C,ss.P_C,ss.C,par.sigma_C,Gamma=1)
     ss.C_Y = blocks.CES_demand(1-par.mu_M_C,ss.P_Y,ss.P_C,ss.C,par.sigma_C,Gamma=1)
 
     ss.G_M = blocks.CES_demand(par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G,Gamma=1)

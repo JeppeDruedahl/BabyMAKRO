@@ -428,7 +428,7 @@ class BabyMAKROModelClass(EconModelClass):
             alt = self.get_errors()
             jac[:,i] = (alt-base)/dx
 
-        if do_print: print(f'Jacobian calculated in {elapsed(t0)} secs')
+        if do_print: print(f'Jacobian calculated in {elapsed(t0)}')
 
     def find_IRF(self,ini=None):
         """ find IRF """
@@ -532,3 +532,69 @@ class BabyMAKROModelClass(EconModelClass):
                 ax.legend(frameon=True)
 
         fig.tight_layout(pad=1.0)
+
+    def multi_model(self,parameter,parvalues,ncol=3):
+        """ Create multiple models with different parameters """
+        
+        par = self.par
+        ini_value = getattr(par, parameter)   
+        modellist = []  
+
+        for i in range(len(parvalues)):
+            setattr(par,parameter, parvalues[i])
+            modellist.append(self.copy())
+            modellist[i].find_ss()
+            modellist[i].calc_jac(do_print=True)
+        
+        setattr(par,parameter, ini_value) 
+
+        return modellist
+
+
+
+    def plot_IRF_models(self,models=[],varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[]):
+        """ plot IRFs """
+
+        nrow = len(varlist)//ncol
+        if len(varlist) > nrow*ncol: nrow+=1
+
+        fig = plt.figure(figsize=(ncol*6,nrow*6/1.5))
+        for i,varname in enumerate(varlist):
+
+            ss = []
+            sol = []
+            path = []
+            ssvalue = []
+
+            ax = fig.add_subplot(nrow,ncol,1+i)
+            
+            for j, model in enumerate(models):
+                ss[j] = model.ss
+                sol[j] = model.sol           
+                path[j] = sol[j].__dict__[varname]
+                ssvalue[j] = ss[j].__dict__[varname]
+
+            if varname in abs:
+                ax.axhline(ssvalue,color='black')
+                ax.plot(path[:T_IRF],'-o',markersize=3)
+            elif varname in Y_share:
+                ax.plot(path[:T_IRF]/sol.Y[:T_IRF],'-o',markersize=3)   
+                ax.set_ylabel('share of Y')         
+            elif np.isclose(ssvalue,0.0):
+                ax.plot(path[:T_IRF]-ssvalue,'-o',markersize=3)
+                ax.set_ylabel('diff.to ss')
+            else:
+                ax.plot((path[:T_IRF]/ssvalue-1)*100,'-o',markersize=3)
+                ax.set_ylabel('% diff.to ss')
+
+            ax.set_title(varname)
+
+        fig.tight_layout(pad=1.0)
+            
+            
+
+
+
+
+
+    

@@ -263,7 +263,6 @@ def repacking_firms_prices(par,ini,ss,sol):
     P_M_I = sol.P_M_I
     P_M_X = sol.P_M_X
     P_Y = sol.P_Y
-    Gamma = sol.Gamma
 
     # outputs
     P_C = sol.P_C
@@ -499,8 +498,7 @@ def repacking_firms_components(par,ini,ss,sol):
     P_M_X = sol.P_M_X
     P_X = sol.P_X
     P_Y = sol.P_Y
-    X = sol.X
-    Gamma = sol.Gamma    
+    X = sol.X  
 
     # outputs
     C_M = sol.C_M
@@ -513,7 +511,7 @@ def repacking_firms_components(par,ini,ss,sol):
     X_Y = sol.X_Y
 
     # evaluations
-    C_M[:] = CES_demand(par.mu_M_C,P_M_C,P_C,C,par.sigma_C,Gamma=1) #Manglende Gamma på dem alle: Tilføjet
+    C_M[:] = CES_demand(par.mu_M_C,P_M_C,P_C,C,par.sigma_C,Gamma=1) 
     G_M[:] = CES_demand(par.mu_M_G,P_M_G,P_G,G,par.sigma_G,Gamma=1)
     I_M[:] = CES_demand(par.mu_M_I,P_M_I,P_I,I,par.sigma_I,Gamma=1)
     X_M[:] = CES_demand(par.mu_M_X,P_M_X,P_X,X,par.sigma_X,Gamma=1)
