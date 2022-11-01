@@ -185,6 +185,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.r_hh = 0.04 # nominal return rate
         par.W_U = 0.80 # unemployment benefits (rel. to ss.W)
         par.W_R = 0.50 # retirement benefits (rel. to ss.W)
+        par.w_constant = 1.0 # solving for constant real wage
 
         par.delta_L_a_fac = 0.10 # age-specific separation rate (common)
 
@@ -550,8 +551,6 @@ class BabyMAKROModelClass(EconModelClass):
 
         return modellist
 
-
-
     def plot_IRF_models(self,models=[],varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[],parameter=[],parvalues=[]):
         """ plot IRFs """
 
@@ -591,10 +590,4 @@ class BabyMAKROModelClass(EconModelClass):
 
         fig.tight_layout(pad=1.0)
             
-            
-
-
-
-
-
-    
+        

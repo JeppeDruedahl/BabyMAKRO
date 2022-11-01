@@ -1487,7 +1487,7 @@ The labor agency firms post vacancies,
 
 .
  The wage, 
-\begin_inset Formula $w_{t}$
+\begin_inset Formula $W_{t}$
 \end_inset
 
 , is determined by bargaining.
@@ -1580,7 +1580,7 @@ block
 
 \series bold
 Inputs: 
-\begin_inset Formula $\{w_{t}\}$
+\begin_inset Formula $\{W_{t}\}$
 \end_inset
 
 
@@ -2086,16 +2086,6 @@ noprefix "false"
 block
 \series default
  for the pricing part of this as:
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Indsat Gamma 
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Enumerate
@@ -2134,7 +2124,7 @@ Output:
 
 \begin_inset Formula 
 \begin{equation}
-P_{t}^{\bullet}=\frac{1}{\Gamma}\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}.\label{eq:CGIX_P}
+P_{t}^{\bullet}=\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}.\label{eq:CGIX_P}
 \end{equation}
 
 \end_inset
@@ -2915,16 +2905,6 @@ noprefix "false"
 block
 \series default
  as:
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Tilføjet Gamma
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Enumerate
@@ -2975,8 +2955,8 @@ Output:
 
 \begin_inset Formula 
 \begin{align}
-\bullet_{t}^{M} & =\mu^{M,\bullet}\Gamma^{\sigma^{\bullet}-1}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_M}\\
-\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\Gamma^{\sigma^{\bullet}-1}\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_Y}
+\bullet_{t}^{M} & =\mu^{M,\bullet}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_M}\\
+\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_Y}
 \end{align}
 
 \end_inset
@@ -3404,20 +3384,10 @@ A_{ss}^{q} & =\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,ss}
 
 \begin_layout Enumerate
 Determine package components for consumption and investment 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Updated with prices and Gamma
-\end_layout
-
-\end_inset
-
-
 \begin_inset Formula 
 \begin{align*}
-\bullet_{ss}^{M} & =\mu^{M,\bullet}\Gamma^{\sigma^{\bullet}-1}\left(\frac{P_{ss}^{\bullet}}{P_{ss}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{ss},\,\text{for }\bullet\in\{C,G,I\}\\
-\bullet_{ss}^{Y} & =(1-\mu^{M,\bullet})\Gamma^{\sigma^{\bullet}-1}\left(\frac{P_{ss}^{\bullet}}{P_{ss}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{ss},\,\text{for }\bullet\in\{C,G,I\}
+\bullet_{ss}^{M} & =\mu^{M,\bullet}\left(\frac{P_{ss}^{\bullet}}{P_{ss}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{ss},\,\text{for }\bullet\in\{C,G,I\}\\
+\bullet_{ss}^{Y} & =(1-\mu^{M,\bullet})\left(\frac{P_{ss}^{\bullet}}{P_{ss}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{ss},\,\text{for }\bullet\in\{C,G,I\}
 \end{align*}
 
 \end_inset

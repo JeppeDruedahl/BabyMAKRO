@@ -227,7 +227,7 @@ def phillips_curve(par,ini,ss,sol):
     PC[:] = LHS - RHS_0 - RHS_1 - RHS_2
 
 @nb.njit
-def bargaining(par,ini,ss,sol):
+def bargaining(par,ini,ss,sol,constant_real_wage = 0):
 
     # inputs
     ell = sol.ell
@@ -245,14 +245,18 @@ def bargaining(par,ini,ss,sol):
     bargaining_cond = sol.bargaining_cond
 
     # evaluations
-    W_lag = lag(ini.W,W)
+    if constant_real_wage == 0:
+        W_lag = lag(ini.W,W)
+        W_obar = P_Y*( (1-par.mu_K)*Gamma**(par.sigma_Y-1)*Y/ell )**(1/par.sigma_Y)
+        W_ubar = par.W_U
 
-    W_obar = P_Y*( (1-par.mu_K)*Gamma**(par.sigma_Y-1)*Y/ell )**(1/par.sigma_Y)
-    W_ubar = par.W_U
+        W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
 
-    W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
-
-    bargaining_cond[:] = W - (par.gamma_W*W_lag + (1-par.gamma_W)*W_ast)
+        bargaining_cond[:] = W - (par.gamma_W*W_lag + (1-par.gamma_W)*W_ast)
+    
+    else:
+        #Constant real Wage:
+        bargaining_cond[:] = W/P_Y - par.w_constant
     
 @nb.njit
 def repacking_firms_prices(par,ini,ss,sol):
