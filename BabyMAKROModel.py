@@ -533,7 +533,7 @@ class BabyMAKROModelClass(EconModelClass):
 
         fig.tight_layout(pad=1.0)
 
-    def multi_model(self,parameter,parvalues,ncol=3):
+    def multi_model(self,parameter,parvalues):
         """ Create multiple models with different parameters """
         
         par = self.par
@@ -552,42 +552,42 @@ class BabyMAKROModelClass(EconModelClass):
 
 
 
-    def plot_IRF_models(self,models=[],varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[]):
+    def plot_IRF_models(self,models=[],varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[],parameter=[],parvalues=[]):
         """ plot IRFs """
 
         nrow = len(varlist)//ncol
-        if len(varlist) > nrow*ncol: nrow+=1
+        if len(varlist) > nrow*ncol: nrow+=1 
 
         fig = plt.figure(figsize=(ncol*6,nrow*6/1.5))
         for i,varname in enumerate(varlist):
-
             ss = []
             sol = []
             path = []
             ssvalue = []
-
-            ax = fig.add_subplot(nrow,ncol,1+i)
             
-            for j, model in enumerate(models):
-                ss[j] = model.ss
-                sol[j] = model.sol           
-                path[j] = sol[j].__dict__[varname]
-                ssvalue[j] = ss[j].__dict__[varname]
+            ax = fig.add_subplot(nrow,ncol,1+i)
+            for j in range(len(models)):
+                ss.append(models[j].ss)
+                sol.append(models[j].sol)
+                path.append(sol[j].__dict__[varname])
+                ssvalue.append(ss[j].__dict__[varname])
 
-            if varname in abs:
-                ax.axhline(ssvalue,color='black')
-                ax.plot(path[:T_IRF],'-o',markersize=3)
-            elif varname in Y_share:
-                ax.plot(path[:T_IRF]/sol.Y[:T_IRF],'-o',markersize=3)   
-                ax.set_ylabel('share of Y')         
-            elif np.isclose(ssvalue,0.0):
-                ax.plot(path[:T_IRF]-ssvalue,'-o',markersize=3)
-                ax.set_ylabel('diff.to ss')
-            else:
-                ax.plot((path[:T_IRF]/ssvalue-1)*100,'-o',markersize=3)
-                ax.set_ylabel('% diff.to ss')
-
+                if varname in abs:
+                    ax.axhline(ssvalue[j],color='black', label=f'{parameter} = {parvalues[j]}',linewidth=0.75)
+                    ax.plot(path[j][:T_IRF],'-o',markersize=2)
+                elif varname in Y_share:
+                    ax.plot(path[j][:T_IRF]/sol[j].Y[:T_IRF],'-o',markersize=2, label=f'{parameter} = {parvalues[j]}',linewidth=0.75)   
+                    ax.set_ylabel('share of Y')         
+                elif np.isclose(ssvalue[j],0.0):
+                    ax.plot(path[j][:T_IRF]-ssvalue[j],'-o',markersize=2, label=f'{parameter} = {parvalues[j]}',linewidth=0.75)
+                    ax.set_ylabel('diff.to ss')
+                else:
+                    ax.plot((path[j][:T_IRF]/ssvalue[j]-1)*100,'-o',markersize=2, label=f'{parameter} = {parvalues[j]}',linewidth=0.75)
+                    ax.set_ylabel('% diff.to ss')
+                handles, labels = ax.get_legend_handles_labels()
             ax.set_title(varname)
+            fig.legend(handles, labels, loc='upper right', frameon = True)
+
 
         fig.tight_layout(pad=1.0)
             
