@@ -185,7 +185,6 @@ class BabyMAKROModelClass(EconModelClass):
         par.r_hh = 0.04 # nominal return rate
         par.W_U = 0.80 # unemployment benefits (rel. to ss.W)
         par.W_R = 0.50 # retirement benefits (rel. to ss.W)
-        par.w_constant = 1.0 # solving for constant real wage
 
         par.delta_L_a_fac = 0.10 # age-specific separation rate (common)
 
@@ -231,6 +230,8 @@ class BabyMAKROModelClass(EconModelClass):
         # i. bargaining
         par.phi = np.nan # bargaining power of firms (determined when finding steady state)
         par.gamma_W = 0.80 # wage persistence
+        par.w_constant = 1.0 # solving for constant real wage
+        par.constant_real_wage = 0 # Option for setting the real wage to a constant
 
         # j. steady state
         par.W_ss = 1.0 # wage
