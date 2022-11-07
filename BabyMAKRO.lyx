@@ -692,6 +692,12 @@ Since Capital is fixed, the prodcution firms can only produce more by hiring
  AND WHY DOES r_ell INCREASE WHEN ell INCREASES???)
 \end_layout
 
+\begin_layout Standard
+The labor agency has an increase in demand for Labor, L, or a decrease in
+ the number of vacancies, v.
+  
+\end_layout
+
 \begin_layout Subsection
 On CES technology
 \begin_inset CommandInset label
@@ -2249,7 +2255,8 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-X_{t} & =\gamma^{X}X_{t-1}+(1-\gamma^{X})\chi_{t}\left(\frac{P_{t}^{X}}{P_{t}^{F}}\right)^{-\sigma^{F}}\label{eq:X}
+X_{t} & =\gamma^{X}X_{t-1}+(1-\gamma^{X})\chi_{t}\left(\frac{P_{t}^{X}}{P_{t}^{F}}\right)^{-\sigma^{F}}\label{eq:X}\\
+X_{t}^{M} & =\mu^{M,X}\left(\frac{P_{t}^{X}}{P_{t}^{M,X}}\right)^{\sigma^{X}}X_{t}
 \end{align}
 
 \end_inset
