@@ -165,6 +165,32 @@ class BabyMAKROModelClass(EconModelClass):
             'U_a',
         ]
 
+    def set_macro(self,constant_real_wage=False):
+
+        if constant_real_wage==True:
+            # targets
+            self.targets = [
+                'A_R_ini_error',
+                'Aq_diff',
+                'FOC_capital_agency',
+                'FOC_K_ell',
+                'mkt_clearing',
+                'PC',
+            ]
+    
+            # unknowns
+            self.unknowns = [
+                'Aq',
+                'A_R_death',
+                'K',
+                'L',
+                'r_K',
+                'P_Y',
+            ]
+            pass
+
+        self.allocate()
+
     def setup(self):
         """ set baseline parameters """
 

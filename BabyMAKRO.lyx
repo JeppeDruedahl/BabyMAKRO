@@ -642,6 +642,57 @@ Modeling systems such as GAMS can combined with a state-of-the-art solver
 \end_layout
 
 \begin_layout Subsection
+Transition path
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Transition-path"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We consider an economy in steady state.
+ Next, we shock one of the exogeneous variables and see what happens to
+ all other variables as the economy converges towards its new steady state.
+ Let us consider a shock to the Government consumption.
+ 
+\end_layout
+
+\begin_layout Standard
+The government increases consumption, which implies an increase in both
+ the government budget and the tax-rate (however this is fixed for t_b periods).
+ 
+\end_layout
+
+\begin_layout Standard
+The Ricardian households decrease their consumption, as they see the higher
+ tax rate in the future.
+\end_layout
+
+\begin_layout Standard
+Higher G implies that the repacking firms imports and produces more G (Higher
+ M and Y).
+ As the import price is fix, a higher demand for G implies a higher price
+ (P_C increases).
+ Higher domestic consumption / higher prices should imply lower export,
+ X
+\end_layout
+
+\begin_layout Standard
+Since Capital is fixed, the prodcution firms can only produce more by hiring
+ more labor (increase ell).
+ This makes the capital more productive, thus r_K increases relative to
+ r_ell (more capital in the future) 
+\end_layout
+
+\begin_layout Standard
+- (K DECREASE IN 0, AND CONTINUES TO DECREASE EVEN THOGUH THE RETURN INCREAES???
+ AND WHY DOES r_ell INCREASE WHEN ell INCREASES???)
+\end_layout
+
+\begin_layout Subsection
 On CES technology
 \begin_inset CommandInset label
 LatexCommand label
@@ -2198,7 +2249,7 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-X_{t} & =\chi_{t}\left(\frac{P_{t}^{X}}{P_{t}^{F}}\right)^{-\sigma^{F}}\label{eq:X}
+X_{t} & =\gamma^{X}X_{t-1}+(1-\gamma^{X})\chi_{t}\left(\frac{P_{t}^{X}}{P_{t}^{F}}\right)^{-\sigma^{F}}\label{eq:X}
 \end{align}
 
 \end_inset

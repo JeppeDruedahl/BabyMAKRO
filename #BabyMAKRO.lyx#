@@ -642,6 +642,63 @@ Modeling systems such as GAMS can combined with a state-of-the-art solver
 \end_layout
 
 \begin_layout Subsection
+Transition path
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Transition-path"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We consider an economy in steady state.
+ Next, we shock one of the exogeneous variables and see what happens to
+ all other variables as the economy converges towards its new steady state.
+ Let us consider a shock to the Government consumption.
+ 
+\end_layout
+
+\begin_layout Standard
+The government increases consumption, which implies an increase in both
+ the government budget and the tax-rate (however this is fixed for t_b periods).
+ 
+\end_layout
+
+\begin_layout Standard
+The Ricardian households decrease their consumption, as they see the higher
+ tax rate in the future.
+\end_layout
+
+\begin_layout Standard
+Higher G implies that the repacking firms imports and produces more G (Higher
+ M and Y).
+ As the import price is fix, a higher demand for G implies a higher price
+ (P_C increases).
+ Higher domestic consumption / higher prices should imply lower export,
+ X
+\end_layout
+
+\begin_layout Standard
+Since Capital is fixed, the prodcution firms can only produce more by hiring
+ more labor (increase ell).
+ This makes the capital more productive, thus r_K increases relative to
+ r_ell (more capital in the future) 
+\end_layout
+
+\begin_layout Standard
+- (K DECREASE IN 0, AND CONTINUES TO DECREASE EVEN THOGUH THE RETURN INCREAES???
+ AND WHY DOES r_ell INCREASE WHEN ell INCREASES???)
+\end_layout
+
+\begin_layout Standard
+The labor agency has an increase in demand for Labor, L, or a decrease in
+ the number of vacancies, v.
+  
+\end_layout
+
+\begin_layout Subsection
 On CES technology
 \begin_inset CommandInset label
 LatexCommand label
@@ -2198,7 +2255,8 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-X_{t} & =\chi_{t}\left(\frac{P_{t}^{X}}{P_{t}^{F}}\right)^{-\sigma^{F}}\label{eq:X}
+X_{t} & =\gamma^{X}X_{t-1}+(1-\gamma^{X})\chi_{t}\left(\frac{P_{t}^{X}}{P_{t}^{F}}\right)^{-\sigma^{F}}\label{eq:X}\\
+X_{t}^{M} & =\mu^{M,X}\left(\frac{P_{t}^{X}}{P_{t}^{M,X}}\right)^{\sigma^{X}}X_{t}
 \end{align}
 
 \end_inset
@@ -2414,7 +2472,7 @@ where
 
  is the interest rate on government debt determined in the foreign economy.
  We assume the government has the exogenous tax rate 
-\begin_inset Formula $\tilde{\tau}_{t}$
+\begin_inset Formula $\tau_{ss}$
 \end_inset
 
  for 
@@ -2532,7 +2590,7 @@ The model has two types of households.
 \end_inset
 
  households is unconstrained (Ricardian).
- All households has three sources of income:
+ All households have four sources of income:
 \end_layout
 
 \begin_layout Enumerate
@@ -2592,7 +2650,7 @@ The age specific income is
 \end_layout
 
 \begin_layout Standard
-The price consumption of consumption goods is 
+The price of consumption goods is 
 \begin_inset Formula $P_{t}^{C}$
 \end_inset
 
@@ -3084,6 +3142,16 @@ noprefix "false"
 , 
 \begin_inset CommandInset ref
 LatexCommand eqref
+reference "eq:Phillips"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
 reference "eq:w"
 plural "false"
 caps "false"
@@ -3095,16 +3163,6 @@ noprefix "false"
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:FOC_K"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:Phillips"
 plural "false"
 caps "false"
 noprefix "false"
@@ -3200,7 +3258,7 @@ The government debt,
 \end_layout
 
 \begin_layout Standard
-We allow for the adjustment of the exogenous variables an other parameters
+We allow for the adjustment of the exogenous variables and other parameters
  to fit with this.
  We can then find the steady state as follows:
 \end_layout
@@ -3230,7 +3288,7 @@ P_{ss}^{\bullet} & =1,\,\bullet\in\{C,G,I,X\}
 \end_layout
 
 \begin_layout Enumerate
-The exogenous labor supply and search-and-matching implies
+The exogenous labor supply and search-and-matching imply
 \begin_inset Formula 
 \begin{align*}
 S_{a,ss} & =\begin{cases}
@@ -3291,7 +3349,8 @@ r_{ss}^{\ell} & =\frac{W_{ss}}{1-\left(1-\frac{1-\delta_{ss}^{L}}{1+r^{firm}}\ri
 Set the prices using the Phillipps-curve
 \begin_inset Formula 
 \begin{align*}
-P_{ss}^{Y,0} & =\left(\mu^{K}\left(r_{ss}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{ss}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}\\
+P_{ss}^{Y,0} & =\frac{P_{ss}^{Y}}{1+\theta}\\
+\Gamma_{ss} & =\frac{1}{P_{ss}^{Y,0}}\left(\mu^{K}\left(r_{ss}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{ss}^{\ell}\right)^{1-\sigma^{Y}}\right)
 \end{align*}
 
 \end_inset
@@ -3304,7 +3363,7 @@ Determine the capital and output from the production firm
 \begin_inset Formula 
 \begin{align*}
 K_{ss} & =\frac{\mu_{K}}{1-\mu_{K}}\left(\frac{r_{ss}^{\ell}}{r_{ss}^{K}}\right)^{\sigma^{Y}}\ell_{ss}\\
-Y_{ss} & =\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)
+Y_{ss} & =\Gamma_{ss}\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}
 \end{align*}
 
 \end_inset
@@ -3348,7 +3407,7 @@ B_{ss} & =(1+r^{B})B_{ss}+P_{ss}^{G}G_{ss}+(1-\tau_{ss})W_{U}W_{ss}U_{ss}+(1-\ta
 
 \begin_inset Formula 
 \begin{align*}
-G_{ss} & =G^{share}Y_{ss}\\
+G_{ss} & =G^{share}\,Y_{ss}\\
 \tau_{ss} & =\frac{r_{B}B_{ss}+P_{ss}^{G}G_{ss}+W_{U}U_{ss}+W_{R}(N_{ss}-N_{ss}^{work})}{W_{ss}L_{ss}+W_{U}U_{ss}+W_{R}(N_{ss}-N_{ss}^{work})}
 \end{align*}
 

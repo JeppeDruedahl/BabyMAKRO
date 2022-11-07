@@ -28,7 +28,7 @@ def CES_Y(Xi,Xj,mui,sigma,Gamma=1.0):
     return Gamma*(part_i+part_j)**inv_pow_sigma
 
 @nb.njit
-def CES_demand(mui,Pi,P,X,sigma,Gamma=1.0):
+def CES_demand(Pi,P,mui,X,sigma,Gamma=1.0):
 
     return mui*(Pi/P)**(-sigma)*X*Gamma**(sigma-1)
     
@@ -110,8 +110,8 @@ def search_and_match(par,ini,ss,sol):
                 else:
                     L_a_lag = L_a[a-1,t-1]
 
-                S_a[a,t] = (1-par.zeta_a[a-1])*((par.N_a[a-1]-L_a_lag) + par.delta_L_a[a]*L_a_lag)
-                L_ubar_a[a,t] = (1-par.zeta_a[a-1])*((1-par.delta_L_a[a])*L_a_lag)
+                S_a[a,t] = (1-par.zeta_a[a])*((par.N_a[a-1]-L_a_lag) + par.delta_L_a[a]*L_a_lag)
+                L_ubar_a[a,t] = (1-par.zeta_a[a])*((1-par.delta_L_a[a])*L_a_lag)
 
         S[t] = np.sum(par.N_a*S_a[:,t])
         L_ubar[t] = np.sum(par.N_a*L_ubar_a[:,t])
@@ -235,7 +235,6 @@ def bargaining(par,ini,ss,sol):
     P_Y = sol.P_Y
     W = sol.W
     Y = sol.Y
-    P_C = sol.P_C
 
     # outputs
     W_obar = sol.W_obar
@@ -245,21 +244,14 @@ def bargaining(par,ini,ss,sol):
     # targets
     bargaining_cond = sol.bargaining_cond
 
-    constant_real_wage = par.constant_real_wage
-
     # evaluations
-    if constant_real_wage == 0:
-        W_lag = lag(ini.W,W)
-        W_obar = P_Y*( (1-par.mu_K)*Gamma**(par.sigma_Y-1)*Y/ell )**(1/par.sigma_Y)
-        W_ubar = par.W_U
+    W_lag = lag(ini.W,W)
+    W_obar = P_Y*( (1-par.mu_K)*Gamma**(par.sigma_Y-1)*Y/ell )**(1/par.sigma_Y)
+    W_ubar = par.W_U
 
-        W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
+    W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
 
-        bargaining_cond[:] = W - (par.gamma_W*W_lag + (1-par.gamma_W)*W_ast)
-    
-    else:
-        #Constant real Wage:
-        bargaining_cond[:] = W/P_C - par.w_constant
+    bargaining_cond[:] = W - (par.gamma_W*W_lag + (1-par.gamma_W)*W_ast)
     
 @nb.njit
 def repacking_firms_prices(par,ini,ss,sol):
@@ -518,15 +510,16 @@ def repacking_firms_components(par,ini,ss,sol):
     X_Y = sol.X_Y
 
     # evaluations
-    C_M[:] = CES_demand(par.mu_M_C,P_M_C,P_C,C,par.sigma_C,Gamma=1) 
-    G_M[:] = CES_demand(par.mu_M_G,P_M_G,P_G,G,par.sigma_G,Gamma=1)
-    I_M[:] = CES_demand(par.mu_M_I,P_M_I,P_I,I,par.sigma_I,Gamma=1)
-    X_M[:] = CES_demand(par.mu_M_X,P_M_X,P_X,X,par.sigma_X,Gamma=1)
+    C_M[:] = CES_demand(P_M_C,P_C,par.mu_M_C,C,par.sigma_C,Gamma=1) 
+    G_M[:] = CES_demand(P_M_G,P_G,par.mu_M_G,G,par.sigma_G,Gamma=1)
+    I_M[:] = CES_demand(P_M_I,P_I,par.mu_M_I,I,par.sigma_I,Gamma=1)
+    X_M[:] = CES_demand(P_M_X,P_X,par.mu_M_X,X,par.sigma_X,Gamma=1)
 
-    C_Y[:] = CES_demand(1-par.mu_M_C,P_Y,P_C,C,par.sigma_C,Gamma=1)
-    G_Y[:] = CES_demand(1-par.mu_M_G,P_Y,P_G,G,par.sigma_G,Gamma=1)
-    I_Y[:] = CES_demand(1-par.mu_M_I,P_Y,P_I,I,par.sigma_I,Gamma=1)
-    X_Y[:] = CES_demand(1-par.mu_M_X,P_Y,P_X,X,par.sigma_X,Gamma=1)
+    C_Y[:] = CES_demand(P_Y,P_C,1-par.mu_M_C,C,par.sigma_C,Gamma=1)
+    G_Y[:] = CES_demand(P_Y,P_G,1-par.mu_M_G,G,par.sigma_G,Gamma=1)
+    I_Y[:] = CES_demand(P_Y,P_I,1-par.mu_M_I,I,par.sigma_I,Gamma=1)
+    X_Y[:] = CES_demand(P_Y,P_X,1-par.mu_M_X,X,par.sigma_X,Gamma=1)
+
     
 @nb.njit
 def goods_market_clearing(par,ini,ss,sol):

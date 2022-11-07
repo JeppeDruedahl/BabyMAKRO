@@ -219,20 +219,20 @@ def find_ss(model,do_print=True):
         print(f'{ss.Aq/par.N = :.2f}, {ss.real_W = :.2f}, {ss.C = :.2f}, {ss.A = :.2f}')
 
     # k. CES demand in packing firms
-    ss.C_M = blocks.CES_demand(par.mu_M_C,ss.P_M_C,ss.P_C,ss.C,par.sigma_C,Gamma=1)
-    ss.C_Y = blocks.CES_demand(1-par.mu_M_C,ss.P_Y,ss.P_C,ss.C,par.sigma_C,Gamma=1)
+    ss.C_M = blocks.CES_demand(ss.P_M_C,ss.P_C,par.mu_M_C,ss.C,par.sigma_C,Gamma=1)
+    ss.C_Y = blocks.CES_demand(ss.P_Y,ss.P_C,1-par.mu_M_C,ss.C,par.sigma_C,Gamma=1)
 
-    ss.G_M = blocks.CES_demand(par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G,Gamma=1)
-    ss.G_Y = blocks.CES_demand(1-par.mu_M_G,ss.P_M_G,ss.P_G,ss.G,par.sigma_G,Gamma=1)
+    ss.G_M = blocks.CES_demand(ss.P_M_G,ss.P_G,par.mu_M_G,ss.G,par.sigma_G,Gamma=1)
+    ss.G_Y = blocks.CES_demand(ss.P_Y,ss.P_G,1-par.mu_M_G,ss.G,par.sigma_G,Gamma=1)
 
-    ss.I_M = blocks.CES_demand(par.mu_M_I,ss.P_M_I,ss.P_I,ss.I,par.sigma_I,Gamma=1)
-    ss.I_Y = blocks.CES_demand(1-par.mu_M_I,ss.P_Y,ss.P_I,ss.I,par.sigma_I,Gamma=1)
+    ss.I_M = blocks.CES_demand(ss.P_M_I,ss.P_I,par.mu_M_I,ss.I,par.sigma_I,Gamma=1)
+    ss.I_Y = blocks.CES_demand(ss.P_Y,ss.P_I,1-par.mu_M_I,ss.I,par.sigma_I,Gamma=1)
 
     # l. market clearing
     ss.X_Y = ss.Y - (ss.C_Y + ss.G_Y + ss.I_Y) 
     ss.chi = ss.X_Y/(1-par.mu_M_X)
     ss.X = ss.X_Y/(1-par.mu_M_X)
-    ss.X_M = blocks.CES_demand(par.mu_M_X,ss.P_M_X,ss.P_X,ss.X,par.sigma_X,Gamma=1)
+    ss.X_M = blocks.CES_demand(ss.P_M_X,ss.P_X,par.mu_M_X,ss.X,par.sigma_X,Gamma=1)
     
     ss.M = ss.C_M + ss.G_M + ss.I_M + ss.X_M
 
