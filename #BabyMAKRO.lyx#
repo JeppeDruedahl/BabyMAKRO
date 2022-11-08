@@ -1538,16 +1538,7 @@ where
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Formula $\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=v_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}}{1-(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}\Leftrightarrow v_{t}=\left(\frac{\mathbb{\mathcal{M}}_{t}}{1-(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}$
-\end_inset
-
-
-\end_layout
-
+\begin_inset Formula $\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=v_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}}{(1-\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}$
 \end_inset
 
 
