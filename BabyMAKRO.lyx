@@ -850,16 +850,33 @@ Initial effect
 \begin_inset Formula $m^{s}\uparrow$
 \end_inset
 
+, and the vacancies, 
+\begin_inset Formula $v\uparrow$
+\end_inset
+
 .
- 
+ However, the job-filling rate decrease, 
+\begin_inset Formula $m^{v}\downarrow$
+\end_inset
+
+.c
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: 
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-A higher L implies more matches (M increases) which further implies an increase
- in the job-finding rate m^s.
- The job-filling rate is ambigious as both M and v increases.
- The rest of the labor market is unaffected
+\begin_layout Itemize
+Effect on prices
+\end_layout
+
+\begin_layout Itemize
+Effect on Consumption, Investements and Exports
 \end_layout
 
 \begin_layout Standard
