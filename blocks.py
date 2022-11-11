@@ -55,7 +55,7 @@ def adj_cost_iota(iota,K_lag,Psi_0,delta_K):
 @nb.njit
 def adj_cost_K(iota,K_lag,Psi_0,delta_K):
 
-    return 0.5*Psi_0*(iota/K_lag-delta_K)**2 + Psi_0*(iota/K_lag-delta_K)*iota/K_lag
+    return 0.5*Psi_0*(iota/K_lag-delta_K)**2 - Psi_0*(iota/K_lag-delta_K)*iota/K_lag
 
 ##########
 # blocks #

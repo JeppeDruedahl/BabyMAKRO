@@ -707,7 +707,7 @@ Initial effect
 \begin_inset Formula $Y\uparrow$
 \end_inset
 
-, and/or higher export, 
+, and/or higher import, 
 \begin_inset Formula $M\uparrow$
 \end_inset
 
@@ -751,7 +751,7 @@ reference "subsec:Block-IV.-Phillips"
 
 \end_inset
 
- )
+)
 \end_layout
 
 \begin_deeper
@@ -805,7 +805,7 @@ Transition path
 \begin_layout Itemize
 
 \series bold
-Effect on the Labor agency and Labor search and match
+Effect on the Labor agency, Labor search and match and wage
 \series default
  (see 
 \begin_inset CommandInset ref
@@ -821,6 +821,13 @@ noprefix "false"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Block-II.-Labor"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-V.-Bargaining"
 
 \end_inset
 
@@ -859,7 +866,17 @@ Initial effect
 \begin_inset Formula $m^{v}\downarrow$
 \end_inset
 
-.c
+.
+\begin_inset Newline newline
+\end_inset
+
+The effect on the wage is ambigious.
+ Wages should increase with higher output and output prices, but decrease
+ with an increase in 
+\begin_inset Formula $\ell$
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -872,63 +889,136 @@ Transition path
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 Effect on prices
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VI.-Repacking"
+
+\end_inset
+
+)
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: Higher output prices imply higher prices on all goods through the repacking
+ firms, 
+\begin_inset Formula $P_{t}^{\bullet}\uparrow$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,I,X\}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
-Effect on Consumption, Investements and Exports
+Effect on Consumption, Exports and Investements (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VII.-Foreign"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VIII.-Capital"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-X.-Households"
+
+\end_inset
+
+)
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
-The effect on the wage is ambigious.
-\end_layout
 
-\begin_layout Standard
-Higher output prices implies higher prices on all goods throgh the repacking
- firms.
-\end_layout
+\series bold
+Initial effect
+\series default
+: There is a direct effect on consumption, exports and investments.
+ As prices increases, they all decreases 
+\begin_inset Formula $\bullet\downarrow$
+\end_inset
 
-\begin_layout Standard
-As prices on export increases, the export decreases.
-\end_layout
+ for 
+\begin_inset Formula $\bullet\in\{C,I,X\}$
+\end_inset
 
-\begin_layout Standard
-Higher prices on investments implies less investment
-\end_layout
+.
+ It can be noted, that the higher total domestic consumption together with
+ a lower export must be met by a higher import 
+\begin_inset Formula $M\uparrow$
+\end_inset
 
-\begin_layout Standard
-The effect on HtM households' consumption is ambigious as both prices and
- income have increased.
-\end_layout
+.
+ For both consumption and investments there are indirect effects as well.
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
-The same is true for Ricardian households.
- Additionally, the Ricardian households decrease their consumption, as they
- see the higher tax rate in the future.
- This implies more savings
-\end_layout
+The rent on capital has increased through the production firms.
+ Hence, the capital agency has an incetive to accumulate more future capital,
+ thus more investment 
+\begin_inset Formula $I\uparrow$
+\end_inset
 
-\begin_layout Standard
-However, an additional effect stems from the fact that inflation increases
- initially, which implies a lower real return on savings.
+.
+\begin_inset Newline newline
+\end_inset
+
+The income of the households is also affected thorugh changes in labor supply
+ and wages.
+ However, as the effect on wages is ambigious, it is not clear whether income
+ increases or decreases.
+ However, what is clear is that the Ricardian households decrease their
+ consumption, as they see the higher tax rate in the future 
+\begin_inset Formula $C^{R}\downarrow$
+\end_inset
+
+.
+ Lower consumption and the fact the inflation is negative (higher real interest
+ rate) imply more savings 
+\begin_inset Formula $A\uparrow$
+\end_inset
+
+.
  
 \end_layout
 
 \begin_layout Standard
-The amount of goods imported must increase relative to the amount domesticly
- produces, as the import prices are fixed.
- Higher G implies that the repacking firms imports and produces more G (Higher
- M and Y).
- As the import price is fix, a higher demand for G implies a higher price
- (P_C increases).
- Higher domestic consumption / higher prices should imply lower export,
- X 
+
+\series bold
+Transition path
+\series default
+: 
 \end_layout
 
-\begin_layout Standard
-This implies that the total import increases.
-\end_layout
-
+\end_deeper
 \begin_layout Subsection
 On CES technology
 \begin_inset CommandInset label
@@ -1844,7 +1934,7 @@ v_{t} & =\frac{L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}}{m_{t}^{v}}\\
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Formula 
@@ -1860,7 +1950,7 @@ V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\te
 \begin_inset Formula 
 \begin{align*}
 \frac{\partial V_{0}}{\partial L_{t}} & =0\Leftrightarrow\\
-\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-w_{t}\right]+\left(1+r^{\text{firm}}\right)^{-(t+1)}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\Leftrightarrow\\
+\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-W_{t}\right]+\left(1+r^{\text{firm}}\right)^{-(t+1)}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\Leftrightarrow\\
 \left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-w_{t}\right]+\left(1+r^{\text{firm}}\right)^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\Leftrightarrow\\
 r_{t}^{\ell} & =\frac{w_{t}-(1+r^{\text{firm}})^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}}}{\frac{\partial\ell_{t}}{\partial L_{t}}}\\
  & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[w_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
@@ -1943,7 +2033,7 @@ status collapsed
 \begin{align*}
 r_{ss}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{ss}^{v}}}\left[W_{ss}-r_{ss}^{\ell}\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right]\Leftrightarrow\\
 \left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right)r_{ss}^{\ell} & =W_{ss}\Leftrightarrow\\
- & r_{ss}^{\ell}=\frac{W_{ss}}{\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right)}
+r_{ss}^{\ell} & =\frac{W_{ss}}{\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right)}
 \end{align*}
 
 \end_inset
@@ -2196,7 +2286,7 @@ p_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\f
 p_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\frac{p_{t}^{Y}}{y_{t}}\left(\gamma\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]\left(\frac{1/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}\right)P_{t}^{Y}Y_{t}+\frac{1}{1+r^{\text{firm}}}\gamma\left[\frac{p_{t+1}^{Y}/p_{t}^{Y}}{p_{t}^{Y}/p_{t-1}^{Y}}-1\right]2\left(\frac{p_{t+1}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}\right)P_{t+1}^{Y}Y_{t+1}\right)\\
 P_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\left(\gamma\left[\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right]\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}\right)P_{t}^{Y}+\frac{2}{1+r^{\text{firm}}}\gamma\left[\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right]\left(\frac{P_{t+1}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}\right)P_{t+1}^{Y}\frac{Y_{t+1}}{Y_{t}}\right)\\
 P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}+\frac{2}{1+r^{\text{firm}}}\eta\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\\
-\text{where} & \theta=\frac{1}{\sigma_{D}-1}\vee\eta=\theta\gamma
+\text{where} & \theta=\frac{1}{\sigma_{D}-1}\wedge\eta=\theta\gamma
 \end{align*}
 
 \end_inset
@@ -2219,14 +2309,6 @@ P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The variable 
-\begin_inset Formula $K_{-1}$
-\end_inset
-
- is pre-determined.
 \end_layout
 
 \begin_layout Subsection
@@ -2654,6 +2736,22 @@ The FOC is:
 \begin{align*}
 0= & -P_{t}^{I}\left(1+\Psi_{\iota}\left(\iota_{t},K_{t-1}\right)\right)\\
  & +\left(1+r^{\text{firm}}\right)^{-1}\left[r_{t+1}^{K}+P_{t+1}^{I}\left(1-\delta^{K}\right)\left(1+\Psi_{\iota}\left(\iota_{t+1},K_{t}\right)\right)-P_{t+1}^{I}\Psi_{K}\left(\iota_{t+1},K_{t}\right)\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+ss is:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+P_{ss}^{I}\left(1+\Psi_{\iota}\left(\iota_{ss},K_{ss}\right)\right) & =\left(1+r^{\text{firm}}\right)^{-1}\left[r_{ss}^{k}+P_{ss}^{I}(1-\delta^{K})(1+\Psi_{\iota}(\iota_{ss},K_{ss}))-P_{ss}^{I}\Psi_{K}\left(\iota_{ss},K_{ss}\right)\right]\\
+r_{ss}^{k} & =\left(1+r^{\text{firm}}\right)P_{ss}^{I}-P_{ss}^{I}(1-\delta^{K})=\left(r^{\text{firm}}+\delta^{K}\right)P_{ss}^{I}
 \end{align*}
 
 \end_inset
