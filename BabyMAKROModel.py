@@ -230,7 +230,7 @@ class BabyMAKROModelClass(EconModelClass):
 
         # e. government
         par.r_b = 0.04 # rate of return on government debt
-        par.t_b = 5 # number of years with tau_tilde
+        par.t_b = 15 # number of years with tau_tilde
         par.delta_B = 20 # number of adjustment years
         par.epsilon_B = 0.15 # adjustment speed  
         par.G_share_ss = 0.30 # share of government spending in Y
@@ -489,7 +489,7 @@ class BabyMAKROModelClass(EconModelClass):
     # figures #
     ###########
 
-    def plot_IRF(self,varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[]):
+    def plot_IRF(self,varlist=[],ncol=3,T_IRF=60,abs=[],Y_share=[]):
         """ plot IRFs """
 
         ss = self.ss

@@ -122,7 +122,8 @@ def search_and_match(par,ini,ss,sol):
         # d. matching
         curlyM[t] = L[t]-L_ubar[t]
         m_s[t] = curlyM[t]/S[t]
-        v[t] = (m_s[t]**(1/par.sigma_m)*S[t]**(1/par.sigma_m)/(1-m_s[t]**(1/par.sigma_m)))**par.sigma_m/par.nu
+        # v[t] = (m_s[t]**(1/par.sigma_m)*S[t]**(1/par.sigma_m)/(1-m_s[t]**(1/par.sigma_m)))**par.sigma_m/par.nu
+        v[t] = (curlyM[t]**(1/par.sigma_m)/(1-(par.nu*m_s[t])**(1/par.sigma_m)))**par.sigma_m
         m_v[t] = curlyM[t]/v[t]
 
         # e. emplolyment and unemployment
@@ -273,6 +274,8 @@ def repacking_firms_prices(par,ini,ss,sol):
     P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G, Gamma=1)
     P_I[:] = CES_P(P_M_I,P_Y,par.mu_M_I,par.sigma_I, Gamma=1)
     P_X[:] = CES_P(P_M_X,P_Y,par.mu_M_X,par.sigma_X, Gamma=1)
+
+    
 
 @nb.njit
 def foreign_economy(par,ini,ss,sol):

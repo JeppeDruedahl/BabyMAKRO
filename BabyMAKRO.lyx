@@ -642,384 +642,6 @@ Modeling systems such as GAMS can combined with a state-of-the-art solver
 \end_layout
 
 \begin_layout Subsection
-Transition path
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:Transition-path"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-We consider an economy in steady state.
- Next, we shock one of the exogeneous variables and see what happens to
- all other variables as the economy converges towards its new steady state.
- Let us consider a shock to the Government consumption.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Effect on the Government
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-IX.-Government"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-
-\series bold
-Initial effect
-\series default
-: The Government increases consumption, 
-\begin_inset Formula $G\uparrow$
-\end_inset
-
-, which implies an increase in the government budget, 
-\begin_inset Formula $B\uparrow$
-\end_inset
-
-.
- The tax-rate, 
-\begin_inset Formula $\tau$
-\end_inset
-
-, is fixed for 
-\begin_inset Formula $t_{b}$
-\end_inset
-
- years, hence it does not change.
- A higher demand for government consumption is met by a higher price, 
-\begin_inset Formula $P^{G}\uparrow$
-\end_inset
-
-, and a higher domestic production, 
-\begin_inset Formula $Y\uparrow$
-\end_inset
-
-, and/or higher import, 
-\begin_inset Formula $M\uparrow$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: Government consumption decreases as a consequences of the higher prices,
- which makes both consumption and prices converges towards their steady
- state levels.
- The budget continues to grow due to interest payment and the high consumption/p
-rices until the new and higher tax-rate is implemented.
- It can be noted that the effects on the government budget stemming from
- labor supply and the wage are disregarded for now.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on the Production firms and the Phillips-Curve
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-III.-Production"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-IV.-Phillips"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-
-\series bold
-Initial effect
-\series default
-: The firms increases production to meet the higher demand.
- Since Capital is fixed, the prodcution firms can only produce more by hiring
- more labor, 
-\begin_inset Formula $\ell\uparrow$
-\end_inset
-
-.
- This makes the capital more productive, 
-\begin_inset Formula $r^{K}\uparrow$
-\end_inset
-
-, and it also implies that the rent on captial must increase more than the
- rent on labor.
- The marginal cost price increases, 
-\begin_inset Formula $P^{Y,0}\uparrow$
-\end_inset
-
-, following the increase in rents.
- As the output price is a mark-up of the marginal cost price, this increases
- as well, 
-\begin_inset Formula $P^{Y}\uparrow$
-\end_inset
-
-.
- 
-\begin_inset Newline newline
-\end_inset
-
-- (K DECREASE IN 0, AND CONTINUES TO DECREASE EVEN THOGUH THE RETURN INCREAES???
- AND WHY DOES r_ell INCREASE WHEN ell INCREASES???)
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Transition path
-\series default
-: (increase ell).
- , thus r_K increases relative to r_ell (more capital in the future) 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on the Labor agency, Labor search and match and wage
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-I.-Households"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-II.-Labor"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-V.-Bargaining"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-
-\series bold
-Initial effect
-\series default
-: The increase in demand for 
-\begin_inset Formula $\ell$
-\end_inset
-
- implies that the labor agency hires more labor, 
-\begin_inset Formula $L\uparrow$
-\end_inset
-
-.
- More hired labor implies more matches, 
-\begin_inset Formula $\mathbb{\mathcal{M}}\uparrow$
-\end_inset
-
-, which further implies an increase in the job-finding rate, 
-\begin_inset Formula $m^{s}\uparrow$
-\end_inset
-
-, and the vacancies, 
-\begin_inset Formula $v\uparrow$
-\end_inset
-
-.
- However, the job-filling rate decrease, 
-\begin_inset Formula $m^{v}\downarrow$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-The effect on the wage is ambigious.
- Wages should increase with higher output and output prices, but decrease
- with an increase in 
-\begin_inset Formula $\ell$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on prices
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VI.-Repacking"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-
-\series bold
-Initial effect
-\series default
-: Higher output prices imply higher prices on all goods through the repacking
- firms, 
-\begin_inset Formula $P_{t}^{\bullet}\uparrow$
-\end_inset
-
- for 
-\begin_inset Formula $\bullet\in\{C,I,X\}$
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Effect on Consumption, Exports and Investements (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VII.-Foreign"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VIII.-Capital"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-X.-Households"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-
-\series bold
-Initial effect
-\series default
-: There is a direct effect on consumption, exports and investments.
- As prices increases, they all decreases 
-\begin_inset Formula $\bullet\downarrow$
-\end_inset
-
- for 
-\begin_inset Formula $\bullet\in\{C,I,X\}$
-\end_inset
-
-.
- It can be noted, that the higher total domestic consumption together with
- a lower export must be met by a higher import 
-\begin_inset Formula $M\uparrow$
-\end_inset
-
-.
- For both consumption and investments there are indirect effects as well.
-\begin_inset Newline newline
-\end_inset
-
-The rent on capital has increased through the production firms.
- Hence, the capital agency has an incetive to accumulate more future capital,
- thus more investment 
-\begin_inset Formula $I\uparrow$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-The income of the households is also affected thorugh changes in labor supply
- and wages.
- However, as the effect on wages is ambigious, it is not clear whether income
- increases or decreases.
- However, what is clear is that the Ricardian households decrease their
- consumption, as they see the higher tax rate in the future 
-\begin_inset Formula $C^{R}\downarrow$
-\end_inset
-
-.
- Lower consumption and the fact the inflation is negative (higher real interest
- rate) imply more savings 
-\begin_inset Formula $A\uparrow$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Transition path
-\series default
-: 
-\end_layout
-
-\end_deeper
-\begin_layout Subsection
 On CES technology
 \begin_inset CommandInset label
 LatexCommand label
@@ -1646,10 +1268,17 @@ where
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
-\begin_inset Formula $\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=v_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}}{1-(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}\Leftrightarrow v_{t}=\left(\frac{\mathbb{\mathcal{M}}_{t}}{1-(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}$
+\begin_inset Formula $\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=v_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}\Leftrightarrow v_{t}=\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbb{\mathcal{M}}_{ss}=\frac{S_{ss}v_{ss}}{\left(S_{ss}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{ss}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\left(S_{ss}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{ss}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=\frac{S_{ss}v_{ss}}{\mathbb{\mathcal{M}}_{ss}}\Leftrightarrow\left(\nu v_{ss}\right)^{\frac{1}{\sigma^{m}}}=\left(\frac{S_{ss}v_{ss}}{\mathbb{\mathcal{M}}_{ss}}\right)^{\frac{1}{\sigma^{m}}}-S_{ss}^{\frac{1}{\sigma^{m}}}\Leftrightarrow\nu=\frac{\left(\left(\frac{S_{ss}v_{ss}}{\mathbb{\mathcal{M}}_{ss}}\right)^{\frac{1}{\sigma^{m}}}-S_{ss}^{\frac{1}{\sigma^{m}}}\Leftrightarrow\right)^{\sigma^{m}}}{v_{ss}}$
 \end_inset
 
 
@@ -1934,7 +1563,7 @@ v_{t} & =\frac{L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}}{m_{t}^{v}}\\
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Formula 
@@ -2026,7 +1655,7 @@ r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\el
 
 
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Formula 
@@ -3680,7 +3309,7 @@ r_{ss}^{K}=r^{\text{firm}}+\delta^{K}
 Labor agency behavior implies
 \begin_inset Formula 
 \begin{align*}
-r_{ss}^{\ell} & =\frac{W_{ss}}{1-\left(1-\frac{1-\delta_{ss}^{L}}{1+r^{firm}}\right)\frac{\kappa^{L}}{m_{ss}^{v}}}\\
+r_{ss}^{\ell} & =\frac{W_{ss}}{1-\left(1+\frac{1-\delta_{ss}^{L}}{1+r^{firm}}\right)\frac{\kappa^{L}}{m_{ss}^{v}}}\\
 \ell_{ss} & =L_{ss}-\kappa^{L}v_{ss}
 \end{align*}
 
@@ -3712,7 +3341,7 @@ Y_{ss} & =\Gamma_{ss}\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{ss}^{\f
 
 \end_inset
 
-
+idiosyncratic
 \end_layout
 
 \begin_layout Enumerate
@@ -3848,6 +3477,423 @@ W_{ss}^{\ast} & =W_{ss}\\
 
 \end_layout
 
+\begin_layout Section
+Transition
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Transition"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Working in progress
+\end_layout
+
+\begin_layout Subsection
+Transition path
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Transition-path"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We consider an economy in steady state.
+ Next, we shock one of the exogeneous variables and see what happens to
+ all other variables as the economy converges towards its new steady state.
+ Let us consider a shock to the Government consumption.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Effect on the Government
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-IX.-Government"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: The Government increases consumption, 
+\begin_inset Formula $G\uparrow$
+\end_inset
+
+, which implies an increase in the government budget, 
+\begin_inset Formula $B\uparrow$
+\end_inset
+
+.
+ The tax-rate, 
+\begin_inset Formula $\tau$
+\end_inset
+
+, is fixed for 
+\begin_inset Formula $t_{b}$
+\end_inset
+
+ years, hence it does not change.
+ A higher demand for government consumption is met by a higher price, 
+\begin_inset Formula $P^{G}\uparrow$
+\end_inset
+
+, and a higher domestic production, 
+\begin_inset Formula $Y\uparrow$
+\end_inset
+
+, and/or higher import, 
+\begin_inset Formula $M\uparrow$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: Government consumption decreases as a consequences of the higher prices,
+ which makes both consumption and prices converges towards their steady
+ state levels.
+ The budget continues to grow due to interest payment and the high consumption/p
+rices until the new and higher tax-rate is implemented.
+ It can be noted that the effects on the government budget stemming from
+ labor supply and the wage are disregarded for now.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on the Production firms and the Phillips-Curve
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-III.-Production"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-IV.-Phillips"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: The firms increases production to meet the higher demand.
+ Since Capital is fixed, the prodcution firms can only produce more by hiring
+ more labor, 
+\begin_inset Formula $\ell\uparrow$
+\end_inset
+
+.
+ This makes the capital more productive, 
+\begin_inset Formula $r^{K}\uparrow$
+\end_inset
+
+, and it also implies that the rent on captial must increase more than the
+ rent on labor.
+ The marginal cost price increases, 
+\begin_inset Formula $P^{Y,0}\uparrow$
+\end_inset
+
+, following the increase in rents.
+ As the output price is a mark-up of the marginal cost price, this increases
+ as well, 
+\begin_inset Formula $P^{Y}\uparrow$
+\end_inset
+
+.
+ I have not accounted for that the output price is affected by future output
+ and output prices.
+ 
+\begin_inset Newline newline
+\end_inset
+
+- (K DECREASE IN 0, AND CONTINUES TO DECREASE EVEN THOGUH THE RETURN INCREAES???
+ AND WHY DOES r_ell INCREASE WHEN ell INCREASES???)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Transition path
+\series default
+: (increase ell).
+ , thus r_K increases relative to r_ell (more capital in the future) 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on the Labor agency, Labor search and match and wage
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-I.-Households"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-II.-Labor"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-V.-Bargaining"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: The increase in demand for 
+\begin_inset Formula $\ell$
+\end_inset
+
+ implies that the labor agency hires more labor, 
+\begin_inset Formula $L\uparrow$
+\end_inset
+
+.
+ More hired labor implies more matches, 
+\begin_inset Formula $\mathbb{\mathcal{M}}\uparrow$
+\end_inset
+
+, which further implies an increase in the job-finding rate, 
+\begin_inset Formula $m^{s}\uparrow$
+\end_inset
+
+, and the vacancies, 
+\begin_inset Formula $v\uparrow$
+\end_inset
+
+.
+ However, the job-filling rate decrease, 
+\begin_inset Formula $m^{v}\downarrow$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+The effect on the wage is ambigious.
+ Wages should increase with higher output and output prices, but decrease
+ with an increase in 
+\begin_inset Formula $\ell$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: The amount of households with a job at the start of period 1 is high,
+ thus 
+\begin_inset Formula $\underline{L}\uparrow$
+\end_inset
+
+ and the number of seachers decreases 
+\begin_inset Formula $S\downarrow$
+\end_inset
+
+.
+ All variables converge towards their steady state level.
+ However, they overshoot as ...
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on prices
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VI.-Repacking"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: Higher output prices imply higher prices on all goods through the repacking
+ firms, 
+\begin_inset Formula $P_{t}^{\bullet}\uparrow$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,I,X\}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: The total demand decreases as a consequence of higher prices, which implies
+ lower prices.
+ As such, prices converge towards their steady state level.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Effect on Consumption, Exports and Investements (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VII.-Foreign"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VIII.-Capital"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-X.-Households"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: There is a direct effect on consumption, exports and investments.
+ As prices increases, they all decreases 
+\begin_inset Formula $\bullet\downarrow$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,I,X\}$
+\end_inset
+
+.
+ It can be noted, that the higher total domestic consumption together with
+ a lower export must be met by a higher import 
+\begin_inset Formula $M\uparrow$
+\end_inset
+
+.
+ For both consumption and investments there are indirect effects as well.
+\begin_inset Newline newline
+\end_inset
+
+The rent on capital has increased through the production firms.
+ Hence, the capital agency has an incetive to accumulate more future capital,
+ thus more investment 
+\begin_inset Formula $I\uparrow$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+The income of the households is also affected thorugh changes in labor supply
+ and wages.
+ However, as the effect on wages is ambigious, it is not clear whether income
+ increases or decreases.
+ However, what is clear is that the Ricardian households decrease their
+ consumption, as they see the higher tax rate in the future 
+\begin_inset Formula $C^{R}\downarrow$
+\end_inset
+
+.
+ Lower consumption and the fact the inflation is negative (higher real interest
+ rate) imply more savings 
+\begin_inset Formula $A\uparrow$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Transition path
+\series default
+: Consumption increases from its initial lower level compared to steady
+ state, but it still remains below its steady state level.
+ This increase is, however, only brief as it drops to an even lower level
+ than the initial drop.
+ This drop is mainly caused by the increase in the tax rate, which is forseen
+ by the Ricardian households.
+ A higher tax rate means a lower income for the households.
+ To compensate for the lower income, the ricardian households starts using
+ the savings.
+ 
+\end_layout
+
+\end_deeper
 \begin_layout Section
 Status report
 \begin_inset CommandInset label

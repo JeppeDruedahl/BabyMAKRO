@@ -158,7 +158,8 @@ def find_ss(model,do_print=True):
     ss.curlyM = ss.delta_L*ss.L
     
     ss.v = ss.curlyM/ss.m_v
-    par.nu = 1/ss.v*(ss.m_s**(1/par.sigma_m)*ss.S**(1/par.sigma_m)/(1-ss.m_s**(1/par.sigma_m)))**par.sigma_m
+    # par.nu = 1/ss.v*(ss.m_s**(1/par.sigma_m)*ss.S**(1/par.sigma_m)/(1-ss.m_s**(1/par.sigma_m)))**par.sigma_m
+    par.nu = (((ss.S*ss.v/ss.curlyM)**(1/par.sigma_m)-ss.S**(1/par.sigma_m))**par.sigma_m)/ss.v
 
     if do_print:
         print(Fonttype.HEADER + 'Labor supply, search and matching:' + Fonttype.END)
