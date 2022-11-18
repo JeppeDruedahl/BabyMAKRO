@@ -253,6 +253,8 @@ def bargaining(par,ini,ss,sol):
     W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
 
     bargaining_cond[:] = W - (par.gamma_W*W_lag + (1-par.gamma_W)*W_ast)
+
+
     
 @nb.njit
 def repacking_firms_prices(par,ini,ss,sol):

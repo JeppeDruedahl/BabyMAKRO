@@ -110,8 +110,8 @@ def household_search_ss(par,ss):
             ss.S_a[a] = 0.0
             ss.L_ubar_a[a] = 0.0            
         else:
-            ss.S_a[a] = (1-par.zeta_a[a-1])*((par.N_a[a-1]-ss.L_a[a-1]) + par.delta_L_a[a]*ss.L_a[a-1])
-            ss.L_ubar_a[a] = (1-par.zeta_a[a-1])*(1-par.delta_L_a[a])*ss.L_a[a-1]
+            ss.S_a[a] = (1-par.zeta_a[a])*((par.N_a[a-1]-ss.L_a[a-1]) + par.delta_L_a[a]*ss.L_a[a-1])
+            ss.L_ubar_a[a] = (1-par.zeta_a[a])*(1-par.delta_L_a[a])*ss.L_a[a-1]
 
         ss.L_a[a] = ss.L_ubar_a[a] + ss.m_s*ss.S_a[a]
 

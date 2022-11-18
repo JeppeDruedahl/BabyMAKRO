@@ -168,6 +168,22 @@ class BabyMAKROModelClass(EconModelClass):
     def set_macro(self,constant_real_wage=False):
 
         if constant_real_wage==True:
+            
+            #blocks
+            self.blocks = [
+            'search_and_match',
+            'labor_agency',
+            'production_firm',
+            'phillips_curve',
+            'repacking_firms_prices',
+            'foreign_economy',
+            'capital_agency',
+            'government',
+            'household_consumption',
+            'repacking_firms_components',
+            'goods_market_clearing',
+            ]
+
             # targets
             self.targets = [
                 'A_R_ini_error',
@@ -187,6 +203,7 @@ class BabyMAKROModelClass(EconModelClass):
                 'r_K',
                 'P_Y',
             ]
+            
             pass
 
         self.allocate()
@@ -230,7 +247,7 @@ class BabyMAKROModelClass(EconModelClass):
 
         # e. government
         par.r_b = 0.04 # rate of return on government debt
-        par.t_b = 15 # number of years with tau_tilde
+        par.t_b = 10 # number of years with tau_tilde
         par.delta_B = 20 # number of adjustment years
         par.epsilon_B = 0.15 # adjustment speed  
         par.G_share_ss = 0.30 # share of government spending in Y

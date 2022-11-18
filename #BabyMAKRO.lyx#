@@ -1268,17 +1268,10 @@ where
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Formula $\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=v_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}\Leftrightarrow v_{t}=\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}\Leftrightarrow\nu^{\frac{1}{\sigma^{m}}}=\frac{v_{t}^{\frac{1}{\sigma^{m}}}-\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(v_{t}\right)^{\frac{1}{\sigma^{m}}}}\Leftrightarrow\nu=\frac{\left(v_{t}^{\frac{1}{\sigma^{m}}}-\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}{\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}v_{t}}$
 \end_inset
 
 
@@ -1575,7 +1568,7 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{align*}
-V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell(L_{t},L_{t-1})-w_{t}L_{t}\right]\\
+V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell(L_{t},L_{t-1})-W_{t}L_{t}\right]\\
  & \text{s.t.}\\
 \ell(L_{t},L_{t-1}) & =L_{t}-\frac{\kappa^{L}}{m_{t}^{v}}\left[L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}\right]
 \end{align*}
@@ -1587,9 +1580,9 @@ V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\te
 \begin{align*}
 \frac{\partial V_{0}}{\partial L_{t}} & =0\Leftrightarrow\\
 \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-W_{t}\right]+\left(1+r^{\text{firm}}\right)^{-(t+1)}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\Leftrightarrow\\
-\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-w_{t}\right]+\left(1+r^{\text{firm}}\right)^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\Leftrightarrow\\
-r_{t}^{\ell} & =\frac{w_{t}-(1+r^{\text{firm}})^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}}}{\frac{\partial\ell_{t}}{\partial L_{t}}}\\
- & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[w_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
+\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-W_{t}\right]+\left(1+r^{\text{firm}}\right)^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\Leftrightarrow\\
+r_{t}^{\ell} & =\frac{W_{t}-(1+r^{\text{firm}})^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}}}{\frac{\partial\ell_{t}}{\partial L_{t}}}\\
+ & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
 \end{align*}
 
 \end_inset
@@ -1654,7 +1647,7 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]\label{eq:w_ell}\\
+r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]\label{eq:r_ell}\\
 \ell_{t} & =L_{t}-\kappa^{L}v_{t}.\label{eq:ell}
 \end{align}
 
@@ -1662,7 +1655,7 @@ r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\el
 
 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Formula 
@@ -3590,7 +3583,7 @@ rices until the new and higher tax-rate is implemented.
 \begin_layout Itemize
 
 \series bold
-Effect on the Production firms and the Phillips-Curve
+Effect on the Production firms, the Phillips-Curve and Investments
 \series default
  (see 
 \begin_inset CommandInset ref
@@ -3609,6 +3602,13 @@ reference "subsec:Block-IV.-Phillips"
 
 \end_inset
 
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VIII.-Capital"
+
+\end_inset
+
 )
 \end_layout
 
@@ -3619,7 +3619,7 @@ reference "subsec:Block-IV.-Phillips"
 Initial effect
 \series default
 : The firms increases production to meet the higher demand.
- Since Capital is fixed, the prodcution firms can only produce more by hiring
+ Since capital is fixed, the prodcution firms can only produce more by hiring
  more labor, 
 \begin_inset Formula $\ell\uparrow$
 \end_inset
@@ -3642,14 +3642,33 @@ Initial effect
 \end_inset
 
 .
- I have not accounted for that the output price is affected by future output
- and output prices.
+ As the output prices are sticky, it is not clear which price increases
+ are larger.
+ The effect on capital is ambigious.
+ On one hand, the rent on capital has increased, such that the capital agency
+ has an incetive to accumulate more future capital, thus more investment
  
-\begin_inset Newline newline
+\begin_inset Formula $I\uparrow$
 \end_inset
 
-- (K DECREASE IN 0, AND CONTINUES TO DECREASE EVEN THOGUH THE RETURN INCREAES???
- AND WHY DOES r_ell INCREASE WHEN ell INCREASES???)
+ and capital 
+\begin_inset Formula $K\uparrow$
+\end_inset
+
+.
+ On the other hand, the price on investment has increased 
+\begin_inset Formula $P^{I}\uparrow$
+\end_inset
+
+ (see Effect on prices below), hence less 
+\begin_inset Formula $I\downarrow$
+\end_inset
+
+ and capital 
+\begin_inset Formula $K\downarrow$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -3657,8 +3676,10 @@ Initial effect
 \series bold
 Transition path
 \series default
-: (increase ell).
- , thus r_K increases relative to r_ell (more capital in the future) 
+: The total demand decreases, as it converges towards it steady state level.
+ As such, the production firms needs less labor, such that capital is less
+ productive.
+ Both the marginal cost and output price decreases.
 \end_layout
 
 \end_deeper
@@ -3754,8 +3775,7 @@ Transition path
 \end_inset
 
 .
- All variables converge towards their steady state level.
- However, they overshoot as ...
+ Hereafter, all variables converge towards their steady state level.
 \end_layout
 
 \end_deeper
@@ -3804,17 +3824,14 @@ Transition path
 
 \end_deeper
 \begin_layout Itemize
-Effect on Consumption, Exports and Investements (see 
+
+\series bold
+Effect on Consumption and Exports
+\series default
+ (see 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Block-VII.-Foreign"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VIII.-Capital"
 
 \end_inset
 
@@ -3834,13 +3851,13 @@ reference "subsec:Block-X.-Households"
 \series bold
 Initial effect
 \series default
-: There is a direct effect on consumption, exports and investments.
+: There is a direct effect on consumption and exports.
  As prices increases, they all decreases 
 \begin_inset Formula $\bullet\downarrow$
 \end_inset
 
  for 
-\begin_inset Formula $\bullet\in\{C,I,X\}$
+\begin_inset Formula $\bullet\in\{C,X\}$
 \end_inset
 
 .
@@ -3851,16 +3868,6 @@ Initial effect
 
 .
  For both consumption and investments there are indirect effects as well.
-\begin_inset Newline newline
-\end_inset
-
-The rent on capital has increased through the production firms.
- Hence, the capital agency has an incetive to accumulate more future capital,
- thus more investment 
-\begin_inset Formula $I\uparrow$
-\end_inset
-
-.
 \begin_inset Newline newline
 \end_inset
 
@@ -3880,7 +3887,8 @@ The income of the households is also affected thorugh changes in labor supply
 \end_inset
 
 .
- 
+ There effect on bequest is neglectable as the households have choosen the
+ savings beforehand.
 \end_layout
 
 \begin_layout Standard
@@ -3888,83 +3896,247 @@ The income of the households is also affected thorugh changes in labor supply
 \series bold
 Transition path
 \series default
-: Consumption increases from its initial lower level compared to steady
- state, but it still remains below its steady state level.
- This increase is, however, only brief as it drops to an even lower level
- than the initial drop.
- This drop is mainly caused by the increase in the tax rate, which is forseen
- by the Ricardian households.
- A higher tax rate means a lower income for the households.
- To compensate for the lower income, the ricardian households starts using
- the savings.
+: Export converges smoothly towards it steady state level.
+ After the initial drop in consumption, it increases towards its steady
+ state level as prices converge.
+ This is especially true for the hands-to-mouth households.
+ By the 10th year, the new and higher tax rate is graudally implemented
+ which leads to a large drop in consumption.
+ The ricardian households have forseen this new tax rate, such that their
+ consumption is more even throughout the period, but still with a decrease
+ in consumption once the higher tax rate is implemented.
+ They achieve the consumption smoothing by increasing their savings under
+ the lower tax rate, and using this additional savings/income once the high
+ tax rate is implemented.
+ The bequests will not reach much before the new tax rate is implemented,
+ because that a high proportion of the population made their savings decision
+ before the shock to government consumption, and they will not/only partly
+ be affected by a higher tax in the future.
+ However, the higher tax rate has a larger effect on the later generation,
+ which implies a lower income and less bequests.
  
 \end_layout
 
 \end_deeper
 \begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
+Now, let us consider a shock to the Productivity
 \end_layout
 
-\begin_layout Standard
-Formalized:
-\end_layout
+\begin_layout Itemize
 
-\begin_layout Standard
-\begin_inset Formula 
-\begin{align}
-\left[\begin{array}{c}
-\\
-G_{t}\\
-\tau_{t}\\
-P_{t}^{G}\\
-B_{t}\\
-P_{t}^{M,G}\\
-\\
-\\
--\\
--\\
--\\
--\\
--\\
--\\
--\\
--\\
--\\
--\\
-\\
-\\
-\end{array}\right] & =\left[\begin{array}{ccccc}
-\\
-G_{ss}\left(1+0.01\cdot0.8\right) & G_{ss}\left(1+0.01\cdot0.8^{2}\right) & G_{ss}\left(1+0.01\cdot0.8^{3}\right) & G_{ss}\left(1+0.01\cdot0.8^{4}\right) & G_{ss}\left(1+0.01\cdot0.8^{5}\right)\\
-\tau_{ss} & \tau_{ss} & \tau_{ss} & \tau_{ss} & \tau_{ss}\\
-\left(0.1+0.9\left(P_{1}^{Y}\right)^{-0.5}\right)^{-2} & P^{G}(P^{Y})\\
-\left(0.1+0.9\left(P_{1}^{Y}\right)^{-0.5}\right)^{-2}G_{ss}\left(1+0.01\cdot0.8\right)+(1-\tau_{ss})W_{U}W_{ss}N_{t}^{work}+(1-\tau_{ss})W_{R}W_{ss}(N_{t}-N_{t}^{work})-\left((1-\tau_{ss})W_{U}W_{ss}+\tau_{ss}W_{t}\right)L_{t} & B(P^{Y},W_{t},L_{t})\\
-0.1\cdot\left(\left(0.1+0.9\left(P_{1}^{Y}\right)^{-0.5}\right)^{-2}\right)^{1.5}G_{ss}\left(1+0.01\cdot0.8\right) & P^{M,G}(P^{Y})\\
- & P^{Y,G}(P^{Y})\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\end{array}\right]\label{eq:Transition}
-\end{align}
+\series bold
+Effect on the Production firms, the Phillips-Curve and Investments
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-III.-Production"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-IV.-Phillips"
 
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VIII.-Capital"
+
+\end_inset
+
+)
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: The productive parameter increases , 
+\begin_inset Formula $\Gamma\uparrow$
+\end_inset
+
+, which implies an increase in the production, 
+\begin_inset Formula $Y\uparrow$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on the Labor agency, Labor search and match and wage
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-I.-Households"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-II.-Labor"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-V.-Bargaining"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on prices
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VI.-Repacking"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on the Government
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-IX.-Government"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on Consumption and Exports
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VII.-Foreign"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-X.-Households"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
 \begin_layout Section
 Status report
 \begin_inset CommandInset label
