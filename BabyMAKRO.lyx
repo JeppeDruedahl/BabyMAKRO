@@ -1975,6 +1975,21 @@ The target wage,
  to create a real rigidity.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Det ser ikke ud til at P^Y har en stor impact mere.
+ Der er en crowding-out effekt mellem lønnen W, og afkastet på arbejde,
+ r^ell
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -3742,7 +3757,7 @@ Initial effect
 \end_inset
 
 .
- However, the job-filling rate decrease, 
+ However, the job-filling rate decreases, 
 \begin_inset Formula $m^{v}\downarrow$
 \end_inset
 
@@ -3752,7 +3767,7 @@ Initial effect
 
 The effect on the wage is ambigious.
  Wages should increase with higher output and output prices, but decrease
- with an increase in 
+ as a consequence of more 
 \begin_inset Formula $\ell$
 \end_inset
 
@@ -3866,7 +3881,7 @@ Initial effect
 \end_inset
 
 .
- For both consumption and investments there are indirect effects as well.
+ For consumption, there is indirect effects as well.
 \begin_inset Newline newline
 \end_inset
 
@@ -3988,7 +4003,20 @@ Initial effect
 \begin_inset Formula $r^{K}\downarrow$
 \end_inset
 
+.
+ Again, the effect on capital is ambigious.
+ The capital agency wans to invest more, 
+\begin_inset Formula $I\uparrow$
+\end_inset
 
+,as the price of investments has decreased, 
+\begin_inset Formula $P^{I}\downarrow$
+\end_inset
+
+.
+ However, the return on capital has decreased, thus they want to have less
+ capital.
+ 
 \begin_inset Newline newline
 \end_inset
 
@@ -4038,7 +4066,45 @@ reference "subsec:Block-V.-Bargaining"
 \series bold
 Initial effect
 \series default
-: 
+: The decrease in demand for 
+\begin_inset Formula $\ell$
+\end_inset
+
+ implies that the labor agency hires less labor, 
+\begin_inset Formula $L\downarrow$
+\end_inset
+
+.
+ Less labor implies less matches, 
+\begin_inset Formula $\mathbb{\mathcal{M}}\downarrow$
+\end_inset
+
+, which further implies an decrease in the job-finding rate, 
+\begin_inset Formula $m^{s}\downarrow$
+\end_inset
+
+, and the vacancies, 
+\begin_inset Formula $v\downarrow$
+\end_inset
+
+.
+ However, the job-filling rate increases, 
+\begin_inset Formula $m^{v}\uparrow$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+The effect on the wage is ambigious.
+ Wages should decrease with lower output prices, but increase as a consequence
+ of less 
+\begin_inset Formula $\ell$
+\end_inset
+
+ and more production.
+ The real wage is unambiguous higher than the wage as consumer prices have
+ decreased.
 \begin_inset Newline newline
 \end_inset
 
@@ -4071,7 +4137,16 @@ reference "subsec:Block-VI.-Repacking"
 \series bold
 Initial effect
 \series default
-: 
+: Lower output prices imply lower prices on all goods through the repacking
+ firms, 
+\begin_inset Formula $P_{t}^{\bullet}\downarrow$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,I,X\}$
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -4079,7 +4154,8 @@ Initial effect
 \series bold
 Transition path
 \series default
-: 
+: The prices increase as the productivity parameter decreases.
+ As such, prices converge towards their steady state level.
 \end_layout
 
 \end_deeper
@@ -4104,7 +4180,13 @@ reference "subsec:Block-IX.-Government"
 \series bold
 Initial effect
 \series default
-: 
+: The effect on the government budget is ambiguous.
+ On on hand, it decreases as the price on government consumption decreases.
+ On the other hand, it increases as more people becomes unemployed.
+ Hence, the government receives less in tax revenue and pays more in unemploymen
+t benefits.Overall, the effect seems to be slightly negative, such that the
+ government lowers the tax rate.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4112,7 +4194,11 @@ Initial effect
 \series bold
 Transition path
 \series default
-: 
+: The government budget adjusts, once the tax rate is lowered.
+ Additionally, there is an effect stemming from the convergens of the variables
+ in the budget, i.e.
+ the price on government consumption and the employment/unemployment rates.
+ 
 \end_layout
 
 \end_deeper
@@ -4144,7 +4230,24 @@ reference "subsec:Block-X.-Households"
 \series bold
 Initial effect
 \series default
-: 
+: There is a direct effect on consumption and exports.
+ The domestic firm is more productive, thus it produces at lower prices,
+ 
+\begin_inset Formula $\bullet\uparrow$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,X\}$
+\end_inset
+
+.
+ It can be noted, that the higher domestic productivity implies a lower
+ import, 
+\begin_inset Formula $M\downarrow$
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4152,7 +4255,9 @@ Initial effect
 \series bold
 Transition path
 \series default
-: 
+: Export converges smoothly towards it steady state level, as the prices
+ increase.
+ 
 \end_layout
 
 \end_deeper
