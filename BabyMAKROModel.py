@@ -12,7 +12,7 @@ colors = prop_cycle.by_key()['color']
 # local
 import blocks
 import steady_state
-from broyden_solver import broyden_solver
+from broyden_solver import broyden_solver, sparse_solver
 
 class BabyMAKROModelClass(EconModelClass):    
 
@@ -634,4 +634,29 @@ class BabyMAKROModelClass(EconModelClass):
 
         fig.tight_layout(pad=1.0)
             
-        
+    def find_IRF_sparse(self,ini=None):
+        """ find IRF """
+
+        sol = self.sol
+
+        # a. set initial guess
+        self.set_unknowns_ss()
+
+        x0 = np.array([])
+        for unknown in self.unknowns:
+            x0 = np.hstack([x0,sol.__dict__[unknown].ravel()])
+
+        # b. objective
+        def obj(x):
+            
+            # i. set unknowns from x
+            self.set_unknowns(x)
+
+            # ii. evaluate
+            self.evaluate_blocks(ini=ini)
+
+            # iii. get and return errors
+            return self.get_errors()
+
+        # c. solver
+        sparse_solver(obj,x0,self.jac,tol=1e-10,maxiter=100,do_print=True,model=self)        
