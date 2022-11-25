@@ -6,7 +6,7 @@ import scipy.sparse.linalg
 def check_convergence(y,tol=1e-8,do_print=False,model=None):
 
     abs_diff = np.max(np.abs(y))
-    if do_print: 
+    if do_print and abs_diff<tol: 
         
         print(f'   max. abs. error = {abs_diff:8.2e}')
 
@@ -20,14 +20,17 @@ def check_convergence(y,tol=1e-8,do_print=False,model=None):
 
 def broyden_solver(f,x0,jac,tol=1e-8,maxiter=100,do_print=False,model=None):
     """ numerical equation system solver using the broyden method """
-
+    t0 = time.time()
     # a. initial
     x = x0.ravel()
     y = f(x)
 
+   
     if do_print: print('initial:')
     converged = check_convergence(y,tol=tol,model=model,do_print=do_print)
     if converged: return x
+    t1 = time.time()
+    if do_print: print(f' initial: {t1-t0 = :.5f} secs')
 
     # b. iterate
     for it in range(maxiter):
@@ -40,7 +43,7 @@ def broyden_solver(f,x0,jac,tol=1e-8,maxiter=100,do_print=False,model=None):
         x += dx
         t1 = time.time()
         
-        if do_print: print(f' solve: {t1-t0 = :.1f} secs')
+        if do_print: print(f' solve: {t1-t0 = :.5f} secs')
 
         # ii. evaluate
         t0 = time.time()
@@ -50,7 +53,7 @@ def broyden_solver(f,x0,jac,tol=1e-8,maxiter=100,do_print=False,model=None):
         converged = check_convergence(y,tol=tol,model=model,do_print=do_print)
         if converged: return x
 
-        if do_print: print(f' evaluate: {t1-t0 = :.1f} secs')
+        if do_print: print(f' evaluate: {t1-t0 = :.5f} secs')
 
         # iii. update jac
         t0 = time.time()
@@ -59,7 +62,7 @@ def broyden_solver(f,x0,jac,tol=1e-8,maxiter=100,do_print=False,model=None):
         y = ynew
         t1 = time.time()
         
-        if do_print: print(f' update_jac: {t1-t0 = :.1f} secs')
+        if do_print: print(f' update_jac: {t1-t0 = :.5f} secs')
 
     else:
 

@@ -13,7 +13,7 @@ colors = prop_cycle.by_key()['color']
 # local
 import blocks
 import steady_state
-from broyden_solver import broyden_solver, sparse_solver
+from broyden_solver import broyden_solver
 
 # @njit(parallel=True)
 # def _parallel_calc_jac(y,do_print=False,dx=1e-4):
