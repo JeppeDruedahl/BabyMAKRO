@@ -1,6 +1,5 @@
 import time
 import numpy as np
-from numba import njit, prange
 
 from EconModel import EconModelClass, jit
 from consav import elapsed
@@ -13,7 +12,7 @@ colors = prop_cycle.by_key()['color']
 # local
 import blocks
 import steady_state
-from broyden_solver import broyden_solver
+from broyden_solver import broyden_solver, sparse_solver
 
 # @njit(parallel=True)
 # def _parallel_calc_jac(y,do_print=False,dx=1e-4):
@@ -512,10 +511,42 @@ class BabyMAKROModelClass(EconModelClass):
 
     def parallel_calc_jac(self,do_print=False,dx=1e-4):
         """ calculate Jacobian arround steady state """
-        _parallel_calc_jac(self,do_print=False,dx=1e-4)
+         
+
+        t0 = time.time()
+
+        sol = self.sol
+
+        # a. baseline
+        self.set_exo_ss()
+        self.set_unknowns_ss()
+        self.evaluate_blocks()
+
+        base = self.get_errors()
+
+        x_ss = np.array([])
+        for unknown in self.unknowns:
+            x_ss = np.hstack([x_ss,sol.__dict__[unknown].ravel()])
+
+        with jit(self) as self_jit:
+            # b. allocate
+            jac = self_jit.jac = np.zeros((x_ss.size,x_ss.size))
+
+            # c. calculate
+            for i in range(x_ss.size):
+                
+                x = x_ss.copy()
+                x[i] += dx
+
+                self.set_unknowns(x)
+                self_jit.evaluate_blocks()
+                alt = self_jit.get_errors()
+                jac[:,i] = (alt-base)/dx
+
+            if do_print: print(f'Jacobian calculated in {elapsed(t0)}')
 
 
-    def find_IRF(self,ini=None):
+    def find_IRF(self,ini=None,do_print=True):
         """ find IRF """
 
         sol = self.sol
@@ -540,7 +571,7 @@ class BabyMAKROModelClass(EconModelClass):
             return self.get_errors()
 
         # c. solver
-        broyden_solver(obj,x0,self.jac,tol=1e-10,maxiter=100,do_print=True,model=self)
+        broyden_solver(obj,x0,self.jac,tol=1e-10,maxiter=100,do_print=do_print,model=self)
 
     ###########
     # figures #
