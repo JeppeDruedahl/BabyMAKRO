@@ -12,7 +12,7 @@ colors = prop_cycle.by_key()['color']
 # local
 import blocks
 import steady_state
-from broyden_solver import broyden_solver, sparse_solver
+from broyden_solver import broyden_solver
 
 # @njit(parallel=True)
 # def _parallel_calc_jac(y,do_print=False,dx=1e-4):
@@ -258,6 +258,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.beta = 0.95 # discount factor
         par.sigma = 2.0 # CRRA coefficient
         par.mu_Aq = 100 # weight on bequest motive
+        par.habit = 0.80 # strengh of habit formation 
 
         par.r_hh = 0.04 # nominal return rate
         par.W_U = 0.80 # unemployment benefits (rel. to ss.W)
@@ -509,43 +510,6 @@ class BabyMAKROModelClass(EconModelClass):
 
         if do_print: print(f'Jacobian calculated in {elapsed(t0)}')
 
-    def parallel_calc_jac(self,do_print=False,dx=1e-4):
-        """ calculate Jacobian arround steady state """
-         
-
-        t0 = time.time()
-
-        sol = self.sol
-
-        # a. baseline
-        self.set_exo_ss()
-        self.set_unknowns_ss()
-        self.evaluate_blocks()
-
-        base = self.get_errors()
-
-        x_ss = np.array([])
-        for unknown in self.unknowns:
-            x_ss = np.hstack([x_ss,sol.__dict__[unknown].ravel()])
-
-        with jit(self) as self_jit:
-            # b. allocate
-            jac = self_jit.jac = np.zeros((x_ss.size,x_ss.size))
-
-            # c. calculate
-            for i in range(x_ss.size):
-                
-                x = x_ss.copy()
-                x[i] += dx
-
-                self.set_unknowns(x)
-                self_jit.evaluate_blocks()
-                alt = self_jit.get_errors()
-                jac[:,i] = (alt-base)/dx
-
-            if do_print: print(f'Jacobian calculated in {elapsed(t0)}')
-
-
     def find_IRF(self,ini=None,do_print=True):
         """ find IRF """
 
@@ -704,30 +668,4 @@ class BabyMAKROModelClass(EconModelClass):
 
 
         fig.tight_layout(pad=1.0)
-            
-    def find_IRF_sparse(self,ini=None):
-        """ find IRF """
-
-        sol = self.sol
-
-        # a. set initial guess
-        self.set_unknowns_ss()
-
-        x0 = np.array([])
-        for unknown in self.unknowns:
-            x0 = np.hstack([x0,sol.__dict__[unknown].ravel()])
-
-        # b. objective
-        def obj(x):
-            
-            # i. set unknowns from x
-            self.set_unknowns(x)
-
-            # ii. evaluate
-            self.evaluate_blocks(ini=ini)
-
-            # iii. get and return errors
-            return self.get_errors()
-
-        # c. solver
-        sparse_solver(obj,x0,self.jac,tol=1e-10,maxiter=100,do_print=True,model=self)        
+           
