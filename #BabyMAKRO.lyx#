@@ -4188,14 +4188,8 @@ Transition path
 \end_inset
 
 .
- Hereafter, all variables start converging towards their steady state level,
- but they overshoot due to an excess demand.
- This excess demand is caused by the government lowering the tax-rate after
- 10 periods to balance out the government budget.
- Once the tax-rate converges towards its steady state level, the excess
- demand will disappear and the variables will converges to their steady
- state levels.
- 
+ Hereafter, all variables start converging towards their steady state level.
+ There is 
 \end_layout
 
 \end_deeper
@@ -4362,7 +4356,7 @@ Transition path
  This is especially true for the hands-to-mouth households.
  By the 10th year, the new and lower tax rate is graudally implemented which
  leads to an increase in consumption.
- The Ricardian households have forseen this new tax rate, such that their
+ The ricardian households have forseen this new tax rate, such that their
  consumption is more even throughout the period, but still with an increase
  in consumption once the higher tax rate is implemented.
  They consumption smooth by lowering their savings under the fixed tax rate.
