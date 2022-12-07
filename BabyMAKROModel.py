@@ -14,40 +14,6 @@ import blocks
 import steady_state
 from broyden_solver import broyden_solver
 
-# @njit(parallel=True)
-# def _parallel_calc_jac(y,do_print=False,dx=1e-4):
-#     """ calculate Jacobian arround steady state """
-
-#     t0 = time.time()
-
-#     sol = y.sol
-
-#         # a. baseline
-#     y.set_exo_ss()
-#     y.set_unknowns_ss()
-#     y.evaluate_blocks()
-#     base = y.get_errors()
-
-#     x_ss = np.array([])
-#     for unknown in y.unknowns:
-#         x_ss = np.hstack([x_ss,sol.__dict__[unknown].ravel()])
-
-#     # b. allocate
-#     jac = y.jac = np.zeros((x_ss.size,x_ss.size))
-
-#     # c. calculate
-#     for i in prange(x_ss.size):
-            
-#         x = x_ss.copy()
-#         x[i] += dx
-
-#         y.set_unknowns(x)
-#         y.evaluate_blocks()
-#         alt = y.get_errors()
-#         jac[:,i] = (alt-base)/dx
-
-#     if do_print: print(f'Jacobian calculated in {elapsed(t0)}')
-
 class BabyMAKROModelClass(EconModelClass):    
 
     # This is the BabyMAKROModelClass

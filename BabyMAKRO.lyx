@@ -2899,12 +2899,13 @@ A_{a-1,t-1}^{R} & =\frac{A_{a,t}^{R}-\text{inc}_{a,t}+P_{t}^{C}C_{a,t}^{R}}{1+r^
 
 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
+WIP, where I disregarded bequests (I am not sure of the effects)
 \begin_inset Formula 
 \begin{align*}
-WIP\\
+WIP & I\\
 C_{a,t}^{R} & =\begin{cases}
 \left(\zeta_{a}\mu^{A^{q}}\left(\frac{A_{t}^{\text{death}}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
 \left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
