@@ -2681,35 +2681,13 @@ The Ricardian households making their first decision in period
 \end_inset
 
  solve the problem
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Working on habbit formation following Jeffrey C.
- Fuhrer - 
-\begin_inset Quotes qld
-\end_inset
-
-Habit Formation in Consumption and Its Implications for Monetary-Policy
- Models
-\begin_inset Quotes qld
-\end_inset
-
- (2000).
- Start by considering the case where rho = 0, as he finds that empirically
-\end_layout
-
-\end_inset
-
-
 \begin_inset Formula 
 \begin{align*}
-V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R},A_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(\frac{C_{a,t}^{R}}{Z_{a,t}^{\gamma}}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
+V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R},A_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
  & \text{s.t.}\\
 t & =t_{0}+a\\
 A_{-1,t}^{R} & =0\\
-A_{a,t}^{R} & =(1+r^{hh})A_{a-1,t-1}^{R}+\text{inc}_{a,t}-P_{t}^{C}C_{a,t}^{R}.\\
-Z_{a,t} & =\rho Z_{a-1,t-1}+(1-\rho)C_{a-1,t-1}^{R}
+A_{a,t}^{R} & =(1+r^{hh})A_{a-1,t-1}^{R}+\text{inc}_{a,t}-P_{t}^{C}C_{a,t}^{R}.
 \end{align*}
 
 \end_inset
@@ -2902,7 +2880,7 @@ A_{a-1,t-1}^{R} & =\frac{A_{a,t}^{R}-\text{inc}_{a,t}+P_{t}^{C}C_{a,t}^{R}}{1+r^
 status collapsed
 
 \begin_layout Plain Layout
-WIP, where I disregarded bequests (I am not sure of the effects)
+WIP, Write out the partial derivatives
 \begin_inset Formula 
 \begin{align*}
 WIP & I\\
@@ -2910,13 +2888,7 @@ C_{a,t}^{R} & =\begin{cases}
 \left(\zeta_{a}\mu^{A^{q}}\left(\frac{A_{t}^{\text{death}}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
 \left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
 \left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
-\end{cases}\\
-V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R},A_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(\frac{C_{a,t}^{R}}{Z_{a,t}^{\gamma}}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]=\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\left[\frac{\left(\frac{C_{a,t}^{R}}{\left(C_{a-1,t-1}^{R}\right)^{\gamma}}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]+\Pi_{j=0}^{a}\beta(1-\zeta_{j})\left[\frac{\left(\frac{C_{a+1,t+1}^{R}}{\left(C_{a,t}^{R}\right)^{\gamma}}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a+1}\mu^{A^{q}}\frac{\left(\frac{A_{a+1,t+1}^{R}}{P_{t+1}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]+...+\theta_{t}(A_{a,t}^{R}-(1+r^{hh})A_{a-1,t-1}^{R}+\text{inc}_{a,t}-P_{t}^{C}C_{a,t}^{R})+\theta_{t+1}(A_{a+1,t+1}^{R}-(1+r^{hh})A_{a,t}^{R}+\text{inc}_{a+1,t+1}-P_{t+1}^{C}C_{a+1,t+1}^{R})\\
-\frac{\partial V_{t_{0}}}{\partial C_{a,t}} & =\beta^{a-1}(1-\zeta_{j})^{a-1}\left(\frac{C_{a,t}^{R}}{\left(C_{a-1,t-1}^{R}\right)^{\gamma}}\right)^{-\sigma}-\beta^{a}(1-\zeta_{j})^{a}\theta_{t}P_{t}^{C}+\beta^{a}(1-\zeta_{j})^{a}\left[\left(\frac{1}{\left(C_{a,t}^{R}\right)^{\gamma}}\right)^{-\sigma}\left(C_{a+1,t+1}^{R}\right)^{1-\sigma}\left(-\gamma\left(C_{a,t}^{R}\right)^{-\gamma-1}\right)\right]=0\Leftrightarrow\left(\frac{C_{a,t}^{R}}{\left(C_{a-1,t-1}^{R}\right)^{\gamma}}\right)^{-\sigma}+\beta(1-\zeta_{j})\left[\left(\frac{1}{\left(C_{a,t}^{R}\right)^{\gamma}}\right)^{-\sigma}\left(C_{a+1,t+1}^{R}\right)^{1-\sigma}\left(-\gamma\left(C_{a,t}^{R}\right)^{-\gamma-1}\right)\right]=\theta_{t}P_{t}^{C}\\
-\frac{\partial V_{t_{0}}}{\partial A_{a,t}} & =\theta_{t}-(1+r^{hh})\theta_{t+1}=0\Leftrightarrow\theta_{t}=(1+r^{hh})\theta_{t+1}\\
-\frac{1}{P_{t}^{C}}\left[\left(\frac{C_{a,t}^{R}}{\left(C_{a-1,t-1}^{R}\right)^{\gamma}}\right)^{-\sigma}-\gamma\beta(1-\zeta_{a})\left(\frac{C_{a+1,t+1}^{R}}{\left(C_{a,t}^{R}\right)^{\gamma}}\right)^{-\sigma}C_{a+1,t+1}^{R}\left(C_{a,t}^{R}\right)^{-(1+\gamma)}\right] & =\beta(1-\zeta_{a})(1+r^{hh})\frac{1}{P_{t+1}^{C}}\left[\left(\frac{C_{a+1,t+1}^{R}}{\left(C_{a,t}^{R}\right)^{\gamma}}\right)^{-\sigma}-\gamma\beta(1-\zeta_{a})\left(\frac{C_{a+2,t+2}^{R}}{\left(C_{a+1,t+1}^{R}\right)^{\gamma}}\right)^{-\sigma}C_{a+2,t+2}^{R}\left(C_{a+1,t+1}^{R}\right)^{-(1+\gamma)}\right]\Leftrightarrow\\
-\left(\frac{C_{a,t}^{R}}{\left(C_{a-1,t-1}^{R}\right)^{\gamma}}\right)^{-\sigma}-\gamma\beta(1-\zeta_{a})\left(\frac{C_{a+1,t+1}^{R}}{\left(C_{a,t}^{R}\right)^{\gamma}}\right)^{-\sigma}C_{a+1,t+1}^{R}\left(C_{a,t}^{R}\right)^{-(1+\gamma)} & =\beta(1-\zeta_{a})\frac{(1+r^{hh})}{1+\pi_{t+1}^{hh}}\left[\left(\frac{C_{a+1,t+1}^{R}}{\left(C_{a,t}^{R}\right)^{\gamma}}\right)^{-\sigma}-\gamma\beta(1-\zeta_{a})\left(\frac{C_{a+2,t+2}^{R}}{\left(C_{a+1,t+1}^{R}\right)^{\gamma}}\right)^{-\sigma}C_{a+2,t+2}^{R}\left(C_{a+1,t+1}^{R}\right)^{-(1+\gamma)}\right]\Leftrightarrow\\
-\left(\frac{C_{a,t}^{R}}{\left(C_{a-1,t-1}^{R}\right)^{\gamma}}\right)^{-\sigma} & =\beta(1-\zeta_{a})\frac{(1+r^{hh})}{1+\pi_{t+1}^{hh}}\left(\frac{C_{a+1,t+1}^{R}}{\left(C_{a,t}^{R}\right)^{\gamma}}\right)^{-\sigma}+\gamma\beta(1-\zeta_{a})\left(\frac{C_{a+1,t+1}^{R}}{\left(C_{a,t}^{R}\right)^{\gamma}}\right)^{-\sigma}C_{a+1,t+1}^{R}\left(C_{a,t}^{R}\right)^{-(1+\gamma)}-\gamma\beta^{2}(1-\zeta_{a})^{2}\frac{(1+r^{hh})}{1+\pi_{t+1}^{hh}}\left(\frac{C_{a+2,t+2}^{R}}{\left(C_{a+1,t+1}^{R}\right)^{\gamma}}\right)^{-\sigma}C_{a+2,t+2}^{R}\left(C_{a+1,t+1}^{R}\right)^{-(1+\gamma)}
+\end{cases}
 \end{align*}
 
 \end_inset
@@ -3571,8 +3543,8 @@ name "subsec:Transition-path"
 
 \begin_layout Standard
 We consider an economy in steady state.
- Next, we shock one of the exogeneous variables and see what happens to
- all other variables as the economy converges towards its new steady state.
+ Next, we shock one of the exogenous variables and see what happens to all
+ other variables as the economy converges towards its new steady state.
  Let us consider a shock to the Government consumption.
  
 \end_layout
@@ -3685,7 +3657,7 @@ reference "subsec:Block-VIII.-Capital"
 Initial effect
 \series default
 : The firms increases production to meet the higher demand.
- Since capital is fixed, the prodcution firms can only produce more by hiring
+ Since capital is fixed, the production firms can only produce more by hiring
  more labor, 
 \begin_inset Formula $\ell\uparrow$
 \end_inset
@@ -3695,7 +3667,7 @@ Initial effect
 \begin_inset Formula $r^{K}\uparrow$
 \end_inset
 
-, and it also implies that the rent on captial must increase more than the
+, and it also implies that the rent on capital must increase more than the
  rent on labor.
  The marginal cost price increases, 
 \begin_inset Formula $P^{Y,0}\uparrow$
@@ -3709,9 +3681,9 @@ Initial effect
 
 .
  As the output prices are sticky, the increase should be relatively smaller.
- The effect on capital is ambigious.
+ The effect on capital is ambiguous.
  On one hand, the rent on capital has increased, such that the capital agency
- has an incetive to accumulate more future capital, thus more investment
+ has an incentive to accumulate more future capital, thus more investment
  
 \begin_inset Formula $I\uparrow$
 \end_inset
@@ -3816,7 +3788,7 @@ Initial effect
 \begin_inset Newline newline
 \end_inset
 
-The effect on the wage is ambigious.
+The effect on the wage is ambiguous.
  Wages should increase with higher output and output prices, but decrease
  as a consequence of more 
 \begin_inset Formula $\ell$
@@ -3835,7 +3807,7 @@ Transition path
 \begin_inset Formula $\underline{L}\uparrow$
 \end_inset
 
- and the number of seachers decreases 
+ and the number of searchers decreases 
 \begin_inset Formula $S\downarrow$
 \end_inset
 
@@ -3847,7 +3819,7 @@ Transition path
 \begin_layout Itemize
 
 \series bold
-Effect on prices
+Effect on Prices
 \series default
  (see 
 \begin_inset CommandInset ref
@@ -3938,7 +3910,7 @@ Initial effect
 
 The income of the households is also affected through changes in labor supply
  and wages.
- The effect on wages is ambigious, it is not clear whether income increases
+ The effect on wages is ambiguous, it is not clear whether income increases
  or decreases.
  However, it is clear that the Ricardian households decrease their consumption,
  as they see the higher tax rate in the future 
@@ -3952,7 +3924,7 @@ The income of the households is also affected through changes in labor supply
 \end_inset
 
 .
- There effect on bequest is neglectable as the households have choosen the
+ There effect on bequest is neglectable as the households have chosen the
  savings beforehand.
 \end_layout
 
@@ -3965,9 +3937,9 @@ Transition path
  After the initial drop in consumption, it increases towards its steady
  state level as prices converge.
  This is especially true for the hands-to-mouth households.
- By the 10th year, the new and higher tax rate is graudally implemented
+ By the 10th year, the new and higher tax rate is gradually implemented
  which leads to a large drop in consumption.
- The ricardian households have forseen this new tax rate, such that their
+ The Ricardian households have foreseen this new tax rate, such that their
  consumption is more even throughout the period, but still with a decrease
  in consumption once the higher tax rate is implemented.
  They achieve the consumption smoothing by increasing their savings under
@@ -4059,8 +4031,8 @@ n inputs.
 \end_inset
 
 .
- Again, the effect on capital is ambigious.
- The capital agency wans to invest more, 
+ Again, the effect on capital is ambiguous.
+ The capital agency wants to invest more, 
 \begin_inset Formula $I\uparrow$
 \end_inset
 
@@ -4085,7 +4057,7 @@ Transition path
  Higher output prices induce a higher price on investment, hence less investment
 s.
  As investments are above its steady state level, capital increases for
- a while whereafter it converges towards it steady state.
+ a while after which it converges towards it steady state.
  The return on capital has a large increase in period 1 which is caused
  by a increase in the labor force.
  Hereafter, the return on capital follows the inverse shape of the capital
@@ -4162,7 +4134,7 @@ Initial effect
 \begin_inset Newline newline
 \end_inset
 
-The effect on the wage is ambigious.
+The effect on the wage is ambiguous.
  Wages should decrease with lower output prices, but increase as a consequence
  of less 
 \begin_inset Formula $\ell$
@@ -4183,20 +4155,26 @@ Transition path
 \begin_inset Formula $\underline{L}\downarrow$
 \end_inset
 
- and the number of seachers increases 
+ and the number of searchers increases 
 \begin_inset Formula $S\uparrow$
 \end_inset
 
 .
- Hereafter, all variables start converging towards their steady state level.
- There is 
+ Hereafter, all variables start converging towards their steady state level,
+ but they overshoot due to an excess demand.
+ This excess demand is caused by the government lowering the tax-rate after
+ 10 periods to balance out the government budget.
+ Once the tax-rate converges towards its steady state level, the excess
+ demand will disappear and the variables will converges to their steady
+ state levels.
+ 
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
 
 \series bold
-Effect on prices
+Effect on Prices
 \series default
  (see 
 \begin_inset CommandInset ref
@@ -4272,7 +4250,7 @@ t benefits.Overall, the effect seems to be slightly negative, such that the
 Transition path
 \series default
 : The government budget adjusts, once the tax rate is lowered.
- Additionally, there is an effect stemming from the convergens of the variables
+ Additionally, there is an effect stemming from the converges of the variables
  in the budget, i.e.
  the price on government consumption and the employment/unemployment rates.
  
@@ -4330,7 +4308,7 @@ Initial effect
 
 The income of the households is also affected through changes in labor supply
  and wages.
- As the effect on wages is ambigious, it is not clear whether income increases
+ As the effect on wages is ambiguous, it is not clear whether income increases
  or decreases.
  However, it is clear that the Ricardian households increase their consumption,
  as they see the lower tax rate in the future.
@@ -4340,7 +4318,7 @@ The income of the households is also affected through changes in labor supply
 \end_inset
 
 .
- There effect on bequest is neglectable as the households have choosen the
+ There effect on bequest is neglectable as the households have chosen the
  savings beforehand.
 \end_layout
 
@@ -4354,9 +4332,9 @@ Transition path
  After the initial spike in consumption, it decreases towards its steady
  state level as prices converge.
  This is especially true for the hands-to-mouth households.
- By the 10th year, the new and lower tax rate is graudally implemented which
+ By the 10th year, the new and lower tax rate is gradually implemented which
  leads to an increase in consumption.
- The ricardian households have forseen this new tax rate, such that their
+ The Ricardian households have foreseen this new tax rate, such that their
  consumption is more even throughout the period, but still with an increase
  in consumption once the higher tax rate is implemented.
  They consumption smooth by lowering their savings under the fixed tax rate.
@@ -4366,6 +4344,397 @@ Transition path
  Once the productivity shock has vanished, the bequest converges towards
  its steady state level.
  
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Shock to export (
+\begin_inset Formula $\chi,P^{F},P^{M,\bullet}$
+\end_inset
+
+for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+) - Missing effects on imports
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Effect on Foreign Economy and Prices
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VII.-Foreign"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VI.-Repacking"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: Initially, there is a shock to the export productivity parameter, 
+\begin_inset Formula $\chi\uparrow$
+\end_inset
+
+, the foreign prices,
+\begin_inset Formula $P^{F}\uparrow$
+\end_inset
+
+, and the import prices,
+\begin_inset Formula $P^{M,\bullet}\uparrow$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+.
+ The export increases through two shock channels, the export productivity
+ channel and the price channel.
+ The shocks to the export productivity parameter and foreign prices directly
+ increase the export, 
+\begin_inset Formula $X\uparrow$
+\end_inset
+
+.
+ However, the shock to the import prices has an indirect, opposite effect,
+ as this drives up the export price, 
+\begin_inset Formula $P^{X}\uparrow$
+\end_inset
+
+, through the repacking firms.
+ The effect on the export price is smaller than the one on the foreign price,
+ thus the overall effect on export is positive through both channels.
+ This increase in export indirectly affects all prices stemming from higher
+ total demand, such that these increase, 
+\begin_inset Formula $P^{\bullet}\uparrow$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,G,I\}$
+\end_inset
+
+.
+ Additionally, there is a direct effect from higher import prices through
+ the repacking firms.
+ This is interesting as it implies, that the export demand shock stemming
+ from the price channel comes with relatively higher prices compared to
+ the export productivity channel.
+ These two channels also affect the import in two opposite direction.
+ The higher import prices imply less import whereas the higher export productivi
+ty implies more import.
+ Overall, these two effect seems to almost cancel each other out, such that
+ there only is a small positive effect.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: The export and the prices decrease as the shocks dissipate, such that
+ they converge towards their steady state level.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on the Production firms, the Phillips-Curve and Investments
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-III.-Production"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-IV.-Phillips"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VIII.-Capital"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: The production firms increase production, 
+\begin_inset Formula $Y\uparrow$
+\end_inset
+
+, to meet the increased demand stemming from the more export.
+ To do this, they must hire more worker, 
+\begin_inset Formula $\ell\uparrow$
+\end_inset
+
+, as the capital is fixed, which drives up return on workers, 
+\begin_inset Formula $r^{\ell}\uparrow$
+\end_inset
+
+, and return on capital, 
+\begin_inset Formula $r^{K}\uparrow$
+\end_inset
+
+.
+ This implies higher a marginal cost price, 
+\begin_inset Formula $P^{Y,0}\downarrow$
+\end_inset
+
+, and a higher output price, 
+\begin_inset Formula $P^{Y}\downarrow$
+\end_inset
+
+, because these are set as a mark-up over the marginal cost prices.
+ The output price is sticky, thus the increase is relatively smaller.
+ The effect on investments is affected by the increase return on capital
+ relative to the price on investment.
+ Overall, the effect is negative 
+\begin_inset Formula $I\downarrow$
+\end_inset
+
+.
+ However, the effect from each of the two shock channels is quite different.
+ If we only considered the effect from the export productivity shock, the
+ effect on investments would be positive.
+ This is due to that the gain in the form of higher demand (and thereby
+ higher return on capital) comes at a relatively small increase in the price
+ on investments.
+ This effect, however, is dominated by the price shock channel, where there
+ is a relatively large increase in the price on investments.
+ The overall negative effect on investments implies a decrease in the capital,
+ 
+\begin_inset Formula $K\downarrow$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: The marginal cost price, the output price, the return on labor and the
+ return on capital converges towards their steady state level once the shocks
+ dissipate.
+ The investment increases from its initial drop, and it growth to become
+ large than its steady state value.
+ This is cause by the price on investments converge faster than the return
+ on capital, such that it is profitable to invest.
+ This cause the capital to also overshoot its steady state value, where
+ after both variables converge towards steady state.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on the Labor agency, Labor search & match and wage
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-I.-Households"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-II.-Labor"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-V.-Bargaining"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: The increase in demand for 
+\begin_inset Formula $\ell$
+\end_inset
+
+ implies that the labor agency hires more labor, 
+\begin_inset Formula $L\uparrow$
+\end_inset
+
+.
+ More hired labor implies more matches, 
+\begin_inset Formula $\mathbb{\mathcal{M}}\uparrow$
+\end_inset
+
+, which further implies an increase in the job-finding rate, 
+\begin_inset Formula $m^{s}\uparrow$
+\end_inset
+
+, and the vacancies, 
+\begin_inset Formula $v\uparrow$
+\end_inset
+
+.
+ However, the job-filling rate decreases, 
+\begin_inset Formula $m^{v}\downarrow$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+The effect on the wage is ambiguous.
+ Wages should increase with higher output and output prices, but decrease
+ as a consequence of more 
+\begin_inset Formula $\ell$
+\end_inset
+
+.
+ Overall, there is a positive effect on the wage.
+ The real wage, however, decreases due to the higher price on consumption.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: The amount of households with a job at the start of period 1 is high,
+ thus 
+\begin_inset Formula $\underline{L}\uparrow$
+\end_inset
+
+ and the number of searchers decreases 
+\begin_inset Formula $S\downarrow$
+\end_inset
+
+.
+ Hereafter, all variables converge towards their steady state level.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on the Government
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-IX.-Government"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: The effect on the government budget is ambiguous.
+ On on hand, it increases as the price on government consumption increases.
+ On the other hand, it decreases as more people becomes employed.
+ Hence, the government receives more in tax revenue and pays less in unemploymen
+t benefits.Overall, the effect seems to be negative, such that the government
+ lowers the tax rate.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Transition path
+\series default
+: The government budget adjusts, once the tax rate is lowered.
+ Additionally, there is an effect stemming from the converges of the variables
+ in the budget, i.e.
+ the price on government consumption and the employment/unemployment rates.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on Consumption
+\series default
+ (see
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-X.-Households"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: The price on consumption has increased, which lowers the consumption.
+ On the contrary, the households' income has also increased due to higher
+ wages and labor supply Direct effect from higher prices, Effect from higher
+ income, Effect from higher real rate -> lower assets/bequest initially,
+ but increasing.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Transition path
+\series default
+: 
 \end_layout
 
 \end_deeper

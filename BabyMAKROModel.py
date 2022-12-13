@@ -224,7 +224,6 @@ class BabyMAKROModelClass(EconModelClass):
         par.beta = 0.95 # discount factor
         par.sigma = 2.0 # CRRA coefficient
         par.mu_Aq = 100 # weight on bequest motive
-        par.habit = 0.80 # strengh of habit formation 
 
         par.r_hh = 0.04 # nominal return rate
         par.W_U = 0.80 # unemployment benefits (rel. to ss.W)
@@ -634,4 +633,89 @@ class BabyMAKROModelClass(EconModelClass):
 
 
         fig.tight_layout(pad=1.0)
-           
+
+
+    def multi_shock_model(self,Tshock,persistence,shock1_size=0.01,shock1=[],shock2_size=0.005,shock2=[]):
+        """ Create multiple models with different shocks """
+        
+
+        Tshock = Tshock
+        persistence = persistence
+        shocks = [shock1,shock2]
+        shock_size = [shock1_size,shock2_size]
+        
+        ss = self.ss
+        sol = self.sol
+        self.find_ss()
+        self.calc_jac(do_print=True)
+        self.set_exo_ss()
+
+        for j in range(len(shocks)):
+            for i,shock in enumerate(shocks[j]):
+                ss_shock = getattr(ss, shock)
+                sol_shock = getattr(sol, shock)
+                var_shock = shock_size[j]*ss_shock
+                sol_shock[:Tshock] = ss_shock + var_shock*persistence    
+
+        self.find_IRF()   
+        
+        modellist = [self]  
+
+        for j in range(len(shocks)):
+            modellist.append(self.copy())
+            ss = modellist[j+1].ss
+            sol = modellist[j+1].sol
+            modellist[j+1].find_ss()
+            modellist[j+1].calc_jac(do_print=True)
+            modellist[j+1].set_exo_ss()
+
+            for i,shock in enumerate(shocks[j]):
+                ss_shock = getattr(ss, shock)
+                sol_shock = getattr(sol, shock)
+                var_shock = shock_size[j]*ss_shock
+                sol_shock[:Tshock] = ss_shock + var_shock*persistence
+
+            modellist[j+1].find_IRF()
+
+
+        return modellist    
+
+
+    def multi_shock_IRF(self,models=[],shocks=[],varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[]):
+        """ plot IRFs """
+
+        nrow = len(varlist)//ncol
+        if len(varlist) > nrow*ncol: nrow+=1 
+
+        fig = plt.figure(figsize=(ncol*6,nrow*6/1.5))
+        for i,varname in enumerate(varlist):
+            ss = []
+            sol = []
+            path = []
+            ssvalue = []
+            
+            ax = fig.add_subplot(nrow,ncol,1+i)
+            for j in range(len(models)):
+                ss.append(models[j].ss)
+                sol.append(models[j].sol)
+                path.append(sol[j].__dict__[varname])
+                ssvalue.append(ss[j].__dict__[varname])
+
+                if varname in abs:
+                    ax.axhline(ssvalue[j],color='black', label=f'Shock to {shocks[j]}',linewidth=0.75)
+                    ax.plot(path[j][:T_IRF],'-o',markersize=2)
+                elif varname in Y_share:
+                    ax.plot(path[j][:T_IRF]/sol[j].Y[:T_IRF],'-o',markersize=2, label=f'Shock to {shocks[j]}',linewidth=0.75)   
+                    ax.set_ylabel('share of Y')         
+                elif np.isclose(ssvalue[j],0.0):
+                    ax.plot(path[j][:T_IRF]-ssvalue[j],'-o',markersize=2, label=f'Shock to {shocks[j]}',linewidth=0.75)
+                    ax.set_ylabel('diff.to ss')
+                else:
+                    ax.plot((path[j][:T_IRF]/ssvalue[j]-1)*100,'-o',markersize=2, label=f'Shock to {shocks[j]}',linewidth=0.75)
+                    ax.set_ylabel('% diff.to ss')
+                handles, labels = ax.get_legend_handles_labels()
+            ax.set_title(varname)
+            fig.legend(handles, labels, loc='upper right', frameon = True)
+
+
+        fig.tight_layout(pad=1.0)        
