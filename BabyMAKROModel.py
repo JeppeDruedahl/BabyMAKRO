@@ -225,7 +225,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.sigma = 2.0 # CRRA coefficient
         par.mu_Aq = 100 # weight on bequest motive
 
-        par.r_hh = 0.04 # nominal return rate
+        par.r_hh = 0.04*np.ones(par.T) # nominal return rate
         par.W_U = 0.80 # unemployment benefits (rel. to ss.W)
         par.W_R = 0.50 # retirement benefits (rel. to ss.W)
 
@@ -646,6 +646,7 @@ class BabyMAKROModelClass(EconModelClass):
         
         ss = self.ss
         sol = self.sol
+        
         self.find_ss()
         self.calc_jac(do_print=True)
         self.set_exo_ss()
