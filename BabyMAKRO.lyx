@@ -4356,7 +4356,7 @@ for
 \begin_inset Formula $\bullet\in\{C,G,I,X\}$
 \end_inset
 
-) - Missing effects on imports
+)
 \end_layout
 
 \begin_layout Itemize
@@ -4721,13 +4721,36 @@ reference "subsec:Block-X.-Households"
 \series bold
 Initial effect
 \series default
-: The price on consumption has increased, which lowers the consumption.
- On the contrary, the households' income has also increased due to higher
- wages and labor supply.
- Direct effect from higher prices, Effect from higher income, Effect from
- higher real rate (Why is this the case) -> lower assets/bequest initially,
- but increasing.
- 
+: There are two opposite effects which affect the overall consumption level
+ - higher price on consumption and higher income of the households.
+ A higher price on consumption, 
+\begin_inset Formula $P^{C}\uparrow$
+\end_inset
+
+, affects the consumption through two channels.
+ The direct effect is that higher prices implies a lower consumption.
+ The indirect effect is that a higher initial price followed by a decrease
+ in the price implies deflation, and thereby a higher real interest rate.
+ The effect of a higher real interest rate is ambiguous and can be divided
+ in an income effect and a substitution effect.
+ A higher real interest rate implies that household gains a higher return
+ on their saving.
+ Therefore, they can obtain the same absolute return by saving less - implying
+ more consumption today.
+ The substitution effect is a higher return on their savings implies a greater
+ alternative cost of consumption today - you could alternative invest a
+ gain the real interest rate.
+ Overall, the effect of a higher price on consumption is that consumption
+ decreases.
+\begin_inset Newline newline
+\end_inset
+
+The other, opposite effect is an increase in the income of the households
+ due to higher wages and labor supply, which implies more consumption.
+ Notably, the price on consumption increases more than the wages, such that
+ the real wage decreases.
+ Therefore, the overall initial effect on consumption is a decrease in the
+ consumption level both for the Ricardian and hands-to-mouth consumers.
 \end_layout
 
 \begin_layout Standard
@@ -4735,10 +4758,21 @@ Initial effect
 \series bold
 Transition path
 \series default
-: 
+: After the initial drop, consumption increases towards steady state as
+ prices stabilize.
+ However, after 10 periods the new lower tax rate kicks in, which implies
+ a higher income for the consumers.
+ As such, the consumption increases to a level which is higher than its
+ steady state level.
+ Hereafter, consumption converges as the income converges towards steady
+ state.
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+Shock to interest rate (r):
+\end_layout
+
 \begin_layout Section
 Status report
 \begin_inset CommandInset label

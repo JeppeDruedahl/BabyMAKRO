@@ -408,7 +408,7 @@ def household_consumption(par,ini,ss,sol):
     pi_hh_plus = lead(pi_hh,ss.pi_hh)
 
     real_W[:] = W/P_C
-    real_r_hh[:] = (1+par.r_hh)/(1+pi_hh_plus)-1
+    real_r_hh[:] = (1+par.r_hh[:])/(1+pi_hh_plus)-1
 
     # a. income
     for t in range(par.T):
@@ -456,7 +456,7 @@ def household_consumption(par,ini,ss,sol):
             C_R_a[a,t] = RHS**(-1/par.sigma)
 
             # iii. lagged assets
-            A_R_a_lag = (A_R_a_now + P_C[t]*C_R_a[a,t] - inc_a[a,t])/(1+par.r_hh)
+            A_R_a_lag = (A_R_a_now + P_C[t]*C_R_a[a,t] - inc_a[a,t])/(1+par.r_hh[t])
 
             if a > 0 and t > 0:
                 A_R_a[a-1,t-1] = A_R_a_lag
@@ -480,9 +480,9 @@ def household_consumption(par,ini,ss,sol):
 
         # bequest
         if t == 0:
-            Aq_implied = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*ss.A_a)
+            Aq_implied = (1+par.r_hh[t])*np.sum(par.zeta_a*par.N_a*ss.A_a)
         else:
-            Aq_implied = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*A_a[:,t-1])
+            Aq_implied = (1+par.r_hh[t])*np.sum(par.zeta_a*par.N_a*A_a[:,t-1])
 
         Aq_diff[t] = Aq_implied-Aq[t]                                  
 

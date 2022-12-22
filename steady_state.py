@@ -49,7 +49,7 @@ def household_consumption_ss(A_R_death,par,ss):
         ss.C_R_a[a] = RHS**(-1/par.sigma)
 
         # ii. assets
-        A_R_lag = (ss.A_R_a[a] + ss.P_C*ss.C_R_a[a] - ss.inc_a[a])/(1+par.r_hh)         
+        A_R_lag = (ss.A_R_a[a] + ss.P_C*ss.C_R_a[a] - ss.inc_a[a])/(1+par.r_hh[-1])         
         if a > 0:
             ss.A_R_a[a-1] = A_R_lag
         else:
@@ -86,12 +86,12 @@ def find_Aq_ss(Aq,model):
         find_household_consumption_ss(model)
 
         # ii. update
-        ss.Aq = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*ss.A_a)
+        ss.Aq = (1+par.r_hh[-1])*np.sum(par.zeta_a*par.N_a*ss.A_a)
 
         # iii. converged?
         if np.abs(ss.Aq-old_Aq) < 1e-12: 
             find_household_consumption_ss(model)
-            Aq = (1+par.r_hh)*np.sum(par.zeta_a*par.N_a*ss.A_a)
+            Aq = (1+par.r_hh[-1])*np.sum(par.zeta_a*par.N_a*ss.A_a)
             ss.Aq_diff = Aq - ss.Aq_diff
             break
 
@@ -212,7 +212,7 @@ def find_ss(model,do_print=True):
 
     # j. household behavior
     ss.real_W = ss.W/ss.P_C
-    ss.real_r_hh = (1+par.r_firm)/(1+ss.pi_hh)-1
+    ss.real_r_hh = (1+par.r_hh[-1])/(1+ss.pi_hh)-1
     find_Aq_ss(0.0,model)
 
     if do_print:
