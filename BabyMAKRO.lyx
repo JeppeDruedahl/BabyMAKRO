@@ -4495,25 +4495,21 @@ Initial effect
 \end_inset
 
 , to meet the increased demand stemming from the more export.
- To do this, they must hire more worker, 
+ To do this, they must hire more workers, 
 \begin_inset Formula $\ell\uparrow$
 \end_inset
 
-, as the capital is fixed, which drives up return on workers, 
-\begin_inset Formula $r^{\ell}\uparrow$
-\end_inset
-
-, and return on capital, 
+, as the capital is fixed, which drives up return on capital, 
 \begin_inset Formula $r^{K}\uparrow$
 \end_inset
 
 .
- This implies higher a marginal cost price, 
-\begin_inset Formula $P^{Y,0}\downarrow$
+ This implies a higher marginal cost price, 
+\begin_inset Formula $P^{Y,0}\uparrow$
 \end_inset
 
 , and a higher output price, 
-\begin_inset Formula $P^{Y}\downarrow$
+\begin_inset Formula $P^{Y}\uparrow$
 \end_inset
 
 , because these are set as a mark-up over the marginal cost prices.
@@ -4635,6 +4631,12 @@ The effect on the wage is ambiguous.
 
 .
  Overall, there is a positive effect on the wage.
+ As the return on workers is a markup over the wages, this increases as
+ well, 
+\begin_inset Formula $r^{\ell}\uparrow$
+\end_inset
+
+.
  The real wage, however, decreases due to the higher price on consumption.
 \begin_inset Newline newline
 \end_inset
@@ -4838,6 +4840,18 @@ Initial effect
 \end_inset
 
 .
+ The effect on total consumption is a decrease, 
+\begin_inset Formula $C\downarrow$
+\end_inset
+
+.
+ Notably, there is an initial increase in bequests, as these are affected
+ by the interest rate 
+\begin_inset Formula $Aq\uparrow$
+\end_inset
+
+.
+ 
 \begin_inset Newline newline
 \end_inset
 
@@ -4845,7 +4859,22 @@ Initial effect
 \series bold
 Transition path
 \series default
-: 
+: After the initial drop, the Ricardians' consumption increases as they
+ save less.
+ Higher demand drives up prices on demand, which in isolation should make
+ consumption converge towards its steady state level.
+ However, higher demand also implies higher output levels and thereby higher
+ employment levels.
+ This has two positive effects for consumption; higher income and less tax
+ payments.
+ These two effects also affects the Hands-to Mouth households' consumption,
+ and they imply that the total consumption is above it steady state level
+ for a long period.
+ Eventually, the higher prices ensures that the consumption converge back
+ to its steady state level.
+ The effects on savings are similar, and these are above their steady state
+ level as well.
+ 
 \end_layout
 
 \end_deeper
@@ -4887,7 +4916,48 @@ reference "subsec:Block-VIII.-Capital"
 \series bold
 Initial effect
 \series default
-: 
+: The production firms decrease production, 
+\begin_inset Formula $Y\downarrow$
+\end_inset
+
+, to meet the lower demand stemming from the less consumption.
+ As the capital is fixed, they must fire workers, 
+\begin_inset Formula $\ell\downarrow$
+\end_inset
+
+, which drives down return on capital, 
+\begin_inset Formula $r^{K}\downarrow$
+\end_inset
+
+.
+ This implies a lower marginal cost price, 
+\begin_inset Formula $P^{Y,0}\downarrow$
+\end_inset
+
+, and a higher output price, 
+\begin_inset Formula $P^{Y}\downarrow$
+\end_inset
+
+, because these are set as a mark-up over the marginal cost prices.
+ The output price is sticky, thus the decrease is relatively smaller.
+ A lower output price implies that the price on investment also decreases,
+ 
+\begin_inset Formula $P^{I}\downarrow$
+\end_inset
+
+.
+ The investments are affected by the decrease in the return on capital relative
+ to the decrease in the price on investment.
+ Overall, the effect is positive 
+\begin_inset Formula $I\uparrow$
+\end_inset
+
+.
+ More investments implies an increase in the capital, 
+\begin_inset Formula $K\uparrow$
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -4895,7 +4965,12 @@ Initial effect
 \series bold
 Transition path
 \series default
-: 
+: The production firms increase production due to the higher demand stemming
+ from the more consumption.
+ As such, more workers are hired, which drives up the return on capital
+ as well as the marginal cost and output prices.
+ These converge toward their steady state level as the excess demand converges.
+ 
 \end_layout
 
 \end_deeper
@@ -4937,7 +5012,51 @@ reference "subsec:Block-V.-Bargaining"
 \series bold
 Initial effect
 \series default
-: 
+: The decrease in demand for 
+\begin_inset Formula $\ell$
+\end_inset
+
+ implies that the labor agency fires labor, 
+\begin_inset Formula $L\downarrow$
+\end_inset
+
+.
+ Less hired labor implies less matches, 
+\begin_inset Formula $\mathbb{\mathcal{M}}\downarrow$
+\end_inset
+
+, which further implies an decrease in the job-finding rate, 
+\begin_inset Formula $m^{s}\downarrow$
+\end_inset
+
+, and the vacancies, 
+\begin_inset Formula $v\downarrow$
+\end_inset
+
+.
+ However, the job-filling rate increase, 
+\begin_inset Formula $m^{v}\uparrow$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+The effect on the wage is ambiguous.
+ Wages should decrease with higher output and output prices, but increase
+ as a consequence of less 
+\begin_inset Formula $\ell$
+\end_inset
+
+.
+ Overall, there is a negative effect on the wage.
+ As the return on workers is a markup over the wages, this decreases as
+ well, 
+\begin_inset Formula $r^{\ell}\downarrow$
+\end_inset
+
+.
+ The real wage, however, increases due to the lower price on consumption.
 \begin_inset Newline newline
 \end_inset
 
@@ -4945,7 +5064,10 @@ Initial effect
 \series bold
 Transition path
 \series default
-: 
+: Higher output production implies more worker.
+ Hence, the effects on the labor market is similar to the once for the productio
+n firms.
+ 
 \end_layout
 
 \end_deeper
@@ -4970,7 +5092,12 @@ reference "subsec:Block-IX.-Government"
 \series bold
 Initial effect
 \series default
-: 
+: The effect on the government budget is ambiguous.
+ On on hand, it decreases as the price on government consumption decreases.
+ On the other hand, it increases as more people becomes unemployed.
+ Hence, the government receives less in tax revenue and pays more in unemploymen
+t benefits.Overall, the effect seems to be negative, such that the government
+ lowers the tax rate.
 \end_layout
 
 \begin_layout Standard
@@ -4978,26 +5105,23 @@ Initial effect
 \series bold
 Transition path
 \series default
-: 
+: The government budget adjusts, once the tax rate is lowered.
+ Additionally, there is an effect stemming from the converges of the variables
+ in the budget, i.e.
+ the price on government consumption and the employment/unemployment rates.
+ 
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
 
 \series bold
-Effect on Foreign Economy and Prices
+Effect on Foreign Economy
 \series default
  (see 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Block-VII.-Foreign"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VI.-Repacking"
 
 \end_inset
 
@@ -5010,7 +5134,16 @@ reference "subsec:Block-VI.-Repacking"
 \series bold
 Initial effect
 \series default
-: 
+: The price on exports decreases initially, which mechanically implies more
+ export, 
+\begin_inset Formula $X\uparrow$
+\end_inset
+
+, and less import, 
+\begin_inset Formula $M\downarrow$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -5018,7 +5151,7 @@ Initial effect
 \series bold
 Transition path
 \series default
-: 
+: The export converges as the price on export converges.
 \end_layout
 
 \end_deeper
