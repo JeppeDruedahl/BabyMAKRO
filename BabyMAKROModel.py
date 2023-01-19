@@ -57,6 +57,7 @@ class BabyMAKROModelClass(EconModelClass):
             'P_M_X',
             'Gamma',
             'G',
+            'r_hh',
         ]
         
         # unknowns
@@ -134,6 +135,7 @@ class BabyMAKROModelClass(EconModelClass):
             'pi_hh',
             'r_ell',
             'r_K',
+            'r_hh',
             'real_W',
             'real_r_hh',
             'S',
@@ -225,7 +227,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.sigma = 2.0 # CRRA coefficient
         par.mu_Aq = 100 # weight on bequest motive
 
-        par.r_hh = 0.04*np.ones(par.T) # nominal return rate
+        par.r_hh = 0.04 # nominal return rate
         par.W_U = 0.80 # unemployment benefits (rel. to ss.W)
         par.W_R = 0.50 # retirement benefits (rel. to ss.W)
 

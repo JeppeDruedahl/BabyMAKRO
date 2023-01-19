@@ -2607,7 +2607,7 @@ Post-tax retirement benefits,
 status open
 
 \begin_layout Plain Layout
-Man kunne også define antal pensionister som N_a-(L_a,t+U_a,t).
+Man kunne også definere antal pensionister som N_a-(L_a,t+U_a,t).
  Ved at dividere med N_a får man 1-(L_a,t+U_a,t)/N_a, hvilket kunne bruges
  i stedet for indikator funktionen.
 \end_layout
@@ -4769,14 +4769,259 @@ Transition path
  As always, the Ricardian households foresee this increase in income, why
  they consumption smooth by lending initially.
  This implies the assets of the households decreases for the first periods,
- where after it follows  .
+ where after it follows .
 \end_layout
 
 \end_deeper
 \begin_layout Standard
-Shock to interest rate (r):
+Shock to interest rate (
+\begin_inset Formula $r^{hh}$
+\end_inset
+
+):
 \end_layout
 
+\begin_layout Itemize
+
+\series bold
+Effect on Consumption
+\series default
+ (see
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-X.-Households"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: Initially, there is a shock to the interest rate, 
+\begin_inset Formula $r^{hh}\uparrow$
+\end_inset
+
+.
+ This has two effects on the Ricardian households' savings - namely an income
+ and a substitution effect.
+ The income effect is an increase return on savings already held by the
+ households.
+ As such, they can reach the same savings level even if they decrease future
+ savings.
+ Overall, this income effect implies that the consumption would initially
+ increase.
+ The substitution effect is that the interest rate for future savings are
+ higher.
+ This makes it more attractive to build up savings, which implies an initial
+ drop in consumption.
+ Overall, the substitution effect seems to be dominant as consumption for
+ the Ricardian households initially decreases, 
+\begin_inset Formula $C^{R}\downarrow$
+\end_inset
+
+, and savings increases, 
+\begin_inset Formula $A\uparrow$
+\end_inset
+
+.
+ A lower demand for consumption drives down the price on consumption 
+\begin_inset Formula $P^{C}\downarrow$
+\end_inset
+
+, such that the Hands-to-Mouth households can afford more consumption, 
+\begin_inset Formula $C^{HtM}\uparrow$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on the Production firms, the Phillips-Curve and Investments
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-III.-Production"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-IV.-Phillips"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VIII.-Capital"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on the Labor agency, Labor search & match and wage
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-I.-Households"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-II.-Labor"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-V.-Bargaining"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on the Government
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-IX.-Government"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on Foreign Economy and Prices
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VII.-Foreign"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VI.-Repacking"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Transition path
+\series default
+: 
+\end_layout
+
+\end_deeper
 \begin_layout Section
 Status report
 \begin_inset CommandInset label
