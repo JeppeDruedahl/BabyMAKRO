@@ -231,28 +231,37 @@ def phillips_curve(par,ini,ss,sol):
 def bargaining(par,ini,ss,sol):
 
     # inputs
-    ell = sol.ell
-    Gamma = sol.Gamma
     P_Y = sol.P_Y
-    W = sol.W
-    Y = sol.Y
 
     # outputs
-    W_obar = sol.W_obar
-    W_ubar = sol.W_ubar
-    W_ast = sol.W_ast
+    W = sol.W
 
-    # targets
-    bargaining_cond = sol.bargaining_cond
+    real_wage_ss = ss.W/ss.P_Y
+    W[:] = real_wage_ss*P_Y
 
-    # evaluations
-    W_lag = lag(ini.W,W)
-    W_obar = P_Y*( (1-par.mu_K)*Gamma**(par.sigma_Y-1)*Y/ell )**(1/par.sigma_Y)
-    W_ubar = par.W_U
+    # # inputs
+    # ell = sol.ell
+    # Gamma = sol.Gamma
+    # P_Y = sol.P_Y
+    # W = sol.W
+    # Y = sol.Y
 
-    W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
+    # # outputs
+    # W_obar = sol.W_obar
+    # W_ubar = sol.W_ubar
+    # W_ast = sol.W_ast
 
-    bargaining_cond[:] = W - (par.gamma_W*W_lag + (1-par.gamma_W)*W_ast)
+    # # targets
+    # bargaining_cond = sol.bargaining_cond
+
+    # # evaluations
+    # W_lag = lag(ini.W,W)
+    # W_obar = P_Y*( (1-par.mu_K)*Gamma**(par.sigma_Y-1)*Y/ell )**(1/par.sigma_Y)
+    # W_ubar = par.W_U
+
+    # W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
+
+    # bargaining_cond[:] = W - (par.gamma_W*W_lag + (1-par.gamma_W)*W_ast)
 
 
     
@@ -359,12 +368,12 @@ def government(par,ini,ss,sol):
         B_tilde = B_lag + expenditure - ss.tau*taxbase
         tau_tilde = ss.tau + par.epsilon_B*(B_tilde-ss.B)/taxbase
 
-        omega = 3*((t-par.t_b)/par.delta_B)**2 - 2*((t-par.t_b)/par.delta_B)**3
         if t < par.t_b:
             tau[t] = ss.tau
-        elif t > par.t_b + par.delta_B:
+        elif t >= par.t_b + par.delta_B:
             tau[t] = tau_tilde
         else:
+            omega = 3*((t-par.t_b)/par.delta_B)**2 - 2*((t-par.t_b)/par.delta_B)**3
             tau[t] = (1-omega)*ss.tau+omega*tau_tilde
         
         B[t] = B_lag + expenditure - tau[t]*taxbase

@@ -31,11 +31,11 @@ class BabyMAKROModelClass(EconModelClass):
 
         # b. blocks
         self.blocks = [
+            'bargaining',
             'search_and_match',
             'labor_agency',
             'production_firm',
             'phillips_curve',
-            'bargaining',
             'repacking_firms_prices',
             'foreign_economy',
             'capital_agency',
@@ -67,7 +67,6 @@ class BabyMAKROModelClass(EconModelClass):
             'K',
             'L',
             'r_K',
-            'W',
             'P_Y',
         ]
 
@@ -75,7 +74,6 @@ class BabyMAKROModelClass(EconModelClass):
         self.targets = [
             'A_R_ini_error',
             'Aq_diff',
-            'bargaining_cond',
             'FOC_capital_agency',
             'FOC_K_ell',
             'mkt_clearing',

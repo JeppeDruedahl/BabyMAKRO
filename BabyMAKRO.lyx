@@ -211,7 +211,7 @@ Jeppe Druedahl
 \end_layout
 
 \begin_layout Abstract
-This note outlines a simplified, 
+This note outlines a simplified 
 \begin_inset Quotes ald
 \end_inset
 
@@ -219,7 +219,7 @@ baby
 \begin_inset Quotes ard
 \end_inset
 
-, version of the MAKRO model used by the Danish Ministry of Finance.
+ version of the MAKRO model used by the Danish Ministry of Finance.
  The model is for a small open economy with a fixed exchange and overlapping
  generations.
  The model have perfect foresight, but is full of imperfections due to e.g.
@@ -244,12 +244,13 @@ literal "false"
 \end_inset
 
 ) and the model is thus relevant for further academic studies.
- The similarity to the grown-up MAKRO modelmake it relevant for potential
+ The similarity to the grown-up MAKRO model make it relevant for potential
  future job tasks and the public debate.
 \end_layout
 
 \begin_layout Abstract
-The note concludes with a status report.
+The note concludes with a status report on the continuing development of
+ the model.
 \end_layout
 
 \begin_layout Standard
@@ -378,7 +379,7 @@ Households
 \end_inset
 
  and the population and demographic structure is constant.
- Households exogenously search for jobs and supply labor, receives inheritances
+ Households exogenously search for jobs and supply labor, receive inheritances
  and choose consumption and savings to get utility from consumption and
  bequests.
 \end_layout
@@ -472,7 +473,7 @@ perfect foresight
  It can be relevant to introduce model elements, which proxy for the effects
  of risks.
  Utility-of-wealth can e.g.
- proxy for the precautionary saving motive.
+ proxy for a precautionary saving motive.
 \end_layout
 
 \begin_layout Subsection
@@ -592,7 +593,15 @@ targets
  Each block can use the unknown variables and output variables of previous
  blocks as input variables.
  In the end we collect all the targets.
- The number of unknown variables must equal the number of target variables.
+ The 
+\emph on
+number of unknown variables
+\emph default
+ must equal the 
+\emph on
+number of target variables
+\emph default
+.
 \end_layout
 
 \begin_layout Standard
@@ -615,7 +624,11 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-The block structure and ordering is not unique.
+The block structure and ordering is 
+\emph on
+not
+\emph default
+ unique.
  If a different set of unknowns is chosen, a different ordering of blocks
  must also be chosen.
  If an additional variable is considered an 
@@ -739,6 +752,10 @@ P & =\frac{1}{\Gamma}\left(\mu_{i}P_{i}^{1-\sigma}+\mu_{j}P_{j}^{1-\sigma}\right
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Section
 Blocks
 \begin_inset CommandInset label
 LatexCommand label
@@ -766,6 +783,39 @@ The
 exogenous
 \emph default
  variables are:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Gamma_{t}$
+\end_inset
+
+, technology
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $G_{t}$
+\end_inset
+
+, public spending
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\chi_{t}$
+\end_inset
+
+, 
+\emph on
+foreign
+\emph default
+ demand shifter (
+\begin_inset Quotes ald
+\end_inset
+
+market size
+\begin_inset Quotes ard
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Enumerate
@@ -974,31 +1024,6 @@ foreign
  price level
 \end_layout
 
-\begin_layout Enumerate
-\begin_inset Formula $\chi_{t}$
-\end_inset
-
-, 
-\emph on
-foreign
-\emph default
- demand shifter
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $G_{t}$
-\end_inset
-
-, public spending
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $\Gamma_{t}$
-\end_inset
-
-, technology
-\end_layout
-
 \begin_layout Subsection
 Unknown variables
 \begin_inset CommandInset label
@@ -1081,7 +1106,7 @@ The chosen
 \begin_inset Formula $P_{t}^{Y}$
 \end_inset
 
-, price set in Phillips-curve (
+, price of domestic output (
 \begin_inset Formula $T$
 \end_inset
 
@@ -1150,19 +1175,19 @@ The age-specific number of household is
 \begin_layout Standard
 The demographic structure and population is then given by
 \begin_inset Formula 
-\begin{align*}
+\begin{align}
 N_{a} & =\begin{cases}
 1 & \text{if }a=0\\
 (1-\zeta_{a-1})N_{a-1} & \text{if }a>0
-\end{cases}\\
+\end{cases}\label{eq:Na}\\
 \zeta_{a} & =\begin{cases}
-0 & \text{if }a<\#_{work}\\
-\left(\frac{a+1-\#_{work}}{\#-\#_{work}}\right)^{\varsigma} & \text{if }a<\#-1\\
+0 & \text{if }a<\#_{\text{work}}\\
+\left(\frac{a+1-\#_{\text{work}}}{\#-\#_{\text{work}}}\right)^{\varsigma} & \text{if }a<\#-1\\
 1 & \text{if }a=\#-1
-\end{cases}\\
-N & =\sum_{a=0}^{\#-1}N_{a}\\
-N^{work} & =\sum_{a=0}^{\#_{\text{work}}-1}N_{a}
-\end{align*}
+\end{cases}\label{eq:zeta_a}\\
+N & =\sum_{a=0}^{\#-1}N_{a}\label{eq:N}\\
+N_{\text{work}} & =\sum_{a=0}^{\#_{\text{work}}-1}N_{a}\label{eq:Nwork}
+\end{align}
 
 \end_inset
 
@@ -1202,10 +1227,10 @@ The quantity of searchers is
 \begin{align*}
 S_{a,t} & =\begin{cases}
 1 & \text{if }a=0\\
-(1-\zeta_{a-1})\left[(N_{a-1}-L_{a-1,t-1})+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<\#_{work}\\
-0 & \text{if }a\geq\#_{work}
+(1-\zeta_{a-1})\left[(N_{a-1}-L_{a-1,t-1})+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
 \end{cases}\\
-S_{t} & =\sum_{a}S_{a,t}.
+S_{t} & =\sum_{a}S_{a,t}
 \end{align*}
 
 \end_inset
@@ -1215,15 +1240,12 @@ The quantity of households with a job
 before matching
 \emph default
  is
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
 \underline{L}_{a,t} & =\begin{cases}
 0 & \text{if }a=0\\
-(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<\#_{work}\\
-0 & \text{if }a\geq\#_{work}
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
 \end{cases}\\
 \underline{L}_{t} & =\sum_{a}\underline{L}_{a,t}.
 \end{align*}
@@ -1264,14 +1286,11 @@ where
 \end_inset
 
  is the efficiency of vacancies.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
 status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Formula $\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=v_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}\Leftrightarrow v_{t}=\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}})^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}$
+\begin_inset Formula $\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=v_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\Leftrightarrow v_{t}=\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}$
 \end_inset
 
 
@@ -1330,7 +1349,7 @@ This implies that the number of unemployed is
 \begin_inset Formula 
 \begin{align*}
 U_{a,t} & =\begin{cases}
-N_{a}-L_{a,t} & \text{if }a<\#_{work}\\
+N_{a}-L_{a,t} & \text{if }a<\#_{\text{work}}\\
 0 & \text{if }a\geq\#_{\text{work}}
 \end{cases}
 \end{align*}
@@ -1427,13 +1446,13 @@ Outputs:
 \begin{align}
 S_{a,t} & =\begin{cases}
 1 & \text{if }a=0\\
-(1-\zeta_{a-1})\left[(N_{a-1}-L_{a-1,t-1})+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<\#_{work}\\
-0 & \text{if }a\geq\#_{work}
+(1-\zeta_{a-1})\left[(N_{a-1}-L_{a-1,t-1})+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
 \end{cases}\label{eq:S_a}\\
 \underline{L}_{a,t} & =\begin{cases}
 0 & \text{if }a=0\\
-(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<\#_{work}\\
-0 & \text{if }a\geq\#_{work}
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
 \end{cases}\label{eq:Lubar_a}\\
 S_{t} & =\sum_{a=0}^{\#-1}S_{a,t}.\label{eq:S}\\
 \underline{L}_{t} & =\sum_{a=0}^{\#-1}\underline{L}_{a,t}.\label{eq:L_ubar}\\
@@ -1550,7 +1569,7 @@ Labor follows the law-of-motion
 The labor agency problem then is:
 \begin_inset Formula 
 \begin{align*}
-V_{0}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}\right]\\
+V_{0}^{\text{labor}}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}\right]\\
  & \text{s.t.}\\
 v_{t} & =\frac{L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}}{m_{t}^{v}}\\
 \ell_{t} & =L_{t}-\kappa^{L}v_{t}.
@@ -1719,6 +1738,11 @@ The production firms use capital,
 
 .
  The firms are price takers in all markets and free entry implies zero profits.
+ The output price is denoted 
+\begin_inset Formula $P_{t}^{Y,0}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1790,9 +1814,8 @@ P_{t}^{Y,0} & =\frac{1}{\Gamma}\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}
 
 \series bold
 Targets:
-\end_layout
+\series default
 
-\begin_layout Standard
 \begin_inset Formula 
 \begin{align}
 \frac{K_{t-1}}{\ell_{t}} & =\frac{\mu_{K}}{1-\mu_{K}}\left(\frac{r_{t}^{\ell}}{r_{t}^{K}}\right)^{\sigma^{Y}}.\label{eq:FOC_K_ell}
@@ -1824,7 +1847,7 @@ name "subsec:Block-IV.-Phillips"
 \end_layout
 
 \begin_layout Standard
-The final price, 
+The final output price, 
 \begin_inset Formula $P_{t}^{Y}$
 \end_inset
 
@@ -1844,12 +1867,9 @@ The final price,
 \end_inset
 
 , to change them.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-V_{t}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-g_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}\\
+V_{t}^{\text{intermediary}}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-g_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}^{\text{intermediary}}\\
  & \text{s.t.}\\
 g_{t} & =\frac{\gamma}{2}\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]^{2}P_{t}^{Y}Y_{t}\\
 y_{t} & =\left(\frac{p_{t}^{Y}}{P_{t}^{Y}}\right)^{-\sigma_{D}}Y_{t}
@@ -1885,7 +1905,7 @@ p_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\f
 \end_layout
 
 \begin_layout Standard
-Using the first order condition we get
+Using the FOC and symmetry across firms, we get
 \end_layout
 
 \begin_layout Itemize
@@ -1906,6 +1926,18 @@ Outputs:
 \end_inset
 
 
+\begin_inset Formula 
+\begin{align*}
+P_{t}^{Y}= & (1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}\\
+ & +\frac{2\eta}{1+r^{\text{firm}}}\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\\
+\\
+ & \theta\equiv\frac{1}{\sigma_{D}-1}\\
+ & \eta\equiv\theta\gamma
+\end{align*}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1915,7 +1947,7 @@ p_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\f
 p_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\frac{p_{t}^{Y}}{y_{t}}\left(\gamma\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]\left(\frac{1/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}\right)P_{t}^{Y}Y_{t}+\frac{1}{1+r^{\text{firm}}}\gamma\left[\frac{p_{t+1}^{Y}/p_{t}^{Y}}{p_{t}^{Y}/p_{t-1}^{Y}}-1\right]2\left(\frac{p_{t+1}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}\right)P_{t+1}^{Y}Y_{t+1}\right)\\
 P_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\left(\gamma\left[\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right]\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}\right)P_{t}^{Y}+\frac{2}{1+r^{\text{firm}}}\gamma\left[\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right]\left(\frac{P_{t+1}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}\right)P_{t+1}^{Y}\frac{Y_{t+1}}{Y_{t}}\right)\\
 P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}+\frac{2}{1+r^{\text{firm}}}\eta\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\\
-\text{where} & \theta=\frac{1}{\sigma_{D}-1}\wedge\eta=\theta\gamma
+\text{where} & \theta=\frac{1}{\sigma_{D}-1}\wedge
 \end{align*}
 
 \end_inset
@@ -1927,9 +1959,8 @@ P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1
 
 \series bold
 Targets:
-\end_layout
+\series default
 
-\begin_layout Standard
 \begin_inset Formula 
 \begin{align}
 P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}+\frac{2}{1+r^{\text{firm}}}\eta\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\label{eq:Phillips}
@@ -1973,21 +2004,6 @@ The target wage,
 
 , is again a weighted average of the past wage and the current target wage
  to create a real rigidity.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Det ser ikke ud til at P^Y har en stor impact mere.
- Der er en crowding-out effekt mellem lønnen W, og afkastet på arbejde,
- r^ell
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -2279,7 +2295,7 @@ The capital agency firm buys investment goods,
  The capital agency takes prices as given, and its problem thus is:
 \begin_inset Formula 
 \begin{align*}
-V_{0} & \left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}\left(\iota_{t}+\Psi(\iota_{t},K_{t-1})\right)\right]\\
+V_{0}^{\text{capital}}\left(K_{t-1}\right) & =\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}\left(\iota_{t}+\Psi(\iota_{t},K_{t-1})\right)\right]\\
  & \text{s.t.}\\
 I_{t} & =\iota_{t}+\Psi(\iota_{t},K_{t-1})\\
 K_{t} & =(1-\delta^{K})K_{t-1}+\iota_{t}.
@@ -2287,12 +2303,19 @@ K_{t} & =(1-\delta^{K})K_{t-1}+\iota_{t}.
 
 \end_inset
 
-We choose
+We choose the functional form
+\begin_inset Formula 
+\[
+\Psi(\iota_{t},K_{t-1})=\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)^{2}K_{t-1},
+\]
+
+\end_inset
+
+implying
 \begin_inset Formula 
 \begin{align*}
-\Psi(\iota_{t},K_{t-1}) & =\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)^{2}K_{t-1}\\
 \Psi_{\iota}(\iota_{t},K_{t-1}) & =\Psi_{0}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)\\
-\Psi_{K}(\iota_{t},K_{t-1}) & =\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)^{2}-\Psi_{0}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)\frac{\iota_{t}}{K_{t-1}}
+\Psi_{K}(\iota_{t},K_{t-1}) & =\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)^{2}-\Psi_{0}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)\frac{\iota_{t}}{K_{t-1}}.
 \end{align*}
 
 \end_inset
@@ -2354,7 +2377,7 @@ status collapsed
 We have:
 \begin_inset Formula 
 \[
-V_{0}\left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}\left(\iota_{t}+\Psi\left(\iota_{t},K_{t-1}\right)\right)\right]
+V_{0}^{\text{capital}}\left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}\left(\iota_{t}+\Psi\left(\iota_{t},K_{t-1}\right)\right)\right]
 \]
 
 \end_inset
@@ -2531,15 +2554,15 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-\tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{ss})W_{U}W_{ss}U_{t}+(1-\tau_{ss})W_{R}W_{ss}(N_{t}-N_{t}^{work})-\tau_{ss}W_{t}L_{t}\nonumber \\
-\tilde{\tau}_{t} & =\tau_{ss}+\varepsilon_{B}\frac{\tilde{B}_{t}-B_{ss}}{W_{t}L_{t}+W_{U}W_{ss}U_{t}+W_{R}W_{ss}(N_{t}-N_{t}^{work})}\nonumber \\
+\tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{ss})W_{U}W_{ss}U_{t}+(1-\tau_{ss})W_{R}W_{ss}(N_{t}-N_{\text{work}})-\tau_{ss}W_{t}L_{t}\nonumber \\
+\tilde{\tau}_{t} & =\tau_{ss}+\varepsilon_{B}\frac{\tilde{B}_{t}-B_{ss}}{W_{t}L_{t}+W_{U}W_{ss}U_{t}+W_{R}W_{ss}(N_{t}-N_{\text{work}})}\nonumber \\
 \tau_{t} & =\begin{cases}
 \tau_{ss} & \text{if }t<t_{B}\\
 (1-\omega_{t})\tau_{ss}+\omega_{t}\tilde{\tau}_{t} & \text{if }t\in[t_{B,}t_{B}+\Delta_{B}]\\
 \tilde{\tau}_{t} & \text{if }t>t_{B}+\Delta_{B}
 \end{cases}\label{eq:tau}\\
 \omega_{t} & =3\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{2}-2\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{3}\in(0,1)\nonumber \\
-B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t}\label{eq:B}
+B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{\text{work}})-\tau_{t}W_{t}L_{t}\label{eq:B}
 \end{align}
 
 \end_inset
@@ -2599,19 +2622,7 @@ Post-tax unemployment benefits,
 
 \begin_layout Enumerate
 Post-tax retirement benefits, 
-\begin_inset Formula $\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }$
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Man kunne også definere antal pensionister som N_a-(L_a,t+U_a,t).
- Ved at dividere med N_a får man 1-(L_a,t+U_a,t)/N_a, hvilket kunne bruges
- i stedet for indikator funktionen.
-\end_layout
-
+\begin_inset Formula $\left(1-\tau_{t}\right)W^{R}W_{ss}\frac{N_{a}-(L_{a,t}+U_{a,t})}{N_{a}}$
 \end_inset
 
 
@@ -2842,7 +2853,7 @@ A_{a,t}^{\text{HtM}} & =0\label{eq:A_HtM}
 \end_layout
 
 \begin_layout Standard
-For each birthcohort 
+For each birth cohort 
 \begin_inset Formula $t_{0}\in\{-\#+1,-\#+2,\dots,T-1\}$
 \end_inset
 
@@ -2872,29 +2883,6 @@ C_{a,t}^{R} & =\begin{cases}
 \end{cases}\\
 A_{a-1,t-1}^{R} & =\frac{A_{a,t}^{R}-\text{inc}_{a,t}+P_{t}^{C}C_{a,t}^{R}}{1+r^{hh}}
 \end{align*}
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-WIP, Write out the partial derivatives
-\begin_inset Formula 
-\begin{align*}
-WIP & I\\
-C_{a,t}^{R} & =\begin{cases}
-\left(\zeta_{a}\mu^{A^{q}}\left(\frac{A_{t}^{\text{death}}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
-\left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
-\left(\beta(1-\zeta_{a})\frac{1+r^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
-\end{cases}
-\end{align*}
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
@@ -3304,17 +3292,17 @@ The exogenous labor supply and search-and-matching imply
 \begin{align*}
 S_{a,ss} & =\begin{cases}
 1 & \text{if }a=0\\
-(1-\zeta_{a-1})(N_{a-1}-L_{a-1,ss})+\delta_{a}^{L}L_{a-1,ss} & \text{if }a<\#_{work}\\
+(1-\zeta_{a-1})(N_{a-1}-L_{a-1,ss})+\delta_{a}^{L}L_{a-1,ss} & \text{if }a<\#_{\text{work}}\\
 0 & \text{else}
 \end{cases}\\
 \underline{L}_{a,ss} & =\begin{cases}
 0 & \text{if }a=0\\
-(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,ss} & \text{if }a<\#_{work}\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,ss} & \text{if }a<\#_{\text{work}}\\
 0 & \text{else}
 \end{cases}\\
 L_{a,ss} & =\underline{L}_{a,ss}+m_{ss}^{s}S_{a,ss}\\
 U_{a,ss} & =\begin{cases}
-N_{a}-L_{a,ss} & \text{if }a<\#_{work}\\
+N_{a}-L_{a,ss} & \text{if }a<\#_{\text{work}}\\
 0 & \text{else}
 \end{cases}\\
 L_{ss} & =\sum_{a}L_{a,ss}\\
@@ -3442,7 +3430,7 @@ Guess on
 \end_inset
 
 .
- Find the Ricardian housholds consumption and assets backwards.
+ Find the consumption of Ricardian households and their assets backwards.
  
 \begin_inset Formula 
 \begin{align*}
@@ -3515,26 +3503,27 @@ W_{ss}^{\ast} & =W_{ss}\\
 
 \end_layout
 
-\begin_layout Section
-Transition
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Transition"
-
-\end_inset
-
-
+\begin_layout Subsection
+Aggregates
 \end_layout
 
 \begin_layout Standard
-Working in progress
+See 0 - steady state - aggregates.ipynb.
 \end_layout
 
 \begin_layout Subsection
-Transition path
+Households
+\end_layout
+
+\begin_layout Standard
+See 0 - steady state - households.ipynb.
+\end_layout
+
+\begin_layout Section
+Shocks
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:Transition-path"
+name "sec:Shocks"
 
 \end_inset
 
@@ -3542,17 +3531,19 @@ name "subsec:Transition-path"
 \end_layout
 
 \begin_layout Standard
-We consider an economy in steady state.
- Next, we shock one of the exogenous variables and see what happens to all
- other variables as the economy converges towards its new steady state.
- Let us consider a shock to the Government consumption.
- 
+In this section, we consider a number of shocks to central exogenous variables
+ and analyze what happens to all other variables and the convergence back
+ to steady state.
+\end_layout
+
+\begin_layout Subsection
+Government spending shock
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-Effect on the Government
+Effect on the government
 \series default
  (see 
 \begin_inset CommandInset ref
@@ -3570,11 +3561,11 @@ reference "subsec:Block-IX.-Government"
 \series bold
 Initial effect
 \series default
-: The Government increases consumption, 
+: The government increases real consumption, 
 \begin_inset Formula $G\uparrow$
 \end_inset
 
-, which implies an increase in the government budget, 
+, which implies an increase in the government debt, 
 \begin_inset Formula $B\uparrow$
 \end_inset
 
@@ -3596,7 +3587,7 @@ Initial effect
 \begin_inset Formula $Y\uparrow$
 \end_inset
 
-, and/or higher import, 
+, and higher imports, 
 \begin_inset Formula $M\uparrow$
 \end_inset
 
@@ -3608,9 +3599,15 @@ Initial effect
 \series bold
 Transition path
 \series default
-: Government consumption decreases as a consequences of the higher prices,
- which makes both consumption and prices converges towards their steady
- state levels.
+: Government consumption decreases as per assumption.
+ The debt continue to grow due to interest payments payments and high real
+ and nominal consumption.
+ This is eventually reversed once the tax begin begin to 
+\end_layout
+
+\begin_layout Standard
+as a consequences of the higher prices, which makes both consumption and
+ prices converges towards their steady state levels.
  The budget continues to grow due to interest payment and the high consumption/p
 rices until the new and higher tax-rate is implemented.
  It can be noted that the effects on the government budget stemming from
@@ -3621,7 +3618,7 @@ rices until the new and higher tax-rate is implemented.
 \begin_layout Itemize
 
 \series bold
-Effect on the Production firms, the Phillips-Curve and Investments
+Effect on the production firms, the phillips-Curve and investments
 \series default
  (see 
 \begin_inset CommandInset ref
@@ -3955,8 +3952,8 @@ Transition path
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-Now, let us consider a shock to the Productivity
+\begin_layout Subsection
+Productivity shock
 \end_layout
 
 \begin_layout Itemize
@@ -4030,7 +4027,11 @@ n inputs.
 \begin_inset Formula $r^{K}\downarrow$
 \end_inset
 
-.
+ (
+\series bold
+but technology makes it more productive, this should dominate
+\series default
+).
  Again, the effect on capital is ambiguous.
  The capital agency wants to invest more, 
 \begin_inset Formula $I\uparrow$
@@ -4347,6 +4348,18 @@ Transition path
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+Further comments:
+\end_layout
+
+\begin_layout Enumerate
+If parameter X increase when 
+\end_layout
+
+\begin_layout Subsection
+Export shock
+\end_layout
+
 \begin_layout Standard
 Shock to export (
 \begin_inset Formula $\chi,P^{F},P^{M,\bullet}$
@@ -4775,8 +4788,12 @@ Transition path
 \end_layout
 
 \end_deeper
+\begin_layout Subsection
+Interest rate shock
+\end_layout
+
 \begin_layout Standard
-Shock to interest rate (
+Here we analyze a shock to the interest rate (
 \begin_inset Formula $r^{hh}$
 \end_inset
 
@@ -5244,6 +5261,42 @@ Speed-up broyden-solver with sparse algebra.
 
 \begin_layout Enumerate
 Investigate what is done efficiently in MAKRO (GAMS+CONOPT)
+\end_layout
+
+\begin_layout Section
+\start_of_appendix
+Derivations
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Derivations"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Labor agency
+\end_layout
+
+\begin_layout Standard
+TBA
+\end_layout
+
+\begin_layout Subsection
+Capital agency
+\end_layout
+
+\begin_layout Standard
+TBA
+\end_layout
+
+\begin_layout Subsection
+Phillips Curve
+\end_layout
+
+\begin_layout Standard
+TBA
 \end_layout
 
 \end_body
