@@ -560,3 +560,21 @@ def goods_market_clearing(par,ini,ss,sol):
     M[:] = C_M + G_M + I_M + X_M 
     
     mkt_clearing[:] = Y - (C_Y + G_Y + I_Y + X_Y)
+
+
+@nb.njit
+def real_productivity(par,ini,ss,sol):
+
+    # inputs
+    r_K = sol.r_K
+    r_ell = sol.r_ell
+    P_Y = sol.P_Y
+
+    # outputs
+    real_MPK = sol.real_MPK
+    real_MPL = sol.real_MPL
+
+    #evaluations
+    real_MPK[:] = r_K/P_Y
+    real_MPL[:] = r_ell/P_Y
+    

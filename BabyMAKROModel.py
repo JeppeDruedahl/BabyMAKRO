@@ -43,6 +43,7 @@ class BabyMAKROModelClass(EconModelClass):
             'household_consumption',
             'repacking_firms_components',
             'goods_market_clearing',
+            'real_productivity',
         ]
         
         # c. variable lists
@@ -134,6 +135,8 @@ class BabyMAKROModelClass(EconModelClass):
             'r_ell',
             'r_K',
             'r_hh',
+            'real_MPK',
+            'real_MPL',
             'real_W',
             'real_r_hh',
             'S',
@@ -649,6 +652,7 @@ class BabyMAKROModelClass(EconModelClass):
         
         self.find_ss()
         self.calc_jac(do_print=True)
+        jac = self.jac
         self.set_exo_ss()
 
         for j in range(len(shocks)):
@@ -667,7 +671,7 @@ class BabyMAKROModelClass(EconModelClass):
             ss = modellist[j+1].ss
             sol = modellist[j+1].sol
             modellist[j+1].find_ss()
-            modellist[j+1].calc_jac(do_print=True)
+            modellist[j+1].jac = jac.copy()
             modellist[j+1].set_exo_ss()
 
             for i,shock in enumerate(shocks[j]):
