@@ -4340,8 +4340,8 @@ reference "subsec:Block-IX.-Government"
 Initial effect
 \series default
 : The government debt decrease unambiguously due to two effect.
- The price on government consumption decreases, and a decrease in the unemployme
-nt benefits due to more employment.
+ The price on government consumption decreases, and a decrease in benefit
+ payouts due to more employment.
  This allows the government to lower the tax rate after 
 \begin_inset Formula $t_{b}$
 \end_inset
@@ -4355,15 +4355,11 @@ nt benefits due to more employment.
 \series bold
 Transition path
 \series default
-: The debt continue to decline due to less interest payments, less nominal
- government consumption, and less unemployment benefit payouts due to a
- persistent higher employment rate, which allows the government to keeping
- the tax rate below its steady state level.
- Eventually, the unemployment rate and the price on government consumption
- converge to their steady state level.
- The government continues the lower tax rates as long as the debt is below
- its steady state, such that they both eventually converge to their steady
- state level.
+: The debt continue to decline due to less interest payments and less benefit
+ payouts due to a persistent higher employment rate, which allows the government
+ to keeping the tax rate below its steady state level.
+ Eventually, the unemployment rate converges to it steady state level, which
+ implies that the debt 
 \end_layout
 
 \end_deeper

@@ -194,7 +194,7 @@ def find_ss(model,do_print=True):
 
     if do_print: 
         print(Fonttype.HEADER + 'Production firm:' + Fonttype.END)
-        print(f'{ss.Gamma = :.2f}, {ss.Y = :.2f}, {ss.K = :.2f}')
+        print(f'{ss.P_Y_0 = :.2f}, {ss.Gamma = :.2f}, {ss.Y = :.2f}, {ss.K = :.2f}')
 
     # h. capital accumulation
     ss.iota = ss.I = par.delta_K*ss.K
@@ -218,7 +218,7 @@ def find_ss(model,do_print=True):
 
     if do_print:
         print(Fonttype.HEADER + 'Households:' + Fonttype.END)
-        print(f'{ss.Aq/par.N = :.2f}, {ss.real_W = :.2f}, {ss.C = :.2f}, {ss.A = :.2f}')
+        print(f'{ss.Aq/par.N = :.2f}, {ss.real_W = :.2f}, {ss.C = :.2f}, {ss.A = :.2f}, {ss.r_hh = :.2f}')
 
     # k. CES demand in packing firms
     ss.C_M = blocks.CES_demand(ss.P_M_C,ss.P_C,par.mu_M_C,ss.C,par.sigma_C,Gamma=1)

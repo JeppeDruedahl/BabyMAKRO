@@ -203,10 +203,12 @@ def phillips_curve(par,ini,ss,sol):
 
     # inputs
     P_Y_0 = sol.P_Y_0
-    P_Y = sol.P_Y
     Y = sol.Y
 
     # outputs
+    P_Y = sol.P_Y
+
+    # targets
     PC = sol.PC
 
     # evaluations

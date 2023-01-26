@@ -31,11 +31,11 @@ class BabyMAKROModelClass(EconModelClass):
 
         # b. blocks
         self.blocks = [
-            'bargaining',
             'search_and_match',
             'labor_agency',
             'production_firm',
             'phillips_curve',
+            'bargaining',
             'repacking_firms_prices',
             'foreign_economy',
             'capital_agency',
@@ -69,6 +69,7 @@ class BabyMAKROModelClass(EconModelClass):
             'L',
             'r_K',
             'P_Y',
+            'W',
         ]
 
         # targets
@@ -79,6 +80,7 @@ class BabyMAKROModelClass(EconModelClass):
             'FOC_K_ell',
             'mkt_clearing',
             'PC',
+            'bargaining_cond',
         ]
 
         # all non-household variables
@@ -168,12 +170,13 @@ class BabyMAKROModelClass(EconModelClass):
             'U_a',
         ]
 
-    def set_macro(self,constant_real_wage=False):
+    def set_constant_wage(self,constant_real_wage=True):
 
         if constant_real_wage==True:
             
             #blocks
             self.blocks = [
+            'bargaining',
             'search_and_match',
             'labor_agency',
             'production_firm',
@@ -185,6 +188,7 @@ class BabyMAKROModelClass(EconModelClass):
             'household_consumption',
             'repacking_firms_components',
             'goods_market_clearing',
+            'real_productivity',
             ]
 
             # targets
@@ -286,17 +290,8 @@ class BabyMAKROModelClass(EconModelClass):
         par.m_v_ss = 0.75 # job-filling rate
         par.B_ss = 0.0 # government debt
 
-    def allocate(self):
-        """ allocate model """
-
+    def mortality(self, zeta_pow):
         par = self.par
-        ini = self.ini
-        ss = self.ss
-        sol = self.sol
-
-        # a. demographics
-
-        # mortality
         par.zeta_a = np.zeros(par.life_span)
         par.zeta_a[-1] = 1.0 # everybody dies in last period
 
@@ -304,9 +299,10 @@ class BabyMAKROModelClass(EconModelClass):
             if a < par.work_life_span: # no death before retirement
                 par.zeta_a[a] = 0.0
             else:
-                par.zeta_a[a] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**par.zeta_pow
-
-        # demographic structure    
+                par.zeta_a[a] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**zeta_pow
+    
+    def demographic_structure(self,delta_L_a_fac):
+        par = self.par
         par.N_a = np.zeros(par.life_span)
         par.N_a[0] = 1.0 # normalization
              
@@ -317,7 +313,23 @@ class BabyMAKROModelClass(EconModelClass):
         par.N_work = np.sum(par.N_a[:par.work_life_span])
 
         # job-separation
-        par.delta_L_a = par.delta_L_a_fac*np.ones(par.work_life_span)
+        par.delta_L_a = delta_L_a_fac*np.ones(par.work_life_span)
+
+    def allocate(self):
+        """ allocate model """
+
+        par = self.par
+        ini = self.ini
+        ss = self.ss
+        sol = self.sol
+
+        # a. demographics
+        
+        # mortality
+        self.mortality(par.zeta_pow)
+
+        # demographic structure
+        self.demographic_structure(par.delta_L_a_fac)    
 
         # b. non-household variables
         for varname in self.varlist:
