@@ -3706,7 +3706,7 @@ Transition path
 : Government consumption decreases as per assumption.
  The debt continue to grow due to interest payments and high real and nominal
  consumption.
- This is eventually reversed once the tax begin begin to 
+ This is eventually reversed once the tax begin to 
 \end_layout
 
 \begin_layout Standard
@@ -4057,7 +4057,7 @@ Transition path
 
 \end_deeper
 \begin_layout Subsection
-Productivity shock
+Productivity shock - with constant real wage
 \end_layout
 
 \begin_layout Itemize
@@ -4155,18 +4155,37 @@ As capital is fixed for the production firms, they increase the labor,
 \series bold
 Transition path
 \series default
-: The productivity converges towards steady state after its initial shock.
- As such, the production and the marginal cost and output prices converge
- as well.
- Higher output prices induce a higher price on investment, hence less investment
-s.
- As investments are above its steady state level, capital increases for
- a while after which it converges towards it steady state.
- The return on capital has a large increase in period 1 which is caused
- by a increase in the labor force.
- Hereafter, the return on capital follows the inverse shape of the capital
- adjustment.
+: The productivity decreases as per assumption.
+ Due to the sticky nature of the output prices, these decrease for an additional
+ year.
+ The production increases to satisfy the increasing demand stemming from
+ lower output prices.
+ Again, the capital is fixed, and more labor is hired.
+ A high level of productivity more labor both implies an increase the real
+ marginal product of capital, and a high level of productivity and capital
+ stock implies an increase in the real marginal product of labor.
+ The firms want more capital as the real marginal product has increased,
  
+\begin_inset Formula $K\uparrow$
+\end_inset
+
+, which is achieve by investing more, 
+\begin_inset Formula $I\uparrow$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+After year 1, both the marginal cost prices and the output prices continuously
+ grow towards their steady state level.
+ The declining productivity implies decreasing real returns on both capital
+ and labor.
+ For the first 10 years, where the real return on capital is relatively
+ high, the capital increases.
+ Hereafter, capital continuously decreases.
+ Production and labor continuously decreases, as the technology shock wears
+ out.
 \end_layout
 
 \end_deeper
@@ -4208,45 +4227,57 @@ reference "subsec:Block-V.-Bargaining"
 \series bold
 Initial effect
 \series default
-: The labor agency hires less labor, 
-\begin_inset Formula $L\downarrow$
+: The labor agency hires more labor, 
+\begin_inset Formula $L\uparrow$
 \end_inset
 
-, following the decrease in demand for 
+, following the increase in demand for 
 \begin_inset Formula $\ell$
 \end_inset
 
 .
- Less labor implies less matches, 
-\begin_inset Formula $\mathbb{\mathcal{M}}\downarrow$
+ More labor implies more matches, 
+\begin_inset Formula $\mathbb{\mathcal{M}}\uparrow$
 \end_inset
 
-, which further implies a decrease in the job-finding rate, 
-\begin_inset Formula $m^{s}\downarrow$
+, which further implies an increase in the job-finding rate, 
+\begin_inset Formula $m^{s}\uparrow$
 \end_inset
 
 , and the vacancies, 
-\begin_inset Formula $v\downarrow$
+\begin_inset Formula $v\uparrow$
 \end_inset
 
 .
- However, the job-filling rate increases, 
-\begin_inset Formula $m^{v}\uparrow$
+ However, the job-filling rate decreases, 
+\begin_inset Formula $m^{v}\downarrow$
 \end_inset
 
 .
 \begin_inset Newline newline
 \end_inset
 
-The effect on the wage is ambiguous.
- Wages should decrease with lower output prices, but increase as a consequence
- of less 
-\begin_inset Formula $\ell$
+The real wage with respect to the output price is held constants.
+ As such, the nominal wage follows the decrease in the output prices, 
+\begin_inset Formula $W\downarrow$
 \end_inset
 
- and more production.
- The real wage is unambiguous higher than the wage as consumer prices have
- decreased.
+.
+ Here, 
+\begin_inset Formula $W_{real}$
+\end_inset
+
+ is defined in terms of the consumer prices, 
+\begin_inset Formula $P^{C}$
+\end_inset
+
+.
+ As these decrease less than the output prices, there is a negative effect,
+ 
+\begin_inset Formula $W_{real}\downarrow$
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -4254,23 +4285,16 @@ The effect on the wage is ambiguous.
 \series bold
 Transition path
 \series default
-: The amount of households with a job at the start of period 1 is low, thus
- 
-\begin_inset Formula $\underline{L}\downarrow$
+: The amount of labor has a direct link to the demand for 
+\begin_inset Formula $\ell$
 \end_inset
 
- and the number of searchers increases 
-\begin_inset Formula $S\uparrow$
-\end_inset
-
-.
- Hereafter, all variables start converging towards their steady state level,
- but they overshoot due to an excess demand.
- This excess demand is caused by the government lowering the tax-rate after
- 10 periods to balance out the government budget.
- Once the tax-rate converges towards its steady state level, the excess
- demand will disappear and the variables will converges to their steady
- state levels.
+, and the transition paths between the two are similar.
+ More employment means less searchers, thus the amount of searchers is inverse
+ proportional with the amount of labor.
+ The vacancies, matches, and job-finding rate have a rapid increase in the
+ first years as a consequence of the sudden growth in employment rates.
+ Hereafter, they steadily decline.
  
 \end_layout
 
@@ -4395,41 +4419,43 @@ reference "subsec:Block-X.-Households"
 \series bold
 Initial effect
 \series default
-: There is a direct effect on consumption and exports.
- The domestic firm is more productive, thus it produces at lower prices,
- 
-\begin_inset Formula $\bullet\uparrow$
+: The domestic firm is relatively more productive than the foreign firms,
+ hence the export increases, 
+\begin_inset Formula $X\uparrow$
 \end_inset
 
- for 
-\begin_inset Formula $\bullet\in\{C,X\}$
-\end_inset
-
-.
- It can be noted, that the higher domestic productivity implies a lower
- import, 
+, and import decreases, 
 \begin_inset Formula $M\downarrow$
 \end_inset
 
 .
- For consumption, there is indirect effects as well.
-\begin_inset Newline newline
-\end_inset
-
-The income of the households is also affected through changes in labor supply
- and wages.
- As the effect on wages is ambiguous, it is not clear whether income increases
- or decreases.
- However, it is clear that the Ricardian households increase their consumption,
- as they see the lower tax rate in the future.
- Higher consumption and the fact the inflation is positive (lower real interest
- rate) imply less savings 
-\begin_inset Formula $A\downarrow$
+ The effects on consumption can be decomposed into the effects on HtM consumptio
+n and Ricardian consumption.
+ The HtM consumption follows the real income which increases due to the
+ increased productivity, 
+\begin_inset Formula $\frac{\text{inc}}{P^{C}},C^{HtM}\uparrow$
 \end_inset
 
 .
- There effect on bequest is neglectable as the households have chosen the
- savings beforehand.
+ The Ricardian households, however, consumption smooth.
+ They know that their future income will increase due to the lower tax rate,
+ thus they initially borrows, 
+\begin_inset Formula $A\downarrow$
+\end_inset
+
+, to increase consumption, 
+\begin_inset Formula $C^{R}\uparrow$
+\end_inset
+
+.
+ As both types of households increase their consumption, the total consumption
+ increases as well, 
+\begin_inset Formula $C\uparrow$
+\end_inset
+
+.
+ There effect on bequest is neglectable as the households have chosen these
+ beforehand.
 \end_layout
 
 \begin_layout Standard
@@ -4437,22 +4463,22 @@ The income of the households is also affected through changes in labor supply
 \series bold
 Transition path
 \series default
-: Export converges smoothly towards it steady state level, as the prices
- increase.
- After the initial spike in consumption, it decreases towards its steady
- state level as prices converge.
- This is especially true for the hands-to-mouth households.
- By the 10th year, the new and lower tax rate is gradually implemented which
- leads to an increase in consumption.
- The Ricardian households have foreseen this new tax rate, such that their
- consumption is more even throughout the period, but still with an increase
- in consumption once the higher tax rate is implemented.
- They consumption smooth by lowering their savings under the fixed tax rate.
- This is also beneficial as the real rate of interest is lower due to inflation.
- The bequests increase throughout the period as the consumers are better
- of due to the increased productivity.
- Once the productivity shock has vanished, the bequest converges towards
- its steady state level.
+: Again, there is an initial effect the first year due to the sticky nature
+ of the output prices.
+ As such, export increases further after one year, after which it smoothly
+ declines towards its steady state level.
+ Likewise, there is an increase in the consumption after one year.
+ However, the total consumption also increases in year 2, which is driven
+ by higher real income, such that the HtM households consume more relative
+ to the decrease in the consumption of the Ricardian households.
+ The consumption remains at a relatively high level due to the lower tax
+ rate, but it eventually slowly decline towards its steady state levels.
+ The savings are determined by the consumption smoothing of the Ricardian
+ housholds.
+ They borrow for the first periods, such that the savings decrease, as they
+ know that the tax rate is decreasing.
+ Once, the real income is sufficiently high, the Ricardian household starts
+ to save more, such that the savings increase.
  
 \end_layout
 
@@ -4461,8 +4487,46 @@ Transition path
 Further comments:
 \end_layout
 
-\begin_layout Enumerate
-If parameter X increase when 
+\begin_layout Standard
+The initial of the productivity shock is affected by the stickiness of the
+ output prices, which is captured by the parameter 
+\begin_inset Formula $\eta$
+\end_inset
+
+.
+ As such, it is interesting to see the effects of different values of 
+\begin_inset Formula $\eta$
+\end_inset
+
+.
+ Such sensitivity analysis is conducted in 2 - Technology shock - Sensitivity.ipy
+nb.
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $\eta$
+\end_inset
+
+ decreases, the initial level is less sticky.
+ As such, the year 1 price adjustment effect disappears, such that the output
+ price and the marginal cost price follow the same transition path.
+ As a consequence, the full effect of the productivity affects the production
+ and the real marginal products on capital and labor.
+ Notably, the real marginal product on labor increases initially under fully
+ flexible prices.
+ 
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $\eta$
+\end_inset
+
+ increases, the initial level is more sticky.
+ As such, the price adjustment continuous until year 2, but qualitatively
+ the effects are similar to the baseline model.
+ 
 \end_layout
 
 \begin_layout Subsection

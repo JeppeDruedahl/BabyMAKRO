@@ -176,7 +176,7 @@ class BabyMAKROModelClass(EconModelClass):
             
             #blocks
             self.blocks = [
-            'bargaining',
+            'bargaining_const_wage',
             'search_and_match',
             'labor_agency',
             'production_firm',
@@ -280,8 +280,6 @@ class BabyMAKROModelClass(EconModelClass):
         # i. bargaining
         par.phi = np.nan # bargaining power of firms (determined when finding steady state)
         par.gamma_W = 0.80 # wage persistence
-        par.w_constant = 1.0 # solving for constant real wage
-        par.constant_real_wage = 0 # Option for setting the real wage to a constant
 
         # j. steady state
         par.W_ss = 1.0 # wage
@@ -593,7 +591,7 @@ class BabyMAKROModelClass(EconModelClass):
 
         fig.tight_layout(pad=1.0)
 
-    def multi_model(self,parameter,parvalues):
+    def multi_model(self,parameter,parvalues,constant_wage=True):
         """ Create multiple models with different parameters """
         
         par = self.par
@@ -603,6 +601,7 @@ class BabyMAKROModelClass(EconModelClass):
         for i in range(len(parvalues)):
             setattr(par,parameter, parvalues[i])
             modellist.append(self.copy())
+            modellist[i].set_constant_wage(constant_wage)
             modellist[i].find_ss()
             modellist[i].calc_jac(do_print=True)
         

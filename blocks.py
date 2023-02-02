@@ -230,7 +230,7 @@ def phillips_curve(par,ini,ss,sol):
     PC[:] = LHS - RHS_0 - RHS_1 - RHS_2
 
 @nb.njit
-def bargaining(par,ini,ss,sol):
+def bargaining_const_wage(par,ini,ss,sol):
 
     # inputs
     P_Y = sol.P_Y
@@ -241,29 +241,33 @@ def bargaining(par,ini,ss,sol):
     real_wage_ss = ss.W/ss.P_Y
     W[:] = real_wage_ss*P_Y
 
-    # # inputs
-    # ell = sol.ell
-    # Gamma = sol.Gamma
-    # P_Y = sol.P_Y
-    # W = sol.W
-    # Y = sol.Y
 
-    # # outputs
-    # W_obar = sol.W_obar
-    # W_ubar = sol.W_ubar
-    # W_ast = sol.W_ast
+@nb.njit
+def bargaining(par,ini,ss,sol):
 
-    # # targets
-    # bargaining_cond = sol.bargaining_cond
+    # inputs
+    ell = sol.ell
+    Gamma = sol.Gamma
+    P_Y = sol.P_Y
+    W = sol.W
+    Y = sol.Y
 
-    # # evaluations
-    # W_lag = lag(ini.W,W)
-    # W_obar = P_Y*( (1-par.mu_K)*Gamma**(par.sigma_Y-1)*Y/ell )**(1/par.sigma_Y)
-    # W_ubar = par.W_U
+    # outputs
+    W_obar = sol.W_obar
+    W_ubar = sol.W_ubar
+    W_ast = sol.W_ast
 
-    # W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
+    # targets
+    bargaining_cond = sol.bargaining_cond
 
-    # bargaining_cond[:] = W - (par.gamma_W*W_lag + (1-par.gamma_W)*W_ast)
+    # evaluations
+    W_lag = lag(ini.W,W)
+    W_obar = P_Y*( (1-par.mu_K)*Gamma**(par.sigma_Y-1)*Y/ell )**(1/par.sigma_Y)
+    W_ubar = par.W_U
+
+    W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
+
+    bargaining_cond[:] = W - (par.gamma_W*W_lag + (1-par.gamma_W)*W_ast)
 
 
     
