@@ -1920,7 +1920,8 @@ Targets
 :
 \begin_inset Formula 
 \begin{align}
-P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}+\frac{2}{1+r^{\text{firm}}}\eta\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}.\label{eq:Phillips}
+P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}\label{eq:Phillips}\\
+ & +\frac{2\eta}{1+r^{\text{firm}}}\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}.\nonumber 
 \end{align}
 
 \end_inset
@@ -3146,7 +3147,7 @@ We fix a number of variables:
 \end_layout
 
 \begin_layout Enumerate
-The nominal wage,
+The nominal wage, 
 \begin_inset Formula $W_{ss}=1$
 \end_inset
 
