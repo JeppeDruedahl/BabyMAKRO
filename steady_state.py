@@ -232,8 +232,7 @@ def find_ss(model,do_print=True):
 
     # l. market clearing
     ss.X_Y = ss.Y - (ss.C_Y + ss.G_Y + ss.I_Y) 
-    ss.chi = ss.X_Y/(1-par.mu_M_X)
-    ss.X = ss.X_Y/(1-par.mu_M_X)
+    ss.X = ss.chi = ss.X_Y/(1-par.mu_M_X)
     ss.X_M = blocks.CES_demand(ss.P_M_X,ss.P_X,par.mu_M_X,ss.X,par.sigma_X,Gamma=1)
     
     ss.M = ss.C_M + ss.G_M + ss.I_M + ss.X_M
