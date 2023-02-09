@@ -649,7 +649,7 @@ class BabyMAKROModelClass(EconModelClass):
         fig.tight_layout(pad=1.0)
 
 
-    def multi_shock_model(self,Tshock,persistence,shock1_size=0.01,shock1=[],shock2_size=0.005,shock2=[]):
+    def multi_shock_model(self,Tshock,persistence,shock1_size=0.01,shock1=[],shock2_size=0.005,shock2=[],constant_wage=True):
         """ Create multiple models with different shocks """
         
 
@@ -660,6 +660,7 @@ class BabyMAKROModelClass(EconModelClass):
         
         ss = self.ss
         sol = self.sol
+        self.set_constant_wage(constant_wage)
         
         self.find_ss()
         self.calc_jac(do_print=True)
@@ -681,6 +682,7 @@ class BabyMAKROModelClass(EconModelClass):
             modellist.append(self.copy())
             ss = modellist[j+1].ss
             sol = modellist[j+1].sol
+            modellist[j+1].set_constant_wage(constant_wage)
             modellist[j+1].find_ss()
             modellist[j+1].jac = jac.copy()
             modellist[j+1].set_exo_ss()

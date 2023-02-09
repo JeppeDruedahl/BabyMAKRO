@@ -168,14 +168,14 @@ def find_ss(model,do_print=True):
         print(f'{ss.delta_L = :.2f}, {ss.m_s = :.2f}, {ss.m_v = :.2f}, {ss.v = :.2f}')
 
     # e. capital agency FOC
-    ss.r_K = (par.r_firm + par.delta_K)*ss.P_I
+    ss.r_K = ss.real_MPK = (par.r_firm + par.delta_K)*ss.P_I
 
     if do_print: 
         print(Fonttype.HEADER + 'Capital agency FOC:' + Fonttype.END)
         print(f'{ss.r_K = :.2f}')
     
     # f. labor agency FOC
-    ss.r_ell = ss.W / (1 - par.kappa_L/ss.m_v + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
+    ss.r_ell = ss.real_MPL = ss.W / (1 - par.kappa_L/ss.m_v + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
     ss.ell = ss.L - par.kappa_L*ss.v
 
     if do_print: 
