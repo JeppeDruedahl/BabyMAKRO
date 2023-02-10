@@ -1455,7 +1455,7 @@ S_{t} & =\sum_{a=0}^{\#-1}S_{a,t}\label{eq:S}\\
 \delta_{t}^{L} & =\frac{L_{t-1}-\underline{L}_{t}}{L_{t-1}}\label{eq:delta_L}\\
 \mathbb{\mathcal{M}}_{t} & =L_{t}-\underline{L}_{t}\label{eq:curlyM}\\
 m_{t}^{s} & =\frac{\mathcal{M}_{t}}{S_{t}}\nonumber \\
-v_{t} & =\frac{1}{\nu}\left(\frac{\left(m_{t}^{s}\right)^{\frac{1}{\sigma^{m}}}S_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(m_{t}^{s}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}\label{eq:v}\\
+v_{t} & =\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}\label{eq:v}\\
 m_{t}^{v} & =\frac{\mathbb{\mathcal{M}}_{t}}{v_{t}}\label{eq:m_v}\\
 L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}\label{eq:L_a}\\
 U_{a,t} & =\begin{cases}
@@ -4764,7 +4764,11 @@ Initial effect
 \end_inset
 
 , to meet the increased demand stemming from the more export.
- As such, they must hire more workers, 
+ 
+\end_layout
+
+\begin_layout Standard
+As such, they must hire more workers, 
 \begin_inset Formula $\ell\uparrow$
 \end_inset
 

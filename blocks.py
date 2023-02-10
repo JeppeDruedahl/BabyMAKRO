@@ -234,6 +234,7 @@ def bargaining_const_wage(par,ini,ss,sol):
 
     # inputs
     P_Y = sol.P_Y
+    P_C = sol.P_C
 
     # outputs
     W = sol.W

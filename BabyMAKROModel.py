@@ -176,12 +176,12 @@ class BabyMAKROModelClass(EconModelClass):
             
             #blocks
             self.blocks = [
+            'repacking_firms_prices',
             'bargaining_const_wage',
             'search_and_match',
             'labor_agency',
             'production_firm',
             'phillips_curve',
-            'repacking_firms_prices',
             'foreign_economy',
             'capital_agency',
             'government',
