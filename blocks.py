@@ -196,7 +196,7 @@ def production_firm(par,ini,ss,sol):
     Y[:] = CES_Y(K_lag,ell,par.mu_K,par.sigma_Y,Gamma=Gamma)
     P_Y_0[:] = CES_P(r_K,r_ell,par.mu_K,par.sigma_Y,Gamma=Gamma)
 
-    FOC_K_ell[:] = K_lag/ell-par.mu_K/(1-par.mu_K)*(r_ell/r_K)**par.sigma_Y
+    FOC_K_ell[:] = K_lag/ell - par.mu_K/(1-par.mu_K)*(r_ell/r_K)**par.sigma_Y
 
 @nb.njit
 def phillips_curve(par,ini,ss,sol):
@@ -233,14 +233,13 @@ def phillips_curve(par,ini,ss,sol):
 def bargaining_const_wage(par,ini,ss,sol):
 
     # inputs
-    P_Y = sol.P_Y
     P_C = sol.P_C
 
     # outputs
     W = sol.W
 
-    real_wage_ss = ss.W/ss.P_Y
-    W[:] = real_wage_ss*P_Y
+    real_wage_ss = ss.W/ss.P_C
+    W[:] = real_wage_ss*P_C
 
 
 @nb.njit
@@ -264,7 +263,7 @@ def bargaining(par,ini,ss,sol):
     # evaluations
     W_lag = lag(ini.W,W)
     W_obar = P_Y*( (1-par.mu_K)*Gamma**(par.sigma_Y-1)*Y/ell )**(1/par.sigma_Y)
-    W_ubar = par.W_U
+    W_ubar = par.W_U*ss.W
 
     W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
 
@@ -393,6 +392,7 @@ def household_consumption(par,ini,ss,sol):
     Aq = sol.Aq
     L_a = sol.L_a
     P_C = sol.P_C
+    P_Y = sol.P_Y
     tau = sol.tau
     U_a = sol.U_a
     W = sol.W
