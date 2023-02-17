@@ -4924,39 +4924,52 @@ Initial effect
 \series default
 : As described above, the effect on the demand for labor from each shock
  channel is opposed, hence the effects on the labor markets are different.
- Here, the overall effects of both shocks are described.
-\begin_inset Newline newline
+ Here, the overall effect of both shocks are  The increase in demand for
+ 
+\begin_inset Formula $\ell$
 \end_inset
 
-Overall, demand for labor decreases, implying that the labor agency hires
- less labor, 
-\begin_inset Formula $L\downarrow$
+ implies that the labor agency hires more labor, 
+\begin_inset Formula $L\uparrow$
 \end_inset
 
 .
- Less hired labor implies less matches, 
-\begin_inset Formula $\mathbb{\mathcal{M}}\downarrow$
+ More hired labor implies more matches, 
+\begin_inset Formula $\mathbb{\mathcal{M}}\uparrow$
 \end_inset
 
-, which further implies an decrease in the job-finding rate, 
-\begin_inset Formula $m^{s}\downarrow$
+, which further implies an increase in the job-finding rate, 
+\begin_inset Formula $m^{s}\uparrow$
 \end_inset
 
 , and the vacancies, 
-\begin_inset Formula $v\downarrow$
+\begin_inset Formula $v\uparrow$
 \end_inset
 
 .
- However, the job-filling rate increases, 
-\begin_inset Formula $m^{v}\uparrow$
+ However, the job-filling rate decreases, 
+\begin_inset Formula $m^{v}\downarrow$
 \end_inset
 
 .
 \begin_inset Newline newline
 \end_inset
 
-THe real wage is set to constant, such that the nominal wage increase by
- the same amount as the consumer prices.
+The effect on the wage is ambiguous.
+ Wages should increase with higher output and output prices, but decrease
+ as a consequence of more 
+\begin_inset Formula $\ell$
+\end_inset
+
+.
+ Overall, there is a positive effect on the wage.
+ As the return on workers is a markup over the wages, this increases as
+ well, 
+\begin_inset Formula $r^{\ell}\uparrow$
+\end_inset
+
+.
+ The real wage, however, decreases due to the higher price on consumption.
 \begin_inset Newline newline
 \end_inset
 
