@@ -5146,14 +5146,6 @@ Interest rate shock
 See 1 - shock - interest rate.ipynb.
 \end_layout
 
-\begin_layout Standard
-Here we analyze a shock to the interest rate (
-\begin_inset Formula $r^{hh}$
-\end_inset
-
-):
-\end_layout
-
 \begin_layout Itemize
 
 \series bold
@@ -5175,7 +5167,7 @@ reference "subsec:Block-X.-Households"
 \series bold
 Initial effect
 \series default
-: Initially, there is a shock to the interest rate, 
+: Initially, the foreign interest increases, 
 \begin_inset Formula $r^{hh}\uparrow$
 \end_inset
 
@@ -5206,7 +5198,7 @@ Initial effect
 \begin_inset Formula $P^{C}\downarrow$
 \end_inset
 
-, such that the Hands-to-Mouth households can afford more consumption, 
+, such that the HtM households can afford more consumption, 
 \begin_inset Formula $C^{HtM}\uparrow$
 \end_inset
 
@@ -5230,21 +5222,18 @@ Initial effect
 \series bold
 Transition path
 \series default
-: After the initial drop, the Ricardians' consumption increases as they
- save less.
- Higher demand drives up prices on demand, which in isolation should make
- consumption converge towards its steady state level.
- However, higher demand also implies higher output levels and thereby higher
- employment levels.
- This has two positive effects for consumption; higher income and less tax
- payments.
- These two effects also affects the Hands-to Mouth households' consumption,
- and they imply that the total consumption is above it steady state level
- for a long period.
- Eventually, the higher prices ensures that the consumption converge back
- to its steady state level.
- The effects on savings are similar, and these are above their steady state
- level as well.
+: The foreign interest rate decreases as per assumption.
+ After the initial drop, the Ricardians' consumption increases as they need
+ to save less due to higher interest payments.
+ Higher demand for consumption drives up prices, but also implies higher
+ output levels and thereby higher employment levels.
+ Higher employment has two positive effects for consumption; higher wage
+ income compared to unemployment benefits and a lower tax rate (see Effect
+ on Government).
+ These two effects also increase the HtM households' consumption, so overall
+ the total consumption continues to grow.
+ Eventually, the decline in interest payment implies that the consumption
+ as well as the savings converge back to its steady state level.
  
 \end_layout
 
@@ -5317,13 +5306,12 @@ Initial effect
 \end_inset
 
 .
- The investments are affected by the decrease in the return on capital relative
- to the decrease in the price on investment.
- Overall, the effect is positive 
+ The investments increase, 
 \begin_inset Formula $I\uparrow$
 \end_inset
 
-.
+, as the firms foresee a higher real return on capital in the future stemming
+ from higher future demand for consumption.
  More investments implies an increase in the capital, 
 \begin_inset Formula $K\uparrow$
 \end_inset
@@ -5410,24 +5398,8 @@ Initial effect
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
-
-The effect on the wage is ambiguous.
- Wages should decrease with higher output and output prices, but increase
- as a consequence of less 
-\begin_inset Formula $\ell$
-\end_inset
-
-.
- Overall, there is a negative effect on the wage.
- As the return on workers is a markup over the wages, this decreases as
- well, 
-\begin_inset Formula $r^{\ell}\downarrow$
-\end_inset
-
-.
- The real wage, however, increases due to the lower price on consumption.
+ The real wage is held constant, thus the nominal wage follows the consumer
+ prices.
 \begin_inset Newline newline
 \end_inset
 
@@ -5435,9 +5407,11 @@ The effect on the wage is ambiguous.
 \series bold
 Transition path
 \series default
-: Higher output production implies more worker.
- Hence, the effects on the labor market is similar to the once for the productio
-n firms.
+: Higher output production implies a higher demand for workers.
+ Therefore, more labor is hired which implies more matches, a higher job-finding
+ rate, more vacancies, less searches and a lower job-filling rate.
+ Once, the excess demand diminishes so does employment rate and all variables
+ converge towards their steady state levels.
  
 \end_layout
 
