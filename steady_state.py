@@ -215,6 +215,8 @@ def find_ss(model,do_print=True):
     ss.real_W = ss.W/ss.P_C
     ss.real_r_hh = (1+ss.r_hh)/(1+ss.pi_hh)-1
     find_Aq_ss(0.0,model)
+    ss.real_inc = ss.inc/ss.P_C
+    ss.real_Aq = ss.Aq/ss.P_C
 
     if do_print:
         print(Fonttype.HEADER + 'Households:' + Fonttype.END)

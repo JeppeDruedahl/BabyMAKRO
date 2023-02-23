@@ -576,12 +576,19 @@ def real_productivity(par,ini,ss,sol):
     r_K = sol.r_K
     r_ell = sol.r_ell
     P_Y = sol.P_Y
+    P_C = sol.P_C
+    inc = sol.inc
+    Aq = sol.Aq
 
     # outputs
     real_MPK = sol.real_MPK
     real_MPL = sol.real_MPL
+    real_inc = sol.real_inc
+    real_Aq = sol.real_Aq
 
     #evaluations
     real_MPK[:] = r_K/P_Y
     real_MPL[:] = r_ell/P_Y
+    real_inc[:] = inc/P_C
+    real_Aq[:] = Aq/P_C
     

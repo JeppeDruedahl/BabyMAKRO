@@ -137,6 +137,8 @@ class BabyMAKROModelClass(EconModelClass):
             'r_ell',
             'r_K',
             'r_hh',
+            'real_Aq',
+            'real_inc',
             'real_MPK',
             'real_MPL',
             'real_W',
