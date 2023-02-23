@@ -4266,27 +4266,14 @@ Initial effect
 \begin_inset Newline newline
 \end_inset
 
-The real wage with respect to the output price is held constants.
- As such, the nominal wage follows the decrease in the output prices, 
+The real wage with respect to the consumer price is held constant.
+ As such, the nominal wage follows the decrease in the consumer prices,
+ 
 \begin_inset Formula $W\downarrow$
 \end_inset
 
 .
- Here, 
-\begin_inset Formula $W_{real}$
-\end_inset
-
- is defined in terms of the consumer prices, 
-\begin_inset Formula $P^{C}$
-\end_inset
-
-.
- As these decrease less than the output prices, there is a negative effect,
  
-\begin_inset Formula $W_{real}\downarrow$
-\end_inset
-
-.
 \begin_inset Newline newline
 \end_inset
 
@@ -4869,8 +4856,8 @@ Transition path
 \begin_inset Newline newline
 \end_inset
 
-Next, the price shock channels effects the domestic demand immediately,
- such that production, capital, investment and labor decrease.
+The price shock channels effects the domestic demand immediately, such that
+ production, capital, investment and labor decrease.
  Capital continues to decline due to a low real marginal product of capital,
  but eventually a higher domestic demand implies a higher real marginal
  product of capital, implying more capital.
@@ -4922,32 +4909,33 @@ reference "subsec:Block-V.-Bargaining"
 \series bold
 Initial effect
 \series default
-: As described above, the effect on the demand for labor from each shock
- channel is opposed, hence the effects on the labor markets are different.
- Here, the overall effects of both shocks are described.
+: The initial effect on the demand for labor from each shock channel is
+ qualitatively the same.
+ As such, only the overall effect is described.
+ 
 \begin_inset Newline newline
 \end_inset
 
-Overall, demand for labor decreases, implying that the labor agency hires
- less labor, 
-\begin_inset Formula $L\downarrow$
+Initially, demand for labor increases as a consequence of higher foreign
+ demand, implying that the labor agency hires more labor, 
+\begin_inset Formula $L\uparrow$
 \end_inset
 
 .
- Less hired labor implies less matches, 
-\begin_inset Formula $\mathbb{\mathcal{M}}\downarrow$
+ More hired labor implies more matches, 
+\begin_inset Formula $\mathbb{\mathcal{M}}\uparrow$
 \end_inset
 
-, which further implies an decrease in the job-finding rate, 
-\begin_inset Formula $m^{s}\downarrow$
+, which further implies an increase in the job-finding rate, 
+\begin_inset Formula $m^{s}\uparrow$
 \end_inset
 
 , and the vacancies, 
-\begin_inset Formula $v\downarrow$
+\begin_inset Formula $v\uparrow$
 \end_inset
 
 .
- However, the job-filling rate increases, 
+ However, the job-filling rate decreases, 
 \begin_inset Formula $m^{v}\uparrow$
 \end_inset
 
@@ -4955,7 +4943,7 @@ Overall, demand for labor decreases, implying that the labor agency hires
 \begin_inset Newline newline
 \end_inset
 
-THe real wage is set to constant, such that the nominal wage increase by
+The real wage is set to constant, such that the nominal wage increase by
  the same amount as the consumer prices.
 \begin_inset Newline newline
 \end_inset
@@ -4964,17 +4952,25 @@ THe real wage is set to constant, such that the nominal wage increase by
 \series bold
 Transition path
 \series default
-: The amount of households with a job at the start of period 1 is high,
- thus 
-\begin_inset Formula $\underline{L}\uparrow$
+: As described in the 
+\begin_inset Quotes ald
 \end_inset
 
- and the number of searchers decreases 
-\begin_inset Formula $S\downarrow$
+Effect on Production firms, Phillips-curve and Investments
+\begin_inset Quotes ard
 \end_inset
 
-.
- Hereafter, all variables converge towards their steady state level.
+, the transition from each channel is different as the foreign demand shock
+ channel implies a continued high demand for labor whereas the price shock
+ channels implies a lower demand for labor.
+ The overall effect follows the price shock channel more closely, hence
+ the amount of labor drops below its steady state level.
+ This directly increases the number of searcher as well as the job-finding
+ rate, and decreases the number of matches, vacancies and the job-filling
+ rate.
+ As the demand shocks diminish so does the demand for labor, thus the variables
+ converges towards their steady state levels.
+ 
 \end_layout
 
 \end_deeper
@@ -4999,12 +4995,16 @@ reference "subsec:Block-IX.-Government"
 \series bold
 Initial effect
 \series default
-: The effect on the government budget is ambiguous.
- On on hand, it increases as the price on government consumption increases.
- On the other hand, it decreases as more people becomes employed.
+: The initial effects on the government budget are qualitatively the same
+ through each of the two channels.
+ A higher foreign demand implies a higher price on government consumption,
+ hence increasing the government expenditures.
+ On the other hand, a higher demand initially implies that more people becomes
+ employed.
  Hence, the government receives more in tax revenue and pays less in unemploymen
-t benefits.Overall, the effect seems to be negative, such that the government
- lowers the tax rate.
+t benefits, which suggests lower government expenditures.
+ The overall effect seems to reduce the expenditures of the government,
+ which allows the government to lower its tax rate.
  
 \end_layout
 
