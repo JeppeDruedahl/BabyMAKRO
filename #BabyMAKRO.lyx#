@@ -5328,7 +5328,7 @@ Transition path
  from the more consumption.
  As such, more workers are hired, which drives up the return on capital
  as well as the marginal cost and output prices.
- These converge toward their steady state level as the excess demand converges.
+ These converge toward their steady state level as the excess demand diminishes.
  
 \end_layout
 
@@ -5398,7 +5398,8 @@ Initial effect
 \end_inset
 
 .
- The real wage is held constant, such that 
+ The real wage is held constant, thus the nominal wage follows the consumer
+ prices.
 \begin_inset Newline newline
 \end_inset
 
@@ -5406,9 +5407,11 @@ Initial effect
 \series bold
 Transition path
 \series default
-: Higher output production implies more worker.
- Hence, the effects on the labor market is similar to the once for the productio
-n firms.
+: Higher output production implies a higher demand for workers.
+ Therefore, more labor is hired which implies more matches, a higher job-finding
+ rate, more vacancies, less searches and a lower job-filling rate.
+ Once, the excess demand diminishes so does employment rate and all variables
+ converge towards their steady state levels.
  
 \end_layout
 
@@ -5434,12 +5437,12 @@ reference "subsec:Block-IX.-Government"
 \series bold
 Initial effect
 \series default
-: The effect on the government budget is ambiguous.
- On on hand, it decreases as the price on government consumption decreases.
- On the other hand, it increases as more people becomes unemployed.
- Hence, the government receives less in tax revenue and pays more in unemploymen
-t benefits.Overall, the effect seems to be negative, such that the government
- lowers the tax rate.
+: The government debt increase when the employment rates decrease as the
+ government receives less in tax revenue and pays more in unemployment benefits.
+ On the other hand, the nominal expenditures decrease as the price on government
+ consumption decreases.
+ Overall, the initial effect on debt seems to be slightly positive, such
+ that the government raises the tax rate.
 \end_layout
 
 \begin_layout Standard
@@ -5447,10 +5450,14 @@ t benefits.Overall, the effect seems to be negative, such that the government
 \series bold
 Transition path
 \series default
-: The government budget adjusts, once the tax rate is lowered.
- Additionally, there is an effect stemming from the converges of the variables
- in the budget, i.e.
- the price on government consumption and the employment/unemployment rates.
+: The increasing employment rate implies a declining debt, which is not
+ counteracted by the increasing prices.
+ As such, the debt becomes negative, and the government receives increasing
+ interest rate payments.
+ The government reacts by lowering the tax rate, which increases the demand
+ for consumption even further; thus, raising the employment rates further.
+ Eventually, the excess demand diminishes, such that both the government
+ and the tax rate increase towards their steady state levels.
  
 \end_layout
 
@@ -5476,8 +5483,10 @@ reference "subsec:Block-VII.-Foreign"
 \series bold
 Initial effect
 \series default
-: The price on exports decreases initially, which mechanically implies more
- export, 
+: The price on exports decreases initially, which is caused by the lower
+ output prices.
+ As the foreign prices are unaffected, the foreign demand for domestic goods
+ increases, such that more which mechanically implies more export, 
 \begin_inset Formula $X\uparrow$
 \end_inset
 

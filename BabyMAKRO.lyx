@@ -3925,60 +3925,9 @@ Transition path
 \begin_layout Itemize
 
 \series bold
-Effect on Prices
+Effect on Consumption
 \series default
  (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VI.-Repacking"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-
-\series bold
-Initial effect
-\series default
-: Higher output prices imply higher prices on all goods through the repacking
- firms, 
-\begin_inset Formula $P_{t}^{\bullet}\uparrow$
-\end_inset
-
- for 
-\begin_inset Formula $\bullet\in\{C,I,X\}$
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: The total demand decreases as a consequence of higher prices, which implies
- lower prices.
- As such, prices converge towards their steady state level.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Consumption and Exports
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VII.-Foreign"
-
-\end_inset
-
-, 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Block-X.-Households"
@@ -4058,6 +4007,50 @@ Transition path
  However, the higher tax rate has a larger effect on the later generation,
  which implies a lower income and less bequests.
  
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Effect on Foreign Economy
+\series default
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Block-VII.-Foreign"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Initial effect
+\series default
+: Higher output prices imply higher prices on all goods through the repacking
+ firms, 
+\begin_inset Formula $P_{t}^{\bullet}\uparrow$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,I,X\}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Transition path
+\series default
+: The total demand decreases as a consequence of higher prices, which implies
+ lower prices.
+ As such, prices converge towards their steady state level.
 \end_layout
 
 \end_deeper
@@ -5328,7 +5321,7 @@ Transition path
  from the more consumption.
  As such, more workers are hired, which drives up the return on capital
  as well as the marginal cost and output prices.
- These converge toward their steady state level as the excess demand converges.
+ These converge toward their steady state level as the excess demand diminishes.
  
 \end_layout
 
@@ -5437,12 +5430,12 @@ reference "subsec:Block-IX.-Government"
 \series bold
 Initial effect
 \series default
-: The effect on the government budget is ambiguous.
- On on hand, it decreases as the price on government consumption decreases.
- On the other hand, it increases as more people becomes unemployed.
- Hence, the government receives less in tax revenue and pays more in unemploymen
-t benefits.Overall, the effect seems to be negative, such that the government
- lowers the tax rate.
+: The government debt increase when the employment rates decrease as the
+ government receives less in tax revenue and pays more in unemployment benefits.
+ On the other hand, the nominal expenditures decrease as the price on government
+ consumption decreases.
+ Overall, the initial effect on debt seems to be slightly positive, such
+ that the government raises the tax rate.
 \end_layout
 
 \begin_layout Standard
@@ -5450,10 +5443,14 @@ t benefits.Overall, the effect seems to be negative, such that the government
 \series bold
 Transition path
 \series default
-: The government budget adjusts, once the tax rate is lowered.
- Additionally, there is an effect stemming from the converges of the variables
- in the budget, i.e.
- the price on government consumption and the employment/unemployment rates.
+: The increasing employment rate implies a declining debt, which is not
+ counteracted by the increasing prices.
+ As such, the debt becomes negative, and the government receives increasing
+ interest rate payments.
+ The government reacts by lowering the tax rate, which increases the demand
+ for consumption even further; thus, raising the employment rates further.
+ Eventually, the excess demand diminishes, such that both the government
+ and the tax rate increase towards their steady state levels.
  
 \end_layout
 
@@ -5479,12 +5476,16 @@ reference "subsec:Block-VII.-Foreign"
 \series bold
 Initial effect
 \series default
-: The price on exports decreases initially, which mechanically implies more
- export, 
+: The price on exports decreases initially, which is caused by the lower
+ output prices.
+ As the foreign prices are unaffected, the foreign demand for domestic goods
+ increases, such that more goods are exported, 
 \begin_inset Formula $X\uparrow$
 \end_inset
 
-, and less import, 
+.
+ It also implies that imported goods are relatively more expensive compared
+ to domestic goods, thus less goods are imported, 
 \begin_inset Formula $M\downarrow$
 \end_inset
 
@@ -5496,7 +5497,10 @@ Initial effect
 \series bold
 Transition path
 \series default
-: The export converges as the price on export converges.
+: As the domestic demand increases, so does the domestic prices, which reduces
+ the competitiveness of the domestic firms.
+ Therefore, less goods are exported and more goods are imported.
+ The export and import normalizes once the excess domestic demand vanishes.
 \end_layout
 
 \end_deeper
