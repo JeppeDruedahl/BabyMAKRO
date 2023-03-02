@@ -1196,10 +1196,166 @@ N_{\text{work}} & =\sum_{a=0}^{\#_{\text{work}}-1}N_{a}.\label{eq:Nwork}
 
 \begin_layout Subsection
 Block I.
+ Repacking firms - prices
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Block-I.-Repacking"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The output good, 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+, can be used for either private consumption, 
+\begin_inset Formula $C_{t}$
+\end_inset
+
+, public consumption, 
+\begin_inset Formula $G_{t}$
+\end_inset
+
+, investment, 
+\begin_inset Formula $I_{t}$
+\end_inset
+
+, or exports, 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+.
+ For each use the output good must be repacked with imported goods.
+ This is done by repacking firms with a CES production technology, where
+ they take the output price and the import prices as given..
+\end_layout
+
+\begin_layout Standard
+Using the results with CES technology derived in sub-section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:On-CES-technology"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ with 
+\begin_inset Formula $\Gamma=1$
+\end_inset
+
+, we write the 
+\series bold
+block
+\series default
+ for the pricing part of this as:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Inputs:
+\series default
+ 
+\begin_inset Formula $\left\{ P_{t}^{Y}\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ P_{t}^{M,\bullet}\right\} $
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Output:
+\series default
+ 
+\begin_inset Formula $\left\{ P_{t}^{\bullet}\right\} $
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+P_{t}^{\bullet}=\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}.\label{eq:CGIX_P}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Block II.
+ Wage determination
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Block-II.-Wage determination"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The wage, 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+, is determined by an unmodeled bargaining mechanism, and it is set such
+ that the real wage is kept constant.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Inputs: 
+\series default
+
+\begin_inset Formula $\left\{ P_{t}^{C}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Outputs: 
+\begin_inset Formula $\left\{ W_{t}\right\} $
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+W_{t} & =\frac{W_{ss}}{P^{C}}.\label{eq:W}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Block III.
  Households - search behavior and matching
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:Block-I.-Households"
+name "subsec:Block-III.-Households"
 
 \end_inset
 
@@ -1461,11 +1617,11 @@ For
 \end_layout
 
 \begin_layout Subsection
-Block II.
+Block IV.
  Labor agency
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:Block-II.-Labor"
+name "subsec:Block-IV.-Labor"
 
 \end_inset
 
@@ -1672,11 +1828,11 @@ The variable
 \end_layout
 
 \begin_layout Subsection
-Block III.
+Block V.
  Production firms
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:Block-III.-Production"
+name "subsec:Block-V.-Production"
 
 \end_inset
 
@@ -1798,11 +1954,11 @@ The variable
 \end_layout
 
 \begin_layout Subsection
-Block IV.
+Block VI.
  Phillips Curve
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:Block-IV.-Phillips"
+name "subsec:Block-VI.-Phillips"
 
 \end_inset
 
@@ -1901,221 +2057,6 @@ Targets
 P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}\label{eq:Phillips}\\
  & +\frac{2\eta}{1+r^{\text{firm}}}\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}.\nonumber 
 \end{align}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Block V.
- Bargaining
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:Block-V.-Bargaining"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The target wage, 
-\begin_inset Formula $W_{t}^{*}$
-\end_inset
-
-, in the bargaining is specified ad hoc as a weighted average of the profit
- the firms get from a marginal unit of labor, 
-\begin_inset Formula $\overline{W}_{t}$
-\end_inset
-
-, and the worker's outside option,
-\begin_inset Formula $\underline{W}_{t}$
-\end_inset
-
-.
- The bargained wage, 
-\begin_inset Formula $W_{t}$
-\end_inset
-
-, is again a weighted average of the past wage and the current target wage
- to create a real rigidity.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Inputs: 
-\series default
-
-\begin_inset Formula $\left\{ W_{t}\right\} $
-\end_inset
-
-, 
-\begin_inset Formula $\left\{ Y_{t}\right\} $
-\end_inset
-
-, 
-\begin_inset Formula $\left\{ \ell_{t}\right\} $
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Outputs: 
-\begin_inset Formula $\{\overline{W}_{t},\underline{W}_{t},W_{t}^{\ast}\}$
-\end_inset
-
-
-\begin_inset Formula 
-\begin{align}
-\overline{W}_{t} & =P_{t}^{Y}\left(\left(1-\mu_{K}\right)\Gamma^{\sigma^{Y}-1}\frac{Y_{t}}{\ell_{t}}\right)^{\frac{1}{\sigma^{Y}}}\label{eq:MPL}\\
-\underline{W}_{t} & =W^{U}\label{eq: Outside_option}\\
-W_{t}^{\ast} & =\psi\overline{W}_{t}+(1-\psi)\underline{W}_{t}.\label{eq:w_ast}
-\end{align}
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset Formula 
-\begin{align*}
-\frac{\partial Y_{t}}{\partial\ell_{t}} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}-1}\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}-1}=\overline{W}_{t}\\
-\overline{W}_{t} & =\Gamma^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\Gamma^{\frac{1}{\sigma^{Y}}}\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{1}{\sigma^{Y}-1}}\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{-1}{\sigma^{Y}}}\\
-\Leftrightarrow\overline{W}_{t} & =\Gamma^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}Y_{t}^{\frac{1}{\sigma^{Y}}}\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{-1}{\sigma^{Y}}}\\
-\overline{W}_{t} & =\left(\left(1-\mu_{K}\right)\Gamma^{\sigma^{Y}-1}\frac{Y_{t}}{\ell_{t}}\right)^{\frac{1}{\sigma^{Y}}}
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Targets:
-\begin_inset Formula 
-\begin{equation}
-W_{t}=\gamma^{w}W_{t-1}+(1-\gamma^{w})W_{t}^{\ast}.\label{eq:w}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Block VI.
- Repacking firms - prices
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:Block-VI.-Repacking"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The output good, 
-\begin_inset Formula $Y_{t}$
-\end_inset
-
-, can be used for either private consumption, 
-\begin_inset Formula $C_{t}$
-\end_inset
-
-, public consumption, 
-\begin_inset Formula $G_{t}$
-\end_inset
-
-, investment, 
-\begin_inset Formula $I_{t}$
-\end_inset
-
-, or exports, 
-\begin_inset Formula $X_{t}$
-\end_inset
-
-.
- For each use the output good must be repacked with imported goods.
- This is done by repacking firms with a CES production technology.
-\end_layout
-
-\begin_layout Standard
-Using the results with CES technology derived in sub-section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:On-CES-technology"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- with 
-\begin_inset Formula $\Gamma=1$
-\end_inset
-
-, we write the 
-\series bold
-block
-\series default
- for the pricing part of this as:
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-Inputs:
-\series default
- 
-\begin_inset Formula $\left\{ P_{t}^{Y}\right\} $
-\end_inset
-
-, 
-\begin_inset Formula $\left\{ P_{t}^{M,\bullet}\right\} $
-\end_inset
-
- for 
-\begin_inset Formula $\bullet\in\{C,G,I,X\}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-Output:
-\series default
- 
-\begin_inset Formula $\left\{ P_{t}^{\bullet}\right\} $
-\end_inset
-
- for 
-\begin_inset Formula $\bullet\in\{C,G,I,X\}$
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-P_{t}^{\bullet}=\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}.\label{eq:CGIX_P}
-\end{equation}
 
 \end_inset
 
@@ -2414,20 +2355,8 @@ where
 \end_inset
 
  is the interest rate on government debt determined in the foreign economy.
- We assume the government has the exogenous tax rate 
-\begin_inset Formula $\tau_{ss}$
-\end_inset
-
- for 
-\begin_inset Formula $t_{B}$
-\end_inset
-
- years and then begins to adjust taxes to get back to steady state debt.
- For 
-\begin_inset Formula $\Delta_{B}$
-\end_inset
-
- years this is done gradually, and thereafter it is done fully.
+ We assume the government gradually adjusts taxes to get back to steady
+ state debt.
 \end_layout
 
 \begin_layout Itemize
@@ -2472,14 +2401,10 @@ Outputs:
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ \tilde{\tau}_{t}\right\} $
-\end_inset
-
-, 
 \begin_inset Formula $\left\{ B_{t}\right\} $
 \end_inset
 
-,
+, 
 \begin_inset Formula $\left\{ \tilde{B}_{t}\right\} $
 \end_inset
 
@@ -2487,13 +2412,7 @@ Outputs:
 \begin_inset Formula 
 \begin{align}
 \tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{ss})W_{U}W_{ss}U_{t}+(1-\tau_{ss})W_{R}W_{ss}(N_{t}-N_{\text{work}})-\tau_{ss}W_{t}L_{t}\nonumber \\
-\tilde{\tau}_{t} & =\tau_{ss}+\varepsilon_{B}\frac{\tilde{B}_{t}-B_{ss}}{W_{t}L_{t}+W_{U}W_{ss}U_{t}+W_{R}W_{ss}(N_{t}-N_{\text{work}})}\nonumber \\
-\tau_{t} & =\begin{cases}
-\tau_{ss} & \text{if }t<t_{B}\\
-(1-\omega_{t})\tau_{ss}+\omega_{t}\tilde{\tau}_{t} & \text{if }t\in[t_{B,}t_{B}+\Delta_{B}]\\
-\tilde{\tau}_{t} & \text{if }t>t_{B}+\Delta_{B}
-\end{cases}\label{eq:tau}\\
-\omega_{t} & =3\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{2}-2\left(\frac{t-t_{B}}{\Delta_{B}}\right)^{3}\in(0,1)\nonumber \\
+\tau_{t} & =\tau_{ss}+\varepsilon_{B}\frac{\tilde{B}_{t}-B_{ss}}{W_{t}L_{t}+W_{U}W_{ss}U_{t}+W_{R}W_{ss}(N_{t}-N_{\text{work}})}\label{eq:tau}\\
 B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{\text{work}})-\tau_{t}W_{t}L_{t}.\label{eq:B}
 \end{align}
 
@@ -2855,7 +2774,7 @@ name "subsec:Block-XI.-Repacking"
 The repacking firms were described in sub-section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-VI.-Repacking"
+reference "subsec:Block-I.-Repacking"
 plural "false"
 caps "false"
 noprefix "false"
@@ -3033,7 +2952,7 @@ Total number of targets
 
 \begin_layout Standard
 We have 
-\begin_inset Formula $7\times T$
+\begin_inset Formula $6\times T$
 \end_inset
 
  targets in Equation 
@@ -3050,16 +2969,6 @@ noprefix "false"
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:Phillips"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:w"
 plural "false"
 caps "false"
 noprefix "false"
@@ -3710,7 +3619,7 @@ Effect on Production firms, Phillips-curve and Investments
  (see 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-III.-Production"
+reference "subsec:Block-V.-Production"
 plural "false"
 caps "false"
 noprefix "false"
@@ -3720,7 +3629,7 @@ noprefix "false"
 ,
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-IV.-Phillips"
+reference "subsec:Block-VI.-Phillips"
 
 \end_inset
 
@@ -3812,7 +3721,7 @@ Effect on Labor agency, Labor search and match and Wage
  (see 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-I.-Households"
+reference "subsec:Block-III.-Households"
 plural "false"
 caps "false"
 noprefix "false"
@@ -3822,14 +3731,14 @@ noprefix "false"
 , 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-II.-Labor"
+reference "subsec:Block-IV.-Labor"
 
 \end_inset
 
 , 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-V.-Bargaining"
+reference "subsec:Block-II.-Wage determination"
 
 \end_inset
 
@@ -4048,7 +3957,7 @@ Effect on Production firms, Phillips-curve and Investments
  (see 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-III.-Production"
+reference "subsec:Block-V.-Production"
 plural "false"
 caps "false"
 noprefix "false"
@@ -4058,7 +3967,7 @@ noprefix "false"
 ,
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-IV.-Phillips"
+reference "subsec:Block-VI.-Phillips"
 
 \end_inset
 
@@ -4177,7 +4086,7 @@ Effect on Labor agency, Labor search & match and Wage
  (see 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-I.-Households"
+reference "subsec:Block-III.-Households"
 plural "false"
 caps "false"
 noprefix "false"
@@ -4187,14 +4096,14 @@ noprefix "false"
 , 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-II.-Labor"
+reference "subsec:Block-IV.-Labor"
 
 \end_inset
 
 , 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-V.-Bargaining"
+reference "subsec:Block-II.-Wage determination"
 
 \end_inset
 
@@ -4274,7 +4183,7 @@ Effect on Prices
  (see 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-VI.-Repacking"
+reference "subsec:Block-I.-Repacking"
 
 \end_inset
 
@@ -4521,7 +4430,7 @@ reference "subsec:Block-VII.-Foreign"
 ,
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-VI.-Repacking"
+reference "subsec:Block-I.-Repacking"
 
 \end_inset
 
@@ -4694,7 +4603,7 @@ Effect on Production firms, Phillips-curve and Investments
  (see 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-III.-Production"
+reference "subsec:Block-V.-Production"
 plural "false"
 caps "false"
 noprefix "false"
@@ -4704,7 +4613,7 @@ noprefix "false"
 ,
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-IV.-Phillips"
+reference "subsec:Block-VI.-Phillips"
 
 \end_inset
 
@@ -4850,7 +4759,7 @@ Effect on Labor agency, Labor search & match and Wage
  (see 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-I.-Households"
+reference "subsec:Block-III.-Households"
 plural "false"
 caps "false"
 noprefix "false"
@@ -4860,14 +4769,14 @@ noprefix "false"
 , 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-II.-Labor"
+reference "subsec:Block-IV.-Labor"
 
 \end_inset
 
 , 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-V.-Bargaining"
+reference "subsec:Block-II.-Wage determination"
 
 \end_inset
 
@@ -5217,7 +5126,7 @@ Effect on Production firms, Phillips-curve and Investments
  (see 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-III.-Production"
+reference "subsec:Block-V.-Production"
 plural "false"
 caps "false"
 noprefix "false"
@@ -5227,7 +5136,7 @@ noprefix "false"
 ,
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-IV.-Phillips"
+reference "subsec:Block-VI.-Phillips"
 
 \end_inset
 
@@ -5312,7 +5221,7 @@ Effect on Labor agency, Labor search & match and Wage
  (see 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-I.-Households"
+reference "subsec:Block-III.-Households"
 plural "false"
 caps "false"
 noprefix "false"
@@ -5322,14 +5231,14 @@ noprefix "false"
 , 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-II.-Labor"
+reference "subsec:Block-IV.-Labor"
 
 \end_inset
 
 , 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Block-V.-Bargaining"
+reference "subsec:Block-II.-Wage determination"
 
 \end_inset
 

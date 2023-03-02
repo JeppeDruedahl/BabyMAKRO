@@ -477,9 +477,14 @@ class BabyMAKROModelClass(EconModelClass):
     # basic figures #
     #################
 
-    def plot_IRF(self,varlist=[],ncol=3,T_IRF=60,abs=[],Y_share=[]):
+    def plot_IRF(self,varlist,ncol=3,T_IRF=60, abs = None,Y_share = None):
         """ plot IRFs """
 
+        if abs is None:
+            abs = []
+        if Y_share is None:
+            Y_share = []
+                
         ss = self.ss
         sol = self.sol
 
@@ -570,8 +575,13 @@ class BabyMAKROModelClass(EconModelClass):
 
         return models
 
-    def plot_IRF_models(self,models,parameter,varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[]):
+    def plot_IRF_models(self,models,parameter,varlist,ncol=3,T_IRF=50,abs = None,Y_share = None):
         """ plot IRFs """
+
+        if abs is None:
+            abs = []
+        if Y_share is None:
+            Y_share = []
 
         nrow = len(varlist)//ncol
         if len(varlist) > nrow*ncol: nrow+=1 
@@ -607,11 +617,6 @@ class BabyMAKROModelClass(EconModelClass):
                 handles, labels = ax.get_legend_handles_labels()
             
             ax.set_title(varname)
-            ax.set_title(varname)
-            fig.legend(handles, labels, loc='upper right', frameon = True)
-                ax.set_title(varname)
-            fig.legend(handles, labels, loc='upper right', frameon = True)
-
             fig.legend(handles,labels,loc='upper right',frameon=True)
 
         fig.tight_layout(pad=1.0)
@@ -620,11 +625,16 @@ class BabyMAKROModelClass(EconModelClass):
     # multi-shock-models #
     ######################
 
-    def multi_shock_model(self,Tshock,persistence,shock1_size=0.01,shock1=[],shock2_size=0.005,shock2=[]):
+    def multi_shock_model(self,Tshock,persistence,shock1_values,shock2_values,shock1_size=0.01,shock2_size=0.005, shock1 = None, shock2 = None):
         """ create multiple models with different shocks """
         
-        Tshock = Tshock
-        persistence = persistence
+        if shock1 is None:
+            shock1 = []
+            shock1.extend(shock1_values)
+        if shock2 is None:
+            shock2 = []
+            shock2.extend(shock2_values)
+        
         shocks = [shock1,shock2]
         shock_size = [shock1_size,shock2_size]
         
@@ -635,38 +645,44 @@ class BabyMAKROModelClass(EconModelClass):
         self.calc_jac(do_print=True)
         jac = self.jac
         self.set_exo_ss()
-
-        for j in range(len(shocks)):
-            for i,shock in enumerate(shocks[j]):
-                ss_shock = getattr(ss, shock)
-                sol_shock = getattr(sol, shock)
-                var_shock = shock_size[j]*ss_shock
-                sol_shock[:Tshock] = ss_shock + var_shock*persistence    
+        
+        for i,shock_index in enumerate(shocks):
+            for shock_ in shock_index:
+                ss_shock_ = getattr(ss, shock_)
+                sol_shock_ = getattr(sol, shock_)
+                var_shock_ = shock_size[i]*ss_shock_
+                sol_shock_[:Tshock] = ss_shock_ + var_shock_*persistence    
 
         self.find_IRF()   
         
-        modellist = [self]  
+        models = [self]  
 
-        for j in range(len(shocks)):
-            modellist.append(self.copy())
-            ss = modellist[j+1].ss
-            sol = modellist[j+1].sol
-            modellist[j+1].find_ss()
-            modellist[j+1].jac = jac.copy()
-            modellist[j+1].set_exo_ss()
+        for i, shock_index in enumerate(shocks):
+            model_ = self.copy()
+            ss = model_.ss
+            sol = model_.sol
+            model_.find_ss()
+            model_.jac = jac.copy()
+            model_.set_exo_ss()
 
-            for i,shock in enumerate(shocks[j]):
-                ss_shock = getattr(ss, shock)
-                sol_shock = getattr(sol, shock)
-                var_shock = shock_size[j]*ss_shock
-                sol_shock[:Tshock] = ss_shock + var_shock*persistence
+            for shock_ in shock_index:
+                ss_shock_ = getattr(ss, shock_)
+                sol_shock_ = getattr(sol, shock_)
+                var_shock_ = shock_size[i]*ss_shock_
+                sol_shock_[:Tshock] = ss_shock_ + var_shock_*persistence
 
-            modellist[j+1].find_IRF()
+            model_.find_IRF()
+            models.append(model_)
 
-        return modellist    
+        return models    
 
-    def multi_shock_IRF(self,models=[],shocks=[],varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[]):
+    def multi_shock_IRF(self,models,shocks,varlist,ncol=3,T_IRF=50,abs = None,Y_share = None):
         """ plot IRFs """
+
+        if abs is None:
+            abs = []
+        if Y_share is None:
+            Y_share = []
 
         nrow = len(varlist)//ncol
         if len(varlist) > nrow*ncol: nrow+=1 
@@ -679,9 +695,9 @@ class BabyMAKROModelClass(EconModelClass):
             ssvalue = []
             
             ax = fig.add_subplot(nrow,ncol,1+i)
-            for j in range(len(models)):
-                ss.append(models[j].ss)
-                sol.append(models[j].sol)
+            for j, model in enumerate(models):
+                ss.append(model.ss)
+                sol.append(model.sol)
                 path.append(sol[j].__dict__[varname])
                 ssvalue.append(ss[j].__dict__[varname])
 
@@ -700,6 +716,5 @@ class BabyMAKROModelClass(EconModelClass):
                 handles, labels = ax.get_legend_handles_labels()
             ax.set_title(varname)
             fig.legend(handles, labels, loc='upper right', frameon = True)
-
 
         fig.tight_layout(pad=1.0)        
