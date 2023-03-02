@@ -62,6 +62,39 @@ def adj_cost_K(iota,K_lag,Psi_0,delta_K):
 ##########
 
 @nb.njit
+def repacking_firms_prices(par,ini,ss,sol):
+
+    # inputs
+    P_M_C = sol.P_M_C
+    P_M_G = sol.P_M_G 
+    P_M_I = sol.P_M_I
+    P_M_X = sol.P_M_X
+    P_Y = sol.P_Y
+
+    # outputs
+    P_C = sol.P_C
+    P_G = sol.P_G
+    P_I = sol.P_I
+    P_X = sol.P_X
+
+    P_C[:] = CES_P(P_M_C,P_Y,par.mu_M_C,par.sigma_C, Gamma=1)
+    P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G, Gamma=1)
+    P_I[:] = CES_P(P_M_I,P_Y,par.mu_M_I,par.sigma_I, Gamma=1)
+    P_X[:] = CES_P(P_M_X,P_Y,par.mu_M_X,par.sigma_X, Gamma=1)
+
+@nb.njit
+def wage_determination(par,ini,ss,sol):
+
+    # inputs
+    P_C = sol.P_C
+
+    # outputs
+    W = sol.W
+
+    real_wage_ss = ss.W/ss.P_C
+    W[:] = real_wage_ss*P_C
+
+@nb.njit
 def search_and_match(par,ini,ss,sol):
 
     # inputs
@@ -122,8 +155,7 @@ def search_and_match(par,ini,ss,sol):
         # d. matching
         curlyM[t] = L[t]-L_ubar[t]
         m_s[t] = curlyM[t]/S[t]
-        # v[t] = (m_s[t]**(1/par.sigma_m)*S[t]**(1/par.sigma_m)/(1-m_s[t]**(1/par.sigma_m)))**par.sigma_m/par.nu
-        v[t] = (curlyM[t]**(1/par.sigma_m)/(1-(par.nu*m_s[t])**(1/par.sigma_m)))**par.sigma_m
+        v[t] = (curlyM[t]**(1/par.sigma_m)/(1-m_s[t]**(1/par.sigma_m)))**par.sigma_m
         m_v[t] = curlyM[t]/v[t]
 
         # e. emplolyment and unemployment
@@ -230,71 +262,6 @@ def phillips_curve(par,ini,ss,sol):
     PC[:] = LHS - RHS_0 - RHS_1 - RHS_2
 
 @nb.njit
-def bargaining_const_wage(par,ini,ss,sol):
-
-    # inputs
-    P_C = sol.P_C
-
-    # outputs
-    W = sol.W
-
-    real_wage_ss = ss.W/ss.P_C
-    W[:] = real_wage_ss*P_C
-
-
-@nb.njit
-def bargaining(par,ini,ss,sol):
-
-    # inputs
-    ell = sol.ell
-    Gamma = sol.Gamma
-    P_Y = sol.P_Y
-    W = sol.W
-    Y = sol.Y
-
-    # outputs
-    W_obar = sol.W_obar
-    W_ubar = sol.W_ubar
-    W_ast = sol.W_ast
-
-    # targets
-    bargaining_cond = sol.bargaining_cond
-
-    # evaluations
-    W_lag = lag(ini.W,W)
-    W_obar = P_Y*( (1-par.mu_K)*Gamma**(par.sigma_Y-1)*Y/ell )**(1/par.sigma_Y)
-    W_ubar = par.W_U*ss.W
-
-    W_ast = par.phi*W_obar + (1-par.phi)*W_ubar
-
-    bargaining_cond[:] = W - (par.gamma_W*W_lag + (1-par.gamma_W)*W_ast)
-
-
-    
-@nb.njit
-def repacking_firms_prices(par,ini,ss,sol):
-
-    # inputs
-    P_M_C = sol.P_M_C
-    P_M_G = sol.P_M_G 
-    P_M_I = sol.P_M_I
-    P_M_X = sol.P_M_X
-    P_Y = sol.P_Y
-
-    # outputs
-    P_C = sol.P_C
-    P_G = sol.P_G
-    P_I = sol.P_I
-    P_X = sol.P_X
-
-    P_C[:] = CES_P(P_M_C,P_Y,par.mu_M_C,par.sigma_C, Gamma=1)
-    P_G[:] = CES_P(P_M_G,P_Y,par.mu_M_G,par.sigma_G, Gamma=1)
-    P_I[:] = CES_P(P_M_I,P_Y,par.mu_M_I,par.sigma_I, Gamma=1)
-    P_X[:] = CES_P(P_M_X,P_Y,par.mu_M_X,par.sigma_X, Gamma=1)
-
-    
-
-@nb.njit
 def foreign_economy(par,ini,ss,sol):
 
     # inputs
@@ -372,16 +339,8 @@ def government(par,ini,ss,sol):
         taxbase =  W[t]*L[t] + par.W_U*ss.W*U[t] + par.W_R*ss.W*(par.N-par.N_work)
 
         B_tilde = B_lag + expenditure - ss.tau*taxbase
-        tau_tilde = ss.tau + par.epsilon_B*(B_tilde-ss.B)/taxbase
+        tau[t] = ss.tau + par.epsilon_B*(B_tilde-ss.B)/taxbase
 
-        if t < par.t_b:
-            tau[t] = ss.tau
-        elif t >= par.t_b + par.delta_B:
-            tau[t] = tau_tilde
-        else:
-            omega = 3*((t-par.t_b)/par.delta_B)**2 - 2*((t-par.t_b)/par.delta_B)**3
-            tau[t] = (1-omega)*ss.tau+omega*tau_tilde
-        
         B[t] = B_lag + expenditure - tau[t]*taxbase
 
 @nb.njit
@@ -541,8 +500,7 @@ def repacking_firms_components(par,ini,ss,sol):
     G_Y[:] = CES_demand(P_Y,P_G,1-par.mu_M_G,G,par.sigma_G,Gamma=1)
     I_Y[:] = CES_demand(P_Y,P_I,1-par.mu_M_I,I,par.sigma_I,Gamma=1)
     X_Y[:] = CES_demand(P_Y,P_X,1-par.mu_M_X,X,par.sigma_X,Gamma=1)
-
-    
+ 
 @nb.njit
 def goods_market_clearing(par,ini,ss,sol):
 
@@ -568,7 +526,6 @@ def goods_market_clearing(par,ini,ss,sol):
     
     mkt_clearing[:] = Y - (C_Y + G_Y + I_Y + X_Y)
 
-
 @nb.njit
 def real_productivity(par,ini,ss,sol):
 
@@ -581,14 +538,14 @@ def real_productivity(par,ini,ss,sol):
     Aq = sol.Aq
 
     # outputs
-    real_MPK = sol.real_MPK
-    real_MPL = sol.real_MPL
+    real_r_K = sol.real_r_K
+    real_r_ell = sol.real_r_ell
     real_inc = sol.real_inc
     real_Aq = sol.real_Aq
 
     #evaluations
-    real_MPK[:] = r_K/P_Y
-    real_MPL[:] = r_ell/P_Y
+    real_r_K[:] = r_K/P_Y
+    real_r_ell[:] = r_ell/P_Y
     real_inc[:] = inc/P_C
     real_Aq[:] = Aq/P_C
     

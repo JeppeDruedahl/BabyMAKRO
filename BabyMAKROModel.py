@@ -5,7 +5,7 @@ from EconModel import EconModelClass, jit
 from consav import elapsed
 
 import matplotlib.pyplot as plt   
-plt.style.use('seaborn-whitegrid')
+plt.rcParams.update({"axes.grid":True,"grid.color":"black","grid.alpha":"0.25","grid.linestyle":"--"})
 prop_cycle = plt.rcParams['axes.prop_cycle']
 colors = prop_cycle.by_key()['color']
 
@@ -31,12 +31,12 @@ class BabyMAKROModelClass(EconModelClass):
 
         # b. blocks
         self.blocks = [
+            'repacking_firms_prices',
+            'wage_determination',
             'search_and_match',
             'labor_agency',
             'production_firm',
             'phillips_curve',
-            'bargaining',
-            'repacking_firms_prices',
             'foreign_economy',
             'capital_agency',
             'government',
@@ -50,14 +50,14 @@ class BabyMAKROModelClass(EconModelClass):
         
         # exogenous variables
         self.exo = [
+            'Gamma',
+            'G',
             'chi',
-            'P_F',
             'P_M_C',
             'P_M_G',
             'P_M_I',
             'P_M_X',
-            'Gamma',
-            'G',
+            'P_F',
             'r_hh',
         ]
         
@@ -69,7 +69,6 @@ class BabyMAKROModelClass(EconModelClass):
             'L',
             'r_K',
             'P_Y',
-            'W',
         ]
 
         # targets
@@ -80,7 +79,6 @@ class BabyMAKROModelClass(EconModelClass):
             'FOC_K_ell',
             'mkt_clearing',
             'PC',
-            'bargaining_cond',
         ]
 
         # all non-household variables
@@ -91,7 +89,6 @@ class BabyMAKROModelClass(EconModelClass):
             'Aq_diff',
             'Aq',
             'B',
-            'bargaining_cond',
             'C_M',
             'C_Y',
             'C',
@@ -139,8 +136,8 @@ class BabyMAKROModelClass(EconModelClass):
             'r_hh',
             'real_Aq',
             'real_inc',
-            'real_MPK',
-            'real_MPL',
+            'real_r_K',
+            'real_r_ell',
             'real_W',
             'real_r_hh',
             'S',
@@ -148,9 +145,6 @@ class BabyMAKROModelClass(EconModelClass):
             'U',
             'v',
             'W',
-            'W_ast',
-            'W_obar',
-            'W_ubar',
             'X_M',
             'X_Y',
             'X',
@@ -172,51 +166,6 @@ class BabyMAKROModelClass(EconModelClass):
             'U_a',
         ]
 
-    def set_constant_wage(self,constant_real_wage=True):
-
-        if constant_real_wage==True:
-            
-            #blocks
-            self.blocks = [
-            'repacking_firms_prices',
-            'bargaining_const_wage',
-            'search_and_match',
-            'labor_agency',
-            'production_firm',
-            'phillips_curve',
-            'foreign_economy',
-            'capital_agency',
-            'government',
-            'household_consumption',
-            'repacking_firms_components',
-            'goods_market_clearing',
-            'real_productivity',
-            ]
-
-            # targets
-            self.targets = [
-                'A_R_ini_error',
-                'Aq_diff',
-                'FOC_capital_agency',
-                'FOC_K_ell',
-                'mkt_clearing',
-                'PC',
-            ]
-    
-            # unknowns
-            self.unknowns = [
-                'Aq',
-                'A_R_death',
-                'K',
-                'L',
-                'r_K',
-                'P_Y',
-            ]
-            
-            pass
-
-        self.allocate()
-
     def setup(self):
         """ set baseline parameters """
 
@@ -225,10 +174,11 @@ class BabyMAKROModelClass(EconModelClass):
         par.T = 400 # number of time-periods
         
         # a. households
-        par.life_span = 70 # life-span
-        par.work_life_span = 50 # work-life-span
-        par.zeta_pow = 6.0 # mortality parameter (-> inf then everybody dies in last period)
-        par.Lambda = 0.25 # share of hands-to-mouth households
+        par.age_ini = 25 # initial age in model
+        par.life_span = 75 # maximum life-span
+        par.work_life_span = 45 # work-life-span
+        par.zeta = 4.0 # mortality parameter (-> inf then everybody dies in last period)
+        par.Lambda = 0.30 # share of hands-to-mouth households
 
         par.beta = 0.95 # discount factor
         par.sigma = 2.0 # CRRA coefficient
@@ -241,7 +191,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.delta_L_a_fac = 0.10 # age-specific separation rate (common)
 
         # b. production firm and phillips curve
-        par.r_firm = 0.04 # internal rate of return
+        par.r_firm = 0.04 # internal (nominal) rate of return
         par.delta_K = 0.10 # depreciation rate
         par.mu_K = 1/3 # weigth on capital
         par.sigma_Y = 1.01 # substitution
@@ -255,10 +205,8 @@ class BabyMAKROModelClass(EconModelClass):
         par.Psi_0 = 5.0 # adjustment costs
 
         # e. government
-        par.r_b = 0.04 # rate of return on government debt
-        par.t_b = 10 # number of years with tau_tilde
-        par.delta_B = 20 # number of adjustment years
-        par.epsilon_B = 0.15 # adjustment speed  
+        par.r_b = 0.04 # nominal rate of return on government debt
+        par.epsilon_B = 0.20 # adjustment speed  
         par.G_share_ss = 0.30 # share of government spending in Y
 
         # f. repacking
@@ -276,22 +224,20 @@ class BabyMAKROModelClass(EconModelClass):
         par.gamma_X = 0.50 # export persistence
 
         # h. matching
-        par.sigma_m = 1.1 # curvature in matching function
-        par.nu = np.nan # efficiency of vancies (determined when finding steady state)
+        par.sigma_m = np.nan # curvature in matching function, determined in ss
 
-        # i. bargaining
-        par.phi = np.nan # bargaining power of firms (determined when finding steady state)
-        par.gamma_W = 0.80 # wage persistence
-
-        # j. steady state
+        # i. steady state
         par.W_ss = 1.0 # wage
         par.pi_hh_ss = 0.00 # inflation
         par.m_s_ss = 0.75 # job-finding rate
         par.m_v_ss = 0.75 # job-filling rate
         par.B_ss = 0.0 # government debt
 
-    def mortality(self, zeta_pow):
+    def mortality(self):
+        """ calculate mortality by age """
+
         par = self.par
+
         par.zeta_a = np.zeros(par.life_span)
         par.zeta_a[-1] = 1.0 # everybody dies in last period
 
@@ -299,10 +245,13 @@ class BabyMAKROModelClass(EconModelClass):
             if a < par.work_life_span: # no death before retirement
                 par.zeta_a[a] = 0.0
             else:
-                par.zeta_a[a] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**zeta_pow
+                par.zeta_a[a] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**par.zeta
     
-    def demographic_structure(self,delta_L_a_fac):
+    def demographic_structure(self):
+        """ calculate demographic structure """
+        
         par = self.par
+
         par.N_a = np.zeros(par.life_span)
         par.N_a[0] = 1.0 # normalization
              
@@ -312,8 +261,12 @@ class BabyMAKROModelClass(EconModelClass):
         par.N = np.sum(par.N_a)
         par.N_work = np.sum(par.N_a[:par.work_life_span])
 
-        # job-separation
-        par.delta_L_a = delta_L_a_fac*np.ones(par.work_life_span)
+    def job_separation_rate(self):
+        """ calcualte job-sepration rate by age"""
+    
+        par = self.par
+        
+        par.delta_L_a = par.delta_L_a_fac*np.ones(par.work_life_span)
 
     def allocate(self):
         """ allocate model """
@@ -326,10 +279,13 @@ class BabyMAKROModelClass(EconModelClass):
         # a. demographics
         
         # mortality
-        self.mortality(par.zeta_pow)
+        self.mortality()
 
         # demographic structure
-        self.demographic_structure(par.delta_L_a_fac)    
+        self.demographic_structure()    
+
+        # job-separation rate
+        self.job_separation_rate()    
 
         # b. non-household variables
         for varname in self.varlist:
@@ -517,9 +473,9 @@ class BabyMAKROModelClass(EconModelClass):
         # c. solver
         broyden_solver(obj,x0,self.jac,tol=1e-10,maxiter=100,do_print=do_print,model=self)
 
-    ###########
-    # figures #
-    ###########
+    #################
+    # basic figures #
+    #################
 
     def plot_IRF(self,varlist=[],ncol=3,T_IRF=60,abs=[],Y_share=[]):
         """ plot IRFs """
@@ -583,7 +539,7 @@ class BabyMAKROModelClass(EconModelClass):
                     a = t-t0
                     y[j] = sol.__dict__[varname][a,t]-ss.__dict__[varname][a]
                     
-                ax.plot(np.arange(t_beg-t0,t_end-t0),y,label=f'$t_0$ = {t0}')
+                ax.plot(par.age_ini+np.arange(t_beg-t0,t_end-t0),y,label=f'$t_0$ = {t0}')
                 ax.set_xlabel('age')
                 ax.set_ylabel('diff to ss')
                 ax.set_title(varname)
@@ -593,68 +549,80 @@ class BabyMAKROModelClass(EconModelClass):
 
         fig.tight_layout(pad=1.0)
 
-    def multi_model(self,parameter,parvalues,constant_wage=True):
-        """ Create multiple models with different parameters """
+    ################
+    # multi-models #
+    ################
+
+    def multi_model(self,parameter,parvalues):
+        """ create multiple models with different parameters """
         
         par = self.par
-        ini_value = getattr(par, parameter)   
-        modellist = []  
+        models = []  
 
-        for i in range(len(parvalues)):
-            setattr(par,parameter, parvalues[i])
-            modellist.append(self.copy())
-            modellist[i].set_constant_wage(constant_wage)
-            modellist[i].find_ss()
-            modellist[i].calc_jac(do_print=True)
-        
-        setattr(par,parameter, ini_value) 
+        for parvalue in parvalues:
 
-        return modellist
+            model_ = self.copy()
+            setattr(model_.par,parameter,parvalue)
+            model_.find_ss()
+            model_.calc_jac(do_print=True)
 
-    def plot_IRF_models(self,models=[],varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[],parameter=[],parvalues=[]):
+            models.append(model_)
+
+        return models
+
+    def plot_IRF_models(self,models,parameter,varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[]):
         """ plot IRFs """
 
         nrow = len(varlist)//ncol
         if len(varlist) > nrow*ncol: nrow+=1 
 
         fig = plt.figure(figsize=(ncol*6,nrow*6/1.5))
+
         for i,varname in enumerate(varlist):
-            ss = []
-            sol = []
-            path = []
-            ssvalue = []
             
             ax = fig.add_subplot(nrow,ncol,1+i)
-            for j in range(len(models)):
-                ss.append(models[j].ss)
-                sol.append(models[j].sol)
-                path.append(sol[j].__dict__[varname])
-                ssvalue.append(ss[j].__dict__[varname])
+            for model_ in models:
+
+                par = model_.par
+                ss = model_.ss
+                sol = model_.sol
+
+                parvalue = par.__dict__[parameter]
+                ssvalue = ss.__dict__[varname]
+                path = sol.__dict__[varname]
 
                 if varname in abs:
-                    ax.axhline(ssvalue[j],color='black', label=f'{parameter} = {parvalues[j]}',linewidth=0.75)
-                    ax.plot(path[j][:T_IRF],'-o',markersize=2)
+                    ax.axhline(ssvalue,color='black',linewidth=0.75)
+                    ax.plot(path[:T_IRF],'-o',markersize=2)
                 elif varname in Y_share:
-                    ax.plot(path[j][:T_IRF]/sol[j].Y[:T_IRF],'-o',markersize=2, label=f'{parameter} = {parvalues[j]}',linewidth=0.75)   
+                    ax.plot(path[:T_IRF]/sol.Y[:T_IRF],'-o',markersize=2, label=f'{parameter} = {parvalue}',linewidth=0.75)   
                     ax.set_ylabel('share of Y')         
-                elif np.isclose(ssvalue[j],0.0):
-                    ax.plot(path[j][:T_IRF]-ssvalue[j],'-o',markersize=2, label=f'{parameter} = {parvalues[j]}',linewidth=0.75)
+                elif np.isclose(ssvalue,0.0):
+                    ax.plot(path[:T_IRF]-ssvalue,'-o',markersize=2, label=f'{parameter} = {parvalue}',linewidth=0.75)
                     ax.set_ylabel('diff.to ss')
                 else:
-                    ax.plot((path[j][:T_IRF]/ssvalue[j]-1)*100,'-o',markersize=2, label=f'{parameter} = {parvalues[j]}',linewidth=0.75)
+                    ax.plot((path[:T_IRF]/ssvalue-1)*100,'-o',markersize=2, label=f'{parameter} = {parvalue}',linewidth=0.75)
                     ax.set_ylabel('% diff.to ss')
+                
                 handles, labels = ax.get_legend_handles_labels()
+            
+            ax.set_title(varname)
             ax.set_title(varname)
             fig.legend(handles, labels, loc='upper right', frameon = True)
+                ax.set_title(varname)
+            fig.legend(handles, labels, loc='upper right', frameon = True)
 
+            fig.legend(handles,labels,loc='upper right',frameon=True)
 
         fig.tight_layout(pad=1.0)
 
+    ######################
+    # multi-shock-models #
+    ######################
 
-    def multi_shock_model(self,Tshock,persistence,shock1_size=0.01,shock1=[],shock2_size=0.005,shock2=[],constant_wage=True):
-        """ Create multiple models with different shocks """
+    def multi_shock_model(self,Tshock,persistence,shock1_size=0.01,shock1=[],shock2_size=0.005,shock2=[]):
+        """ create multiple models with different shocks """
         
-
         Tshock = Tshock
         persistence = persistence
         shocks = [shock1,shock2]
@@ -662,7 +630,6 @@ class BabyMAKROModelClass(EconModelClass):
         
         ss = self.ss
         sol = self.sol
-        self.set_constant_wage(constant_wage)
         
         self.find_ss()
         self.calc_jac(do_print=True)
@@ -684,7 +651,6 @@ class BabyMAKROModelClass(EconModelClass):
             modellist.append(self.copy())
             ss = modellist[j+1].ss
             sol = modellist[j+1].sol
-            modellist[j+1].set_constant_wage(constant_wage)
             modellist[j+1].find_ss()
             modellist[j+1].jac = jac.copy()
             modellist[j+1].set_exo_ss()
@@ -697,9 +663,7 @@ class BabyMAKROModelClass(EconModelClass):
 
             modellist[j+1].find_IRF()
 
-
         return modellist    
-
 
     def multi_shock_IRF(self,models=[],shocks=[],varlist=[],ncol=3,T_IRF=50,abs=[],Y_share=[]):
         """ plot IRFs """

@@ -819,7 +819,7 @@ market size
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $\text{P_{t}^{M,C} }$
+\begin_inset Formula $\text{P_{t}^{M,C}}$
 \end_inset
 
 , 
@@ -865,7 +865,7 @@ private consumption
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $\text{P_{t}^{M,G} }$
+\begin_inset Formula $\text{P_{t}^{M,G}}$
 \end_inset
 
 , 
@@ -911,7 +911,7 @@ public consumption
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $\text{P_{t}^{M,I} }$
+\begin_inset Formula $\text{P_{t}^{M,I}}$
 \end_inset
 
 , 
@@ -957,7 +957,7 @@ investment
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $\text{P_{t}^{M,X} }$
+\begin_inset Formula $\text{P_{t}^{M,X}}$
 \end_inset
 
 , 
@@ -1003,7 +1003,7 @@ export
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $\text{P_{t}^{F} }$
+\begin_inset Formula $\text{P_{t}^{F}}$
 \end_inset
 
 , 
@@ -1055,6 +1055,17 @@ The chosen
 \end_layout
 
 \begin_layout Enumerate
+\begin_inset Formula $A_{t}^{q}$
+\end_inset
+
+, inheritance flow (
+\begin_inset Formula $T$
+\end_inset
+
+ unknowns)
+\end_layout
+
+\begin_layout Enumerate
 \begin_inset Formula $A_{t}^{\text{death}}$
 \end_inset
 
@@ -1070,10 +1081,10 @@ The chosen
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $A_{t}^{q}$
+\begin_inset Formula $K_{t}$
 \end_inset
 
-, inheritance flow (
+, capital (
 \begin_inset Formula $T$
 \end_inset
 
@@ -1085,17 +1096,6 @@ The chosen
 \end_inset
 
 , labor supply (
-\begin_inset Formula $T$
-\end_inset
-
- unknowns)
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $K_{t}$
-\end_inset
-
-, capital (
 \begin_inset Formula $T$
 \end_inset
 
@@ -1124,20 +1124,9 @@ The chosen
  unknowns) 
 \end_layout
 
-\begin_layout Enumerate
-\begin_inset Formula $W_{t}$
-\end_inset
-
-, wage (
-\begin_inset Formula $T$
-\end_inset
-
- unknowns)
-\end_layout
-
 \begin_layout Standard
 The total number of unknowns thus is 
-\begin_inset Formula $7\times T$
+\begin_inset Formula $6\times T$
 \end_inset
 
 .
@@ -1193,7 +1182,7 @@ N_{a} & =\begin{cases}
 \end{cases}\label{eq:Na}\\
 \zeta_{a} & =\begin{cases}
 0 & \text{if }a<\#_{\text{work}}\\
-\left(\frac{a+1-\#_{\text{work}}}{\#-\#_{\text{work}}}\right)^{\varsigma} & \text{if }a<\#-1\\
+\left(\frac{a+1-\#_{\text{work}}}{\#-\#_{\text{work}}}\right)^{\zeta} & \text{if }a<\#-1\\
 1 & \text{if }a=\#-1
 \end{cases}\label{eq:zeta_a}\\
 N & =\sum_{a=0}^{\#-1}N_{a}\label{eq:N}\\
@@ -1285,34 +1274,23 @@ The quantity of vacancies is
 matching function
 \emph default
 
-\begin_inset Formula 
-\[
-\mathcal{M}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}},
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $\nu$
-\end_inset
-
- is the efficiency of vacancies.
 \begin_inset Note Note
 status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Formula $\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=v_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}\left(\nu v_{t}\right)^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\Leftrightarrow v_{t}=\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}$
+\begin_inset Formula $\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=v_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}v_{t}^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\Leftrightarrow v_{t}=\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset Formula $\mathbb{\mathcal{M}}_{ss}=\frac{S_{ss}v_{ss}}{\left(S_{ss}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{ss}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\left(S_{ss}^{\frac{1}{\sigma^{m}}}+\left(\nu v_{ss}\right)^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=\frac{S_{ss}v_{ss}}{\mathbb{\mathcal{M}}_{ss}}\Leftrightarrow\left(\nu v_{ss}\right)^{\frac{1}{\sigma^{m}}}=\left(\frac{S_{ss}v_{ss}}{\mathbb{\mathcal{M}}_{ss}}\right)^{\frac{1}{\sigma^{m}}}-S_{ss}^{\frac{1}{\sigma^{m}}}\Leftrightarrow\nu=\frac{\left(\left(\frac{S_{ss}v_{ss}}{\mathbb{\mathcal{M}}_{ss}}\right)^{\frac{1}{\sigma^{m}}}-S_{ss}^{\frac{1}{\sigma^{m}}}\Leftrightarrow\right)^{\sigma^{m}}}{v_{ss}}$
 \end_inset
 
 
-\end_layout
+\begin_inset Formula 
+\[
+\mathcal{M}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}.
+\]
 
 \end_inset
 
@@ -1455,7 +1433,7 @@ S_{t} & =\sum_{a=0}^{\#-1}S_{a,t}\label{eq:S}\\
 \delta_{t}^{L} & =\frac{L_{t-1}-\underline{L}_{t}}{L_{t-1}}\label{eq:delta_L}\\
 \mathbb{\mathcal{M}}_{t} & =L_{t}-\underline{L}_{t}\label{eq:curlyM}\\
 m_{t}^{s} & =\frac{\mathcal{M}_{t}}{S_{t}}\nonumber \\
-v_{t} & =\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\nu\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}\label{eq:v}\\
+v_{t} & =\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}\label{eq:v}\\
 m_{t}^{v} & =\frac{\mathbb{\mathcal{M}}_{t}}{v_{t}}\label{eq:m_v}\\
 L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}\label{eq:L_a}\\
 U_{a,t} & =\begin{cases}

@@ -159,23 +159,33 @@ def find_ss(model,do_print=True):
     ss.curlyM = ss.delta_L*ss.L
     
     ss.v = ss.curlyM/ss.m_v
-    # par.nu = 1/ss.v*(ss.m_s**(1/par.sigma_m)*ss.S**(1/par.sigma_m)/(1-ss.m_s**(1/par.sigma_m)))**par.sigma_m
-    par.nu = (((ss.S*ss.v/ss.curlyM)**(1/par.sigma_m)-ss.S**(1/par.sigma_m))**par.sigma_m)/ss.v
+
+    error_M = lambda sigma_m: ss.curlyM - ss.S*ss.v/(ss.S**(1/sigma_m)+ss.v**(1/sigma_m))**(sigma_m)
+    
+    result = optimize.root_scalar(error_M,
+        bracket=[0.01,1],method='brentq')
+
+    par.sigma_m = result.root
+
+    assert result.converged
 
     if do_print:
         print(Fonttype.HEADER + 'Labor supply, search and matching:' + Fonttype.END)
         print(f'{ss.S/par.N_work = :.2f}, {ss.L/par.N_work = :.2f}, {ss.U/par.N_work = :.2f}')
         print(f'{ss.delta_L = :.2f}, {ss.m_s = :.2f}, {ss.m_v = :.2f}, {ss.v = :.2f}')
+        print(f'{par.sigma_m = :.2f}')
 
     # e. capital agency FOC
-    ss.r_K = ss.real_MPK = (par.r_firm + par.delta_K)*ss.P_I
+    ss.r_K = (par.r_firm + par.delta_K)*ss.P_I
+    ss.real_r_K = ss.r_K/ss.P_Y
 
     if do_print: 
         print(Fonttype.HEADER + 'Capital agency FOC:' + Fonttype.END)
         print(f'{ss.r_K = :.2f}')
     
     # f. labor agency FOC
-    ss.r_ell = ss.real_MPL = ss.W / (1 - par.kappa_L/ss.m_v + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
+    ss.r_ell = ss.W / (1-par.kappa_L/ss.m_v + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
+    ss.real_r_ell = ss.r_ell/ss.P_Y
     ss.ell = ss.L - par.kappa_L*ss.v
 
     if do_print: 
@@ -243,15 +253,3 @@ def find_ss(model,do_print=True):
         print(Fonttype.HEADER + 'Market clearing:' + Fonttype.END)
         print(f'{ss.C_Y/ss.C = :.2f}, {ss.G_Y/ss.G = :.2f}, {ss.I_Y/ss.I = :.2f}, {ss.X_Y/ss.X = :.2f}')
         print(f'{ss.X/ss.Y = :.2f}, {ss.M/ss.Y = :.2f}')
-
-    # m. bargaining
-    W_ast = ss.W
-
-    W_obar = ss.P_Y*( (1-par.mu_K)*ss.Gamma**(par.sigma_Y-1)*ss.Y/ss.ell )**(1/par.sigma_Y)
-    W_ubar = par.W_U
-
-    par.phi = (W_ast-W_ubar)/(W_obar-W_ubar)
-
-    if do_print: 
-        print(Fonttype.HEADER + 'Bargaining:' + Fonttype.END)
-        print(f'{par.phi = :.3f}')
