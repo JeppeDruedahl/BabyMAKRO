@@ -3308,25 +3308,6 @@ M_{ss} & =C_{ss}^{M}+G_{ss}^{M}+I_{ss}^{M}+X_{ss}^{M}.
 
 \end_layout
 
-\begin_layout Enumerate
-Let 
-\begin_inset Formula $\varphi$
-\end_inset
-
- adjust to make bargaining fit
-\begin_inset Formula 
-\begin{align*}
-W_{ss}^{\ast} & =W_{ss}\\
-\overline{W}_{ss} & =P_{ss}^{Y}\left(\left(1-\mu_{K}\right)\Gamma_{ss}^{1-\sigma^{Y}}\frac{Y_{ss}}{\ell_{ss}}\right)^{\frac{1}{\sigma^{Y}}}\\
-\underline{W}_{ss} & =W^{U}W_{ss}^{\ast}\\
-\psi & =\frac{W_{ss}^{\ast}-\underline{W}_{ss}}{\overline{W}_{ss}-\underline{W}_{ss}}
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Aggregates
 \end_layout

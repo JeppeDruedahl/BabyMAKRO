@@ -182,7 +182,7 @@ class BabyMAKROModelClass(EconModelClass):
 
         par.beta = 0.95 # discount factor
         par.sigma = 2.0 # CRRA coefficient
-        par.mu_Aq = 100 # weight on bequest motive
+        par.mu_Aq = 100.0 # weight on bequest motive
 
         par.r_hh = 0.04 # nominal return rate
         par.W_U = 0.80 # unemployment benefits (rel. to ss.W)
@@ -718,3 +718,78 @@ class BabyMAKROModelClass(EconModelClass):
             fig.legend(handles, labels, loc='upper right', frameon = True)
 
         fig.tight_layout(pad=1.0)        
+
+
+    ################
+    # Varying central input - long term #
+    ################
+
+    def plot_long_term_IRFs(self,Tshock,persistence,shocks,shock_size,parameter,value,varlist,ncol=3,abs = None,Y_share = None):
+        """ plot IRFs """
+
+        if abs is None:
+            abs = []
+        if Y_share is None:
+            Y_share = []
+        
+        par = self.par
+        T_IRF = par.T
+        Tshock = Tshock
+        persistence = persistence
+
+        self.find_ss()
+        self.calc_jac()
+        self.set_exo_ss() 
+        for i,shock_ in enumerate(shocks):
+            self.sol.__dict__[shock_][:Tshock] = self.ss.__dict__[shock_]*(1 + shock_size[i]*persistence)
+        self.find_IRF(do_print=False)  
+
+
+        model_ = self.copy()
+        model_.par.__dict__[parameter] = value
+        model_.find_ss()
+        model_.calc_jac()
+        model_.set_exo_ss()
+        for i,shock_ in enumerate(shocks):
+            model_.sol.__dict__[shock_][:Tshock] = model_.ss.__dict__[shock_]*(1 + shock_size[i]*persistence) 
+        model_.find_IRF(do_print=False) 
+    
+        models = [self,model_]
+
+        nrow = len(varlist)//ncol
+        if len(varlist) > nrow*ncol: nrow+=1 
+
+        fig = plt.figure(figsize=(ncol*6,nrow*6/1.5))
+
+        for i,varname in enumerate(varlist):
+            
+            ax = fig.add_subplot(nrow,ncol,1+i)
+            for element in models:
+
+                par = element.par
+                ss = element.ss
+                sol = element.sol
+
+                parvalue = par.__dict__[parameter]
+                ssvalue = ss.__dict__[varname]
+                path = sol.__dict__[varname]
+
+                if varname in abs:
+                    ax.axhline(ssvalue,color='black',linewidth=0.75)
+                    ax.plot(path[:T_IRF],'-o',markersize=2)
+                elif varname in Y_share:
+                    ax.plot(path[:T_IRF]/sol.Y[:T_IRF],'-o',markersize=2, label=f'{parameter} = {parvalue:.2f}',linewidth=0.75)   
+                    ax.set_ylabel('share of Y')         
+                elif np.isclose(ssvalue,0.0):
+                    ax.plot(path[:T_IRF]-ssvalue,'-o',markersize=2, label=f'{parameter} = {parvalue:.2f}',linewidth=0.75)
+                    ax.set_ylabel('diff.to ss')
+                else:
+                    ax.plot((path[:T_IRF]/ssvalue-1)*100,'-o',markersize=2, label=f'{parameter} = {parvalue:.2f}',linewidth=0.75)
+                    ax.set_ylabel('% diff.to ss')
+                
+                handles, labels = ax.get_legend_handles_labels()
+            
+            ax.set_title(varname)
+            fig.legend(handles,labels,loc='upper right',frameon=True)
+
+        fig.tight_layout(pad=1.0)
