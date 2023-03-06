@@ -3579,12 +3579,9 @@ Transition path
 : Government consumption decreases as per assumption.
  The debt continue to grow due to interest payments and high real and nominal
  consumption.
- This is eventually reversed once the tax begin to 
-\end_layout
-
-\begin_layout Standard
-as a consequences of the higher prices, which makes both consumption and
- prices converges towards their steady state levels.
+ This is eventually reversed once the tax rate has grown sufficiently large as a 
+ consequence of the growing debt, which makes both consumption and
+ prices converge towards their steady state levels.
  The budget continues to grow due to interest payment and the high consumption/p
 rices until the new and higher tax-rate is implemented.
  It can be noted that the effects on the government budget stemming from
@@ -3687,7 +3684,7 @@ Initial effect
 \series bold
 Transition path
 \series default
-: The total demand decreases, as it converges towards it steady state level.
+: The total demand decreases as government spending decreases towards its steady state level.
  As such, the production firms needs less labor, such that capital is less
  productive.
  Both the marginal cost and output price decreases.
@@ -3762,9 +3759,7 @@ Initial effect
 \begin_inset Newline newline
 \end_inset
 
-The effect on the wage is ambiguous.
- Wages should increase with higher output and output prices, but decrease
- as a consequence of more 
+The nominal wage increases as consumer prices increase, but the real wage remains fixed by assumption.
 \begin_inset Formula $\ell$
 \end_inset
 
@@ -3812,7 +3807,7 @@ reference "subsec:Block-X.-Households"
 Initial effect
 \series default
 : There is a direct effect on consumption and exports.
- As prices increases, they all decreases 
+ As prices increase, they all decrease 
 \begin_inset Formula $\bullet\downarrow$
 \end_inset
 
@@ -3847,7 +3842,7 @@ The income of the households is also affected through changes in labor supply
 \end_inset
 
 .
- There effect on bequest is neglectable as the households have chosen the
+ However, the decrease in real income contributes to a decrease in savings. The effect on bequest is neglectable as the households have chosen the
  savings beforehand.
 \end_layout
 
@@ -3856,7 +3851,7 @@ The income of the households is also affected through changes in labor supply
 \series bold
 Transition path
 \series default
-: Export converges smoothly towards it steady state level.
+: Export converges smoothly towards its steady state level.
  After the initial drop in consumption, it increases towards its steady
  state level as prices converge.
  This is especially true for the hands-to-mouth households.
@@ -5476,19 +5471,133 @@ name "sec:Derivations"
 \end_layout
 
 \begin_layout Subsection
-Labor agency
-\end_layout
-
-\begin_layout Standard
-The
-\end_layout
-
-\begin_layout Subsection
 Capital agency
 \end_layout
 
 \begin_layout Standard
-TBA
+\begin_inset Formula 
+\begin{align*}
+V\left(K_{t-1}\right) & =\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{\left(1+r^{\text{firm}}\right)^{t}}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}(\iota_{t}+\Psi(\iota_{t},K_{t-1}))\right]\\
+ & \text{s.t.}\\
+I_{t} & =\iota_{t}+\Psi(\iota_{t},K_{t-1})\\
+K_{t} & =(1-\delta^{K})K_{t-1}+\iota_{t}\\
+\text{with } & \Psi(\iota_{t},K_{t-1})=\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)^{2}K_{t-1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inserting constraints:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+V\left(K_{t-1}\right)=\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{\left(1+r^{\text{firm}}\right)^{t}}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}(K_{t}-(1-\delta^{K})K_{t-1}+\Psi(\iota_{t},K_{t-1}))\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First order condition:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial V(K_{t-1})}{\partial K_{t}} & =\frac{1}{(1+r^{\text{firm}})^{t}}\left(-P_{t}^{I}\left(1+\Psi_{\iota}(\iota_{t},K_{t-1})\right)\right)\\
+ & +\frac{1}{(1+r^{\text{firm}})^{t+1}}\left(r_{t+1}^{K}-P_{t+1}^{I}\left(-(1-\delta^{K})+\Psi_{\iota}(\iota_{t+1},K_{t})(1-\delta^{K})+\Psi_{K}(\iota_{t+1},K_{t})\right)\right)=0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From which it follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+-P_{t}^{I}\left(1+\Psi_{\iota}(\iota_{t},K_{t-1})\right)\\
++\frac{1}{(1+r^{\text{firm}})}\left(r_{t+1}^{K}-P_{t+1}^{I}\left(-(1-\delta^{K})-\Psi_{\iota}(\iota_{t+1},K_{t})(1-\delta^{K})+\Psi_{K}(\iota_{t+1},K_{t})\right)\right) & =0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Labor agency
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+V(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{(1+r^{\text{firm}})^{t}}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}\right]\\
+ & \text{s.t.}\\
+\ell_{t} & =L_{t}-\kappa^{L}v_{t}\\
+L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inserting constraints:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+V(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{(1+r^{\text{firm}})^{t}}\left[r_{t}^{\ell}\left(L_{t}-\kappa^{L}\frac{L_{t}-(1-\delta_{t}^{L})L_{t-1}}{m_{t}^{v}}\right)-W_{t}L_{t}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First order condition:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial V(L_{t-1})}{\partial L_{t}}=\frac{1}{(1+r^{\text{firm}})^{t}}\left(r_{t}^{\ell}\left(1-\frac{\kappa^{L}}{m_{t}^{v}}\right)-W_{t}\right)+\frac{1}{(1+r^{\text{firm}})^{t+1}}\left(r_{t+1}^{\ell}\frac{\kappa^{L}}{m_{t+1}^{v}}(1-\delta_{t+1}^{L})\right)=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From which it follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left(r_{t}^{\ell}\left(1-\frac{\kappa^{L}}{m_{t}^{v}}\right)-W_{t}\right)+\frac{1}{(1+r^{\text{firm}})}\left(r_{t+1}^{\ell}\frac{\kappa^{L}}{m_{t+1}^{v}}(1-\delta_{t+1}^{L})\right) & =0\\
+\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-\frac{1}{(1+r^{\text{firm}})}\left(r_{t+1}^{\ell}\frac{\kappa^{L}}{m_{t+1}^{v}}(1-\delta_{t+1}^{L})\right)\right]= & r_{t}^{\ell}
+\end{align*}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
