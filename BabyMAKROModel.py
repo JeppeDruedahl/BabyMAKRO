@@ -206,8 +206,9 @@ class BabyMAKROModelClass(EconModelClass):
 
         # e. government
         par.r_b = 0.04 # nominal rate of return on government debt
-        par.epsilon_B = 0.20 # adjustment speed  
+        par.epsilon_B = 0.25 # adjustment speed  
         par.G_share_ss = 0.30 # share of government spending in Y
+        par.t_b = 0
 
         # f. repacking
         par.mu_M_C = 0.30 # weight on imports in C
@@ -226,12 +227,16 @@ class BabyMAKROModelClass(EconModelClass):
         # h. matching
         par.sigma_m = np.nan # curvature in matching function, determined in ss
 
-        # i. steady state
+        # i. wage
+        par.epsilon_w = 1.5  
+
+        # j. steady state
         par.W_ss = 1.0 # wage
         par.pi_hh_ss = 0.00 # inflation
         par.m_s_ss = 0.75 # job-finding rate
         par.m_v_ss = 0.75 # job-filling rate
         par.B_ss = 0.0 # government debt
+        
 
     def mortality(self):
         """ calculate mortality by age """

@@ -1178,7 +1178,7 @@ The demographic structure and population is then given by
 \begin{align}
 N_{a} & =\begin{cases}
 1 & \text{if }a=0\\
-(1-\zeta_{a-1})N_{a-1} & \text{if }a>0
+(1-\zeta_{a})N_{a-1} & \text{if }a>0
 \end{cases}\label{eq:Na}\\
 \zeta_{a} & =\begin{cases}
 0 & \text{if }a<\#_{\text{work}}\\
@@ -2709,7 +2709,7 @@ For each birth cohort
 \begin{align*}
 C_{a,t}^{R} & =\begin{cases}
 \left(\zeta_{a}\mu^{A^{q}}\left(\frac{A_{\#-1,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
-\left(\beta(1-\zeta_{a})\frac{1+r_{ss}^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{ss}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
+\left(\beta(1-\zeta_{a})\frac{1+r_{ss}^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
 \left(\beta(1-\zeta_{a})\frac{1+r_{t+1}^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
 \end{cases}\\
 A_{a-1,t-1}^{R} & =\frac{A_{a,t}^{R}-\text{inc}_{a,t}+P_{t}^{C}C_{a,t}^{R}}{1+r^{hh}}.

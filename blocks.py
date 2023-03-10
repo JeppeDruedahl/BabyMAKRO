@@ -65,11 +65,11 @@ def adj_cost_K(iota,K_lag,Psi_0,delta_K):
 def repacking_firms_prices(par,ini,ss,sol):
 
     # inputs
-    P_M_C = sol.P_M_C
-    P_M_G = sol.P_M_G 
-    P_M_I = sol.P_M_I
-    P_M_X = sol.P_M_X
     P_Y = sol.P_Y
+    P_M_C = sol.P_M_C
+    P_M_G = sol.P_M_G
+    P_M_I = sol.P_M_I
+    P_M_X = sol.P_M_X  
 
     # outputs
     P_C = sol.P_C
@@ -87,11 +87,12 @@ def wage_determination(par,ini,ss,sol):
 
     # inputs
     P_C = sol.P_C
+    L = sol.L
 
     # outputs
     W = sol.W
 
-    real_wage_ss = ss.W/ss.P_C
+    real_wage_ss = ss.W/ss.P_C*(L/ss.L)**par.epsilon_w
     W[:] = real_wage_ss*P_C
 
 @nb.njit
@@ -339,7 +340,10 @@ def government(par,ini,ss,sol):
         taxbase =  W[t]*L[t] + par.W_U*ss.W*U[t] + par.W_R*ss.W*(par.N-par.N_work)
 
         B_tilde = B_lag + expenditure - ss.tau*taxbase
-        tau[t] = ss.tau + par.epsilon_B*(B_tilde-ss.B)/taxbase
+        if t >= par.t_b:
+            tau[t] = ss.tau + par.epsilon_B*(B_tilde-ss.B)/taxbase
+        else:
+            tau[t] = ss.tau
 
         B[t] = B_lag + expenditure - tau[t]*taxbase
 
@@ -351,7 +355,6 @@ def household_consumption(par,ini,ss,sol):
     Aq = sol.Aq
     L_a = sol.L_a
     P_C = sol.P_C
-    P_Y = sol.P_Y
     tau = sol.tau
     U_a = sol.U_a
     W = sol.W
@@ -413,18 +416,20 @@ def household_consumption(par,ini,ss,sol):
 
                 A_R_a_now =  A_R_a[a,t] = A_R_death[t]
                 C_R_a_plus = np.nan
-            
+                
             else:
 
                 if t == par.T-1:
                     A_R_a_now = A_R_a[a,t] = ss.A_R_a[a]
                     C_R_a_plus = ss.C_R_a[a+1]
+
                 else:
                     A_R_a_now = A_R_a[a,t]
                     C_R_a_plus = C_R_a[a+1,t+1]
 
+
             # ii. consumption
-            RHS = par.zeta_a[a]*par.mu_Aq*(A_R_a_now/P_C[t])**(-par.sigma)
+            RHS = par.zeta_a[a]*par.mu_Aq*(A_R_a_now/P_C)**(-par.sigma)
             
             if a < par.life_span-1: 
                 RHS += (1-par.zeta_a[a])*par.beta*(1+real_r_hh[t])*C_R_a_plus**(-par.sigma) 
@@ -458,7 +463,7 @@ def household_consumption(par,ini,ss,sol):
         if t == 0:
             Aq_implied = (1+r_hh[t])*np.sum(par.zeta_a*par.N_a*ss.A_a)
         else:
-            Aq_implied = (1+r_hh[t])*np.sum(par.zeta_a*par.N_a*A_a[:,t-1])
+            Aq_implied = (1+r_hh[t])*np.sum(par.zeta_a*par.N_a*A_a[:,t])
 
         Aq_diff[t] = Aq_implied-Aq[t]                                  
 
@@ -469,13 +474,13 @@ def repacking_firms_components(par,ini,ss,sol):
     C = sol.C
     G = sol.G
     I = sol.I
-    P_C = sol.P_C
-    P_G = sol.P_G
-    P_I = sol.P_I
     P_M_C = sol.P_M_C
     P_M_G = sol.P_M_G
     P_M_I = sol.P_M_I
     P_M_X = sol.P_M_X
+    P_C = sol.P_C
+    P_G = sol.P_G
+    P_I = sol.P_I
     P_X = sol.P_X
     P_Y = sol.P_Y
     X = sol.X  

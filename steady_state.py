@@ -92,7 +92,7 @@ def find_Aq_ss(Aq,model):
         if np.abs(ss.Aq-old_Aq) < 1e-12: 
             find_household_consumption_ss(model)
             Aq = (1+ss.r_hh)*np.sum(par.zeta_a*par.N_a*ss.A_a)
-            ss.Aq_diff = Aq - ss.Aq_diff
+            ss.Aq_diff = Aq - old_Aq
             break
 
         it += 1
@@ -129,6 +129,12 @@ def find_ss(model,do_print=True):
 
     par = model.par
     ss = model.ss
+
+    # Demographics:
+    model.mortality()
+    model.demographic_structure()
+    model.job_separation_rate()
+
 
     # a. price noramlizations
     ss.P_Y = 1.0                                                
