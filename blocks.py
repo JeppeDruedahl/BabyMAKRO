@@ -429,7 +429,7 @@ def household_consumption(par,ini,ss,sol):
 
 
             # ii. consumption
-            RHS = par.zeta_a[a]*par.mu_Aq*(A_R_a_now/P_C)**(-par.sigma)
+            RHS = par.zeta_a[a]*par.mu_Aq*(A_R_a_now/P_C[t])**(-par.sigma)
             
             if a < par.life_span-1: 
                 RHS += (1-par.zeta_a[a])*par.beta*(1+real_r_hh[t])*C_R_a_plus**(-par.sigma) 
