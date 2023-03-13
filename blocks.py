@@ -250,15 +250,17 @@ def phillips_curve(par,ini,ss,sol):
     P_Y_plus = lead(P_Y,ss.P_Y)
     Y_plus = lead(Y,ss.Y)
  
+    eta = par.theta*par.gamma
+    
     LHS = P_Y
 
     RHS_0 = (1+par.theta)*P_Y_0
 
     fac_lag = P_Y/P_Y_lag/(P_Y_lag/P_Y_lag_lag)
-    RHS_1 = -par.eta*(fac_lag-1)*fac_lag*P_Y
+    RHS_1 = -eta*(fac_lag-1)*fac_lag*P_Y
 
     fac = P_Y_plus/P_Y/(P_Y/P_Y_lag)
-    RHS_2 = 2/(1+par.r_firm)*par.eta*Y_plus/Y*(fac-1)*fac*P_Y_plus
+    RHS_2 = 2/(1+par.r_firm)*eta*Y_plus/Y*(fac-1)*fac*P_Y_plus
 
     PC[:] = LHS - RHS_0 - RHS_1 - RHS_2
 

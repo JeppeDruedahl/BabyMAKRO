@@ -196,7 +196,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.mu_K = 1/3 # weigth on capital
         par.sigma_Y = 1.01 # substitution
         par.theta = 0.1 # mark-up
-        par.eta = 0.1 # PC-slope
+        par.gamma = 1.0 # price adjustment costs
 
         # c. labor agency
         par.kappa_L = 0.05 # cost of vancies in labor units
@@ -617,6 +617,76 @@ class BabyMAKROModelClass(EconModelClass):
                     ax.set_ylabel('diff.to ss')
                 else:
                     ax.plot((path[:T_IRF]/ssvalue-1)*100,'-o',markersize=2, label=f'{parameter} = {parvalue}',linewidth=0.75)
+                    ax.set_ylabel('% diff.to ss')
+                
+                handles, labels = ax.get_legend_handles_labels()
+            
+            ax.set_title(varname)
+            fig.legend(handles,labels,loc='upper right',frameon=True)
+
+        fig.tight_layout(pad=1.0)
+
+    def multi_model_extra(self,parameters,parvalues_0,parvalues_1):
+        """ create two models with different values for several parameters """
+        
+        par = self.par
+        models = []  
+
+        model_0 = self.copy()
+        model_1 = self.copy()
+
+        for i,parameter in enumerate(parameters):
+
+            setattr(model_0.par,parameter,parvalues_0[i])
+            setattr(model_1.par,parameter,parvalues_1[i])
+        
+        model_0.find_ss()
+        model_0.calc_jac(do_print=True)
+
+        model_1.find_ss()
+        model_1.calc_jac(do_print=True)
+
+        models.append(model_0)
+        models.append(model_1)
+
+        return models
+
+    def plot_IRF_models_extra(self,models,varlist,ncol=3,T_IRF=50,abs = None,Y_share = None):
+        """ plot IRFs for models with different parameters """
+
+        if abs is None:
+            abs = []
+        if Y_share is None:
+            Y_share = []
+
+        nrow = len(varlist)//ncol
+        if len(varlist) > nrow*ncol: nrow+=1 
+
+        fig = plt.figure(figsize=(ncol*6,nrow*6/1.5))
+
+        for i,varname in enumerate(varlist):
+            
+            ax = fig.add_subplot(nrow,ncol,1+i)
+            for j,model_ in enumerate(models):
+
+                par = model_.par
+                ss = model_.ss
+                sol = model_.sol
+
+                ssvalue = ss.__dict__[varname]
+                path = sol.__dict__[varname]
+
+                if varname in abs:
+                    ax.axhline(ssvalue,color='black',linewidth=0.75)
+                    ax.plot(path[:T_IRF],'-o',markersize=2)
+                elif varname in Y_share:
+                    ax.plot(path[:T_IRF]/sol.Y[:T_IRF],'-o',markersize=2, label='Model ' + str(j), linewidth=0.75)   
+                    ax.set_ylabel('share of Y')         
+                elif np.isclose(ssvalue,0.0):
+                    ax.plot(path[:T_IRF]-ssvalue,'-o',markersize=2, label='Model ' + str(j), linewidth=0.75)
+                    ax.set_ylabel('diff.to ss')
+                else:
+                    ax.plot((path[:T_IRF]/ssvalue-1)*100,'-o',markersize=2, label='Model ' + str(j), linewidth=0.75)
                     ax.set_ylabel('% diff.to ss')
                 
                 handles, labels = ax.get_legend_handles_labels()
