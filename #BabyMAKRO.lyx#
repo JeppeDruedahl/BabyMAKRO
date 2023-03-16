@@ -3832,8 +3832,29 @@ Transition path
  savings more attractive.
  As price on consumption decreases, so does the real interest rates, and
  the Ricardian households begin using their savigns to increase consumption.
- Once, the tax rate is lowered again, the real income increases and so does
- the consumption.
+  
+\end_layout
+
+\begin_layout Standard
+Export converges smoothly towards its steady state level.
+ After the initial drop in consumption, it increases towards its steady
+ state level as prices converge.
+ This is especially true for the hands-to-mouth households.
+ By the 10th year, the new and higher tax rate is gradually implemented
+ which leads to a large drop in consumption.
+ The Ricardian households have foreseen this new tax rate, such that their
+ consumption is more even throughout the period, but still with a decrease
+ in consumption once the higher tax rate is implemented.
+ They achieve the consumption smoothing by increasing their savings under
+ the lower tax rate, and using this additional savings/income once the high
+ tax rate is implemented.
+ The bequests will not reach much before the new tax rate is implemented,
+ because that a high proportion of the population made their savings decision
+ before the shock to government consumption, and they will not/only partly
+ be affected by a higher tax in the future.
+ However, the higher tax rate has a larger effect on the later generation,
+ which implies a lower income and less bequests.
+ 
 \end_layout
 
 \end_deeper

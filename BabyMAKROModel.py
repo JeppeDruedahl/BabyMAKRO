@@ -184,19 +184,19 @@ class BabyMAKROModelClass(EconModelClass):
         par.sigma = 2.0 # CRRA coefficient
         par.mu_Aq = 100.0 # weight on bequest motive
 
-        par.r_hh = 0.04 # nominal return rate
+        par.r_hh = 0.02 # nominal return rate
         par.W_U = 0.80 # unemployment benefits (rel. to ss.W)
         par.W_R = 0.50 # retirement benefits (rel. to ss.W)
 
         par.delta_L_a_fac = 0.10 # age-specific separation rate (common)
 
         # b. production firm and phillips curve
-        par.r_firm = 0.04 # internal (nominal) rate of return
+        par.r_firm = 0.02 # internal (nominal) rate of return
         par.delta_K = 0.10 # depreciation rate
         par.mu_K = 1/3 # weigth on capital
         par.sigma_Y = 1.01 # substitution
         par.theta = 0.1 # mark-up
-        par.gamma = 1.0 # price adjustment costs
+        par.gamma = 50.0 # price adjustment costs
 
         # c. labor agency
         par.kappa_L = 0.05 # cost of vancies in labor units
@@ -205,10 +205,9 @@ class BabyMAKROModelClass(EconModelClass):
         par.Psi_0 = 5.0 # adjustment costs
 
         # e. government
-        par.r_b = 0.04 # nominal rate of return on government debt
-        par.epsilon_B = 0.25 # adjustment speed  
+        par.r_b = 0.02 # nominal rate of return on government debt
+        par.epsilon_B = 0.15 # adjustment speed  
         par.G_share_ss = 0.30 # share of government spending in Y
-        par.t_b = 0
 
         # f. repacking
         par.mu_M_C = 0.30 # weight on imports in C
@@ -228,7 +227,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.sigma_m = np.nan # curvature in matching function, determined in ss
 
         # i. wage
-        par.epsilon_w = 1.5  
+        par.epsilon_w = 1.25 #   
 
         # j. steady state
         par.W_ss = 1.0 # wage
@@ -450,6 +449,7 @@ class BabyMAKROModelClass(EconModelClass):
             jac[:,i] = (alt-base)/dx
 
         if do_print: print(f'Jacobian calculated in {elapsed(t0)}')
+
 
     def find_IRF(self,ini=None,do_print=True):
         """ find IRF """

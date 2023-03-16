@@ -342,10 +342,7 @@ def government(par,ini,ss,sol):
         taxbase =  W[t]*L[t] + par.W_U*ss.W*U[t] + par.W_R*ss.W*(par.N-par.N_work)
 
         B_tilde = B_lag + expenditure - ss.tau*taxbase
-        if t >= par.t_b:
-            tau[t] = ss.tau + par.epsilon_B*(B_tilde-ss.B)/taxbase
-        else:
-            tau[t] = ss.tau
+        tau[t] = ss.tau + par.epsilon_B*(B_tilde-ss.B)/taxbase
 
         B[t] = B_lag + expenditure - tau[t]*taxbase
 
