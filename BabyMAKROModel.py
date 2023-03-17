@@ -508,6 +508,7 @@ class BabyMAKROModelClass(EconModelClass):
                 ax.axhline(ssvalue,color='black')
                 ax.plot(path[:T_IRF],'-o',markersize=3)
             elif varname in Y_share:
+                ax.axhline(ssvalue/ss.Y,color='black')
                 ax.plot(path[:T_IRF]/sol.Y[:T_IRF],'-o',markersize=3)   
                 ax.set_ylabel('share of Y')         
             elif np.isclose(ssvalue,0.0):
