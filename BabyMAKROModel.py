@@ -242,25 +242,25 @@ class BabyMAKROModelClass(EconModelClass):
 
         par = self.par
 
-        par.zeta_a = np.zeros(par.life_span)
-        par.zeta_a[-1] = 1.0 # everybody dies in last period
+        par.zeta_a = np.zeros((par.life_span,1))
+        par.zeta_a[-1,:] = 1.0 # everybody dies in last period
 
         for a in range(par.life_span-1):
             if a < par.work_life_span: # no death before retirement
-                par.zeta_a[a] = 0.0
+                par.zeta_a[a,:] = 0.0
             else:
-                par.zeta_a[a] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**par.zeta
+                par.zeta_a[a,:] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**par.zeta
     
     def demographic_structure(self):
         """ calculate demographic structure """
         
         par = self.par
 
-        par.N_a = np.zeros(par.life_span)
-        par.N_a[0] = 1.0 # normalization
+        par.N_a = np.zeros((par.life_span,1))
+        par.N_a[0,:] = 1.0 # normalization
              
         for a in range(1,par.life_span):
-            par.N_a[a] = (1-par.zeta_a[a-1])*par.N_a[a-1]
+            par.N_a[a,:] = (1-par.zeta_a[a-1,:])*par.N_a[a-1,:]
                     
         par.N = np.sum(par.N_a)
         par.N_work = np.sum(par.N_a[:par.work_life_span])
@@ -270,7 +270,7 @@ class BabyMAKROModelClass(EconModelClass):
     
         par = self.par
         
-        par.delta_L_a = par.delta_L_a_fac*np.ones(par.work_life_span)
+        par.delta_L_a = par.delta_L_a_fac*np.ones((par.work_life_span,1))
 
     def allocate(self):
         """ allocate model """
@@ -295,15 +295,15 @@ class BabyMAKROModelClass(EconModelClass):
         for varname in self.varlist:
             setattr(ini,varname,np.nan)
             setattr(ss,varname,np.nan)
-            setattr(sol,varname,np.zeros(par.T))
+            setattr(sol,varname,np.zeros((par.T,1)))
 
         for varname in self.exo: assert varname in self.varlist, varname
 
         # c. household variables
         for varname in self.varlist_hh:
-            setattr(ini,varname,np.zeros(par.life_span))
-            setattr(ss,varname,np.zeros(par.life_span))
-            setattr(sol,varname,np.zeros((par.life_span,par.T)))            
+            setattr(ini,varname,np.zeros((par.life_span,1)))
+            setattr(ss,varname,np.zeros((par.life_span,1)))
+            setattr(sol,varname,np.zeros((par.life_span,par.T,1)))            
 
         for varname in self.unknowns: assert varname in self.varlist+self.varlist_hh, varname
         for varname in self.targets: assert varname in self.varlist+self.varlist_hh, varname
@@ -335,11 +335,11 @@ class BabyMAKROModelClass(EconModelClass):
             ssvalue = ss.__dict__[varname]
 
             if varname in self.varlist:
-                sol.__dict__[varname] = np.repeat(ssvalue,par.T)
+                sol.__dict__[varname][:] = ssvalue
             elif varname in self.varlist_hh:
-                sol.__dict__[varname] = np.zeros((par.life_span,par.T))
+                sol.__dict__[varname] = np.zeros((par.life_span,par.T,1))
                 for t in range(par.T):
-                    sol.__dict__[varname][:,t] = ssvalue
+                    sol.__dict__[varname][:,t,:] = ssvalue
             else:
                 raise ValueError(f'unknown variable name, {varname}')
 

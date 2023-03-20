@@ -17,7 +17,7 @@ def find_household_consumption_ss(model):
         bracket=[0.0001,1000],method='brentq',args=(par,ss,))
     
     household_consumption_ss(result.root,par,ss)
-    ss.A_R_death = ss.A_R_a[-1]
+    ss.A_R_death = float(ss.A_R_a[-1,:])
 
     return result
 
@@ -30,28 +30,28 @@ def household_consumption_ss(A_R_death,par,ss):
 
     # a. HtM
     ss.C_HtM_a[:] = ss.inc_a/ss.P_C
-    ss.A_HtM_a[:] = np.zeros(par.life_span)
+    ss.A_HtM_a[:] = np.zeros((par.life_span,1))
 
     # b. Ricardian
     A_R_ini_error = np.nan
-    ss.A_R_a[-1] = A_R_death
+    ss.A_R_a[-1,:] = A_R_death
 
     for i in range(par.life_span):
 
         a = par.life_span-1-i
 
         # i. consumption
-        RHS = par.zeta_a[a]*par.mu_Aq*(ss.A_R_a[a]/ss.P_C)**(-par.sigma)
+        RHS = par.zeta_a[a,:]*par.mu_Aq*(ss.A_R_a[a,:]/ss.P_C)**(-par.sigma)
         
         if a < par.life_span-1: 
-            RHS += (1-par.zeta_a[a])*par.beta*(1+ss.real_r_hh)*ss.C_R_a[a+1]**(-par.sigma)
+            RHS += (1-par.zeta_a[a,:])*par.beta*(1+ss.real_r_hh)*ss.C_R_a[a+1,:]**(-par.sigma)
 
-        ss.C_R_a[a] = RHS**(-1/par.sigma)
+        ss.C_R_a[a,:] = RHS**(-1/par.sigma)
 
         # ii. assets
-        A_R_lag = (ss.A_R_a[a] + ss.P_C*ss.C_R_a[a] - ss.inc_a[a])/(1+ss.r_hh)         
+        A_R_lag = (ss.A_R_a[a,:] + ss.P_C*ss.C_R_a[a,:] - ss.inc_a[a,:])/(1+ss.r_hh)         
         if a > 0:
-            ss.A_R_a[a-1] = A_R_lag
+            ss.A_R_a[a-1,:] = A_R_lag
         else:
             A_R_ini_error = A_R_lag-0.0
 
@@ -104,21 +104,21 @@ def household_search_ss(par,ss):
     for a in range(par.life_span):
         
         if a == 0:
-            ss.S_a[a] = 1.0
-            ss.L_ubar_a[a] = 0.0
+            ss.S_a[a,:] = 1.0
+            ss.L_ubar_a[a,:] = 0.0
         elif a >= par.work_life_span:
-            ss.S_a[a] = 0.0
-            ss.L_ubar_a[a] = 0.0            
+            ss.S_a[a,:] = 0.0
+            ss.L_ubar_a[a,:] = 0.0            
         else:
-            ss.S_a[a] = (1-par.zeta_a[a])*((par.N_a[a-1]-ss.L_a[a-1]) + par.delta_L_a[a]*ss.L_a[a-1])
-            ss.L_ubar_a[a] = (1-par.zeta_a[a])*(1-par.delta_L_a[a])*ss.L_a[a-1]
+            ss.S_a[a,:] = (1-par.zeta_a[a,:])*((par.N_a[a-1,:]-ss.L_a[a-1,:]) + par.delta_L_a[a,:]*ss.L_a[a-1,:])
+            ss.L_ubar_a[a,:] = (1-par.zeta_a[a,:])*(1-par.delta_L_a[a,:])*ss.L_a[a-1,:]
 
-        ss.L_a[a] = ss.L_ubar_a[a] + ss.m_s*ss.S_a[a]
+        ss.L_a[a,:] = ss.L_ubar_a[a,:] + ss.m_s*ss.S_a[a,:]
 
         if a >= par.work_life_span:
-            ss.U_a[a] = 0.0
+            ss.U_a[a,:] = 0.0
         else:
-            ss.U_a[a] = par.N_a[a]-ss.L_a[a]
+            ss.U_a[a,:] = par.N_a[a,:]-ss.L_a[a,:]
 
     ss.S = np.sum(par.N_a*ss.S_a)
     ss.L_ubar = np.sum(par.N_a*ss.L_ubar_a)
