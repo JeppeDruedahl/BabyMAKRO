@@ -236,6 +236,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.m_v_ss = 0.75 # job-filling rate
         par.B_ss = 0.0 # government debt
         
+
     def mortality(self):
         """ calculate mortality by age """
 
@@ -294,7 +295,7 @@ class BabyMAKROModelClass(EconModelClass):
         for varname in self.varlist:
             setattr(ini,varname,np.nan)
             setattr(ss,varname,np.nan)
-            setattr(sol,varname,np.zeros((par.T,1)))
+            setattr(sol,varname,np.zeros(par.T))
 
         for varname in self.exo: assert varname in self.varlist, varname
 
@@ -302,7 +303,7 @@ class BabyMAKROModelClass(EconModelClass):
         for varname in self.varlist_hh:
             setattr(ini,varname,np.zeros(par.life_span))
             setattr(ss,varname,np.zeros(par.life_span))
-            setattr(sol,varname,np.zeros((par.life_span,par.T,1)))    
+            setattr(sol,varname,np.zeros((par.life_span,par.T)))            
 
         for varname in self.unknowns: assert varname in self.varlist+self.varlist_hh, varname
         for varname in self.targets: assert varname in self.varlist+self.varlist_hh, varname
@@ -326,19 +327,19 @@ class BabyMAKROModelClass(EconModelClass):
         """ set variables in varlist to steady state """
 
         par = self.par
-        ss = self.ss
         sol = self.sol
+        ss = self.ss
 
         for varname in varlist:
 
             ssvalue = ss.__dict__[varname]
 
             if varname in self.varlist:
-                sol.__dict__[varname][:] = ssvalue
+                sol.__dict__[varname] = np.repeat(ssvalue,par.T)
             elif varname in self.varlist_hh:
-                sol.__dict__[varname] = np.zeros((par.life_span,par.T,1))
+                sol.__dict__[varname] = np.zeros((par.life_span,par.T))
                 for t in range(par.T):
-                    sol.__dict__[varname][:,t,:] = ssvalue
+                    sol.__dict__[varname][:,t] = ssvalue
             else:
                 raise ValueError(f'unknown variable name, {varname}')
 
