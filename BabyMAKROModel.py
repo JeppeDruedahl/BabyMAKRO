@@ -236,31 +236,30 @@ class BabyMAKROModelClass(EconModelClass):
         par.m_v_ss = 0.75 # job-filling rate
         par.B_ss = 0.0 # government debt
         
-
     def mortality(self):
         """ calculate mortality by age """
 
         par = self.par
 
-        par.zeta_a = np.zeros((par.life_span,1))
-        par.zeta_a[-1,:] = 1.0 # everybody dies in last period
+        par.zeta_a = np.zeros(par.life_span)
+        par.zeta_a[-1] = 1.0 # everybody dies in last period
 
         for a in range(par.life_span-1):
             if a < par.work_life_span: # no death before retirement
-                par.zeta_a[a,:] = 0.0
+                par.zeta_a[a] = 0.0
             else:
-                par.zeta_a[a,:] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**par.zeta
+                par.zeta_a[a] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**par.zeta
     
     def demographic_structure(self):
         """ calculate demographic structure """
         
         par = self.par
 
-        par.N_a = np.zeros((par.life_span,1))
-        par.N_a[0,:] = 1.0 # normalization
+        par.N_a = np.zeros(par.life_span)
+        par.N_a[0] = 1.0 # normalization
              
         for a in range(1,par.life_span):
-            par.N_a[a,:] = (1-par.zeta_a[a-1,:])*par.N_a[a-1,:]
+            par.N_a[a] = (1-par.zeta_a[a-1])*par.N_a[a-1]
                     
         par.N = np.sum(par.N_a)
         par.N_work = np.sum(par.N_a[:par.work_life_span])
@@ -270,7 +269,7 @@ class BabyMAKROModelClass(EconModelClass):
     
         par = self.par
         
-        par.delta_L_a = par.delta_L_a_fac*np.ones((par.work_life_span,1))
+        par.delta_L_a = par.delta_L_a_fac*np.ones(par.work_life_span)
 
     def allocate(self):
         """ allocate model """
@@ -301,9 +300,9 @@ class BabyMAKROModelClass(EconModelClass):
 
         # c. household variables
         for varname in self.varlist_hh:
-            setattr(ini,varname,np.zeros((par.life_span,1)))
-            setattr(ss,varname,np.zeros((par.life_span,1)))
-            setattr(sol,varname,np.zeros((par.life_span,par.T,1)))            
+            setattr(ini,varname,np.zeros(par.life_span))
+            setattr(ss,varname,np.zeros(par.life_span))
+            setattr(sol,varname,np.zeros((par.life_span,par.T,1)))    
 
         for varname in self.unknowns: assert varname in self.varlist+self.varlist_hh, varname
         for varname in self.targets: assert varname in self.varlist+self.varlist_hh, varname
@@ -327,8 +326,8 @@ class BabyMAKROModelClass(EconModelClass):
         """ set variables in varlist to steady state """
 
         par = self.par
-        sol = self.sol
         ss = self.ss
+        sol = self.sol
 
         for varname in varlist:
 
