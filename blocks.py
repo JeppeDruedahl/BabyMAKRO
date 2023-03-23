@@ -159,15 +159,10 @@ def search_and_match(par,ini,ss,sol):
         v[t] = (curlyM[t]**(1/par.sigma_m)/(1-m_s[t]**(1/par.sigma_m)))**par.sigma_m
         m_v[t] = curlyM[t]/v[t]
 
-        # e. emplolyment and unemployment
-        for a in range(par.life_span):
-
-            L_a[a,t] = L_ubar_a[a,t] + m_s[t]*S_a[a,t]
-
-            if a < par.work_life_span:
-                U_a[a,t] = par.N_a[a]-L_a[a,t]            
-            else:
-                U_a[a,t] = 0.0
+        # e. emplolyment and unemployment 
+        L_a[:,t] = L_ubar_a[:,t] + m_s[t]*S_a[:,t]
+        U_a[:par.work_life_span,t] = par.N_a[:par.work_life_span]-L_a[:par.work_life_span,t]
+        U_a[par.work_life_span:,t] = 0.0                       
 
         U[t] = np.sum(par.N_a*U_a[:,t])
 
@@ -395,9 +390,10 @@ def household_consumption(par,ini,ss,sol):
         inc[t] = np.sum(par.N_a*inc_a[:,t])
 
     # b. HtM
-    for t in range(par.T):
-        C_HtM_a[:,t] = inc_a[:,t]/P_C[t]
-        A_HtM_a[:,t] = 0.0 
+    C_HtM_a[:,:] = inc_a/P_C
+    A_HtM_a[:,:] = 0.0 
+       
+        
 
     # c. Ricardian
     for t0 in range(-par.life_span+1,par.T): # birthcohort
@@ -446,18 +442,17 @@ def household_consumption(par,ini,ss,sol):
                 A_R_ini_error[t0-(-par.life_span+1)] = A_R_a_lag-0.0
 
     # d. aggregate
+     # life-cycle
+    C_a[:,:] = par.Lambda*C_HtM_a + (1-par.Lambda)*C_R_a     
+    A_a[:,:] = par.Lambda*A_HtM_a + (1-par.Lambda)*A_R_a
+
+    # time period
+    C[:] = np.sum(par.N_a.reshape(-1,1)*sol.C_a, axis = 0)
+    C_HtM[:] = np.sum(par.N_a.reshape(-1,1)*C_HtM_a[:,:], axis = 0)
+    C_R[:] = np.sum(par.N_a.reshape(-1,1)*C_R_a[:,:], axis = 0)
+    A[:] = np.sum(par.N_a.reshape(-1,1)*A_a[:,:], axis = 0)   
+
     for t in range(par.T):  
-        
-        # life-cycle
-        C_a[:,t] = par.Lambda*C_HtM_a[:,t]+(1-par.Lambda)*C_R_a[:,t] 
-        A_a[:,t] = par.Lambda*A_HtM_a[:,t]+(1-par.Lambda)*A_R_a[:,t] 
-
-        # time period
-        C[t] = np.sum(par.N_a*C_a[:,t])
-        C_HtM[t] = np.sum(par.N_a*C_HtM_a[:,t])
-        C_R[t] = np.sum(par.N_a*C_R_a[:,t])
-        A[t] = np.sum(par.N_a*A_a[:,t])
-
         # bequest
         if t == 0:
             Aq_implied = (1+r_hh[t])*np.sum(par.zeta_a*par.N_a*ss.A_a)
