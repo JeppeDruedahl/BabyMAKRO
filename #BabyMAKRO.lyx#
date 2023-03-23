@@ -4625,15 +4625,28 @@ n.
 Transition path
 \series default
 : The production decreases as the excess demand diminishes, which implies
- that the labor demand decreases.
- Likewise, the capital declines due to a low real marginal product of capital,
+ that the labor demand decreases.Likewise, the capital Lower production implies
+ less need for labor.
+ However, as the shock has increased domestic income/demand through a lower
+ tax rate (see effect on Government), the production, labor, investments
+ and capital continue to be above their steady state levels for an extensive
+ period.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The price shock channels effects the domestic demand immediately, such that
+ production, capital, investment and labor decrease.
+ Capital continues to decline due to a low real marginal product of capital,
  but eventually a higher domestic demand implies a higher real marginal
  product of capital, implying more capital.
- This low level of capital also implies that the production and labor demand
- drops below their steady state levels.
- The effects stemming from each channel are qualitatively similar, even
- though the quantitative effects on capital is much greater through the
- price shock channel.
+ Additional, more domestic demand lead to more production and thereby more
+ labor.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Overall, the effects from the price shock channel seems to dominate.
 \end_layout
 
 \end_deeper

@@ -392,9 +392,8 @@ def household_consumption(par,ini,ss,sol):
     # b. HtM
     C_HtM_a[:,:] = inc_a/P_C
     A_HtM_a[:,:] = 0.0 
-       
         
-
+    
     # c. Ricardian
     for t0 in range(-par.life_span+1,par.T): # birthcohort
 
