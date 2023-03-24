@@ -4713,25 +4713,9 @@ Initial effect
 \series bold
 Transition path
 \series default
-: As described in the 
-\begin_inset Quotes ald
-\end_inset
-
-Effect on Production firms, Phillips-curve and Investments
-\begin_inset Quotes ard
-\end_inset
-
-, the transition from each channel is different as the foreign demand shock
- channel implies a continued high demand for labor whereas the price shock
- channels implies a lower demand for labor.
- The overall effect follows the price shock channel more closely, hence
- the amount of labor drops below its steady state level.
- This directly increases the number of searcher as well as the job-finding
- rate, and decreases the number of matches, vacancies and the job-filling
- rate.
- As the demand shocks diminish so does the demand for labor, thus the variables
- converges towards their steady state levels.
- 
+: As the production declines, so does the labor.
+ Less labor implies more searchers, less vacancies and less matches.
+ The wage is also declining due to less labor demand.
 \end_layout
 
 \end_deeper
@@ -4823,16 +4807,14 @@ reference "subsec:Block-X.-Households"
 \series bold
 Initial effect
 \series default
-: Again, the two shock channels have different effects on consumption.
- From the foreign demand shock channel, higher foreign demand implies more
- labor, a lower tax rate and thereby a higher real income for the households,
- 
+: Both shocks increase the foreign demand which implies more labor, a lower
+ tax rate and thereby a higher real income for the households, 
 \begin_inset Formula $\text{inc}^{\text{real}}\uparrow$
 \end_inset
 
 .
- Therefore, both HtM and Ricardian households increase consumption, 
-\begin_inset Formula $C\uparrow$
+ Therefore, the HtM increases consumption, 
+\begin_inset Formula $C^{HtM}\uparrow$
 \end_inset
 
 .
@@ -4963,22 +4945,24 @@ Initial effect
 \end_inset
 
 .
- A lower demand for consumption drives down the price on consumption 
-\begin_inset Formula $P^{C}\downarrow$
-\end_inset
-
-, such that the HtM households can afford more consumption, 
-\begin_inset Formula $C^{HtM}\uparrow$
+ The real income decreases whch is cause by a production and thereby less
+ labor demand.
+ As such, the HtM households can afford less consumption, 
+\begin_inset Formula $C^{HtM}\downarrow$
 \end_inset
 
 .
- The effect on total consumption is a decrease, 
+ Aggregated consumption decreases, 
 \begin_inset Formula $C\downarrow$
 \end_inset
 
+, which drives down the price on consumption 
+\begin_inset Formula $P^{C}\downarrow$
+\end_inset
+
 .
- Notably, there is an initial increase in bequests, as these are affected
- by the interest rate 
+ There is an initial increase in bequests, as these are affected by the
+ interest rate 
 \begin_inset Formula $Aq\uparrow$
 \end_inset
 
@@ -4997,10 +4981,10 @@ Transition path
  Higher demand for consumption drives up prices, but also implies higher
  output levels and thereby higher employment levels.
  Higher employment has two positive effects for consumption; higher wage
- income compared to unemployment benefits and a lower tax rate (see Effect
- on Government).
+ income compared to unemployment benefits and a lower tax rate (even though
+ this effect is small).
  These two effects also increase the HtM households' consumption, so overall
- the total consumption continues to grow.
+ the aggregated consumption continues to grow.
  Eventually, the decline in interest payment implies that the consumption
  as well as the savings converge back to its steady state level.
  
@@ -5063,11 +5047,11 @@ Initial effect
 \begin_inset Formula $P^{Y,0}\downarrow$
 \end_inset
 
-, and a higher output price, 
+, and a lower output price, 
 \begin_inset Formula $P^{Y}\downarrow$
 \end_inset
 
-, because these are set as a mark-up over the marginal cost prices.
+s.
  The output price is sticky, thus the decrease is relatively smaller.
  A lower output price implies that the price on investment also decreases,
  
