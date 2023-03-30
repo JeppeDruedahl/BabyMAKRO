@@ -401,7 +401,7 @@ Model
 status open
 
 \begin_layout Plain Layout
-Block I
+Production firms
 \end_layout
 
 \end_inset
@@ -411,12 +411,630 @@ Block I
 
 \begin_deeper
 \begin_layout Itemize
+The production firms use capital, 
+\begin_inset Formula $K_{t-1}$
+\end_inset
 
+, and labor, 
+\begin_inset Formula $\ell_{t}$
+\end_inset
+
+, to produce output, 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+, with a CES technology.
+\end_layout
+
+\begin_layout Itemize
+The rental price of capital is 
+\begin_inset Formula $r_{t}^{K}$
+\end_inset
+
+, the rental price of labor is 
+\begin_inset Formula $r_{t}^{\ell}$
+\end_inset
+
+ and the output price under perfect competition is 
+\begin_inset Formula $P_{t}^{Y,0}$
+\end_inset
+
+.
+ The firms maximize profits:
 \series bold
-TBA
+
+\begin_inset Formula 
+\begin{align}
+\Pi_{t} & =\max_{X_{i},X_{j}}P_{t}^{Y,0}Y_{t}-r_{t}^{K}K_{t-1}-r_{t}^{\ell}\ell_{t}\label{eq:Profits}\\
+ & \text{ s.t. }\nonumber \\
+Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\nonumber \\
+\text{where} & \,\mu^{K},\sigma^{Y},\Gamma>0,\,\sigma^{Y}\neq1.\nonumber 
+\end{align}
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Production firms
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The firms are price takers and free entry implies zero profits, such that
+ the output prices are given as 
+\series bold
+
+\begin_inset Formula 
+\begin{align}
+P_{t}^{Y,0} & =\frac{1}{\Gamma}\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{t}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}.\label{eq:PY}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+As the production technology has constant return-to-scale, there are infinitely
+ many solutions to the firms maximization problem.
+ However, they all satisfy that inputs are used in proportion as follows:
+\begin_inset Formula 
+\begin{align}
+\frac{K_{t-1}}{\ell_{t}} & =\frac{\mu_{K}}{1-\mu_{K}}\left(\frac{r_{t}^{\ell}}{r_{t}^{K}}\right)^{\sigma^{Y}}.\label{eq:FOC_K_ell}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Phillips curve
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The final output price, 
+\begin_inset Formula $P_{t}^{Y}$
+\end_inset
+
+, is a mark-up over 
+\begin_inset Formula $P_{t}^{Y,0}$
+\end_inset
+
+ to capture monopolistic behavior by the firms.
+ The demand for each good is 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+.
+ The final prices are sticky, and the firms pay a quadratic adjustment cost,
+ 
+\begin_inset Formula $g_{t}$
+\end_inset
+
+, to change them.
+\begin_inset Formula 
+\begin{align*}
+V_{t}^{\text{intermediary}}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-g_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}^{\text{intermediary}}\\
+ & \text{ s.t. }\\
+g_{t} & =\frac{\gamma}{2}\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]^{2}P_{t}^{Y}Y_{t}\\
+y_{t} & =\left(\frac{p_{t}^{Y}}{P_{t}^{Y}}\right)^{-\sigma_{D}}Y_{t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Phillips curve
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The firms solve the maxization problem and due to symmetry across firms,
+ the final output price is:
+\series bold
+
+\begin_inset Formula 
+\begin{align}
+P_{t}^{Y}= & (1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}\label{eq:Phillips curve}\\
+ & +\frac{2\eta}{1+r^{\text{firm}}}\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\nonumber \\
+ & \theta\equiv\frac{1}{\sigma_{D}-1}\nonumber \\
+ & \eta\equiv\theta\gamma.\nonumber 
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Repacking firms
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The output good, 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+, can be used for either private consumption, 
+\begin_inset Formula $C_{t}$
+\end_inset
+
+, public consumption, 
+\begin_inset Formula $G_{t}$
+\end_inset
+
+, investment, 
+\begin_inset Formula $I_{t}$
+\end_inset
+
+, or exports, 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+.
+ For each use the output good must be repacked with imported goods.
+ This is done by repacking firms with a CES production technology, where
+ they take the final output price and the import prices as given.
+\begin_inset Formula 
+\begin{align}
+P_{t}^{\bullet} & =\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}\label{eq:CGIX_P}\\
+\bullet_{t}^{M} & =\mu^{M,\bullet}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_M}\\
+\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t}.\label{eq:CGIX_Y}
+\end{align}
+
+\end_inset
+
+for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Goods market clearing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The production of the domestic output good must match the output goods used
+ by the repacking firms.
+ Imports, 
+\begin_inset Formula $M_{t}$
+\end_inset
+
+, are the sum of the imports used by the repacking firms.
+\begin_inset Formula 
+\begin{equation}
+M_{t}=\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{M}.\label{eq:M}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+Y_{t} & =\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{Y}.\label{eq:Y_clearing}
+\end{align}
+
+\end_inset
+
+for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Foreign economy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The foreign economy is characterized by so-called Armington demand of the
+ domestic exported good:
+\begin_inset Formula 
+\begin{align}
+X_{t} & =\gamma^{X}X_{t-1}+(1-\gamma^{X})\chi_{t}\left(\frac{P_{t}^{X}}{P_{t}^{F}}\right)^{-\sigma^{F}}.\label{eq:X}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Capital agency
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The capital agency firm buys investment goods, 
+\begin_inset Formula $I_{t}$
+\end_inset
+
+, at price, 
+\begin_inset Formula $P_{t}^{I}$
+\end_inset
+
+, to accumulate capital, 
+\begin_inset Formula $K_{t}$
+\end_inset
+
+, which it rents out to production at the rental rate 
+\begin_inset Formula $r_{t+1}^{K}$
+\end_inset
+
+ in the following period.
+ The investment decision is subject to convex adjustment costs in terms
+ of wasted investment goods, such that effective investment is 
+\begin_inset Formula $\iota_{t}$
+\end_inset
+
+.
+ Future profits are discounted with 
+\begin_inset Formula $r^{\text{firm}}.$
+\end_inset
+
+ The capital agency takes prices as given, and its problem thus is:
+\begin_inset Formula 
+\begin{align*}
+V_{0}^{\text{capital}}\left(K_{t-1}\right) & =\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}\left(\iota_{t}+\Psi(\iota_{t},K_{t-1})\right)\right]\\
+ & \text{s.t.}\\
+I_{t} & =\iota_{t}+\Psi(\iota_{t},K_{t-1})\\
+K_{t} & =(1-\delta^{K})K_{t-1}+\iota_{t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Capital agency
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+We choose the functional form
+\begin_inset Formula 
+\[
+\Psi(\iota_{t},K_{t-1})=\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)^{2}K_{t-1}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Hence, the first order condition of the capital agency implies:
+\begin_inset Formula 
+\begin{align}
+0= & -P_{t}^{I}\left(1+\Psi_{\iota}\left(\iota_{t},K_{t-1}\right)\right)\label{eq:FOC_K}\\
+ & +\frac{r_{t+1}^{k}+P_{t+1}^{I}(1-\delta^{K})(1+\Psi_{\iota}(\iota_{t+1},K_{t}))-P_{t+1}^{I}\Psi_{K}\left(\iota_{t+1},K_{t}\right)}{1+r^{\text{firm}}}.\nonumber 
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Households - search and matching
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The age-specific number of households, 
+\begin_inset Formula $N_{a}$
+\end_inset
+
+, which is normalized to 1 at age 
+\begin_inset Formula $a=0$
+\end_inset
+
+.
+ The potential life-span is denoted 
+\begin_inset Formula $\#$
+\end_inset
+
+, where the mortality rate at period 
+\begin_inset Formula $a$
+\end_inset
+
+ is 
+\begin_inset Formula $\zeta_{a}$
+\end_inset
+
+.
+ The retirement age of the households 
+\begin_inset Formula $\#_{\text{work}}<\#$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The demographic structure and population is given as:
+\begin_inset Formula 
+\begin{align}
+N_{a} & =\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})N_{a-1} & \text{if }a>0
+\end{cases}\label{eq:Na}\\
+\zeta_{a} & =\begin{cases}
+0 & \text{if }a<\#_{\text{work}}\\
+\left(\frac{a+1-\#_{\text{work}}}{\#-\#_{\text{work}}}\right)^{\zeta} & \text{if }a<\#-1\\
+1 & \text{if }a=\#-1
+\end{cases}\label{eq:zeta_a}\\
+N & =\sum_{a=0}^{\#-1}N_{a}\label{eq:N}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Households - search and matching
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Households search for a job and supply labor exogenously.
+ The age-specific job-separation probability is 
+\begin_inset Formula $\delta_{a}^{L}\in(0,1)$
+\end_inset
+
+.
+ All unemployed search for a job.
+ As an initial condition, we have 
+\begin_inset Formula $L_{-1,t-1}=0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Households - consumption and savings
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Government
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Labor agency
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
