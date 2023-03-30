@@ -626,6 +626,7 @@ class BabyMAKROModelClass(EconModelClass):
             model_ = self.copy()
             setattr(model_.par,parameter,parvalue)
             model_.find_ss()
+            model_.compile(do_print=True)
             model_.calc_jac(do_print=True)
 
             models.append(model_)
@@ -764,21 +765,19 @@ class BabyMAKROModelClass(EconModelClass):
         
         shocks = [shock1,shock2]
         shock_size = [shock1_size,shock2_size]
-        
-        ss = self.ss
-        sol = self.sol
-        
+               
         self.find_ss()
+        self.compile(do_print=True)
         self.calc_jac(do_print=True)
         jac = self.jac
         self.set_exo_ss()
         
         for i,shock_index in enumerate(shocks):
             for shock_ in shock_index:
-                ss_shock_ = getattr(ss, shock_)
-                sol_shock_ = getattr(sol, shock_)
+                ss_shock_ = getattr(self.ss, shock_)
+                sol_shock_ = getattr(self.sol, shock_)
                 var_shock_ = shock_size[i]*ss_shock_
-                sol_shock_[:Tshock] = ss_shock_ + var_shock_*persistence    
+                sol_shock_[:Tshock,:] = ss_shock_ + var_shock_*persistence    
 
         self.find_IRF()   
         
@@ -796,7 +795,7 @@ class BabyMAKROModelClass(EconModelClass):
                 ss_shock_ = getattr(ss, shock_)
                 sol_shock_ = getattr(sol, shock_)
                 var_shock_ = shock_size[i]*ss_shock_
-                sol_shock_[:Tshock] = ss_shock_ + var_shock_*persistence
+                sol_shock_[:Tshock,:] = ss_shock_ + var_shock_*persistence
 
             model_.find_IRF()
             models.append(model_)
@@ -865,20 +864,22 @@ class BabyMAKROModelClass(EconModelClass):
         persistence = persistence
 
         self.find_ss()
+        self.compile()
         self.calc_jac()
         self.set_exo_ss() 
         for i,shock_ in enumerate(shocks):
-            self.sol.__dict__[shock_][:Tshock] = self.ss.__dict__[shock_]*(1 + shock_size[i]*persistence)
+            self.sol.__dict__[shock_][:Tshock,:] = self.ss.__dict__[shock_]*(1 + shock_size[i]*persistence)
         self.find_IRF(do_print=False)  
 
 
         model_ = self.copy()
         model_.par.__dict__[parameter] = value
         model_.find_ss()
+        model_.compile()
         model_.calc_jac()
         model_.set_exo_ss()
         for i,shock_ in enumerate(shocks):
-            model_.sol.__dict__[shock_][:Tshock] = model_.ss.__dict__[shock_]*(1 + shock_size[i]*persistence) 
+            model_.sol.__dict__[shock_][:Tshock,:] = model_.ss.__dict__[shock_]*(1 + shock_size[i]*persistence) 
         model_.find_IRF(do_print=False) 
     
         models = [self,model_]
