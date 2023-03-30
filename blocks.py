@@ -1,4 +1,4 @@
-from os import P_OVERLAY
+import time
 import numpy as np
 import numba as nb
 
@@ -7,13 +7,35 @@ import numba as nb
 #######################
 
 @nb.njit
-def lag(ssvalue,pathvalue):
-    return np.hstack((np.array([ssvalue]),pathvalue[:-1]))
+def lag(inivalue,pathvalue):
+
+    output = np.empty_like(pathvalue)
+    output[0,:] = inivalue
+    output[1:,:] = pathvalue[:-1,:]
+    return output
 
 @nb.njit
 def lead(pathvalue,ssvalue):
-    return np.hstack((pathvalue[1:],np.array([ssvalue])))
 
+    output = np.empty_like(pathvalue)
+    output[:-1,:] = pathvalue[1:,:]
+    output[-1,:] = ssvalue
+    return output
+
+@nb.njit
+def next_period(x,t,ssvalue):
+    if t+1 < x.shape[0]:
+        return x[t+1]
+    else:
+        return np.repeat(ssvalue,x.shape[1])
+
+@nb.njit
+def prev_period(x,t,inivalue):
+    if t > 0:
+        return x[t-1]
+    else:
+        return np.repeat(inivalue,x.shape[1])
+    
 @nb.njit
 def CES_Y(Xi,Xj,mui,sigma,Gamma=1.0):
 
@@ -119,36 +141,28 @@ def search_and_match(par,ini,ss,sol):
     for t in range(par.T):
         
         # a. lagged employment
-        if t == 0:
-            L_lag = ini.L
-        else:
-            L_lag = L[t-1]
+        L_lag = prev_period(L,t,ini.L)
 
         # b. searchers and employed before matching
+        S[t] = 0
+        L_ubar[t] = 0
+
+        S_a[0,t] = 1.0
+        L_ubar_a[0,t] = 0.0
+
+        S_a[par.work_life_span:,t] = 0.0
+        L_ubar_a[par.work_life_span:,t] = 0.0
+            
+        for a in range(1,par.work_life_span):
+            L_a_lag = prev_period(L_a[a-1],t,ini.L_a[a-1])
+            S_a[a,t] = (1-par.zeta_a[a])*((par.N_a[a-1]-L_a_lag) + par.delta_L_a[a]*L_a_lag)
+            L_ubar_a[a,t] = (1-par.zeta_a[a])*((1-par.delta_L_a[a])*L_a_lag)
+
+        S[t] = 0.0
+        L_ubar[t] = 0.0
         for a in range(par.life_span):
-
-            if a == 0:
-            
-                S_a[a,t] = 1.0
-                L_ubar_a[a,t] = 0.0
-
-            elif a >= par.work_life_span:
-            
-                S_a[a,t] = 0.0
-                L_ubar_a[a,t] = 0.0
-
-            else:
-
-                if t == 0:
-                    L_a_lag = ini.L_a[a-1]
-                else:
-                    L_a_lag = L_a[a-1,t-1]
-
-                S_a[a,t] = (1-par.zeta_a[a])*((par.N_a[a-1]-L_a_lag) + par.delta_L_a[a]*L_a_lag)
-                L_ubar_a[a,t] = (1-par.zeta_a[a])*((1-par.delta_L_a[a])*L_a_lag)
-
-        S[t] = np.sum(par.N_a*S_a[:,t])
-        L_ubar[t] = np.sum(par.N_a*L_ubar_a[:,t])
+            S[t] += par.N_a[a]*S_a[a,t]
+            L_ubar[t] += par.N_a[a]*L_ubar_a[a,t]
 
         # c. aggregate separation rate
         delta_L[t] = (L_lag-L_ubar[t])/L_lag
@@ -159,12 +173,18 @@ def search_and_match(par,ini,ss,sol):
         v[t] = (curlyM[t]**(1/par.sigma_m)/(1-m_s[t]**(1/par.sigma_m)))**par.sigma_m
         m_v[t] = curlyM[t]/v[t]
 
-        # e. emplolyment and unemployment 
-        L_a[:,t] = L_ubar_a[:,t] + m_s[t]*S_a[:,t]
-        U_a[:par.work_life_span,t] = par.N_a[:par.work_life_span]-L_a[:par.work_life_span,t]
-        U_a[par.work_life_span:,t] = 0.0                       
+        # e. emplolyment and unemployment
+        U[t] = 0.0
+        for a in range(par.life_span):
 
-        U[t] = np.sum(par.N_a*U_a[:,t])
+            L_a[a,t] = L_ubar_a[a,t] + m_s[t]*S_a[a,t]
+
+            if a < par.work_life_span:
+                U_a[a,t] = par.N_a[a] - sol.L_a[a,t]
+            else:
+                U_a[a,t] = 0.0
+
+            U[t] += par.N_a[a]*U_a[a,t]
 
 @nb.njit
 def labor_agency(par,ini,ss,sol):
@@ -187,20 +207,15 @@ def labor_agency(par,ini,ss,sol):
 
         t = par.T-1-k
 
-        if k == 0:
-            r_ell_plus = ss.r_ell
-            delta_L_plus = ss.delta_L
-            m_v_plus = ss.m_v
-        else:
-            r_ell_plus = r_ell[t+1]
-            delta_L_plus = delta_L[t+1]
-            m_v_plus = m_v[t+1]
+        r_ell_plus = next_period(r_ell,t,ss.r_ell)
+        delta_L_plus = next_period(delta_L,t,ss.delta_L)
+        m_v_plus = next_period(m_v,t,ss.m_v)
         
         fac = 1/(1-par.kappa_L/m_v[t])
         term = r_ell_plus*(1-delta_L_plus)/(1+par.r_firm)*par.kappa_L/m_v_plus
 
         r_ell[t] = fac*(W[t]-term)
-
+    
 @nb.njit
 def production_firm(par,ini,ss,sol):
 
@@ -272,13 +287,8 @@ def foreign_economy(par,ini,ss,sol):
     
     # evaluations
     for t in range(par.T):
-
-        if t == 0:
-            X_lag = ini.X
-        else:
-            X_lag = X[t-1]
-
-        X[:] = par.gamma_X*X_lag + (1-par.gamma_X)*chi*(P_X/P_F)**(-par.sigma_F)
+        X_lag = prev_period(X,t,ini.X)
+        X[t] = par.gamma_X*X_lag + (1-par.gamma_X)*chi[t]*(P_X[t]/P_F[t])**(-par.sigma_F)
         
 @nb.njit
 def capital_agency(par,ini,ss,sol):
@@ -327,11 +337,8 @@ def government(par,ini,ss,sol):
 
     # evaluations
     for t in range(par.T):
-
-        if t == 0:
-            B_lag = ini.B
-        else:
-            B_lag = B[t-1]
+        
+        B_lag = prev_period(B,t,ini.B)
         
         expenditure = par.r_b*B_lag + P_G[t]*G[t] + par.W_U*ss.W*U[t] + par.W_R*ss.W*(par.N-par.N_work)
         taxbase =  W[t]*L[t] + par.W_U*ss.W*U[t] + par.W_R*ss.W*(par.N-par.N_work)
@@ -341,39 +348,58 @@ def government(par,ini,ss,sol):
 
         B[t] = B_lag + expenditure - tau[t]*taxbase
 
-@nb.njit
-def household_consumption(par,ini,ss,sol):    
+@nb.njit(parallel=True)
+def household_income(par,ini,ss,sol):
 
     # inputs
-    A_R_death = sol.A_R_death
     Aq = sol.Aq
     L_a = sol.L_a
-    P_C = sol.P_C
     tau = sol.tau
     U_a = sol.U_a
     W = sol.W
 
     # outputs
-    A = sol.A
-    A_a = sol.A_a
-    A_HtM_a = sol.A_HtM_a
-    A_R_a = sol.A_R_a
-    C = sol.C
-    C_a = sol.C_a
-    C_HtM = sol.C_HtM
-    C_HtM_a = sol.C_HtM_a
-    C_R = sol.C_R
-    C_R_a = sol.C_R_a
-    inc = sol.inc
     inc_a = sol.inc_a
-    pi_hh = sol.pi_hh
-    r_hh = sol.r_hh       
-    real_W = sol.real_W
-    real_r_hh = sol.real_r_hh
 
-    # targets
-    A_R_ini_error = sol.A_R_ini_error
-    Aq_diff = sol.Aq_diff
+    for a in nb.prange(par.life_span):
+        for t in range(par.T):
+            inc_a[a,t,:] = (1-tau[t])*W[t]*L_a[a,t,:]/par.N_a[a] + (1-tau[t])*par.W_U*ss.W*U_a[a,t,:]/par.N_a[a] + Aq[t]/par.N
+            if a >=par.work_life_span:
+                inc_a[a,t,:] += (1-tau[t])*par.W_R*ss.W
+
+@nb.njit(parallel=True)
+def household_consumption_HtM(par,ini,ss,sol):
+
+    # inputs
+    P_C = sol.P_C
+    inc_a = sol.inc_a
+
+    # outputs
+    C_HtM_a = sol.C_HtM_a
+    A_HtM_a = sol.A_HtM_a
+
+    # a. HtM
+    for a in nb.prange(par.life_span):
+        for t in range(par.T):
+            C_HtM_a[a,t,:] = inc_a[a,t,:]/P_C[t]
+            A_HtM_a[a,t,:] = 0.0
+
+@nb.njit(parallel=True)
+def household_consumption_R(par,ini,ss,sol):
+
+    # inputs
+    A_R_death = sol.A_R_death
+    P_C = sol.P_C
+    W = sol.W
+    inc_a = sol.inc_a
+    r_hh = sol.r_hh       
+
+    # outputs
+    pi_hh = sol.pi_hh
+    real_r_hh = sol.real_r_hh
+    real_W = sol.real_W
+    A_R_a = sol.A_R_a
+    C_R_a = sol.C_R_a
 
     # evaluations
     P_C_lag = lag(ini.P_C,P_C)
@@ -383,20 +409,10 @@ def household_consumption(par,ini,ss,sol):
     real_W[:] = W/P_C
     real_r_hh[:] = (1+r_hh)/(1+pi_hh_plus)-1
 
-    # a. income
-    for t in range(par.T):
-        inc_a[:,t] = (1-tau[t])*W[t]*L_a[:,t]/par.N_a + (1-tau[t])*par.W_U*ss.W*U_a[:,t]/par.N_a + Aq[t]/par.N
-        inc_a[par.work_life_span:,t] += (1-tau[t])*par.W_R*ss.W
-        inc[t] = np.sum(par.N_a*inc_a[:,t])
+    # Ricardian
+    for t0 in nb.prange(-par.life_span+1,par.T): # birthcohort
 
-    # b. HtM
-    C_HtM_a[:,:] = inc_a/P_C
-    A_HtM_a[:,:] = 0.0 
-        
-    
-    # c. Ricardian
-    for t0 in range(-par.life_span+1,par.T): # birthcohort
-
+        C_R_a_plus = np.zeros(C_R_a.shape[2])
         for i in range(par.life_span):
             
             a = par.life_span - 1 - i
@@ -408,58 +424,118 @@ def household_consumption(par,ini,ss,sol):
             # i. now and plus
             if a == par.life_span-1:
 
-                A_R_a_now =  A_R_a[a,t] = A_R_death[t]
-                C_R_a_plus = np.nan
+                A_R_a[a,t,:] = A_R_death[t]
                 
             else:
-
+                
                 if t == par.T-1:
-                    A_R_a_now = A_R_a[a,t] = ss.A_R_a[a]
-                    C_R_a_plus = ss.C_R_a[a+1]
-
+                    A_R_a[a,t,:] = ss.A_R_a[a]
+                    C_R_a_plus[:] = ss.C_R_a[a+1]
                 else:
-                    A_R_a_now = A_R_a[a,t]
-                    C_R_a_plus = C_R_a[a+1,t+1]
+                    C_R_a_plus[:] = C_R_a[a+1,t+1,:]
 
-
-            # ii. consumption
-            RHS = par.zeta_a[a]*par.mu_Aq*(A_R_a_now/P_C[t])**(-par.sigma)
+            # # ii. consumption
+            RHS = par.zeta_a[a]*par.mu_Aq*(A_R_a[a,t,:]/P_C[t])**(-par.sigma)
             
             if a < par.life_span-1: 
                 RHS += (1-par.zeta_a[a])*par.beta*(1+real_r_hh[t])*C_R_a_plus**(-par.sigma) 
 
-            C_R_a[a,t] = RHS**(-1/par.sigma)
+            C_R_a[a,t,:] = RHS**(-1/par.sigma)
 
             # iii. lagged assets
-            A_R_a_lag = (A_R_a_now + P_C[t]*C_R_a[a,t] - inc_a[a,t])/(1+r_hh[t])
-
             if a > 0 and t > 0:
-                A_R_a[a-1,t-1] = A_R_a_lag
-            elif t0 < 0:
-                A_R_ini_error[t0-(-par.life_span+1)] = A_R_a_lag-ini.A_R_a[a-1]
-            elif t0 <= par.T-1-par.life_span+1:
-                A_R_ini_error[t0-(-par.life_span+1)] = A_R_a_lag-0.0
+                A_R_a[a-1,t-1,:] = (A_R_a[a,t,:] + P_C[t]*C_R_a[a,t,:] - inc_a[a,t,:])/(1+r_hh[t])
 
-    # d. aggregate
-     # life-cycle
-    C_a[:,:] = par.Lambda*C_HtM_a + (1-par.Lambda)*C_R_a     
-    A_a[:,:] = par.Lambda*A_HtM_a + (1-par.Lambda)*A_R_a
+@nb.njit
+def household_A_R_ini_error(par,ini,ss,sol):
 
-    # time period
-    C[:] = np.sum(par.N_a.reshape(-1,1)*sol.C_a, axis = 0)
-    C_HtM[:] = np.sum(par.N_a.reshape(-1,1)*C_HtM_a[:,:], axis = 0)
-    C_R[:] = np.sum(par.N_a.reshape(-1,1)*C_R_a[:,:], axis = 0)
-    A[:] = np.sum(par.N_a.reshape(-1,1)*A_a[:,:], axis = 0)   
+    # inputs
+    A_R_death = sol.A_R_death
+    P_C = sol.P_C
+    inc_a = sol.inc_a
+    r_hh = sol.r_hh       
+    real_r_hh = sol.real_r_hh
+    A_R_a = sol.A_R_a
+    C_R_a = sol.C_R_a
 
-    for t in range(par.T):  
-        # bequest
-        if t == 0:
-            Aq_implied = (1+r_hh[t])*np.sum(par.zeta_a*par.N_a*ss.A_a)
-        else:
-            Aq_implied = (1+r_hh[t])*np.sum(par.zeta_a*par.N_a*A_a[:,t])
+    # outputs
 
-        Aq_diff[t] = Aq_implied-Aq[t]                                  
+    # targets
+    A_R_ini_error = sol.A_R_ini_error
 
+    for t0 in range(-par.life_span+1,par.T): # birthcohort
+        for i in range(par.life_span):
+            
+            a = par.life_span - 1 - i
+            t = t0 + a
+
+            if t < 0: continue
+            if t > par.T-1: continue
+
+            if not (a > 0 and t > 0):
+
+                A_R_a_lag = (A_R_a[a,t,:] + P_C[t]*C_R_a[a,t,:] - inc_a[a,t,:])/(1+r_hh[t])
+
+                if t0 < 0:
+                    A_R_ini_error[t0-(-par.life_span+1),:] = A_R_a_lag-ini.A_R_a[a-1]
+                elif t0 <= par.T-1-par.life_span+1:
+                    A_R_ini_error[t0-(-par.life_span+1),:] = A_R_a_lag-0.0
+
+@nb.njit(parallel=True)
+def household_aggregate(par,ini,ss,sol):
+
+    # inputs
+    inc_a = sol.inc_a
+    A_a = sol.A_a
+    Aq = sol.Aq
+    C_HtM_a = sol.C_HtM_a
+    C_R_a = sol.C_R_a
+    C_a = sol.C_a
+
+    pi_hh = sol.pi_hh
+    real_r_hh = sol.real_r_hh
+    real_W = sol.real_W
+    A_HtM_a = sol.A_HtM_a
+    A_R_a = sol.A_R_a
+    A_a = sol.A_a
+    C_HtM_a = sol.C_HtM_a
+    C_R_a = sol.C_R_a
+    C_a = sol.C_a
+
+    # outputs
+    A = sol.A
+    C = sol.C
+    C_R = sol.C_R
+    C_HtM = sol.C_HtM
+    inc = sol.inc
+    r_hh = sol.r_hh       
+
+    # targets
+    Aq_diff = sol.Aq_diff
+
+    # calculations
+    C_HtM[:] = 0
+    C_R[:] = 0
+    C[:] = 0
+    A[:] = 0
+    Aq_diff[:] = Aq[:] 
+
+    for t in nb.prange(par.T):
+        for a in range(par.life_span):
+
+            C_a[a,t,:] = par.Lambda*C_HtM_a[a,t,:]+(1-par.Lambda)*C_R_a[a,t,:] 
+            A_a[a,t,:] = par.Lambda*A_HtM_a[a,t,:]+(1-par.Lambda)*A_R_a[a,t,:]
+            C_HtM[t] += par.N_a[a]*C_HtM_a[a,t,:]
+            C_R[t] += par.N_a[a]*C_R_a[a,t,:]
+            C[t] += par.N_a[a]*C_a[a,t,:]
+            A[t] += par.N_a[a]*A_a[a,t,:]
+            inc[t] += par.N_a[a]*inc_a[a,t,:]
+
+            if t == 0:
+                Aq_diff[t] -= (1+r_hh[t])*par.zeta_a[a]*par.N_a[a]*ss.A_a[a] 
+            else:
+                Aq_diff[t] -= (1+r_hh[t])*par.zeta_a[a]*par.N_a[a]*A_a[a,t,:]
+                
 @nb.njit
 def repacking_firms_components(par,ini,ss,sol):
 
@@ -547,3 +623,4 @@ def real_productivity(par,ini,ss,sol):
     real_inc[:] = inc/P_C
     real_Aq[:] = Aq/P_C
     
+nb.jit_module(nopython=True, nogil=True)
