@@ -361,8 +361,8 @@ def household_income(par,ini,ss,sol):
     # outputs
     inc_a = sol.inc_a
 
-    for a in nb.prange(par.life_span):
-        for t in range(par.T):
+    for t in nb.prange(par.T):
+        for a in range(par.life_span):
             inc_a[a,t,:] = (1-tau[t])*W[t]*L_a[a,t,:]/par.N_a[a] + (1-tau[t])*par.W_U*ss.W*U_a[a,t,:]/par.N_a[a] + Aq[t]/par.N
             if a >=par.work_life_span:
                 inc_a[a,t,:] += (1-tau[t])*par.W_R*ss.W
@@ -379,8 +379,8 @@ def household_consumption_HtM(par,ini,ss,sol):
     A_HtM_a = sol.A_HtM_a
 
     # a. HtM
-    for a in nb.prange(par.life_span):
-        for t in range(par.T):
+    for t in nb.prange(par.T):
+        for a in range(par.life_span):
             C_HtM_a[a,t,:] = inc_a[a,t,:]/P_C[t]
             A_HtM_a[a,t,:] = 0.0
 
@@ -518,6 +518,7 @@ def household_aggregate(par,ini,ss,sol):
     C_R[:] = 0
     C[:] = 0
     A[:] = 0
+    inc[:] = 0
     Aq_diff[:] = Aq[:] 
 
     for t in nb.prange(par.T):
