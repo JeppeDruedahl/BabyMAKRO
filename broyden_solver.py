@@ -18,12 +18,13 @@ def check_convergence(y,tol=1e-8,do_print=False,model=None):
 
 def broyden_solver(f,x0,jac,tol=1e-8,maxiter=100,do_print=False,model=None):
     """ numerical equation system solver using the broyden method """
+    
     t0 = time.time()
+
     # a. initial
     x = x0.ravel()
     y = f(x)
 
-   
     if do_print: print('initial:')
     converged = check_convergence(y,tol=tol,model=model,do_print=do_print)
     if converged: return x
