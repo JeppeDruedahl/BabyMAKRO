@@ -1,4 +1,6 @@
+from copy import deepcopy
 import time
+import timeit
 import numpy as np
 
 from EconModel import EconModelClass, jit
@@ -40,7 +42,11 @@ class BabyMAKROModelClass(EconModelClass):
             'foreign_economy',
             'capital_agency',
             'government',
-            'household_consumption',
+            'household_income',
+            'household_consumption_HtM',
+            'household_consumption_R',
+            'household_A_R_ini_error',
+            'household_aggregate',
             'repacking_firms_components',
             'goods_market_clearing',
             'real_productivity',
@@ -236,7 +242,6 @@ class BabyMAKROModelClass(EconModelClass):
         par.m_v_ss = 0.75 # job-filling rate
         par.B_ss = 0.0 # government debt
         
-
     def mortality(self):
         """ calculate mortality by age """
 
@@ -292,21 +297,33 @@ class BabyMAKROModelClass(EconModelClass):
         self.job_separation_rate()    
 
         # b. non-household variables
+        for varname in self.exo: assert varname in self.varlist, varname
+
         for varname in self.varlist:
             setattr(ini,varname,np.nan)
             setattr(ss,varname,np.nan)
-            setattr(sol,varname,np.zeros(par.T))
-
-        for varname in self.exo: assert varname in self.varlist, varname
 
         # c. household variables
+        for varname in self.unknowns: assert varname in self.varlist+self.varlist_hh, varname
+        for varname in self.targets: assert varname in self.varlist+self.varlist_hh, varname
+
         for varname in self.varlist_hh:
             setattr(ini,varname,np.zeros(par.life_span))
             setattr(ss,varname,np.zeros(par.life_span))
-            setattr(sol,varname,np.zeros((par.life_span,par.T)))            
 
-        for varname in self.unknowns: assert varname in self.varlist+self.varlist_hh, varname
-        for varname in self.targets: assert varname in self.varlist+self.varlist_hh, varname
+        # d. allocate solution
+        self.allocate_sol()
+
+    def allocate_sol(self,ncol=1):
+        """ allocate solution """
+
+        par = self.par
+        sol = self.sol
+
+        for varname in self.varlist:
+            sol.__dict__[varname] = np.zeros((par.T,ncol))
+        for varname in self.varlist_hh:
+            sol.__dict__[varname] = np.zeros((par.life_span,par.T,ncol))
 
     ################
     # steady state #
@@ -327,19 +344,20 @@ class BabyMAKROModelClass(EconModelClass):
         """ set variables in varlist to steady state """
 
         par = self.par
-        sol = self.sol
         ss = self.ss
+        sol = self.sol
 
         for varname in varlist:
 
             ssvalue = ss.__dict__[varname]
 
             if varname in self.varlist:
-                sol.__dict__[varname] = np.repeat(ssvalue,par.T)
+                sol.__dict__[varname][:] = ssvalue
             elif varname in self.varlist_hh:
-                sol.__dict__[varname] = np.zeros((par.life_span,par.T))
-                for t in range(par.T):
-                    sol.__dict__[varname][:,t] = ssvalue
+                sol.__dict__[varname][:] = 0.0
+                for a in range(par.lifespan):
+                    for t in range(par.T):
+                        sol.__dict__[varname][a,t,:] = ssvalue
             else:
                 raise ValueError(f'unknown variable name, {varname}')
 
@@ -378,10 +396,36 @@ class BabyMAKROModelClass(EconModelClass):
             if do_print: print(f'{target:20s}: abs. max = {np.abs(errors_).max():8.2e}')
 
         return errors
+    
+    def get_errors_(self,do_print=False):
+        """ get errors in target equations """
+
+        sol = self.sol
+
+        errors = np.empty((0,400))
+        for target in self.targets:
+
+            errors_ = sol.__dict__[target]
+            errors = np.vstack([errors,errors_])
+
+            if do_print: print(f'{target:20s}: abs. max = {np.abs(errors_).max():8.2e}')
+
+        return errors
 
     ############
     # evaluate #
     ############
+
+    def compile(self,do_print=True):
+        """ compile all numba functions """
+        
+        t0 = time.time()
+
+        self.set_exo_ss()          
+        self.set_unknowns_ss()  
+        self.evaluate_blocks()       
+
+        if do_print: print(f'model compiled, {elapsed(t0)}')
 
     def evaluate_block(self,block,py=False):
 
@@ -409,8 +453,10 @@ class BabyMAKROModelClass(EconModelClass):
         # b. evaluate
         for block in self.blocks:
 
+            t0 = time.time()
+            if do_print: print(f'{block}',end='')
             self.evaluate_block(block,py=py)
-            if do_print: print(f'{block} evaluated')
+            if do_print: print(f' done in {time.time()-t0:.2f} secs')
     
     ########
     # IRFs #
@@ -422,34 +468,39 @@ class BabyMAKROModelClass(EconModelClass):
         t0 = time.time()
 
         sol = self.sol
+        par = self.par
+        ss = self.ss
+
+        sol_orig = deepcopy(sol)
+        self.allocate_sol(ncol=par.T)
 
         # a. baseline
         self.set_exo_ss()
         self.set_unknowns_ss()
         self.evaluate_blocks()
 
-        base = self.get_errors()
-
-        x_ss = np.array([])
-        for unknown in self.unknowns:
-            x_ss = np.hstack([x_ss,sol.__dict__[unknown].ravel()])
+        base = self.get_errors_()
 
         # b. allocate
-        jac = self.jac = np.zeros((x_ss.size,x_ss.size))
+        jac_size = len(self.unknowns)*par.T
+        jac = self.jac = np.zeros((jac_size,jac_size))
 
         # c. calculate
-        for i in range(x_ss.size):
-            
-            x = x_ss.copy()
-            x[i] += dx
+        for j,unknown in enumerate(self.unknowns):
 
-            self.set_unknowns(x)
+            for unknown_ in self.unknowns:
+                sol.__dict__[unknown_].ravel()[:] = ss.__dict__[unknown_]
+
+            sol.__dict__[unknown] += dx*np.eye(par.T)
+
             self.evaluate_blocks()
-            alt = self.get_errors()
-            jac[:,i] = (alt-base)/dx
+            alt = self.get_errors_()
+            
+            jac[:,j*par.T:(j+1)*par.T] = (alt-base)/dx   
 
         if do_print: print(f'Jacobian calculated in {elapsed(t0)}')
 
+        self.sol = sol_orig
 
     def find_IRF(self,ini=None,do_print=True):
         """ find IRF """
