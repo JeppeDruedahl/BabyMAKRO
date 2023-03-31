@@ -401,6 +401,542 @@ Model
 status open
 
 \begin_layout Plain Layout
+Households - search and matching
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The age-specific number of households, 
+\begin_inset Formula $N_{a}$
+\end_inset
+
+, which is normalized to 1 at age 
+\begin_inset Formula $a=0$
+\end_inset
+
+.
+ The potential life-span is denoted 
+\begin_inset Formula $\#$
+\end_inset
+
+, where the mortality rate at period 
+\begin_inset Formula $a$
+\end_inset
+
+ is 
+\begin_inset Formula $\zeta_{a}$
+\end_inset
+
+.
+ The retirement age of the households 
+\begin_inset Formula $\#_{\text{work}}<\#$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The demographic structure and population is given as:
+\begin_inset Formula 
+\begin{align*}
+N_{a} & =\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})N_{a-1} & \text{if }a>0
+\end{cases}\\
+\zeta_{a} & =\begin{cases}
+0 & \text{if }a<\#_{\text{work}}\\
+\left(\frac{a+1-\#_{\text{work}}}{\#-\#_{\text{work}}}\right)^{\zeta} & \text{if }a<\#-1\\
+1 & \text{if }a=\#-1
+\end{cases}\\
+N & =\sum_{a=0}^{\#-1}N_{a}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Households - search and matching
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Households search for a job and supply labor exogenously.
+ The age-specific job-separation probability is 
+\begin_inset Formula $\delta_{a}^{L}\in(0,1)$
+\end_inset
+
+.
+ All unemployed search for a job.
+ As an initial condition, we have 
+\begin_inset Formula $L_{-1,t-1}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The age-specific quantity of searchers is
+\begin_inset Formula 
+\begin{align*}
+S_{a,t} & =\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})\left[(N_{a-1}-L_{a-1,t-1})+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The quantity of households with a job 
+\emph on
+before matching
+\emph default
+ is
+\begin_inset Formula 
+\begin{align*}
+\underline{L}_{a,t} & =\begin{cases}
+0 & \text{if }a=0\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Households - search and matching
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The aggregate job-separation rate incl.
+ mortality is
+\begin_inset Formula 
+\[
+\delta_{t}^{L}=\frac{L_{t-1}-\underline{L}_{t}}{L_{t-1}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The quantity of vacancies is 
+\begin_inset Formula $v_{t}$
+\end_inset
+
+ and the number of matches, 
+\begin_inset Formula $\mathbb{\mathcal{M}}_{t}$
+\end_inset
+
+, is given by the 
+\emph on
+matching function
+\emph default
+
+\begin_inset Formula 
+\[
+\mathcal{M}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The job-filling rate, 
+\begin_inset Formula $m_{t}^{v}$
+\end_inset
+
+, and the job-finding rate, 
+\begin_inset Formula $m_{t}^{s}$
+\end_inset
+
+, are thus
+\begin_inset Formula 
+\begin{align*}
+m_{t}^{v} & =\frac{\mathbb{\mathcal{M}}_{t}}{v_{t}}\\
+m_{t}^{s} & =\frac{\mathcal{M}_{t}}{S_{t}}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Households - search and matching
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The number of employed is
+\begin_inset Formula 
+\begin{align*}
+L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+This implies that the number of unemployed is
+\begin_inset Formula 
+\begin{align*}
+U_{a,t} & =\begin{cases}
+N_{a}-L_{a,t} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In equilibrium, the number of matches must equal the number of new hires,
+ i.e.
+\begin_inset Formula 
+\[
+\mathcal{M}_{t}=L_{t}-\underline{L}_{t}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The wage, 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+, is determined by an unmodeled bargaining mechanism, and it is set such
+ that it is increasing in the labor demand:
+\series bold
+
+\begin_inset Formula 
+\begin{align*}
+W_{t} & =W_{ss}\left(\frac{L_{t}}{L_{ss}}\right)^{\epsilon_{w}}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Households - consumption and savings
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The model has two types of households.
+ A share of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ of households is hands-to-mouth and a share of 
+\begin_inset Formula $1-\lambda$
+\end_inset
+
+ households is unconstrained (Ricardian).
+ All households have four sources of income:
+\end_layout
+
+\begin_layout Enumerate
+Post-tax labor income, 
+\begin_inset Formula $\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Post-tax unemployment benefits, 
+\begin_inset Formula $\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Post-tax retirement benefits, 
+\begin_inset Formula $\left(1-\tau_{t}\right)W^{R}W_{ss}\frac{N_{a}-(L_{a,t}+U_{a,t})}{N_{a}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Equally divided inheritance, 
+\begin_inset Formula $\frac{A_{t}^{q}}{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The age specific income is
+\begin_inset Formula 
+\begin{align*}
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}\\
+ & +\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N},
+\end{align*}
+
+\end_inset
+
+and the price of consumption goods is 
+\begin_inset Formula $P_{t}^{C}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Households - consumption and savings
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Consumption is 
+\begin_inset Formula $C_{a,t}^{\bullet}$
+\end_inset
+
+ and end-of-period nominal savings is 
+\begin_inset Formula $A_{a,t}^{\bullet}$
+\end_inset
+
+, where 
+\begin_inset Formula $\bullet\in\{\text{HtM},R\}$
+\end_inset
+
+.
+ The behavior of 
+\emph on
+surviving 
+\emph default
+hands-to-mouth households are
+\begin_inset Formula 
+\begin{align*}
+C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\\
+A_{a,t}^{\text{HtM}} & 0.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Households - consumption and savings
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The Ricardian households making their first decision in period 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ solve the problem
+\begin_inset Formula 
+\begin{align*}
+V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
+ & \text{s.t.}\\
+t & =t_{0}+a\\
+A_{-1,t}^{R} & =0\\
+A_{a,t}^{R} & =(1+r_{t}^{hh})A_{a-1,t-1}^{R}+\text{inc}_{a,t}-P_{t}^{C}C_{a,t}^{R}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Households - consumption and savings
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The first order condition yields:
+\begin_inset Formula 
+\begin{align*}
+C_{a,t}^{R} & =\begin{cases}
+\left(\zeta_{a}\mu^{A^{q}}\left(\frac{A_{\#-1,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
+\left(\beta(1-\zeta_{a})\frac{1+r_{ss}^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{ss}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
+\left(\beta(1-\zeta_{a})\frac{1+r_{t+1}^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Bequests are
+\begin_inset Formula 
+\[
+A_{t}^{q}=\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Production firms
 \end_layout
 
@@ -444,12 +980,12 @@ The rental price of capital is
 \series bold
 
 \begin_inset Formula 
-\begin{align}
-\Pi_{t} & =\max_{X_{i},X_{j}}P_{t}^{Y,0}Y_{t}-r_{t}^{K}K_{t-1}-r_{t}^{\ell}\ell_{t}\label{eq:Profits}\\
- & \text{ s.t. }\nonumber \\
-Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\nonumber \\
-\text{where} & \,\mu^{K},\sigma^{Y},\Gamma>0,\,\sigma^{Y}\neq1.\nonumber 
-\end{align}
+\begin{align*}
+\Pi_{t} & =\max_{X_{i},X_{j}}P_{t}^{Y,0}Y_{t}-r_{t}^{K}K_{t-1}-r_{t}^{\ell}\ell_{t}\\
+ & \text{ s.t. }\\
+Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\\
+\text{where} & \,\mu^{K},\sigma^{Y},\Gamma>0,\,\sigma^{Y}\neq1.
+\end{align*}
 
 \end_inset
 
@@ -484,9 +1020,9 @@ The firms are price takers and free entry implies zero profits, such that
 \series bold
 
 \begin_inset Formula 
-\begin{align}
-P_{t}^{Y,0} & =\frac{1}{\Gamma}\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{t}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}.\label{eq:PY}
-\end{align}
+\begin{align*}
+P_{t}^{Y,0} & =\frac{1}{\Gamma}\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{t}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}.
+\end{align*}
 
 \end_inset
 
@@ -500,252 +1036,6 @@ As the production technology has constant return-to-scale, there are infinitely
 \begin_inset Formula 
 \begin{align}
 \frac{K_{t-1}}{\ell_{t}} & =\frac{\mu_{K}}{1-\mu_{K}}\left(\frac{r_{t}^{\ell}}{r_{t}^{K}}\right)^{\sigma^{Y}}.\label{eq:FOC_K_ell}
-\end{align}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Phillips curve
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-The final output price, 
-\begin_inset Formula $P_{t}^{Y}$
-\end_inset
-
-, is a mark-up over 
-\begin_inset Formula $P_{t}^{Y,0}$
-\end_inset
-
- to capture monopolistic behavior by the firms.
- The demand for each good is 
-\begin_inset Formula $y_{t}$
-\end_inset
-
-.
- The final prices are sticky, and the firms pay a quadratic adjustment cost,
- 
-\begin_inset Formula $g_{t}$
-\end_inset
-
-, to change them.
-\begin_inset Formula 
-\begin{align*}
-V_{t}^{\text{intermediary}}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-g_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}^{\text{intermediary}}\\
- & \text{ s.t. }\\
-g_{t} & =\frac{\gamma}{2}\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]^{2}P_{t}^{Y}Y_{t}\\
-y_{t} & =\left(\frac{p_{t}^{Y}}{P_{t}^{Y}}\right)^{-\sigma_{D}}Y_{t}.
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Phillips curve
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-The firms solve the maxization problem and due to symmetry across firms,
- the final output price is:
-\series bold
-
-\begin_inset Formula 
-\begin{align}
-P_{t}^{Y}= & (1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}\label{eq:Phillips curve}\\
- & +\frac{2\eta}{1+r^{\text{firm}}}\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\nonumber \\
- & \theta\equiv\frac{1}{\sigma_{D}-1}\nonumber \\
- & \eta\equiv\theta\gamma.\nonumber 
-\end{align}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Repacking firms
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-The output good, 
-\begin_inset Formula $Y_{t}$
-\end_inset
-
-, can be used for either private consumption, 
-\begin_inset Formula $C_{t}$
-\end_inset
-
-, public consumption, 
-\begin_inset Formula $G_{t}$
-\end_inset
-
-, investment, 
-\begin_inset Formula $I_{t}$
-\end_inset
-
-, or exports, 
-\begin_inset Formula $X_{t}$
-\end_inset
-
-.
- For each use the output good must be repacked with imported goods.
- This is done by repacking firms with a CES production technology, where
- they take the final output price and the import prices as given.
-\begin_inset Formula 
-\begin{align}
-P_{t}^{\bullet} & =\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}\label{eq:CGIX_P}\\
-\bullet_{t}^{M} & =\mu^{M,\bullet}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\label{eq:CGIX_M}\\
-\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t}.\label{eq:CGIX_Y}
-\end{align}
-
-\end_inset
-
-for 
-\begin_inset Formula $\bullet\in\{C,G,I,X\}$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Goods market clearing
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-The production of the domestic output good must match the output goods used
- by the repacking firms.
- Imports, 
-\begin_inset Formula $M_{t}$
-\end_inset
-
-, are the sum of the imports used by the repacking firms.
-\begin_inset Formula 
-\begin{equation}
-M_{t}=\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{M}.\label{eq:M}
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{align}
-Y_{t} & =\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{Y}.\label{eq:Y_clearing}
-\end{align}
-
-\end_inset
-
-for 
-\begin_inset Formula $\bullet\in\{C,G,I,X\}$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Foreign economy
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-The foreign economy is characterized by so-called Armington demand of the
- domestic exported good:
-\begin_inset Formula 
-\begin{align}
-X_{t} & =\gamma^{X}X_{t-1}+(1-\gamma^{X})\chi_{t}\left(\frac{P_{t}^{X}}{P_{t}^{F}}\right)^{-\sigma^{F}}.\label{eq:X}
 \end{align}
 
 \end_inset
@@ -840,7 +1130,7 @@ Capital agency
 
 \begin_deeper
 \begin_layout Itemize
-We choose the functional form
+We choose the functional form of the adjustement costs:
 \begin_inset Formula 
 \[
 \Psi(\iota_{t},K_{t-1})=\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)^{2}K_{t-1}.
@@ -877,7 +1167,7 @@ Hence, the first order condition of the capital agency implies:
 status open
 
 \begin_layout Plain Layout
-Households - search and matching
+Labor agency
 \end_layout
 
 \end_inset
@@ -887,50 +1177,66 @@ Households - search and matching
 
 \begin_deeper
 \begin_layout Itemize
-The age-specific number of households, 
-\begin_inset Formula $N_{a}$
+The labor agency firms post vacancies, 
+\begin_inset Formula $v_{t}$
 \end_inset
 
-, which is normalized to 1 at age 
-\begin_inset Formula $a=0$
-\end_inset
-
-.
- The potential life-span is denoted 
-\begin_inset Formula $\#$
-\end_inset
-
-, where the mortality rate at period 
-\begin_inset Formula $a$
-\end_inset
-
- is 
-\begin_inset Formula $\zeta_{a}$
+, to hire labor 
+\begin_inset Formula $L_{t}$
 \end_inset
 
 .
- The retirement age of the households 
-\begin_inset Formula $\#_{\text{work}}<\#$
+ The cost of each vacancy is 
+\begin_inset Formula $\kappa^{L}$
+\end_inset
+
+ in units of labor.
+ The firms rent out 
+\begin_inset Formula $\ell_{t}$
+\end_inset
+
+ units of labor to the production firms at the rental price 
+\begin_inset Formula $r_{t}^{\ell}$
 \end_inset
 
 .
+ 
 \end_layout
 
 \begin_layout Itemize
-The demographic structure and population is given as:
+Labor follows the law-of-motion 
+\begin_inset Formula $L_{t}=\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}$
+\end_inset
+
+, and the wage, 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+, is pre-determined.
+ Since lagged employment, 
+\begin_inset Formula $L_{t-1}$
+\end_inset
+
+, is also pre-determined, we consider 
+\begin_inset Formula $L_{t}$
+\end_inset
+
+ to be the choice value.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The labor agency problem then is:
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
-\begin{align}
-N_{a} & =\begin{cases}
-1 & \text{if }a=0\\
-(1-\zeta_{a-1})N_{a-1} & \text{if }a>0
-\end{cases}\label{eq:Na}\\
-\zeta_{a} & =\begin{cases}
-0 & \text{if }a<\#_{\text{work}}\\
-\left(\frac{a+1-\#_{\text{work}}}{\#-\#_{\text{work}}}\right)^{\zeta} & \text{if }a<\#-1\\
-1 & \text{if }a=\#-1
-\end{cases}\label{eq:zeta_a}\\
-N & =\sum_{a=0}^{\#-1}N_{a}\label{eq:N}
-\end{align}
+\begin{align*}
+V_{0}^{\text{labor}}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}\right]\\
+ & \text{s.t.}\\
+v_{t} & =\frac{L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}}{m_{t}^{v}}\\
+\ell_{t} & =L_{t}-\kappa^{L}v_{t}.
+\end{align*}
 
 \end_inset
 
@@ -938,83 +1244,6 @@ N & =\sum_{a=0}^{\#-1}N_{a}\label{eq:N}
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Households - search and matching
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Households search for a job and supply labor exogenously.
- The age-specific job-separation probability is 
-\begin_inset Formula $\delta_{a}^{L}\in(0,1)$
-\end_inset
-
-.
- All unemployed search for a job.
- As an initial condition, we have 
-\begin_inset Formula $L_{-1,t-1}=0$
-\end_inset
-
-.
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Households - consumption and savings
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Government
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1035,6 +1264,342 @@ Labor agency
 
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+The first order condition yields a rental price of:
+\begin_inset Formula 
+\begin{align*}
+r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Phillips curve
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The final output price, 
+\begin_inset Formula $P_{t}^{Y}$
+\end_inset
+
+, is a mark-up over 
+\begin_inset Formula $P_{t}^{Y,0}$
+\end_inset
+
+ to capture monopolistic behavior by the firms.
+ The demand for each good is 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+.
+ The final prices are sticky, and the firms pay a quadratic adjustment cost,
+ 
+\begin_inset Formula $g_{t}$
+\end_inset
+
+, to change them.
+\begin_inset Formula 
+\begin{align*}
+V_{t}^{\text{intermediary}}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-g_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}^{\text{intermediary}}\\
+ & \text{ s.t. }\\
+g_{t} & =\frac{\gamma}{2}\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]^{2}P_{t}^{Y}Y_{t}\\
+y_{t} & =\left(\frac{p_{t}^{Y}}{P_{t}^{Y}}\right)^{-\sigma_{D}}Y_{t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Phillips curve
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The firms solve the maxization problem and due to symmetry across firms,
+ the final output price is:
+\series bold
+
+\begin_inset Formula 
+\begin{align*}
+P_{t}^{Y}= & (1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}\\
+ & +\frac{2\eta}{1+r^{\text{firm}}}\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\\
+ & \theta\equiv\frac{1}{\sigma_{D}-1}\\
+ & \eta\equiv\theta\gamma.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Repacking firms
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The output good, 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+, can be used for either private consumption, 
+\begin_inset Formula $C_{t}$
+\end_inset
+
+, public consumption, 
+\begin_inset Formula $G_{t}$
+\end_inset
+
+, investment, 
+\begin_inset Formula $I_{t}$
+\end_inset
+
+, or exports, 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+.
+ For each use the output good must be repacked with imported goods.
+ This is done by repacking firms with a CES production technology, where
+ they take the final output price and the import prices as given.
+\begin_inset Formula 
+\begin{align*}
+P_{t}^{\bullet} & =\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}\\
+\bullet_{t}^{M} & =\mu^{M,\bullet}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\\
+\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t}.
+\end{align*}
+
+\end_inset
+
+for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Government
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The government pays an interest rate, 
+\begin_inset Formula $r^{B},$
+\end_inset
+
+ on its debt which is determined in the foreign economy.
+ Furthermore, it pays a fraction of the steady state wage as unemployment
+ and retirement benefits, and it receives a tax revenue from labor taxes.
+ The government consumption is denoted 
+\begin_inset Formula $G_{t}$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\[
+B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})\left(W_{U}W_{ss}U_{t}+W_{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }\right)-\tau_{t}W_{t}L_{t}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+We assume the government gradually adjusts taxes to get back to steady state
+ debt:
+\begin_inset Formula 
+\begin{align*}
+\tau_{t} & =\tau_{ss}+\varepsilon_{B}\frac{\tilde{B}_{t}-B_{ss}}{W_{t}L_{t}+W_{U}W_{ss}U_{t}+W_{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }},
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\begin{align*}
+\tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{ss})\left(W_{U}W_{ss}U_{t}+W_{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }\right)\\
+ & -\tau_{ss}W_{t}L_{t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Foreign economy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The foreign economy is characterized by so-called Armington demand of the
+ domestic exported good:
+\begin_inset Formula 
+\begin{align*}
+X_{t} & =\gamma^{X}X_{t-1}+(1-\gamma^{X})\chi_{t}\left(\frac{P_{t}^{X}}{P_{t}^{F}}\right)^{-\sigma^{F}}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Goods market clearing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The production of the domestic output good must match the output goods used
+ by the repacking firms.
+ Imports, 
+\begin_inset Formula $M_{t}$
+\end_inset
+
+, are the sum of the imports used by the repacking firms.
+\begin_inset Formula 
+\[
+M_{t}=\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{M}.
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+Y_{t} & =\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{Y}.
+\end{align*}
+
+\end_inset
+
+for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset

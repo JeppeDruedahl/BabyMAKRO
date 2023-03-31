@@ -1317,7 +1317,7 @@ The wage,
 \end_inset
 
 , is determined by an unmodeled bargaining mechanism, and it is set such
- that the real wage is increasing in the labor demand.
+ that it is increasing in the labor demand.
 \end_layout
 
 \begin_layout Itemize
@@ -1342,7 +1342,7 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-W_{t} & =\frac{W_{ss}}{P^{C}}\left(\frac{L_{t}}{L_{ss}}\right)^{\epsilon_{w}}.\label{eq:W}
+W_{t} & =W_{ss}\left(\frac{L_{t}}{L_{ss}}\right)^{\epsilon_{w}}.\label{eq:W}
 \end{align}
 
 \end_inset
@@ -2345,7 +2345,7 @@ name "subsec:Block-IX.-Government"
 The government budget is given by
 \begin_inset Formula 
 \begin{equation}
-B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t}\label{eq:government_budget}
+B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{t}^{work})-\tau_{t}W_{t}L_{t},\label{eq:government_budget}
 \end{equation}
 
 \end_inset
@@ -2537,7 +2537,7 @@ The Ricardian households making their first decision in period
  solve the problem
 \begin_inset Formula 
 \begin{align*}
-V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R},A_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
+V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
  & \text{s.t.}\\
 t & =t_{0}+a\\
 A_{-1,t}^{R} & =0\\
