@@ -1760,7 +1760,7 @@ Solution method
 status open
 
 \begin_layout Plain Layout
-Solution method
+Targets and unknowns
 \end_layout
 
 \end_inset
@@ -1770,11 +1770,220 @@ Solution method
 
 \begin_deeper
 \begin_layout Itemize
-Unknowns, Jacobian etc.
+Goal: Find the 
+\begin_inset Formula $\textit{equilibrium path}$
+\end_inset
+
+ in the economy.
+\end_layout
+
+\begin_layout Itemize
+Equilibrium path: A set of paths for all variables, which satisfies
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+all accouting identities,
+\end_layout
+
+\begin_layout Itemize
+implies market clearing,
+\end_layout
+
+\begin_layout Itemize
+and optimal firm and household behavior in terms of FOCs.
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textit{Target equations}$
+\end_inset
+
+ must be zero on the equilibrium path.
+\end_layout
+
+\begin_layout Itemize
+Solve the model 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ solve the target equations.
+\end_layout
+
+\begin_layout Itemize
+Use a set of 
+\begin_inset Formula $\textit{unknown variables.}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The model has 6 unknowns variables, each with length 
+\begin_inset Formula $T$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Total number of unknown variables: 
+\begin_inset Formula $6\times T$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Must match the number of target equations.
+\end_layout
+
+\begin_layout Itemize
+The system of equations is solved numerically in Python.
+\end_layout
+
+\end_deeper
+\end_deeper
 \begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Solving numerically
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solve the target equations 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ Find the root of the target equations.
+\end_layout
+
+\begin_layout Itemize
+Numer of target equations: 
+\begin_inset Formula $6\times T$
+\end_inset
+
+ targets 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ Find 
+\begin_inset Formula $6\times T$
+\end_inset
+
+ roots.
+\end_layout
+
+\begin_layout Itemize
+A system of equations.
+ 
+\end_layout
+
+\begin_layout Itemize
+Solve with Newton's method: Successive approximations of the root.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $x$
+\end_inset
+
+ is a 
+\begin_inset Formula $6\times T$
+\end_inset
+
+ vector containing all 6 unknown in all 
+\begin_inset Formula $T$
+\end_inset
+
+ periods.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f$
+\end_inset
+
+ is a 
+\begin_inset Formula $6\times T$
+\end_inset
+
+ vector containing all 6 target in all 
+\begin_inset Formula $T$
+\end_inset
+
+ periods.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{J}$
+\end_inset
+
+ is the Jacobian of 
+\begin_inset Formula $f$
+\end_inset
+
+ (the derivative of 
+\begin_inset Formula $f$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+With 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ being the 
+\begin_inset Formula $n$
+\end_inset
+
+th guess, compute next guess, 
+\begin_inset Formula $x_{n+1}$
+\end_inset
+
+, as
+\begin_inset Formula 
+\[
+x_{n+1}=x_{n}-\frac{f(x_{n})}{\mathcal{J}_{n}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Converges to solution, 
+\begin_inset Formula $f(x^{*})=0$
+\end_inset
+
+, (if it exists) as 
+\begin_inset Formula $n$
+\end_inset
+
+ grows.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Frame
 \begin_inset Separator plain
 \end_inset
 
@@ -1800,11 +2009,28 @@ Steady state
 
 \begin_deeper
 \begin_layout Itemize
-
-\series bold
-TBA
+Steady state: When all variables are constant over time, the equilibrium
+ path is a 
+\emph on
+steady state
+\emph default
+.
 \end_layout
 
+\begin_layout Itemize
+To solve for steady state: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Choose values for a selection of the endogenous variables.
+\end_layout
+
+\begin_layout Itemize
+Derive the rest from closed form expressions, or solve sub-systems numerically.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
@@ -1860,11 +2086,531 @@ Impulse-responses
 
 \begin_deeper
 \begin_layout Itemize
-
-\series bold
-TBA
+An 
+\emph on
+impulse response
+\emph default
+: 
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+The economy starts at steady state.
+\end_layout
+
+\begin_layout Itemize
+Some exogenous variables 
+\emph on
+temporarily
+\emph default
+ deviate from steady state.
+\end_layout
+
+\begin_layout Itemize
+The impulse responses: How variables respond to the shock.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Shock to government spending, 
+\begin_inset Formula $G_{t}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+G_{t} & =G_{ss}+\text{\ensuremath{Shock_{t}}}\\
+Shock_{t} & =\begin{cases}
+G_{ss}\cdot Size\cdot Persistence{}^{t-T_{start}} & \text{if}\text{\ensuremath{T_{start}\leq t<T_{end}}}\\
+0 & \text{else}
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Size=1.01$
+\end_inset
+
+: Initial deviation from steady state at 1 pct.
+\end_layout
+
+\begin_layout Itemize
+Shocks starts in 
+\begin_inset Formula $T_{start}=0$
+\end_inset
+
+ and ends in 
+\begin_inset Formula $T_{end}=50$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Persistence=0.8$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Shock fades as 
+\begin_inset Formula $t$
+\end_inset
+
+ grows.
+\end_layout
+
+\begin_layout Itemize
+Higher values 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ longer convergence.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Initial effects I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Repacking firms:}$
+\end_inset
+
+ Demand for domestic goods 
+\begin_inset Formula $Y\uparrow$
+\end_inset
+
+ and imports 
+\begin_inset Formula $M\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Production firms:}$
+\end_inset
+
+ Increases inputs to increase production 
+\begin_inset Formula $Y\uparrow$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Capital 
+\begin_inset Formula $K\uparrow$
+\end_inset
+
+ (limited by adjustment costs) and labor 
+\begin_inset Formula $\ell\uparrow$
+\end_inset
+
+ .
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Households:}$
+\end_inset
+
+ More income, greater consumption 
+\begin_inset Formula $C\uparrow$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Real wage 
+\begin_inset Formula $W\uparrow$
+\end_inset
+
+ due to increased labor demand (indexed to 
+\begin_inset Formula $P^{C}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+Hand-to-mouth 
+\begin_inset Formula $C^{HtM}\uparrow$
+\end_inset
+
+: Increase proportional to increase in 
+\begin_inset Formula $W$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Ricardian 
+\begin_inset Formula $C^{R}\downarrow$
+\end_inset
+
+: Due to consumption smoothing.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Prices:}$
+\end_inset
+
+ Higher input prices causes higher prices 
+\begin_inset Formula $P\uparrow$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $W\uparrow$
+\end_inset
+
+ and 
+\begin_inset Formula $r^{K}\uparrow$
+\end_inset
+
+ drives up marginal costs 
+\begin_inset Formula $P^{Y,0}\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Output prices 
+\begin_inset Formula $P^{Y}\uparrow$
+\end_inset
+
+ (limited by adjustment costs).
+\end_layout
+
+\begin_layout Itemize
+Causes higher repacking prices 
+\begin_inset Formula $P^{\bullet}\uparrow$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,I,G,X\}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Foreign economy:}$
+\end_inset
+
+ Exports 
+\begin_inset Formula $X\downarrow$
+\end_inset
+
+ due to increasing prices 
+\begin_inset Formula $P^{X}\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Initial effects II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Labor agency:}$
+\end_inset
+
+ Employs more 
+\begin_inset Formula $L\uparrow$
+\end_inset
+
+ and rents 
+\begin_inset Formula $\ell\uparrow$
+\end_inset
+
+ to production firms.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Job vacancies 
+\begin_inset Formula $v\uparrow$
+\end_inset
+
+ to meet higher labor demand.
+\end_layout
+
+\begin_layout Itemize
+Number of matches 
+\begin_inset Formula $\mathcal{M}\uparrow$
+\end_inset
+
+ , 
+\begin_inset Quotes ald
+\end_inset
+
+gross
+\begin_inset Quotes ard
+\end_inset
+
+ labor 
+\begin_inset Formula $L\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Labor 
+\begin_inset Formula $\ell\uparrow$
+\end_inset
+
+ (limited by adjustment costs).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Capital agency:}$
+\end_inset
+
+ Investments 
+\begin_inset Formula $I\uparrow$
+\end_inset
+
+ to accumulate capital 
+\begin_inset Formula $K\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Expensive investments: 
+\begin_inset Formula $P^{I}\uparrow$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Greater return: 
+\begin_inset Formula $r^{K}\uparrow$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Transition path
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Government:}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Government spending 
+\begin_inset Formula $G\downarrow$
+\end_inset
+
+ by assumption.
+\end_layout
+
+\begin_layout Itemize
+Tax rate 
+\begin_inset Formula $\tau\uparrow$
+\end_inset
+
+ to finance growing government debt 
+\begin_inset Formula $B\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Repacking firms:}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Demand for domestic goods 
+\begin_inset Formula $Y\downarrow$
+\end_inset
+
+ and imports 
+\begin_inset Formula $M\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Prices 
+\begin_inset Formula $P\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Production firms:}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Drop in production inputs, labor 
+\begin_inset Formula $\ell\downarrow$
+\end_inset
+
+ and capital 
+\begin_inset Formula $K\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Households:}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\ell\downarrow$
+\end_inset
+
+ causes wages 
+\begin_inset Formula $W\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Higher taxes from 
+\begin_inset Formula $\tau\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Leads to less disposable income and thus 
+\begin_inset Formula $C\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Foreign economy:}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Exports 
+\begin_inset Formula $X\uparrow$
+\end_inset
+
+ due to falling prices 
+\begin_inset Formula $P^{X}\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
