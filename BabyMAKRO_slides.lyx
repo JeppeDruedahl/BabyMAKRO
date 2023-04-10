@@ -1,0 +1,5543 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{appendixnumberbeamer}
+
+\usetheme[progressbar=frametitle,block=fill]{metropolis}
+
+% margin
+\setbeamersize{text margin right=1.5cm}
+
+% colors
+\colorlet{DarkRed}{red!70!black}
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{alerted text}{fg=DarkRed}
+\setbeamercolor{progress bar}{fg=DarkRed}
+\setbeamercolor{button}{bg=DarkRed}
+
+% width of seperators
+\makeatletter
+\setlength{\metropolis@titleseparator@linewidth}{1pt}
+\setlength{\metropolis@progressonsectionpage@linewidth}{1pt}
+\setlength{\metropolis@progressinheadfoot@linewidth}{1pt}
+\makeatother
+
+% new alert block
+\newlength\origleftmargini
+\setlength\origleftmargini\leftmargini
+\setbeamertemplate{itemize/enumerate body begin}{\setlength{\leftmargini}{4mm}}
+\let\oldalertblock\alertblock
+\let\oldendalertblock\endalertblock
+\def\alertblock{\begingroup \setbeamertemplate{itemize/enumerate body begin}{\setlength{\leftmargini}{\origleftmargini}} \oldalertblock}
+\def\endalertblock{\oldendalertblock \endgroup}
+\setbeamertemplate{mini frame}{}
+\setbeamertemplate{mini frame in current section}{}
+\setbeamertemplate{mini frame in current subsection}{}
+\setbeamercolor{section in head/foot}{fg=normal text.bg, bg=structure.fg}
+\setbeamercolor{subsection in head/foot}{fg=normal text.bg, bg=structure.fg}
+
+% footer
+\makeatletter
+\setlength{\metropolis@frametitle@padding}{1.6ex}
+\setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}{section in head/foot}
+      \vskip1pt\insertsectionnavigationhorizontal{\paperwidth}{}{\hskip0pt plus1filll \insertframenumber{} / \inserttotalframenumber \hskip2pt}\vskip3pt% 
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+    \end{beamercolorbox}
+}
+\makeatother
+
+% toc
+\setbeamertemplate{section in toc}{\hspace*{1em}\inserttocsectionnumber.~\inserttocsection\par}
+\setbeamertemplate{subsection in toc}{\hspace*{2em}\inserttocsectionnumber.\inserttocsubsectionnumber.~\inserttocsubsection\par}
+\end_preamble
+\options t
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "lmodern" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip smallskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style danish
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+title{BabyMAKRO 
+\backslash
+vspace{-2mm}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+subtitle{Spring 2023} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{
+\backslash
+vspace{-2mm}Jeppe Druedahl}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+date{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setbeamertemplate{footline}{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+maketitle
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[overlay, remember picture]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[above left=0cm and 0.0cm of current page.south east] 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+includegraphics[width=4cm]{figs/KUSAMFtitlelrcorner.pdf}};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[overlay, remember picture]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[below left=0.5cm and .8cm of current page.north east] 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+includegraphics[width=1.5cm]{figs/KUSAMFlogo.pdf}};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[overlay, remember picture]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[below right=0.5cm and .8cm of current page.north west] 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+includegraphics[width=1.5cm]{figs/CEBI.png}};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtocounter{framenumber}{-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Introduction
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+MAKRO: 
+\series default
+New model developed by 
+\emph on
+DREAM
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+and now in use by the 
+\emph on
+Danish Finance Ministry.
+\emph default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Framework for business cycle forecasts
+\end_layout
+
+\begin_layout Enumerate
+Medium and long-run projections
+\end_layout
+
+\begin_layout Enumerate
+Evaluations of potential economic policies and shocks
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Today
+\series bold
+ BabyMAKRO:
+\series default
+ Model in the same style for students to use in 
+\emph on
+classes and theses
+\emph default
+ (bachelor + master).
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Foundations:
+\series default
+ Me (help from Peter Stephensen + Martin Bonde).
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Alpha-version:
+\series default
+ Bachelor thesis students fall 2022
+\size small
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\size scriptsize
+(Andreas Marius Laursen, Hans Christian Jul Lehmann, Mathias Held Berg,
+ Nicholas Stampe Meier, Olivier Ding, Ufuk Yasin)
+\size default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Beta-version
+\series default
+: RAs Anders Buch Jürs and Andreas Marius Laursen.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Further versions:
+\series default
+ More student involvement.
+ 
+\emph on
+You?
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}<beamer>
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{Plan}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tableofcontents[]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Classes of Macro Models
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Reminder: Consumption behavior (chapter 16)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Maximize utility s.t.
+ intertemporal budget constraint:
+\series default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{2mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+utility:
+\series default
+ 
+\begin_inset Formula $u(C_{1})+\frac{u(C_{2})}{1+\phi}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+budget constraint:
+\series default
+ 
+\begin_inset Formula $C_{1}+\frac{C_{2}}{1+r}=V_{1}+Y_{1}^{d}+\frac{(1+g)Y_{1}^{d}}{1+r}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{2mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ 
+\emph on
+derive qualitative (signed) properties of optimal micro-behavior
+\emph default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{2mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Aggregate consumption function:
+\series default
+ 
+\begin_inset Formula $C_{1}=C(\underset{+}{Y_{1}^{d}},\underset{+}{g},\underset{(-)}{r},\underset{+}{V_{1}})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Estimate equation on aggregate data
+\series default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Put equation into model
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{4mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Note:
+\series default
+ Similar for investment (chapter 15).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Classes of Macro Models
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Old-style Keynesian macro-models 
+\series default
+(1950s-):
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Structure:
+\series default
+ Aggregate equations 
+\begin_inset Quotes ald
+\end_inset
+
+similar
+\begin_inset Quotes ard
+\end_inset
+
+ to those in micro-theory
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Estimation:
+\series default
+ Equation-by-equation on aggregate data
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+In teaching:
+\series default
+ AS-AD models
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+In practice:
+\series default
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "ADAM"
+target "https://www.dst.dk/da/Statistik/ADAM/Modellen-ADAM"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ + 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "MONA"
+target "https://www.nationalbanken.dk/da/publikationer/Sider/2003/11/MONA.aspx"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ + 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "SMEC"
+target "https://dors.dk/modeller-metoder/smec"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+(
+\begin_inset Quotes ald
+\end_inset
+
+Den økonomiske genopretning 1976-1993
+\begin_inset Quotes ard
+\end_inset
+
+, Jørgen Rosted, 2021)
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Micro-founded macro-models
+\series default
+ (1970s-): 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Structure: 
+\series default
+Exactly the equations in micro-theory (in general equilibrium)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Estimation: 
+\series default
+Calibration vs.
+ moment-matching vs.
+ full-system
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+In teaching:
+\series default
+ 
+\emph on
+Dynamic Stochastic General Equilibrium Models
+\emph default
+ (DSGE)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+RBC: Real Business Cycle (1980s-)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+RANK: Representative Agent New Keynesian (1990s-)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+HANK: Heterogeneous Agent New Keynesian (2010s-)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+In practice:
+\series default
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "DREAM"
+target "https://dreamgruppen.dk/dream/"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ + 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "DSGE at Nationalbanken"
+target "https://www.nationalbanken.dk/da/publikationer/Sider/2016/06/Working-Paper-An-estimated-DSGE-model-for-Denmark-with-housing,-banking,-and-financial-frictions.aspx"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ + 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "MAKRO"
+target "https://dreamgruppen.dk/makro/"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Blanchard: 
+\series default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "On the Need for (At Least) Five Classes of Macro Models"
+target "https://www.piie.com/blogs/realtime-economic-issues-watch/need-least-five-classes-macro-models"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+MAKRO
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Structure of small open economy 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Agents:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Unconstrainted households
+\series default
+ (
+\begin_inset Quotes ald
+\end_inset
+
+Ricardian
+\begin_inset Quotes ard
+\end_inset
+
+): One for each cohort
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Hand-to-mouth households
+\series default
+ (
+\begin_inset Quotes ald
+\end_inset
+
+HtM
+\begin_inset Quotes ard
+\end_inset
+
+): One for each cohort
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Firms
+\series default
+ (production, price setting, multiple sectors incl.
+ housing)
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Central bank
+\series default
+ (fixed exchange-rate)
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Government 
+\series default
+(detailed sub-accounts)
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Global foreign economy 
+\series default
+(exogenous)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Expectations:
+\series default
+ Perfect foresight
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Market clearing:
+\series default
+ Walras + sticky prices + search-and-match
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Mathematically:
+\series default
+ 
+\emph on
+Non-linear equation system
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Behavioral equations in terms of first order conditions
+\end_layout
+
+\begin_layout Enumerate
+Accounting identities
+\end_layout
+
+\begin_layout Enumerate
+Market clearing
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Code: 
+\series default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "https://github.com/DREAM-DK/MAKRO"
+target "https://github.com/DREAM-DK/MAKRO"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Empirical strategy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Levels: 
+\series default
+Weights in production and utility functions.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+(directly observable in data, but changes over time...)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Long-run relationships:
+\series default
+ Substitution elasticities.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Short-run dynamics:
+\series default
+ Adjustment cost parameters.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+(especially focus on 
+\emph on
+convergence speed
+\emph default
+)
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1mm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+Documentation:
+\series default
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Matching af impuls responser og øvrige kortsigtsmomenter"
+target "https://dreamgruppen.dk/publikationer/2021/december/matching-af-impuls-responser-og-oevrige-kortsigtsmomenter-makro-ift-empirien/"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ (2021)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Impulse-response functions (IRFs)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename IRF_government_spending.png
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Also: 
+\series default
+Foreign demand, foreign interest rate, labor supply, oil price
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Micro-moments
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename figs/calibration_targets.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+In practice: Finanseffekt
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\begin_inset Quotes ald
+\end_inset
+
+Finanseffekt
+\begin_inset Quotes ard
+\end_inset
+
+: 
+\series default
+Is fiscal policy expansive or contractive wrt.
+ GDP? 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename finanseffekt.png
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Kilde:
+\series default
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Økonomisk Redegørelse, Marts 2023"
+target "https://www.oem.dk/publikationer/2023/oekonomisk-redegoerelse-marts-2023/"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+BabyMAKRO
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Small open economy in discrete time (annual freq., t)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-2mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Demographics: 
+\series default
+Overlapping generations (age, 
+\begin_inset Formula $a$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Households: 
+\series default
+Hands-to-mouth (
+\begin_inset Formula $\lambda$
+\end_inset
+
+) and unconstrained (
+\begin_inset Formula $1-\lambda$
+\end_inset
+
+) wrt.
+ consumption-saving + supply labor exogenously
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Foreign economy:
+\series default
+ Fixed nominal rate of return + import goods at fixed prices + demand curve
+ for the domestic export good.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Production:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\size footnotesize
+1.
+
+\emph on
+ Production firms
+\emph default
+ rent
+\emph on
+ capital
+\emph default
+ + 
+\emph on
+labor
+\emph default
+ to produce the domestic output good.
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+2.
+
+\emph on
+ Repacking firms
+\emph default
+ combine imported goods with the domestic output good to produce a consumption
+ good, an investment good, and an export good.
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+3.
+ Capital is rented from a 
+\emph on
+capital agency
+\emph default
+, which purchases the investment good to accumulate capital subject to adjustmen
+t costs.
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+4.
+ Labor is rented from a 
+\emph on
+labor agency
+\emph default
+, which post vacancies a search-and-match labor market to purchase labor
+ from the households.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Price of domestic output good:
+\series default
+ Price adjustment costs.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Wage:
+\series default
+ Ad hoc bargaining.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Central bank + government:
+\series default
+ Fixed exchange rate + taxation.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Foreign economy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Nominal interest rate: 
+\series default
+
+\begin_inset Formula $r_{t}^{hh}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Armington demand of the domestic exported good:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+X_{t} & =\gamma^{X}X_{t-1}+(1-\gamma^{X})\chi_{t}\left(\frac{P_{t}^{X}}{P_{t}^{F}}\right)^{-\sigma^{F}}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Import goods: 
+\series default
+
+\begin_inset Formula $\bullet_{t}^{M}$
+\end_inset
+
+ at prices 
+\begin_inset Formula $P_{t}^{\bullet}$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Demographic structure and population
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Life-span:
+\series default
+ 
+\begin_inset Formula $\#$
+\end_inset
+
+, hereof working 
+\begin_inset Formula $\#_{\text{work}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Number of households:
+\series default
+ 
+\begin_inset Formula $N_{a}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Mortality rate:
+\series default
+ 
+\begin_inset Formula $\zeta_{a}$
+\end_inset
+
+ (controlled by 
+\begin_inset Formula $\zeta$
+\end_inset
+
+) 
+\begin_inset Formula 
+\begin{align*}
+N_{a} & =\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})N_{a-1} & \text{if }a>0
+\end{cases}\\
+\zeta_{a} & =\begin{cases}
+0 & \text{if }a<\#_{\text{work}}\\
+\left(\frac{a+1-\#_{\text{work}}}{\#-\#_{\text{work}}}\right)^{\zeta} & \text{if }a<\#-1\\
+1 & \text{if }a=\#-1
+\end{cases}\\
+N & =\sum_{a=0}^{\#-1}N_{a}\\
+N_{\text{work}} & =\sum_{a=0}^{\#-1}1_{\{a\geq\#_{\text{work}}\}}N_{a}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Labor market flows
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Employed and unemployed:
+\series default
+ 
+\begin_inset Formula $L_{a,t}$
+\end_inset
+
+ and 
+\begin_inset Formula $U_{a,t}=N_{a}-L_{a,t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Job-separation and finding rate:
+\series default
+ 
+\begin_inset Formula $\delta_{a}^{L}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{t}^{s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Searchers 
+\series default
+(everybody search = exogenous labor supply):
+\begin_inset Formula 
+\begin{align*}
+S_{a,t} & =\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})\left[U_{a-1,t-1}+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}.
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Employed 
+\series default
+(before and after matching):
+\begin_inset Formula 
+\begin{align*}
+\underline{L}_{a,t} & =\begin{cases}
+0 & \text{if }a=0\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}\\
+L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Search-and-matching
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Vacancies: 
+\begin_inset Formula $v_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Searchers:
+\series default
+ 
+\begin_inset Formula $S_{t}=\sum_{a=0}^{\#-1}S_{a,t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Matches
+\series default
+ by 
+\emph on
+matching function
+\emph default
+:
+\begin_inset Formula 
+\[
+\mathcal{M}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Job-filling rate:
+\series default
+ 
+\begin_inset Formula $m_{t}^{v}=\frac{\mathbb{\mathcal{M}}_{t}}{v_{t}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Job-finding rate:
+\series default
+ 
+\begin_inset Formula $m_{t}^{s}=\frac{\mathcal{M}_{t}}{S_{t}}.$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Wage bargaining
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Unmodeled wage bargaining mechanism 
+\series default
+give 
+\series bold
+
+\begin_inset Formula 
+\begin{align*}
+W_{t} & =W_{ss}\left(\frac{L_{t}}{L_{ss}}\right)^{\epsilon_{w}},
+\end{align*}
+
+\end_inset
+
+
+\series default
+where the wage is increasing in the labor demand for 
+\begin_inset Formula $\epsilon_{w}>0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{5mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Note: 
+\series default
+Theoretically there is a bargaining set
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Upper limit: Firm will fire worker
+\end_layout
+
+\begin_layout Enumerate
+Lower limit: Household will leave firm
+\end_layout
+
+\begin_layout Standard
+Often: Nash-bargaining = 
+\begin_inset Quotes ald
+\end_inset
+
+surplus split from bargaining power
+\begin_inset Quotes ard
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Income
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Post-tax labor income:
+\series default
+ 
+\begin_inset Formula $\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Post-tax unemployment benefits:
+\series default
+ 
+\begin_inset Formula $\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Post-tax retirement benefits
+\series default
+: 
+\begin_inset Formula $\left(1-\tau_{t}\right)W^{R}W_{ss}\frac{N_{a}-(L_{a,t}+U_{a,t})}{N_{a}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Equally divided inheritance
+\series default
+: 
+\begin_inset Formula $\frac{A_{t}^{q}}{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The age specific income is
+\begin_inset Formula 
+\begin{align*}
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}\\
+ & +\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Hand-to-mouth households (HtM)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Consume all income:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}.
+\end{align*}
+
+\end_inset
+
+where the price of consumption goods is 
+\begin_inset Formula $P_{t}^{C}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+No savings:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+A_{a,t}^{\text{HtM}}= & 0.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Unconstrained household (Ricardian) I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Utility from consumption:
+\series default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-3mm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma},\,\,\,\sigma>0,\sigma\neq1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Utility from bequest:
+\series default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-3mm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma},\,\,\,\mu^{A^{q}}>0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Discounting of future utility: 
+\series default
+
+\begin_inset Formula 
+\[
+\beta(1-\zeta_{a}),\,\,\,\beta>0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Budget constraint:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+A_{-1,t}^{R} & =0\\
+A_{a,t}^{R} & =(1+r_{t}^{hh})A_{a-1,t-1}^{R}+\text{inc}_{a,t}-P_{t}^{C}C_{a,t}^{R}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Unconstrained household (Ricardian) II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Cohort:
+\series default
+ 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ (time of first decision)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Full problem
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=1}^{a}\beta(1-\zeta_{j-1})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
+ & \text{s.t.}\\
+t & =t_{0}+a\\
+A_{-1,t}^{R} & =0\\
+A_{a,t}^{R} & =(1+r_{t}^{hh})A_{a-1,t-1}^{R}+\text{inc}_{a,t}-P_{t}^{C}C_{a,t}^{R}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Unconstrained household (Ricardian) III
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+First order conditions:
+\series default
+\size small
+
+\begin_inset Formula 
+\begin{align*}
+C_{a,t}^{R} & =\begin{cases}
+\left(\zeta_{a}\mu^{A^{q}}\left(\frac{A_{\#-1,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
+\left(\beta(1-\zeta_{a})\frac{1+r_{ss}^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{ss}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
+\left(\beta(1-\zeta_{a})\frac{1+r_{t+1}^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
+\end{cases}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Household aggregation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Age:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+C_{a,t} & =\lambda C_{a,t}^{\text{HtM}}+(1-\lambda)C_{a,t}^{R}\\
+A_{a,t} & =\lambda A_{a,t}^{\text{HtM}}+(1-\lambda)A_{a,t}^{R},
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Total:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+C_{t} & =\sum_{a=0}^{\#-1}N_{a}C_{a,t}\\
+A_{t} & =\sum_{a=0}^{\#-1}N_{a}C_{a,t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Bequests:
+\series default
+
+\begin_inset Formula 
+\[
+A_{t}^{q}=\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Production firms I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Capital: 
+\series default
+
+\begin_inset Formula $K_{t-1}$
+\end_inset
+
+, at rental price 
+\begin_inset Formula $r_{t}^{K}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Labor:
+\series default
+ 
+\begin_inset Formula $\ell_{t}$
+\end_inset
+
+, at rental price 
+\begin_inset Formula $r_{t}^{\ell}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Output: 
+\series default
+
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+, with a CES technology, sold at 
+\begin_inset Formula $P_{t}^{Y,0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Profit maximization 
+\series default
+with prices taken as given
+\begin_inset Formula 
+\begin{align*}
+\Pi_{t} & =\max_{K_{t-1},\ell_{t}}P_{t}^{Y,0}Y_{t}-r_{t}^{K}K_{t-1}-r_{t}^{\ell}\ell_{t}\\
+ & \text{ s.t. }\\
+Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}},\\
+\\
+\text{where} & \,\mu^{K},\sigma^{Y},\Gamma>0,\,\sigma^{Y}\neq1.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Production firms II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Free entry implies zero profit:
+\series default
+ 
+\series bold
+
+\begin_inset Formula 
+\begin{align*}
+P_{t}^{Y,0} & =\frac{1}{\Gamma}\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{t}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+First order condition for capital-labor ratio:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+\frac{K_{t-1}}{\ell_{t}} & =\frac{\mu_{K}}{1-\mu_{K}}\left(\frac{r_{t}^{\ell}}{r_{t}^{K}}\right)^{\sigma^{Y}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Capital agency I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Investment good:
+\series default
+ 
+\begin_inset Formula $I_{t}$
+\end_inset
+
+, at price, 
+\begin_inset Formula $P_{t}^{I}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Capital:
+\series default
+ 
+\begin_inset Formula $K_{t}$
+\end_inset
+
+, rented out at rental rate 
+\begin_inset Formula $r_{t+1}^{K}$
+\end_inset
+
+ in the following period.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Adjustment costs:
+\series default
+ Effective investment is 
+\begin_inset Formula $\iota_{t}=I_{t}-\Psi(\iota_{t},K_{t-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Required internal rate of return:
+\series default
+ 
+\begin_inset Formula $r^{\text{firm}}.$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Profit maximization:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+V_{0}^{\text{capital}}\left(K_{t-1}\right) & =\max_{\left\{ K_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{K}K_{t-1}-P_{t}^{I}\left(\iota_{t}+\Psi(\iota_{t},K_{t-1})\right)\right]\\
+ & \text{s.t.}\\
+I_{t} & =\iota_{t}+\Psi(\iota_{t},K_{t-1})\\
+K_{t} & =(1-\delta^{K})K_{t-1}+\iota_{t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Capital agency II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Functional form:
+\series default
+
+\begin_inset Formula 
+\[
+\Psi(\iota_{t},K_{t-1})=\frac{\Psi_{0}}{2}\left(\frac{\iota_{t}}{K_{t-1}}-\delta^{K}\right)^{2}K_{t-1}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+First order condition:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+0= & -P_{t}^{I}\left(1+\Psi_{\iota}\left(\iota_{t},K_{t-1}\right)\right)\\
+ & +\frac{r_{t+1}^{k}+P_{t+1}^{I}(1-\delta^{K})(1+\Psi_{\iota}(\iota_{t+1},K_{t}))-P_{t+1}^{I}\Psi_{K}\left(\iota_{t+1},K_{t}\right)}{1+r^{\text{firm}}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Labor agency I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Post vacancies
+\series default
+: 
+\begin_inset Formula $v_{t}$
+\end_inset
+
+ at cost 
+\begin_inset Formula $\kappa^{L}$
+\end_inset
+
+ (in units of labor).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Labor:
+\series default
+ Hires 
+\begin_inset Formula $L_{t}$
+\end_inset
+
+ and rent out labor at rental price 
+\begin_inset Formula $r_{t}^{\ell}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Exogenous match destruction:
+\series default
+ 
+\begin_inset Formula $\delta_{t}^{L}$
+\end_inset
+
+ (implied by 
+\begin_inset Formula $\delta_{a,t}^{L}$
+\end_inset
+
+ and 
+\begin_inset Formula $L_{a,t-1}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Exogenous wage: 
+\series default
+
+\begin_inset Formula $W_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Profit maximization:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+V_{0}^{\text{labor}}(L_{t-1})=\max_{\left\{ v_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}\right]\\
+ & \text{s.t.}\\
+L_{t} & =m_{t}^{v}v_{t}+\left(1-\delta_{t}^{L}\right)L_{t-1}\\
+\ell_{t} & =L_{t}-\kappa^{L}v_{t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Labor agency II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+First order condition:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Price setting I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Input price:
+\series default
+ 
+\begin_inset Formula $P_{t}^{Y,0}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Output of differentiated goods:
+\series default
+ 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ at 
+\begin_inset Formula $p_{t}^{Y}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Demand schedule:
+\series default
+ 
+\begin_inset Formula $y_{t}=\left(\frac{p_{t}^{Y}}{P_{t}^{Y}}\right)^{-\sigma_{D}}Y_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Aggregate:
+\series default
+ 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+ with price index 
+\begin_inset Formula $P_{t}^{Y}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Profit maximization:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+V_{t}^{\text{intermediary}}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-\vartheta_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}^{\text{intermediary}}\\
+ & \text{ s.t. }\\
+\vartheta_{t} & =\frac{\gamma}{2}\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]^{2}P_{t}^{Y}Y_{t}\\
+y_{t} & =\left(\frac{p_{t}^{Y}}{P_{t}^{Y}}\right)^{-\sigma_{D}}Y_{t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Price setting II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Assumption:
+\series default
+ Symmetric firms
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+First order condition 
+\series default
+(New Keynesian Phillips Curve):
+\series bold
+
+\begin_inset Formula 
+\begin{align*}
+P_{t}^{Y}= & (1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}\\
+ & +\frac{2\eta}{1+r^{\text{firm}}}\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\\
+\\
+ & \theta\equiv\frac{1}{\sigma_{D}-1}\\
+ & \eta\equiv\theta\gamma.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Repacking firms
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Output goods:
+\series default
+ 
+\begin_inset Formula $\bullet_{t}^{Y}$
+\end_inset
+
+ at prices 
+\begin_inset Formula $P_{t}^{\bullet}$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Domestic input good:
+\series default
+ 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+ at price 
+\begin_inset Formula $P_{t}^{Y}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Foreign input goods: 
+\series default
+
+\begin_inset Formula $\bullet_{t}^{M}$
+\end_inset
+
+ at prices 
+\begin_inset Formula $P_{t}^{\bullet}$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Profit maximization with CES 
+\series default
+production technology implies
+\begin_inset Formula 
+\begin{align*}
+P_{t}^{\bullet} & =\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}\\
+\bullet_{t}^{M} & =\mu^{M,\bullet}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\\
+\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t},
+\end{align*}
+
+\end_inset
+
+for 
+\begin_inset Formula $\bullet\in\{C,G,I,X\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Government
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Interest rate:
+\series default
+ 
+\begin_inset Formula $r^{B}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Government consumption: 
+\series default
+
+\begin_inset Formula $G_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Unemployment insurance expenses:
+\series default
+ 
+\begin_inset Formula $E_{t}^{U}=W_{U}W_{ss}U_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Retirement benefits expenses:
+\series default
+ 
+\begin_inset Formula $E^{R}=W_{R}W_{ss}(N-N_{\text{work}})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Tax base:
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $T_{t}=W_{t}L_{t}+E_{t}^{U}+E^{R}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Budget constraint:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+E_{t}^{U}+E^{R}-\tau_{t}T_{t}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Tax policy:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+\tau_{t} & =\tau_{ss}+\varepsilon_{B}\frac{\tilde{B}_{t}-B_{ss}}{T_{t}},\\
+\tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+E_{t}^{U}+E^{R}-\tau_{ss}T_{t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Goods market clearing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Demand for domestically produced goods:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Y_{t}=\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{Y}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Imports add up:
+\series default
+
+\begin_inset Formula 
+\[
+M_{t}=\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{M}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+[Current account and net foreign position]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\emph on
+Not necessary to specify
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Not specified yet
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Solution method
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Targets and unknowns
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Goal:
+\series default
+ Find the
+\series bold
+ 
+\series default
+\emph on
+equilibrium path
+\series bold
+\emph default
+ 
+\series default
+in the economy.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Equilibrium path:
+\series default
+ A set of paths for all variables where
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Optimal firm and household behavior in terms of FOCs.
+\end_layout
+
+\begin_layout Enumerate
+Accounting identities.
+\end_layout
+
+\begin_layout Enumerate
+Market clearing.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Target equations:
+\series default
+ Must 
+\emph on
+be zero on the equilibrium path
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Unknown variables: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Chosen by model-builder.
+\end_layout
+
+\begin_layout Enumerate
+All other variables must be derived from these.
+\end_layout
+
+\begin_layout Enumerate
+Target equations can be evaluated.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Order series of 
+\emph on
+blocks
+\emph default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Inputs: 
+\series default
+Unknown and exogenous variables or outputs of previous blocks
+\series bold
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Outputs:
+\series default
+ Variables and errors in target equations
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Truncation: 
+\series default
+Assume back in steady state after 
+\begin_inset Formula $T$
+\end_inset
+
+ periods.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Exogenous variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\Gamma_{t}$
+\end_inset
+
+, technology
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $G_{t}$
+\end_inset
+
+, public spending
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\chi_{t}$
+\end_inset
+
+, 
+\emph on
+foreign
+\emph default
+ demand shifter (
+\begin_inset Quotes ald
+\end_inset
+
+market size
+\begin_inset Quotes ard
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\text{P_{t}^{M,C}}$
+\end_inset
+
+, import price of 
+\emph on
+private
+\emph default
+ consumption good
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\text{P_{t}^{M,G}}$
+\end_inset
+
+, import price of 
+\emph on
+public
+\emph default
+ consumption good
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\text{P_{t}^{M,I}}$
+\end_inset
+
+, import price of 
+\emph on
+investment
+\emph default
+ good
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\text{P_{t}^{M,X}}$
+\end_inset
+
+, import price of 
+\emph on
+export
+\emph default
+ good
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\text{P_{t}^{F}}$
+\end_inset
+
+, 
+\emph on
+foreign 
+\emph default
+price level
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $r_{t}^{hh}$
+\end_inset
+
+, 
+\emph on
+foreign 
+\emph default
+interest rate
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Unknowns in practice
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $A_{t}^{q}$
+\end_inset
+
+, inheritance flow (
+\begin_inset Formula $T$
+\end_inset
+
+ unknowns)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $A_{t}^{\text{death}}$
+\end_inset
+
+, wealth of households at 
+\begin_inset Formula $a=\#-1$
+\end_inset
+
+ (
+\begin_inset Formula $T$
+\end_inset
+
+ unknowns)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $K_{t}$
+\end_inset
+
+, capital (
+\begin_inset Formula $T$
+\end_inset
+
+ unknowns)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $L_{t}$
+\end_inset
+
+, labor supply (
+\begin_inset Formula $T$
+\end_inset
+
+ unknowns)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $r_{t}^{K}$
+\end_inset
+
+, rental price for capital (
+\begin_inset Formula $T$
+\end_inset
+
+ unknowns)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P_{t}^{Y}$
+\end_inset
+
+, price of domestic output (
+\begin_inset Formula $T$
+\end_inset
+
+ unknowns) 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ 
+\emph on
+all other variables in model can be derived and target equations can be
+ evaluated (see code)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Solving numerically
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Solve with Newton's method
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x$
+\end_inset
+
+ is a 
+\begin_inset Formula $6\times T$
+\end_inset
+
+ vector containing all 6 unknown in all 
+\begin_inset Formula $T$
+\end_inset
+
+ periods.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f$
+\end_inset
+
+ is a 
+\begin_inset Formula $6\times T$
+\end_inset
+
+ vector containing all 6 target in all 
+\begin_inset Formula $T$
+\end_inset
+
+ periods.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\mathcal{J}$
+\end_inset
+
+ is the Jacobian of 
+\begin_inset Formula $f$
+\end_inset
+
+ (the derivative of 
+\begin_inset Formula $f$
+\end_inset
+
+) eval.
+ in steady state.
+\end_layout
+
+\begin_layout Standard
+Compute next guess, 
+\begin_inset Formula $x_{n+1}$
+\end_inset
+
+, as
+\begin_inset Formula 
+\[
+x_{n+1}=x_{n}-\frac{f(x_{n})}{\mathcal{J}_{n}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Initial guess: Steady state
+\end_layout
+
+\begin_layout Standard
+Converges to solution, 
+\begin_inset Formula $f(x^{*})=0$
+\end_inset
+
+, as 
+\begin_inset Formula $n$
+\end_inset
+
+ grows.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Implementation:
+\series default
+ In Python
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Course:
+\series default
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Introduction to Programming and Numerical Analysis"
+target "https://sites.google.com/view/numeconcph-introprog/home"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Calibration
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Steady state
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Goals: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+National account shares and ratios.
+\end_layout
+
+\begin_layout Enumerate
+Unemployment level and labor market flows.
+\end_layout
+
+\begin_layout Enumerate
+Life-cycle profiles of income, consumption and savings.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Simplify:
+\series default
+ Zero inflation, zero growth and constant demography.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Notebooks:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+0 - steady state - aggregate.ipynb
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+0 - steady state - households.ipynb
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Status: 
+\series default
+\emph on
+Very ad hoc still.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Dynamics
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Substitution elasticities:
+\series default
+ Use those from MAKRO
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Impulse-responses: 
+\series default
+Match to data independently
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Status:
+\series default
+ 
+\emph on
+Not done
+\emph default
+ 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ 
+\emph on
+today example of government spending shock
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Government spending shock
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Impulse-responses
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+An 
+\emph on
+impulse response
+\emph default
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The economy starts at steady state.
+\end_layout
+
+\begin_layout Enumerate
+Some exogenous variables 
+\emph on
+temporarily
+\emph default
+ deviate from steady state.
+\end_layout
+
+\begin_layout Enumerate
+The impulse responses: How variables respond to the shock.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Shock to government spending
+\series default
+, 
+\begin_inset Formula $G_{t}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+G_{t} & =G_{ss}+\text{\ensuremath{shock_{t}}}\\
+shock_{t} & =\begin{cases}
+G_{ss}\cdot size\cdot persistence{}^{t-T_{start}} & \text{if}\text{\ensuremath{T_{start}\leq t<T_{end}}}\\
+0 & \text{else}
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $size=1.01$
+\end_inset
+
+: Initial deviation from steady state at 1 pct.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\end_layout
+
+\end_inset
+
+shock starts in 
+\begin_inset Formula $T_{start}=0$
+\end_inset
+
+ and ends in 
+\begin_inset Formula $T_{end}=50$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $persistence=0.8$
+\end_inset
+
+ (shock fades as 
+\begin_inset Formula $t$
+\end_inset
+
+ grows)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Initial effects I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Repacking firms:}$
+\end_inset
+
+ Demand for domestically produced goods 
+\begin_inset Formula $Y\uparrow$
+\end_inset
+
+ and imported goods 
+\begin_inset Formula $M\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Production firms:}$
+\end_inset
+
+ Increases inputs to increase production 
+\begin_inset Formula $Y\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Capital 
+\begin_inset Formula $K\uparrow$
+\end_inset
+
+ (limited by adjustment costs) and labor 
+\begin_inset Formula $\ell\uparrow$
+\end_inset
+
+ .
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Households:}$
+\end_inset
+
+ More income, greater consumption 
+\begin_inset Formula $C\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Real wage 
+\begin_inset Formula $W\uparrow$
+\end_inset
+
+ due to increased labor demand.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Hand-to-mouth 
+\begin_inset Formula $C^{HtM}\uparrow$
+\end_inset
+
+: Increase proportional to increase in 
+\begin_inset Formula $W$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Ricardian 
+\begin_inset Formula $C^{R}\downarrow$
+\end_inset
+
+: Due to consumption smoothing.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Prices:}$
+\end_inset
+
+ Higher input prices causes higher prices 
+\begin_inset Formula $P\uparrow$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $W\uparrow$
+\end_inset
+
+ and 
+\begin_inset Formula $r^{K}\uparrow$
+\end_inset
+
+ drives up marginal costs 
+\begin_inset Formula $P^{Y,0}\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Output prices 
+\begin_inset Formula $P^{Y}\uparrow$
+\end_inset
+
+ (limited by adjustment costs).
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Causes higher repacking prices 
+\begin_inset Formula $P^{\bullet}\uparrow$
+\end_inset
+
+ for 
+\begin_inset Formula $\bullet\in\{C,I,G,X\}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Foreign economy:}$
+\end_inset
+
+ Exports 
+\begin_inset Formula $X\downarrow$
+\end_inset
+
+ due to increasing prices 
+\begin_inset Formula $P^{X}\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Initial effects II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Labor agency:}$
+\end_inset
+
+ Employment 
+\begin_inset Formula $L\uparrow$
+\end_inset
+
+ and rents 
+\begin_inset Formula $\ell\uparrow$
+\end_inset
+
+ to production firms.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Job vacancies 
+\begin_inset Formula $v\uparrow$
+\end_inset
+
+ to meet higher labor demand.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Number of matches 
+\begin_inset Formula $\mathcal{M}\uparrow$
+\end_inset
+
+ , 
+\begin_inset Quotes ald
+\end_inset
+
+gross
+\begin_inset Quotes ard
+\end_inset
+
+ labor 
+\begin_inset Formula $L\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Labor 
+\begin_inset Formula $\ell\uparrow$
+\end_inset
+
+ (limited by adjustment costs).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Capital agency:}$
+\end_inset
+
+ Investments 
+\begin_inset Formula $I\uparrow$
+\end_inset
+
+ to accumulate capital 
+\begin_inset Formula $K\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+Expensive investments: 
+\begin_inset Formula $P^{I}\uparrow$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+Greater return: 
+\begin_inset Formula $r^{K}\uparrow$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Transition path
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Government:}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Government spending 
+\begin_inset Formula $G\downarrow$
+\end_inset
+
+ by assumption.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Tax rate 
+\begin_inset Formula $\tau\uparrow$
+\end_inset
+
+ to finance growing government debt 
+\begin_inset Formula $B\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Repacking firms:}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Demand for domestic goods 
+\begin_inset Formula $Y\downarrow$
+\end_inset
+
+ and imports 
+\begin_inset Formula $M\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Prices 
+\begin_inset Formula $P\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Production firms:}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Drop in production inputs, labor 
+\begin_inset Formula $\ell\downarrow$
+\end_inset
+
+ and capital 
+\begin_inset Formula $K\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Households:}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\ell\downarrow$
+\end_inset
+
+ causes wages 
+\begin_inset Formula $W\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Higher taxes from 
+\begin_inset Formula $\tau\uparrow$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Leads to less disposable income and thus 
+\begin_inset Formula $C\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Foreign economy:}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-5mm}
+\end_layout
+
+\end_inset
+
+Exports 
+\begin_inset Formula $X\uparrow$
+\end_inset
+
+ due to falling prices 
+\begin_inset Formula $P^{X}\downarrow$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Insights and takeaways
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Your takeaways:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+How a micro-founded macro-model is structured
+\end_layout
+
+\begin_layout Enumerate
+Despite their complexity you can (soon) work with such models
+\end_layout
+
+\begin_layout Enumerate
+Requires both analytical and numerical skills to master
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Open source:
+\series default
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+name "github.com/JeppeDruedahl/BabyMAKRO"
+target "https://github.com/JeppeDruedahl/BabyMAKRO"
+literal "false"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\emph on
+Will you participate in improving it?
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Related courses:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Macro III
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Introduction to Programming and Numerical Analysis"
+target "https://sites.google.com/view/numeconcph-introprog/home"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Advanced Macroeconomics: Heterogenous Agent Models"
+target "https://sites.google.com/view/numeconcph-advmacrohet/"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Tasks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Clarify steady state calibration.
+\end_layout
+
+\begin_layout Enumerate
+Perform impulse-response matching.
+\end_layout
+
+\begin_layout Enumerate
+Improve detailed accounting of main shocks.
+\end_layout
+
+\begin_layout Enumerate
+Add technology growth, population growth, and trend inflation.
+\end_layout
+
+\begin_layout Enumerate
+Add financial flows accounts wrt.
+ to the foreign economy.
+\end_layout
+
+\begin_layout Enumerate
+Add more government with taxes and spending.
+\end_layout
+
+\begin_layout Enumerate
+Add endogenous labor supply.
+\end_layout
+
+\begin_layout Enumerate
+Add multiple sector and input-output structure.
+\end_layout
+
+\begin_layout Enumerate
+Make the model quarterly.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+ 
+\end_layout
+
+\end_body
+\end_document
