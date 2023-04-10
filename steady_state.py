@@ -257,5 +257,4 @@ def find_ss(model,do_print=True):
 
     if do_print: 
         print(Fonttype.HEADER + 'Market clearing:' + Fonttype.END)
-        print(f'{ss.C_Y/ss.C = :.2f}, {ss.G_Y/ss.G = :.2f}, {ss.I_Y/ss.I = :.2f}, {ss.X_Y/ss.X = :.2f}')
-        print(f'{ss.X/ss.Y = :.2f}, {ss.M/ss.Y = :.2f}')
+        print(f'{ss.C/ss.Y = :.2f}, {ss.G/ss.Y = :.2f}, {ss.I/ss.Y = :.2f}, {ss.X/ss.Y = :.2f}, {ss.M/ss.Y = :.2f}')
