@@ -355,7 +355,11 @@ New model developed by
 \emph on
 DREAM
 \emph default
- and used by the 
+
+\begin_inset Newline newline
+\end_inset
+
+and now in use by the 
 \emph on
 Danish Finance Ministry.
 \emph default
@@ -377,7 +381,7 @@ vspace{1mm}
 
 \begin_deeper
 \begin_layout Enumerate
-Framework for business cycle prognoses
+Framework for business cycle forecasts
 \end_layout
 
 \begin_layout Enumerate
@@ -385,7 +389,7 @@ Medium and long-run projections
 \end_layout
 
 \begin_layout Enumerate
-Evaluations of potential policies and shocks
+Evaluations of potential economic policies and shocks
 \begin_inset ERT
 status open
 
@@ -403,9 +407,9 @@ vspace{1mm}
 
 \end_deeper
 \begin_layout Itemize
-
+Today
 \series bold
-BabyMAKRO:
+ BabyMAKRO:
 \series default
  Model in the same style for students to use in 
 \emph on
@@ -454,7 +458,7 @@ vspace{1mm}
 \series bold
 Alpha-version:
 \series default
- Bachelor thesis students
+ Bachelor thesis students fall 2022
 \size small
 .
 \begin_inset ERT
@@ -462,7 +466,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size small
 
 \backslash
 vspace{1mm}
@@ -596,7 +599,8 @@ Reminder: Consumption behavior (chapter 16)
 \begin_layout Enumerate
 
 \series bold
-Maximize utility:
+Maximize utility s.t.
+ intertemporal budget constraint:
 \series default
 
 \begin_inset ERT
@@ -671,7 +675,7 @@ vspace{2mm}
 
  
 \emph on
-derive properties of optimal micro-behavior
+derive qualitative (signed) properties of optimal micro-behavior
 \emph default
 
 \begin_inset ERT
@@ -1407,7 +1411,7 @@ Ricardian
 \begin_layout Enumerate
 
 \series bold
-Hand-too-mouth households
+Hand-to-mouth households
 \series default
  (
 \begin_inset Quotes ald
@@ -1480,6 +1484,20 @@ Mathematically:
 Non-linear equation system
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+Behavioral equations in terms of first order conditions
+\end_layout
+
+\begin_layout Enumerate
+Accounting identities
+\end_layout
+
+\begin_layout Enumerate
+Market clearing
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1552,7 +1570,7 @@ Empirical strategy
 \series bold
 Levels: 
 \series default
-Weights in production and utility functions
+Weights in production and utility functions.
 \end_layout
 
 \begin_deeper
@@ -1566,7 +1584,7 @@ Weights in production and utility functions
 \series bold
 Long-run relationships:
 \series default
- Substitution elasticities
+ Substitution elasticities.
 \end_layout
 
 \begin_layout Enumerate
@@ -1574,7 +1592,7 @@ Long-run relationships:
 \series bold
 Short-run dynamics:
 \series default
- Adjustment cost parameters
+ Adjustment cost parameters.
 \end_layout
 
 \begin_deeper
@@ -1827,7 +1845,7 @@ BabyMAKRO
 status open
 
 \begin_layout Plain Layout
-Small open economy in discrete annual time (t)
+Small open economy in discrete time (annual freq., t)
 \end_layout
 
 \end_inset
@@ -1844,7 +1862,7 @@ status open
 
 
 \backslash
-vspace{-1mm}
+vspace{-2mm}
 \end_layout
 
 \end_inset
@@ -1853,10 +1871,7 @@ vspace{-1mm}
 \series bold
 Demographics: 
 \series default
-\emph on
-Overlapping generations
-\emph default
- (age, 
+Overlapping generations (age, 
 \begin_inset Formula $a$
 \end_inset
 
@@ -1868,7 +1883,7 @@ Overlapping generations
 \series bold
 Households: 
 \series default
-Hands-too-mouth (
+Hands-to-mouth (
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -1973,7 +1988,7 @@ Wage:
 \series bold
 Central bank + government:
 \series default
- Fixed exchange rate + debt-stabilizing taxes.
+ Fixed exchange rate + taxation.
 \end_layout
 
 \end_deeper
@@ -2077,7 +2092,7 @@ Life-span:
 \begin_inset Formula $\#$
 \end_inset
 
-, hereof working, 
+, hereof working 
 \begin_inset Formula $\#_{\text{work}}$
 \end_inset
 
@@ -2110,14 +2125,6 @@ Mortality rate:
 \end_inset
 
 ) 
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Demographic structure and population:
-\series default
-
 \begin_inset Formula 
 \begin{align*}
 N_{a} & =\begin{cases}
@@ -2129,7 +2136,8 @@ N_{a} & =\begin{cases}
 \left(\frac{a+1-\#_{\text{work}}}{\#-\#_{\text{work}}}\right)^{\zeta} & \text{if }a<\#-1\\
 1 & \text{if }a=\#-1
 \end{cases}\\
-N & =\sum_{a=0}^{\#-1}N_{a}
+N & =\sum_{a=0}^{\#-1}N_{a}\\
+N_{\text{work}} & =\sum_{a=0}^{\#-1}1_{\{a\geq\#_{\text{work}}\}}N_{a}.
 \end{align*}
 
 \end_inset
@@ -2202,7 +2210,7 @@ Searchers
 S_{a,t} & =\begin{cases}
 1 & \text{if }a=0\\
 (1-\zeta_{a-1})\left[U_{a-1,t-1}+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<\#_{\text{work}}\\
-0 & \text{if }a\geq\#_{\text{work}}
+0 & \text{if }a\geq\#_{\text{work}}.
 \end{cases}
 \end{align*}
 
@@ -2245,7 +2253,7 @@ L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}.
 status open
 
 \begin_layout Plain Layout
-Search and matching
+Search-and-matching
 \end_layout
 
 \end_inset
@@ -2270,7 +2278,7 @@ Vacancies:
 Searchers:
 \series default
  
-\begin_inset Formula $\sum_{a}S_{a,t}$
+\begin_inset Formula $S_{t}=\sum_{a=0}^{\#-1}S_{a,t}$
 \end_inset
 
 
@@ -2281,10 +2289,14 @@ Searchers:
 \series bold
 Matches
 \series default
+ by 
+\emph on
+matching function
+\emph default
 :
 \begin_inset Formula 
 \[
-\mathcal{M}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}
+\mathcal{M}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}.
 \]
 
 \end_inset
@@ -2341,9 +2353,9 @@ Wage bargaining
 \begin_layout Itemize
 
 \series bold
-Unmodeled bargaining mechanism:
+Unmodeled wage bargaining mechanism 
 \series default
- 
+give 
 \series bold
 
 \begin_inset Formula 
@@ -2362,6 +2374,48 @@ where the wage is increasing in the labor demand for
 .
 \end_layout
 
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{5mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Note: 
+\series default
+Theoretically there is a bargaining set
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Upper limit: Firm will fire worker
+\end_layout
+
+\begin_layout Enumerate
+Lower limit: Household will leave firm
+\end_layout
+
+\begin_layout Standard
+Often: Nash-bargaining = 
+\begin_inset Quotes ald
+\end_inset
+
+surplus split from bargaining power
+\begin_inset Quotes ard
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
@@ -2437,16 +2491,12 @@ The age specific income is
 \begin_inset Formula 
 \begin{align*}
 \text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}\\
- & +\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N},
+ & +\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}.
 \end{align*}
 
 \end_inset
 
-and the price of consumption goods is 
-\begin_inset Formula $P_{t}^{C}$
-\end_inset
 
-.
 \end_layout
 
 \end_deeper
@@ -2474,17 +2524,21 @@ Hand-to-mouth households (HtM)
 \begin_layout Itemize
 
 \series bold
-Consumer all income:
+Consume all income:
 \series default
 
 \begin_inset Formula 
 \begin{align*}
-C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}
+C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}.
 \end{align*}
 
 \end_inset
 
+where the price of consumption goods is 
+\begin_inset Formula $P_{t}^{C}$
+\end_inset
 
+.
 \end_layout
 
 \begin_layout Itemize
@@ -2495,7 +2549,7 @@ No savings:
 
 \begin_inset Formula 
 \begin{align*}
-A_{a,t}^{\text{HtM}}= & 0
+A_{a,t}^{\text{HtM}}= & 0.
 \end{align*}
 
 \end_inset
@@ -2530,10 +2584,23 @@ Unconstrained household (Ricardian) I
 \series bold
 Utility from consumption:
 \series default
- 
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-3mm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula 
 \[
-\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}
+\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma},\,\,\,\sigma>0,\sigma\neq1.
 \]
 
 \end_inset
@@ -2544,12 +2611,25 @@ Utility from consumption:
 \begin_layout Itemize
 
 \series bold
-Utility from wealth:
+Utility from bequest:
 \series default
- 
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-3mm}
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula 
 \[
-\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}
+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma},\,\,\,\mu^{A^{q}}>0.
 \]
 
 \end_inset
@@ -2560,12 +2640,12 @@ Utility from wealth:
 \begin_layout Itemize
 
 \series bold
-Discounting: 
+Discounting of future utility: 
 \series default
 
 \begin_inset Formula 
 \[
-\beta(1-\zeta_{a})
+\beta(1-\zeta_{a}),\,\,\,\beta>0.
 \]
 
 \end_inset
@@ -2621,7 +2701,7 @@ Cohort:
 \begin_inset Formula $t_{0}$
 \end_inset
 
-
+ (time of first decision)
 \end_layout
 
 \begin_layout Itemize
@@ -2632,7 +2712,7 @@ Full problem
 
 \begin_inset Formula 
 \begin{align*}
-V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
+V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=1}^{a}\beta(1-\zeta_{j-1})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
  & \text{s.t.}\\
 t & =t_{0}+a\\
 A_{-1,t}^{R} & =0\\
@@ -2669,7 +2749,7 @@ Unconstrained household (Ricardian) III
 \begin_layout Itemize
 
 \series bold
-First order condition:
+First order conditions:
 \series default
 \size small
 
@@ -2679,7 +2759,63 @@ C_{a,t}^{R} & =\begin{cases}
 \left(\zeta_{a}\mu^{A^{q}}\left(\frac{A_{\#-1,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{if }a=\#-1\\
 \left(\beta(1-\zeta_{a})\frac{1+r_{ss}^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{ss}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
 \left(\beta(1-\zeta_{a})\frac{1+r_{t+1}^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
-\end{cases}
+\end{cases}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Household aggregation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Age:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+C_{a,t} & =\lambda C_{a,t}^{\text{HtM}}+(1-\lambda)C_{a,t}^{R}\\
+A_{a,t} & =\lambda A_{a,t}^{\text{HtM}}+(1-\lambda)A_{a,t}^{R},
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Total:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+C_{t} & =\sum_{a=0}^{\#-1}N_{a}C_{a,t}\\
+A_{t} & =\sum_{a=0}^{\#-1}N_{a}C_{a,t}.
 \end{align*}
 
 \end_inset
@@ -2781,9 +2917,10 @@ Profit maximization
 with prices taken as given
 \begin_inset Formula 
 \begin{align*}
-\Pi_{t} & =\max_{X_{i},X_{j}}P_{t}^{Y,0}Y_{t}-r_{t}^{K}K_{t-1}-r_{t}^{\ell}\ell_{t}\\
+\Pi_{t} & =\max_{K_{t-1},\ell_{t}}P_{t}^{Y,0}Y_{t}-r_{t}^{K}K_{t-1}-r_{t}^{\ell}\ell_{t}\\
  & \text{ s.t. }\\
-Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\\
+Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}},\\
+\\
 \text{where} & \,\mu^{K},\sigma^{Y},\Gamma>0,\,\sigma^{Y}\neq1.
 \end{align*}
 
@@ -2805,7 +2942,7 @@ Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\
 status open
 
 \begin_layout Plain Layout
-Production firms
+Production firms II
 \end_layout
 
 \end_inset
@@ -2883,11 +3020,15 @@ Investment good:
 \begin_inset Formula $P_{t}^{I}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Itemize
-Capital: 
+
+\series bold
+Capital:
+\series default
+ 
 \begin_inset Formula $K_{t}$
 \end_inset
 
@@ -2900,15 +3041,23 @@ Capital:
 \end_layout
 
 \begin_layout Itemize
-Adjustment costs: Effective investment is 
-\begin_inset Formula $\iota_{t}$
+
+\series bold
+Adjustment costs:
+\series default
+ Effective investment is 
+\begin_inset Formula $\iota_{t}=I_{t}-\Psi(\iota_{t},K_{t-1}$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Itemize
-Required internal rate of return: 
+
+\series bold
+Required internal rate of return:
+\series default
+ 
 \begin_inset Formula $r^{\text{firm}}.$
 \end_inset
 
@@ -3064,7 +3213,11 @@ Exogenous match destruction:
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 Exogenous wage: 
+\series default
+
 \begin_inset Formula $W_{t}$
 \end_inset
 
@@ -3149,7 +3302,7 @@ r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\el
 status open
 
 \begin_layout Plain Layout
-Phillips curve
+Price setting I
 \end_layout
 
 \end_inset
@@ -3173,13 +3326,17 @@ Input price:
 \begin_layout Itemize
 
 \series bold
-Output price:
+Output of differentiated goods:
 \series default
  
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ at 
 \begin_inset Formula $p_{t}^{Y}$
 \end_inset
 
- for differentiated goods
+
 \end_layout
 
 \begin_layout Itemize
@@ -3191,15 +3348,23 @@ Demand schedule:
 \begin_inset Formula $y_{t}=\left(\frac{p_{t}^{Y}}{P_{t}^{Y}}\right)^{-\sigma_{D}}Y_{t}$
 \end_inset
 
-, where 
-\begin_inset Formula $P_{t}^{Y}$
-\end_inset
 
- and 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Aggregate:
+\series default
+ 
 \begin_inset Formula $Y_{t}$
 \end_inset
 
- are aggregates
+ with price index 
+\begin_inset Formula $P_{t}^{Y}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -3210,9 +3375,9 @@ Profit maximization:
 
 \begin_inset Formula 
 \begin{align*}
-V_{t}^{\text{intermediary}}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-g_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}^{\text{intermediary}}\\
+V_{t}^{\text{intermediary}}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-\vartheta_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}^{\text{intermediary}}\\
  & \text{ s.t. }\\
-g_{t} & =\frac{\gamma}{2}\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]^{2}P_{t}^{Y}Y_{t}\\
+\vartheta_{t} & =\frac{\gamma}{2}\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]^{2}P_{t}^{Y}Y_{t}\\
 y_{t} & =\left(\frac{p_{t}^{Y}}{P_{t}^{Y}}\right)^{-\sigma_{D}}Y_{t}.
 \end{align*}
 
@@ -3234,7 +3399,7 @@ y_{t} & =\left(\frac{p_{t}^{Y}}{P_{t}^{Y}}\right)^{-\sigma_{D}}Y_{t}.
 status open
 
 \begin_layout Plain Layout
-Phillips curve
+Price setting II
 \end_layout
 
 \end_inset
@@ -3254,11 +3419,16 @@ Assumption:
 \begin_layout Itemize
 
 \series bold
-First order condition:
+First order condition 
+\series default
+(New Keynesian Phillips Curve):
+\series bold
+
 \begin_inset Formula 
 \begin{align*}
 P_{t}^{Y}= & (1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}\\
  & +\frac{2\eta}{1+r^{\text{firm}}}\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\\
+\\
  & \theta\equiv\frac{1}{\sigma_{D}-1}\\
  & \eta\equiv\theta\gamma.
 \end{align*}
@@ -3310,28 +3480,6 @@ Output goods:
  
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-private consumption, 
-\begin_inset Formula $C_{t}$
-\end_inset
-
-, public consumption, 
-\begin_inset Formula $G_{t}$
-\end_inset
-
-, investment, 
-\begin_inset Formula $I_{t}$
-\end_inset
-
-, or exports, 
-\begin_inset Formula $X_{t}$
-\end_inset
-
-.
-\end_layout
-
-\end_deeper
 \begin_layout Itemize
 
 \series bold
@@ -3373,16 +3521,12 @@ Foreign input goods:
 \series bold
 Profit maximization with CES 
 \series default
-production techonology implies
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
+production technology implies
 \begin_inset Formula 
 \begin{align*}
 P_{t}^{\bullet} & =\left(\mu^{M,\bullet}\left(P_{t}^{M,\bullet}\right)^{1-\sigma^{\bullet}}+\left(1-\mu^{M,\bullet}\right)\left(P_{t}^{Y}\right)^{1-\sigma^{\bullet}}\right)^{\frac{1}{1-\sigma^{\bullet}}}\\
 \bullet_{t}^{M} & =\mu^{M,\bullet}\left(\frac{P_{t}^{\bullet}}{P_{t}^{M,\bullet}}\right)^{\sigma^{\bullet}}\bullet_{t}\\
-\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t}.
+\bullet_{t}^{Y} & =\left(1-\mu^{M,\bullet}\right)\left(\frac{P_{t}^{\bullet}}{P_{t}^{Y}}\right)^{\sigma^{\bullet}}\bullet_{t},
 \end{align*}
 
 \end_inset
@@ -3394,7 +3538,6 @@ for
 
 \end_layout
 
-\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
@@ -3444,7 +3587,7 @@ Government consumption:
 \begin_layout Itemize
 
 \series bold
-Unemployment insurance:
+Unemployment insurance expenses:
 \series default
  
 \begin_inset Formula $E_{t}^{U}=W_{U}W_{ss}U_{t}$
@@ -3456,10 +3599,10 @@ Unemployment insurance:
 \begin_layout Itemize
 
 \series bold
-Retirement benefits:
+Retirement benefits expenses:
 \series default
  
-\begin_inset Formula $E^{R}=W_{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }$
+\begin_inset Formula $E^{R}=W_{R}W_{ss}(N-N_{\text{work}})$
 \end_inset
 
 
@@ -3510,13 +3653,13 @@ B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+E_{t}^{U}+E^{R}-\tau_{t}T_{t}.
 \begin_layout Itemize
 
 \series bold
-Tax policy
+Tax policy:
 \series default
- 
+
 \begin_inset Formula 
 \begin{align*}
 \tau_{t} & =\tau_{ss}+\varepsilon_{B}\frac{\tilde{B}_{t}-B_{ss}}{T_{t}},\\
-\tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+E_{t}^{U}+E^{R}-\tau_{ss}T_{t}
+\tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+E_{t}^{U}+E^{R}-\tau_{ss}T_{t}.
 \end{align*}
 
 \end_inset
@@ -3552,6 +3695,7 @@ Goods market clearing
 Demand for domestically produced goods:
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
 \begin_inset Formula 
 \[
@@ -3563,6 +3707,7 @@ Y_{t}=\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{Y}.
 
 \end_layout
 
+\end_deeper
 \begin_layout Enumerate
 
 \series bold
@@ -3592,7 +3737,7 @@ M_{t}=\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{M}.
 status open
 
 \begin_layout Plain Layout
-Current account and net foreign position
+[Current account and net foreign position]
 \end_layout
 
 \end_inset
@@ -3601,9 +3746,15 @@ Current account and net foreign position
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 
-\series bold
+\emph on
+Not necessary to specify
+\end_layout
+
+\begin_layout Standard
+
+\emph on
 Not specified yet
 \end_layout
 
@@ -3708,6 +3859,60 @@ Target equations can be evaluated.
 \begin_layout Itemize
 
 \series bold
+Order series of 
+\emph on
+blocks
+\emph default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Inputs: 
+\series default
+Unknown and exogenous variables or outputs of previous blocks
+\series bold
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\backslash
+hspace{-7mm}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Outputs:
+\series default
+ Variables and errors in target equations
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
 Truncation: 
 \series default
 Assume back in steady state after 
@@ -3715,10 +3920,6 @@ Assume back in steady state after
 \end_inset
 
  periods.
-\begin_inset Newline newline
-\end_inset
-
-(can be verified ex post)
 \end_layout
 
 \end_deeper
@@ -3941,7 +4142,7 @@ Unknowns in practice
  
 \emph on
 all other variables in model can be derived and target equations can be
- evaluated
+ evaluated (see code)
 \end_layout
 
 \end_deeper
@@ -4017,7 +4218,8 @@ Solve with Newton's method
 \begin_inset Formula $f$
 \end_inset
 
-).
+) eval.
+ in steady state.
 \end_layout
 
 \begin_layout Standard
@@ -4034,6 +4236,10 @@ x_{n+1}=x_{n}-\frac{f(x_{n})}{\mathcal{J}_{n}}.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Initial guess: Steady state
 \end_layout
 
 \begin_layout Standard
@@ -4062,7 +4268,44 @@ Implementation:
 \series bold
 Course:
 \series default
- Introduction to Programming and Numerical Analysis
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+color{DarkRed}
+\end_layout
+
+\end_inset
+
+
+\bar under
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Introduction to Programming and Numerical Analysis"
+target "https://sites.google.com/view/numeconcph-introprog/home"
+literal "false"
+
+\end_inset
+
+
+\bar default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -4099,27 +4342,23 @@ Goals:
 
 \begin_deeper
 \begin_layout Enumerate
-National account shares and ratios
+National account shares and ratios.
 \end_layout
 
 \begin_layout Enumerate
-Unemployment level and labor market flows
+Unemployment level and labor market flows.
 \end_layout
 
 \begin_layout Enumerate
-Interest rate level 
-\end_layout
-
-\begin_layout Enumerate
-Life-cycle profiles of income, consumption and savings
+Life-cycle profiles of income, consumption and savings.
 \end_layout
 
 \begin_layout Standard
 
 \series bold
-Note:
+Simplify:
 \series default
- Zero inflation, zero growth and constant demography for simplicity.
+ Zero inflation, zero growth and constant demography.
 \end_layout
 
 \end_deeper
@@ -4158,7 +4397,8 @@ Notebooks:
 \series bold
 Status: 
 \series default
-Very ad hoc
+\emph on
+Very ad hoc still.
 \end_layout
 
 \end_deeper
@@ -4194,7 +4434,9 @@ Substitution elasticities:
 \begin_layout Itemize
 
 \series bold
-Impulse-responses:
+Impulse-responses: 
+\series default
+Match to data independently
 \end_layout
 
 \begin_layout Itemize
@@ -4202,11 +4444,17 @@ Impulse-responses:
 \series bold
 Status:
 \series default
- Not done 
+ 
+\emph on
+Not done
+\emph default
+ 
 \begin_inset Formula $\rightarrow$
 \end_inset
 
- today example of government spending shock
+ 
+\emph on
+today example of government spending shock
 \end_layout
 
 \end_deeper
@@ -4246,11 +4494,11 @@ impulse response
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
+\begin_layout Enumerate
 The economy starts at steady state.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 Some exogenous variables 
 \emph on
 temporarily
@@ -4258,22 +4506,26 @@ temporarily
  deviate from steady state.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 The impulse responses: How variables respond to the shock.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Shock to government spending, 
+
+\series bold
+Shock to government spending
+\series default
+, 
 \begin_inset Formula $G_{t}$
 \end_inset
 
 :
 \begin_inset Formula 
 \begin{align*}
-G_{t} & =G_{ss}+\text{\ensuremath{Shock_{t}}}\\
-Shock_{t} & =\begin{cases}
-G_{ss}\cdot Size\cdot Persistence{}^{t-T_{start}} & \text{if}\text{\ensuremath{T_{start}\leq t<T_{end}}}\\
+G_{t} & =G_{ss}+\text{\ensuremath{shock_{t}}}\\
+shock_{t} & =\begin{cases}
+G_{ss}\cdot size\cdot persistence{}^{t-T_{start}} & \text{if}\text{\ensuremath{T_{start}\leq t<T_{end}}}\\
 0 & \text{else}
 \end{cases}
 \end{align*}
@@ -4283,15 +4535,37 @@ G_{ss}\cdot Size\cdot Persistence{}^{t-T_{start}} & \text{if}\text{\ensuremath{T
 
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $Size=1.01$
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $size=1.01$
 \end_inset
 
 : Initial deviation from steady state at 1 pct.
 \end_layout
 
 \begin_layout Itemize
-Shocks starts in 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\end_layout
+
+\end_inset
+
+shock starts in 
 \begin_inset Formula $T_{start}=0$
 \end_inset
 
@@ -4303,27 +4577,25 @@ Shocks starts in
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $Persistence=0.8$
-\end_inset
+\begin_inset ERT
+status open
 
-.
+\begin_layout Plain Layout
+
+[]
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Shock fades as 
+\end_inset
+
+
+\begin_inset Formula $persistence=0.8$
+\end_inset
+
+ (shock fades as 
 \begin_inset Formula $t$
 \end_inset
 
- grows.
-\end_layout
-
-\begin_layout Itemize
-Higher values 
-\begin_inset Formula $\rightarrow$
-\end_inset
-
- longer convergence.
+ grows)
 \end_layout
 
 \end_deeper
@@ -4353,11 +4625,11 @@ Initial effects I
 \begin_inset Formula $\textbf{Repacking firms:}$
 \end_inset
 
- Demand for domestic goods 
+ Demand for domestically produced goods 
 \begin_inset Formula $Y\uparrow$
 \end_inset
 
- and imports 
+ and imported goods 
 \begin_inset Formula $M\uparrow$
 \end_inset
 
@@ -4372,7 +4644,7 @@ Initial effects I
 \begin_inset Formula $Y\uparrow$
 \end_inset
 
-:
+.
 \end_layout
 
 \begin_deeper
@@ -4384,7 +4656,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4409,7 +4681,7 @@ Capital
 \begin_inset Formula $C\uparrow$
 \end_inset
 
-:
+.
 \end_layout
 
 \begin_deeper
@@ -4421,7 +4693,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4441,7 +4713,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4465,7 +4737,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4498,7 +4770,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4526,7 +4798,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4546,7 +4818,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4604,7 +4876,7 @@ Initial effects II
 \begin_inset Formula $\textbf{Labor agency:}$
 \end_inset
 
- Employs more 
+ Employment 
 \begin_inset Formula $L\uparrow$
 \end_inset
 
@@ -4624,7 +4896,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4644,7 +4916,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4676,7 +4948,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4784,7 +5056,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4804,7 +5076,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4837,7 +5109,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4861,7 +5133,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4890,7 +5162,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4923,7 +5195,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4947,7 +5219,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4967,7 +5239,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -4996,7 +5268,7 @@ status open
 
 []
 \backslash
-hspace{-7mm}
+hspace{-5mm}
 \end_layout
 
 \end_inset
@@ -5047,7 +5319,7 @@ Your takeaways:
 
 \begin_deeper
 \begin_layout Enumerate
-How a micro-founded macro is structured
+How a micro-founded macro-model is structured
 \end_layout
 
 \begin_layout Enumerate
@@ -5102,6 +5374,8 @@ status open
 
 \begin_deeper
 \begin_layout Standard
+
+\emph on
 Will you participate in improving it?
 \end_layout
 
@@ -5157,7 +5431,7 @@ status open
 
 \end_layout
 
-\begin_layout Abstract
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -5198,6 +5472,65 @@ status open
 \end_layout
 
 \end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Tasks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Clarify steady state calibration.
+\end_layout
+
+\begin_layout Enumerate
+Perform impulse-response matching.
+\end_layout
+
+\begin_layout Enumerate
+Improve detailed accounting of main shocks.
+\end_layout
+
+\begin_layout Enumerate
+Add technology growth, population growth, and trend inflation.
+\end_layout
+
+\begin_layout Enumerate
+Add financial flows accounts wrt.
+ to the foreign economy.
+\end_layout
+
+\begin_layout Enumerate
+Add more government with taxes and spending.
+\end_layout
+
+\begin_layout Enumerate
+Add endogenous labor supply.
+\end_layout
+
+\begin_layout Enumerate
+Add multiple sector and input-output structure.
+\end_layout
+
+\begin_layout Enumerate
+Make the model quarterly.
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator plain

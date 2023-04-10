@@ -1989,9 +1989,9 @@ The final output price,
 , to change them.
 \begin_inset Formula 
 \begin{align*}
-V_{t}^{\text{intermediary}}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-g_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}^{\text{intermediary}}\\
+V_{t}^{\text{intermediary}}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-\vartheta_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}^{\text{intermediary}}\\
  & \text{s.t.}\\
-g_{t} & =\frac{\gamma}{2}\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]^{2}P_{t}^{Y}Y_{t}\\
+\vartheta_{t} & =\frac{\gamma}{2}\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]^{2}P_{t}^{Y}Y_{t}\\
 y_{t} & =\left(\frac{p_{t}^{Y}}{P_{t}^{Y}}\right)^{-\sigma_{D}}Y_{t}.
 \end{align*}
 
@@ -2538,7 +2538,7 @@ The Ricardian households making their first decision in period
  solve the problem
 \begin_inset Formula 
 \begin{align*}
-V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=0}^{a-1}\beta(1-\zeta_{j})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
+V_{t_{0}} & =\max_{\left\{ C_{a,t}^{R}\right\} _{a=0}^{\#-1}}\sum_{a=0}^{\#-1}\left(\Pi_{j=1}^{a}\beta(1-\zeta_{j-1})\right)\left[\frac{\left(C_{a,t}^{R}\right)^{1-\sigma}}{1-\sigma}+\zeta_{a}\mu^{A^{q}}\frac{\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{1-\sigma}}{1-\sigma}\right]\\
  & \text{s.t.}\\
 t & =t_{0}+a\\
 A_{-1,t}^{R} & =0\\
@@ -5279,78 +5279,69 @@ name "sec:Status-report"
 Status:
 \series default
  The described model is implemented in Python.
- Some results look weird, which could suggest a code error, a math error
- or weird assumptions or parameters.
- This should be checked and a baseline calibration established.
+ Results are still not understood in detail.
 \end_layout
 
 \begin_layout Standard
 
 \series bold
-Economic extensions: 
-\series default
-Potential extensions include
+Tasks:
 \end_layout
 
 \begin_layout Enumerate
-
-\series bold
-Extend household problem: 
-\series default
-Add habit formation.
+Clarify steady state calibration.
 \end_layout
 
 \begin_layout Enumerate
-
-\series bold
-Add more government with taxes and spending.
+Perform impulse-response matching.
 \end_layout
 
 \begin_layout Enumerate
-
-\series bold
-Add endogenous labor supply.
+Improve detailed accounting of main shocks.
 \end_layout
 
 \begin_layout Enumerate
+Add technology growth, population growth, and trend inflation.
+\end_layout
 
-\series bold
+\begin_layout Enumerate
 Add financial flows accounts wrt.
  to the foreign economy.
 \end_layout
 
 \begin_layout Enumerate
+Add more government with taxes and spending.
+\end_layout
 
-\series bold
+\begin_layout Enumerate
+Add endogenous labor supply.
+\end_layout
+
+\begin_layout Enumerate
 Add multiple sector and input-output structure.
 \end_layout
 
 \begin_layout Enumerate
-
-\series bold
-Add technology growth, population growth, and trend inflation
+Make the model quarterly.
 \end_layout
 
 \begin_layout Standard
 
 \series bold
-Computational improvements:
-\end_layout
+Computational improvements: 
+\series default
+Improve calculation of Jacobian (e.g..
+ automatic differentiation)
+\begin_inset Foot
+status open
 
-\begin_layout Enumerate
-Simplify calculation of Jacobian with graph theory or automatic differentiation.
-\end_layout
-
-\begin_layout Enumerate
-Speed-up calculation of Jacobian with parallelization.
-\end_layout
-
-\begin_layout Enumerate
-Speed-up broyden-solver with sparse algebra.
-\end_layout
-
-\begin_layout Enumerate
+\begin_layout Plain Layout
 Investigate what is done efficiently in MAKRO (GAMS+CONOPT)
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
