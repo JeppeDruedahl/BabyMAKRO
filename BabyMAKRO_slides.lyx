@@ -1687,7 +1687,7 @@ Impulse-response functions (IRFs)
 \begin_deeper
 \begin_layout Standard
 \begin_inset Graphics
-	filename IRF_government_spending.png
+	filename figs/IRF_government_spending.png
 	width 90text%
 
 \end_inset
@@ -1775,7 +1775,7 @@ Is fiscal policy expansive or contractive wrt.
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename finanseffekt.png
+	filename figs/finanseffekt.png
 	width 90text%
 
 \end_inset
