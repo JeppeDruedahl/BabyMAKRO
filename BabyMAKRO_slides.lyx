@@ -3079,7 +3079,7 @@ Capital:
 Adjustment costs:
 \series default
  Effective investment is 
-\begin_inset Formula $\iota_{t}=I_{t}-\Psi(\iota_{t},K_{t-1})$
+\begin_inset Formula $\iota_{t}$
 \end_inset
 
 .
@@ -4576,7 +4576,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula $size=1.01$
+\begin_inset Formula $size=0.01$
 \end_inset
 
  (initial deviation from steady state at 1 percent)
