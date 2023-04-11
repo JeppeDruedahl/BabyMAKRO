@@ -624,4 +624,3 @@ def real_productivity(par,ini,ss,sol):
     real_inc[:] = inc/P_C
     real_Aq[:] = Aq/P_C
     
-nb.jit_module(nopython=True, nogil=True)

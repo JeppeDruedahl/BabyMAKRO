@@ -411,7 +411,7 @@ Today
 \series bold
  BabyMAKRO:
 \series default
- Model in the same style for students to use in 
+ Smaller-but-still-big model in the same style for students to use in 
 \emph on
 classes and theses
 \emph default
@@ -468,7 +468,7 @@ status open
 
 
 \backslash
-vspace{1mm}
+vspace{0.1mm}
 \end_layout
 
 \end_inset
@@ -505,7 +505,7 @@ vspace{1mm}
 \series bold
 Beta-version
 \series default
-: RAs Anders Buch Jürs and Andreas Marius Laursen.
+: RAs Anders Buch Jürs + Andreas Marius Laursen.
 \begin_inset ERT
 status open
 
@@ -533,6 +533,22 @@ You?
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[]
+\end_layout
+
+\end_inset
+
+
+\emph on
+[still work-in-progress]
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
@@ -2137,7 +2153,7 @@ N_{a} & =\begin{cases}
 1 & \text{if }a=\#-1
 \end{cases}\\
 N & =\sum_{a=0}^{\#-1}N_{a}\\
-N_{\text{work}} & =\sum_{a=0}^{\#-1}1_{\{a\geq\#_{\text{work}}\}}N_{a}.
+N_{\text{work}} & =\sum_{a=0}^{\#-1}1_{\{a<\#_{\text{work}}\}}N_{a}.
 \end{align*}
 
 \end_inset
@@ -2307,25 +2323,25 @@ matching function
 \begin_layout Itemize
 
 \series bold
+Job-finding rate:
+\series default
+ 
+\begin_inset Formula $m_{t}^{s}=\frac{\mathcal{M}_{t}}{S_{t}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
 Job-filling rate:
 \series default
  
 \begin_inset Formula $m_{t}^{v}=\frac{\mathbb{\mathcal{M}}_{t}}{v_{t}}$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Job-finding rate:
-\series default
- 
-\begin_inset Formula $m_{t}^{s}=\frac{\mathcal{M}_{t}}{S_{t}}.$
-\end_inset
-
-
+.
 \end_layout
 
 \end_deeper
@@ -2391,7 +2407,9 @@ vspace{5mm}
 \series bold
 Note: 
 \series default
-Theoretically there is a bargaining set
+Theoretically there is a 
+\emph on
+bargaining set
 \end_layout
 
 \begin_deeper
@@ -2549,7 +2567,7 @@ No savings:
 
 \begin_inset Formula 
 \begin{align*}
-A_{a,t}^{\text{HtM}}= & 0.
+A_{a,t}^{\text{HtM}} & =0.
 \end{align*}
 
 \end_inset
@@ -2592,7 +2610,7 @@ status open
 
 
 \backslash
-vspace{-3mm}
+vspace{-1mm}
 \end_layout
 
 \end_inset
@@ -2621,7 +2639,7 @@ status open
 
 
 \backslash
-vspace{-3mm}
+vspace{-1mm}
 \end_layout
 
 \end_inset
@@ -2656,12 +2674,15 @@ Discounting of future utility:
 \begin_layout Itemize
 
 \series bold
-Budget constraint:
-\series default
+Budget constraint: 
+\begin_inset Formula $A_{-1,t}^{R}=0$
+\end_inset
 
+ 
+\series default
+and
 \begin_inset Formula 
 \begin{align*}
-A_{-1,t}^{R} & =0\\
 A_{a,t}^{R} & =(1+r_{t}^{hh})A_{a-1,t-1}^{R}+\text{inc}_{a,t}-P_{t}^{C}C_{a,t}^{R}.
 \end{align*}
 
@@ -2831,7 +2852,7 @@ Bequests:
 
 \begin_inset Formula 
 \[
-A_{t}^{q}=\left(1+r^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t}.
+A_{t}^{q}=\left(1+r_{t}^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t}.
 \]
 
 \end_inset
@@ -2861,6 +2882,18 @@ Production firms I
 \end_layout
 
 \begin_deeper
+\begin_layout Itemize
+
+\series bold
+Exogenous technology:
+\series default
+ 
+\begin_inset Formula $\Gamma_{t}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -2919,9 +2952,9 @@ with prices taken as given
 \begin{align*}
 \Pi_{t} & =\max_{K_{t-1},\ell_{t}}P_{t}^{Y,0}Y_{t}-r_{t}^{K}K_{t-1}-r_{t}^{\ell}\ell_{t}\\
  & \text{ s.t. }\\
-Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}},\\
+Y_{t} & =\Gamma_{t}\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}},\\
 \\
-\text{where} & \,\mu^{K},\sigma^{Y},\Gamma>0,\,\sigma^{Y}\neq1.
+\text{where} & \,\mu^{K},\sigma^{Y},\,\sigma^{Y}\neq1.
 \end{align*}
 
 \end_inset
@@ -2961,7 +2994,7 @@ Free entry implies zero profit:
 
 \begin_inset Formula 
 \begin{align*}
-P_{t}^{Y,0} & =\frac{1}{\Gamma}\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{t}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}.
+P_{t}^{Y,0} & =\frac{1}{\Gamma_{t}}\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{t}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}.
 \end{align*}
 
 \end_inset
@@ -3046,7 +3079,7 @@ Capital:
 Adjustment costs:
 \series default
  Effective investment is 
-\begin_inset Formula $\iota_{t}=I_{t}-\Psi(\iota_{t},K_{t-1}$
+\begin_inset Formula $\iota_{t}=I_{t}-\Psi(\iota_{t},K_{t-1})$
 \end_inset
 
 .
@@ -3422,8 +3455,6 @@ Assumption:
 First order condition 
 \series default
 (New Keynesian Phillips Curve):
-\series bold
-
 \begin_inset Formula 
 \begin{align*}
 P_{t}^{Y}= & (1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}\\
@@ -3635,10 +3666,8 @@ Tax base:
 
 \series bold
 Budget constraint:
-\end_layout
+\series default
 
-\begin_deeper
-\begin_layout Standard
 \begin_inset Formula 
 \[
 B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+E_{t}^{U}+E^{R}-\tau_{t}T_{t}.
@@ -3649,7 +3678,6 @@ B_{t}=(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+E_{t}^{U}+E^{R}-\tau_{t}T_{t}.
 
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
 
 \series bold
@@ -3737,7 +3765,7 @@ M_{t}=\sum_{\bullet\in\{C,G,I,X\}}\bullet_{t}^{M}.
 status open
 
 \begin_layout Plain Layout
-[Current account and net foreign position]
+[Current account and net foreign asset position]
 \end_layout
 
 \end_inset
@@ -3859,7 +3887,7 @@ Target equations can be evaluated.
 \begin_layout Itemize
 
 \series bold
-Order series of 
+Ordered series of 
 \emph on
 blocks
 \emph default
@@ -4428,7 +4456,7 @@ Dynamics
 \series bold
 Substitution elasticities:
 \series default
- Use those from MAKRO
+ Use those from MAKRO.
 \end_layout
 
 \begin_layout Itemize
@@ -4436,7 +4464,7 @@ Substitution elasticities:
 \series bold
 Impulse-responses: 
 \series default
-Match to data independently
+Match to data independently.
 \end_layout
 
 \begin_layout Itemize
@@ -4454,7 +4482,7 @@ Not done
 
  
 \emph on
-today example of government spending shock
+example of government spending shock.
 \end_layout
 
 \end_deeper
@@ -4551,7 +4579,7 @@ status open
 \begin_inset Formula $size=1.01$
 \end_inset
 
-: Initial deviation from steady state at 1 pct.
+ (initial deviation from steady state at 1 percent)
 \end_layout
 
 \begin_layout Itemize
@@ -4591,11 +4619,7 @@ status open
 \begin_inset Formula $persistence=0.8$
 \end_inset
 
- (shock fades as 
-\begin_inset Formula $t$
-\end_inset
-
- grows)
+ (shock fades 20 percent per year)
 \end_layout
 
 \end_deeper
@@ -5524,7 +5548,7 @@ Add endogenous labor supply.
 \end_layout
 
 \begin_layout Enumerate
-Add multiple sector and input-output structure.
+Add multiple sectors and input-output structure.
 \end_layout
 
 \begin_layout Enumerate

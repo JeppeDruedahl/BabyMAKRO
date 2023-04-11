@@ -1893,6 +1893,14 @@ block
 
 \series bold
 Inputs: 
+\begin_inset Formula $\left\{ \Gamma_{t}\right\} $
+\end_inset
+
+
+\series default
+,
+\series bold
+ 
 \begin_inset Formula $\left\{ K_{t}\right\} ,\left\{ \ell_{t}\right\} $
 \end_inset
 
@@ -1927,8 +1935,8 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-Y_{t} & =\Gamma\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\label{eq:Y}\\
-P_{t}^{Y,0} & =\frac{1}{\Gamma}\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{t}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}.\label{eq:PY}
+Y_{t} & =\Gamma_{t}\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{t-1}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{t}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}\label{eq:Y}\\
+P_{t}^{Y,0} & =\frac{1}{\Gamma_{t}}\left(\mu^{K}\left(r_{t}^{K}\right)^{1-\sigma^{Y}}+\left(1-\mu^{K}\right)\left(r_{t}^{\ell}\right)^{1-\sigma^{Y}}\right)^{\frac{1}{1-\sigma^{Y}}}.\label{eq:PY}
 \end{align}
 
 \end_inset
@@ -2713,7 +2721,7 @@ C_{a,t}^{R} & =\begin{cases}
 \left(\beta(1-\zeta_{a})\frac{1+r_{ss}^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{ss}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
 \left(\beta(1-\zeta_{a})\frac{1+r_{t+1}^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
 \end{cases}\\
-A_{a-1,t-1}^{R} & =\frac{A_{a,t}^{R}-\text{inc}_{a,t}+P_{t}^{C}C_{a,t}^{R}}{1+r^{hh}}.
+A_{a-1,t-1}^{R} & =\frac{A_{a,t}^{R}-\text{inc}_{a,t}+P_{t}^{C}C_{a,t}^{R}}{1+r_{t}^{hh}}.
 \end{align*}
 
 \end_inset
@@ -5318,7 +5326,7 @@ Add endogenous labor supply.
 \end_layout
 
 \begin_layout Enumerate
-Add multiple sector and input-output structure.
+Add multiple sectors and input-output structure.
 \end_layout
 
 \begin_layout Enumerate
