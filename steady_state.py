@@ -113,14 +113,14 @@ def household_search_ss(par,ss):
             ss.S_a[a] = (1-par.zeta_a[a])*((par.N_a[a-1]-ss.L_a[a-1]) + par.delta_L_a[a]*ss.L_a[a-1])
             ss.L_ubar_a[a] = (1-par.zeta_a[a])*(1-par.delta_L_a[a])*ss.L_a[a-1]
 
-        ss.L_a[a] = ss.L_ubar_a[a] + ss.m_s*ss.S_a[a]
-
+        ss.L_a[a] = ss.L_ubar_a[a] + ss.m_s*ss.S_a[a]*par.H[a]
+        
         if a >= par.work_life_span:
             ss.U_a[a] = 0.0
         else:
             ss.U_a[a] = par.N_a[a]-ss.L_a[a]
 
-    ss.S = np.sum(par.N_a*ss.S_a)
+    ss.S = np.sum(par.N_a*ss.S_a*par.H)
     ss.L_ubar = np.sum(par.N_a*ss.L_ubar_a)
     ss.L = np.sum(par.N_a*ss.L_a)
     ss.U = np.sum(par.N_a*ss.U_a)
@@ -134,7 +134,7 @@ def find_ss(model,do_print=True):
     model.mortality()
     model.demographic_structure()
     model.job_separation_rate()
-
+    model.human_capital()
 
     # a. price noramlizations
     ss.P_Y = 1.0                                                

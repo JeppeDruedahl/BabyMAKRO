@@ -170,6 +170,7 @@ class BabyMAKROModelClass(EconModelClass):
             'L_ubar_a',
             'S_a',
             'U_a',
+            'W_a',
         ]
 
     def setup(self):
@@ -195,6 +196,9 @@ class BabyMAKROModelClass(EconModelClass):
         par.W_R = 0.50 # retirement benefits (rel. to ss.W)
 
         par.delta_L_a_fac = 0.10 # age-specific separation rate (common)
+
+        par.beta_1 = 0.00 # human capital - linear growth
+        par.beta_2 = 0.00 # human capital - curvature
 
         # b. production firm and phillips curve
         par.r_firm = 0.02 # internal (nominal) rate of return
@@ -271,11 +275,21 @@ class BabyMAKROModelClass(EconModelClass):
         par.N_work = np.sum(par.N_a[:par.work_life_span])
 
     def job_separation_rate(self):
-        """ calcualte job-sepration rate by age"""
+        """ calcualte job-sepration rate by age """
     
         par = self.par
         
         par.delta_L_a = par.delta_L_a_fac*np.ones(par.work_life_span)
+
+    def human_capital(self):
+        """ calculate human capital as function of age """
+
+        par = self.par
+
+        par.H = np.zeros(par.life_span)
+
+        for a in range(par.life_span):
+            par.H[a] = 1 + par.beta_1*a - par.beta_2*a**2
 
     def allocate(self):
         """ allocate model """
@@ -294,7 +308,10 @@ class BabyMAKROModelClass(EconModelClass):
         self.demographic_structure()    
 
         # job-separation rate
-        self.job_separation_rate()    
+        self.job_separation_rate()   
+
+        # human capital
+        self.human_capital() 
 
         # b. non-household variables
         for varname in self.exo: assert varname in self.varlist, varname

@@ -161,7 +161,7 @@ def search_and_match(par,ini,ss,sol):
         S[t] = 0.0
         L_ubar[t] = 0.0
         for a in range(par.life_span):
-            S[t] += par.N_a[a]*S_a[a,t]
+            S[t] += par.N_a[a]*S_a[a,t]*par.H[a]
             L_ubar[t] += par.N_a[a]*L_ubar_a[a,t]
 
         # c. aggregate separation rate
@@ -177,7 +177,7 @@ def search_and_match(par,ini,ss,sol):
         U[t] = 0.0
         for a in range(par.life_span):
 
-            L_a[a,t] = L_ubar_a[a,t] + m_s[t]*S_a[a,t]
+            L_a[a,t] = L_ubar_a[a,t] + m_s[t]*S_a[a,t]*par.H[a]
 
             if a < par.work_life_span:
                 U_a[a,t] = par.N_a[a] - sol.L_a[a,t]
