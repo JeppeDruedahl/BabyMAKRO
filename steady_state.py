@@ -25,7 +25,7 @@ def household_consumption_ss(A_R_death,par,ss):
     """ find household behavior in steady state given A_death """
 
     # a. income
-    ss.inc_a[:] = (1-ss.tau)*ss.W*ss.L_a/par.N_a + (1-ss.tau)*par.W_U*ss.W*ss.U_a/par.N_a + ss.Aq/par.N
+    ss.inc_a[:] = (1-ss.tau)*ss.W*ss.LH_a/par.N_a + (1-ss.tau)*par.W_U*ss.W*ss.U_a/par.N_a + ss.Aq/par.N
     ss.inc_a[par.work_life_span:] += (1-ss.tau)*par.W_R*ss.W
 
     # a. HtM
@@ -105,22 +105,29 @@ def household_search_ss(par,ss):
         
         if a == 0:
             ss.S_a[a] = 1.0
+            ss.SH_a[a] = 1.0
             ss.L_ubar_a[a] = 0.0
+            ss.LH_ubar_a[a] = 0.0
         elif a >= par.work_life_span:
             ss.S_a[a] = 0.0
-            ss.L_ubar_a[a] = 0.0            
+            ss.SH_a[a] = 0.0
+            ss.L_ubar_a[a] = 0.0
+            ss.LH_ubar_a[a] = 0.0            
         else:
             ss.S_a[a] = (1-par.zeta_a[a])*((par.N_a[a-1]-ss.L_a[a-1]) + par.delta_L_a[a]*ss.L_a[a-1])
+            ss.SH_a[a] = (1-par.zeta_a[a])*((par.NH_a[a-1]-ss.LH_a[a-1]) + par.delta_L_a[a]*ss.LH_a[a-1])            
             ss.L_ubar_a[a] = (1-par.zeta_a[a])*(1-par.delta_L_a[a])*ss.L_a[a-1]
+            ss.LH_ubar_a[a] = (1-par.zeta_a[a])*(1-par.delta_L_a[a])*ss.LH_a[a-1]
 
-        ss.L_a[a] = ss.L_ubar_a[a] + ss.m_s*ss.S_a[a]*par.H[a]
+        ss.L_a[a] = ss.L_ubar_a[a] + ss.m_s*ss.S_a[a]
+        ss.LH_a[a] = ss.LH_ubar_a[a] + ss.m_s*ss.SH_a[a]*par.H_a[a]
         
         if a >= par.work_life_span:
             ss.U_a[a] = 0.0
         else:
             ss.U_a[a] = par.N_a[a]-ss.L_a[a]
 
-    ss.S = np.sum(par.N_a*ss.S_a*par.H)
+    ss.S = np.sum(par.N_a*ss.S_a)
     ss.L_ubar = np.sum(par.N_a*ss.L_ubar_a)
     ss.L = np.sum(par.N_a*ss.L_a)
     ss.U = np.sum(par.N_a*ss.U_a)

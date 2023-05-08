@@ -167,8 +167,11 @@ class BabyMAKROModelClass(EconModelClass):
             'C_R_a',
             'inc_a',
             'L_a',
+            'LH_a',
             'L_ubar_a',
+            'LH_ubar_a',
             'S_a',
+            'SH_a',
             'U_a',
             'W_a',
         ]
@@ -197,8 +200,8 @@ class BabyMAKROModelClass(EconModelClass):
 
         par.delta_L_a_fac = 0.10 # age-specific separation rate (common)
 
-        par.beta_1 = 0.00 # human capital - linear growth
-        par.beta_2 = 0.00 # human capital - curvature
+        par.rho_1 = 0.015 # human capital - linear growth
+        par.rho_2 = 0.00025 # human capital - curvature
 
         # b. production firm and phillips curve
         par.r_firm = 0.02 # internal (nominal) rate of return
@@ -259,7 +262,17 @@ class BabyMAKROModelClass(EconModelClass):
                 par.zeta_a[a] = 0.0
             else:
                 par.zeta_a[a] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**par.zeta
-    
+
+    def human_capital(self):
+        """ calculate human capital as function of age """
+
+        par = self.par
+
+        par.H_a = np.zeros(par.life_span)
+
+        for a in range(par.life_span):
+            par.H_a[a] = 1 + par.rho_1*a - par.rho_2*a**2
+
     def demographic_structure(self):
         """ calculate demographic structure """
         
@@ -267,12 +280,19 @@ class BabyMAKROModelClass(EconModelClass):
 
         par.N_a = np.zeros(par.life_span)
         par.N_a[0] = 1.0 # normalization
+
+        par.NH_a = np.zeros(par.life_span)
+        par.NH_a[0] = 1.0 # normalization
              
         for a in range(1,par.life_span):
             par.N_a[a] = (1-par.zeta_a[a-1])*par.N_a[a-1]
+            par.NH_a[a] = (1-par.zeta_a[a-1])*par.N_a[a-1]*par.H_a[a-1]
                     
         par.N = np.sum(par.N_a)
         par.N_work = np.sum(par.N_a[:par.work_life_span])
+
+        par.NH = np.sum(par.NH_a)
+        par.NH_work = np.sum(par.NH_a[:par.work_life_span])
 
     def job_separation_rate(self):
         """ calcualte job-sepration rate by age """
@@ -280,16 +300,6 @@ class BabyMAKROModelClass(EconModelClass):
         par = self.par
         
         par.delta_L_a = par.delta_L_a_fac*np.ones(par.work_life_span)
-
-    def human_capital(self):
-        """ calculate human capital as function of age """
-
-        par = self.par
-
-        par.H = np.zeros(par.life_span)
-
-        for a in range(par.life_span):
-            par.H[a] = 1 + par.beta_1*a - par.beta_2*a**2
 
     def allocate(self):
         """ allocate model """
@@ -304,14 +314,14 @@ class BabyMAKROModelClass(EconModelClass):
         # mortality
         self.mortality()
 
+        # human capital
+        self.human_capital() 
+
         # demographic structure
         self.demographic_structure()    
 
         # job-separation rate
         self.job_separation_rate()   
-
-        # human capital
-        self.human_capital() 
 
         # b. non-household variables
         for varname in self.exo: assert varname in self.varlist, varname

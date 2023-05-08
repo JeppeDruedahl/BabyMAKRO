@@ -127,12 +127,15 @@ def search_and_match(par,ini,ss,sol):
     curlyM = sol.curlyM
     delta_L = sol.delta_L
     L_a = sol.L_a
+    LH_a = sol.LH_a
     L_ubar = sol.L_ubar
     L_ubar_a = sol.L_ubar_a
+    LH_ubar_a = sol.LH_ubar_a
     m_s = sol.m_s
     m_v = sol.m_v
     S = sol.S
     S_a = sol.S_a
+    SH_a = sol.SH_a
     U = sol.U
     U_a = sol.U_a
     v = sol.v
@@ -148,20 +151,27 @@ def search_and_match(par,ini,ss,sol):
         L_ubar[t] = 0
 
         S_a[0,t] = 1.0
+        SH_a[0,t] = 1.0
         L_ubar_a[0,t] = 0.0
+        LH_ubar_a[0,t] = 0.0
 
         S_a[par.work_life_span:,t] = 0.0
+        SH_a[par.work_life_span:,t] = 0.0
         L_ubar_a[par.work_life_span:,t] = 0.0
+        LH_ubar_a[par.work_life_span:,t] = 0.0
             
         for a in range(1,par.work_life_span):
             L_a_lag = prev_period(L_a[a-1],t,ini.L_a[a-1])
+            LH_a_lag = prev_period(LH_a[a-1],t,ini.LH_a[a-1])
             S_a[a,t] = (1-par.zeta_a[a])*((par.N_a[a-1]-L_a_lag) + par.delta_L_a[a]*L_a_lag)
+            SH_a[a,t] = (1-par.zeta_a[a])*((par.NH_a[a-1]-LH_a_lag) + par.delta_L_a[a]*LH_a_lag)
             L_ubar_a[a,t] = (1-par.zeta_a[a])*((1-par.delta_L_a[a])*L_a_lag)
+            LH_ubar_a[a,t] = (1-par.zeta_a[a])*((1-par.delta_L_a[a])*LH_a_lag)
 
         S[t] = 0.0
         L_ubar[t] = 0.0
         for a in range(par.life_span):
-            S[t] += par.N_a[a]*S_a[a,t]*par.H[a]
+            S[t] += par.N_a[a]*S_a[a,t]
             L_ubar[t] += par.N_a[a]*L_ubar_a[a,t]
 
         # c. aggregate separation rate
@@ -177,7 +187,8 @@ def search_and_match(par,ini,ss,sol):
         U[t] = 0.0
         for a in range(par.life_span):
 
-            L_a[a,t] = L_ubar_a[a,t] + m_s[t]*S_a[a,t]*par.H[a]
+            L_a[a,t] = L_ubar_a[a,t] + m_s[t]*S_a[a,t]
+            LH_a[a,t] = LH_ubar_a[a,t] + m_s[t]*SH_a[a,t]*par.H_a[a]
 
             if a < par.work_life_span:
                 U_a[a,t] = par.N_a[a] - sol.L_a[a,t]
@@ -353,7 +364,7 @@ def household_income(par,ini,ss,sol):
 
     # inputs
     Aq = sol.Aq
-    L_a = sol.L_a
+    LH_a = sol.LH_a
     tau = sol.tau
     U_a = sol.U_a
     W = sol.W
@@ -363,7 +374,7 @@ def household_income(par,ini,ss,sol):
 
     for t in nb.prange(par.T):
         for a in range(par.life_span):
-            inc_a[a,t,:] = (1-tau[t])*W[t]*L_a[a,t,:]/par.N_a[a] + (1-tau[t])*par.W_U*ss.W*U_a[a,t,:]/par.N_a[a] + Aq[t]/par.N
+            inc_a[a,t,:] = (1-tau[t])*W[t]*LH_a[a,t,:]/par.N_a[a] + (1-tau[t])*par.W_U*ss.W*U_a[a,t,:]/par.N_a[a] + Aq[t]/par.N
             if a >=par.work_life_span:
                 inc_a[a,t,:] += (1-tau[t])*par.W_R*ss.W
 
