@@ -1392,6 +1392,10 @@ S_{t} & =\sum_{a}S_{a,t}.
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
 The quantity of households with a job 
 \emph on
 before matching
@@ -1504,6 +1508,107 @@ In equilibrium, the number of matches must equal the number of new hires,
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Human capital extension:}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The households accumulate human capital as a function of their age
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+H_{a}=\rho_{1}\cdot a-\rho_{2}\cdot a^{2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The effective quantity of searchers is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+S_{a,t}^{H} & =\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})\left[(N_{a-1}^{H}-L_{a-1,t-1}^{H})+\delta_{a}^{L}L_{a-1,t-1}^{H}\right] & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{a}^{H}=\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})N_{a-1}^{H}H_{a} & \text{if }a>0
+\end{cases}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The effective quantity of households with a job 
+\emph on
+before matching
+\emph default
+ is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\underline{L}_{a,t}^{H} & =\begin{cases}
+0 & \text{if }a=0\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1}^{H} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The effective employment is 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+L_{a,t}^{H} & =\underline{L}_{a,t}^{H}+m_{t}^{s}S_{a,t}^{H}H_{a}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 We write the 
 \series bold
 block
