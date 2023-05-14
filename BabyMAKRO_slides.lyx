@@ -4288,7 +4288,7 @@ Converges to solution,
 \series bold
 Implementation:
 \series default
- In Python
+ In Python using a quasi-Newton solver (broyden)
 \end_layout
 
 \begin_layout Itemize
@@ -4405,7 +4405,7 @@ Notebooks:
 \begin_inset space ~
 \end_inset
 
-0 - steady state - aggregate.ipynb
+0b - steady state - data.ipynb
 \end_layout
 
 \begin_layout Standard
@@ -4416,7 +4416,18 @@ Notebooks:
 \begin_inset space ~
 \end_inset
 
-0 - steady state - households.ipynb
+0c - steady state - aggregate.ipynb
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+0d - steady state - households.ipynb
 \end_layout
 
 \end_deeper
