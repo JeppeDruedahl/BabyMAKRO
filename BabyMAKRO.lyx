@@ -1512,21 +1512,36 @@ In equilibrium, the number of matches must equal the number of new hires,
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\textbf{Human capital extension:}$
+It is assumed that the households accumulate human capital as a function
+ of their age
+\begin_inset Formula 
+\[
+H_{a}=\rho_{1}\cdot a-\rho_{2}\cdot a^{2}.
+\]
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-The households accumulate human capital as a function of their age
-\end_layout
+The amount of human capital affects the 
+\shape italic
+effective
+\shape default
+ number of searchers and therefore the 
+\shape italic
+effective
+\shape default
+ employment in cohort 
+\begin_inset Formula $a$
+\end_inset
 
-\begin_layout Standard
+ such that
 \begin_inset Formula 
-\[
-H_{a}=\rho_{1}\cdot a-\rho_{2}\cdot a^{2}.
-\]
+\begin{align*}
+L_{a,t}^{H} & =\underline{L}_{a,t}^{H}+m_{t}^{s}S_{a,t}^{H}H_{a}.
+\end{align*}
 
 \end_inset
 
@@ -1562,7 +1577,7 @@ where
 N_{a}^{H}=\begin{cases}
 1 & \text{if }a=0\\
 (1-\zeta_{a-1})N_{a-1}^{H}H_{a} & \text{if }a>0
-\end{cases}.
+\end{cases}
 \]
 
 \end_inset
@@ -1571,11 +1586,7 @@ N_{a}^{H}=\begin{cases}
 \end_layout
 
 \begin_layout Standard
-The effective quantity of households with a job 
-\emph on
-before matching
-\emph default
- is
+The effective quantity of households with a job before mathcing is
 \end_layout
 
 \begin_layout Standard
@@ -1586,21 +1597,6 @@ before matching
 (1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1}^{H} & \text{if }a<\#_{\text{work}}\\
 0 & \text{if }a\geq\#_{\text{work}}
 \end{cases}
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The effective employment is 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{align*}
-L_{a,t}^{H} & =\underline{L}_{a,t}^{H}+m_{t}^{s}S_{a,t}^{H}H_{a}.
 \end{align*}
 
 \end_inset
@@ -1635,6 +1631,14 @@ Outputs:
 
 
 \series default
+,
+\series bold
+
+\begin_inset Formula $\left\{ S_{a,t}^{H}\right\} $
+\end_inset
+
+
+\series default
 , 
 \begin_inset Formula $\left\{ S_{t}\right\} $
 \end_inset
@@ -1646,7 +1650,7 @@ Outputs:
 ,
 \series bold
  
-\begin_inset Formula $\left\{ \mathbb{\mathcal{M}}_{t}\right\} ,$
+\begin_inset Formula $\left\{ \mathcal{M}\right\} ,$
 \end_inset
 
 
@@ -1667,11 +1671,15 @@ Outputs:
 \begin_inset Formula $\left\{ L_{a,t}\right\} $
 \end_inset
 
-, 
+,
+\begin_inset Formula $\left\{ L_{a,t}^{H}\right\} $
+\end_inset
+
+,
 \begin_inset Formula $\left\{ U_{a,t}\right\} $
 \end_inset
 
-, 
+,
 \begin_inset Formula $\left\{ U_{t}\right\} $
 \end_inset
 
@@ -1685,19 +1693,37 @@ S_{a,t} & =\begin{cases}
 (1-\zeta_{a-1})\left[(N_{a-1}-L_{a-1,t-1})+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<\#_{\text{work}}\\
 0 & \text{if }a\geq\#_{\text{work}}
 \end{cases}\label{eq:S_a}\\
+S_{a,t}^{H} & =\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})\left[(N_{a-1}^{H}-L_{a-1,t-1}^{H})+\delta_{a}^{L}L_{a-1,t-1}^{H}\right] & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}\\
 \underline{L}_{a,t} & =\begin{cases}
 0 & \text{if }a=0\\
 (1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<\#_{\text{work}}\\
 0 & \text{if }a\geq\#_{\text{work}}
 \end{cases}\label{eq:Lubar_a}\\
+\underline{L}_{a,t}^{H} & =\begin{cases}
+0 & \text{if }a=0\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1}^{H} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}\\
 S_{t} & =\sum_{a=0}^{\#-1}S_{a,t}\label{eq:S}\\
-\underline{L}_{t} & =\sum_{a=0}^{\#-1}\underline{L}_{a,t}\label{eq:L_ubar}\\
+\underline{L}_{t} & =\sum_{a=0}^{\#-1}\underline{L}_{a,t}\label{eq:L_ubar}
+\end{align}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
 \delta_{t}^{L} & =\frac{L_{t-1}-\underline{L}_{t}}{L_{t-1}}\label{eq:delta_L}\\
 \mathbb{\mathcal{M}}_{t} & =L_{t}-\underline{L}_{t}\label{eq:curlyM}\\
-m_{t}^{s} & =\frac{\mathcal{M}_{t}}{S_{t}}\nonumber \\
+m_{t}^{s} & =\frac{\mathcal{M}_{t}}{S_{t}}\label{eq:m_s}\\
 v_{t} & =\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}\label{eq:v}\\
 m_{t}^{v} & =\frac{\mathbb{\mathcal{M}}_{t}}{v_{t}}\label{eq:m_v}\\
 L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}\label{eq:L_a}\\
+L_{a,t}^{H} & =\underline{L}_{a,t}^{H}+m_{t}^{s}S_{a,t}^{H}H_{a}\label{eq:LH_a}\\
 U_{a,t} & =\begin{cases}
 N_{a}-L_{a,t} & \text{if }a<\#_{\text{work}}\\
 0 & \text{if }a\geq\#_{\text{work}}
@@ -2525,9 +2551,11 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-\tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{ss})W_{U}W_{ss}U_{t}+(1-\tau_{ss})W_{R}W_{ss}(N_{t}-N_{\text{work}})-\tau_{ss}W_{t}L_{t}\nonumber \\
+\tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{ss})W_{U}W_{ss}U_{t}\label{eq:B_tilde}\\
+ & +(1-\tau_{ss})W_{R}W_{ss}(N_{t}-N_{\text{work}})-\tau_{ss}W_{t}L_{t}\nonumber \\
 \tau_{t} & =\tau_{ss}+\varepsilon_{B}\frac{\tilde{B}_{t}-B_{ss}}{W_{t}L_{t}+W_{U}W_{ss}U_{t}+W_{R}W_{ss}(N_{t}-N_{\text{work}})}\label{eq:tau}\\
-B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}+(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{\text{work}})-\tau_{t}W_{t}L_{t}.\label{eq:B}
+B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}\label{eq:B}\\
+ & +(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{\text{work}})-\tau_{t}W_{t}L_{t}.\nonumber 
 \end{align}
 
 \end_inset
@@ -2571,7 +2599,7 @@ The model has two types of households.
 
 \begin_layout Enumerate
 Post-tax labor income, 
-\begin_inset Formula $\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}$
+\begin_inset Formula $\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}^{H}}{N_{a}}$
 \end_inset
 
 
@@ -2602,10 +2630,15 @@ Equally divided inheritance,
 \end_layout
 
 \begin_layout Standard
-The age specific income is
+The post-tax labor income depends on the effective employment, 
+\begin_inset Formula $L_{a,t}^{H}$
+\end_inset
+
+, and thus the income depends on the amount of human capital.
+ The age specific income is
 \begin_inset Formula 
 \[
-\text{inc}_{a,t}=\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}.
+\text{inc}_{a,t}=\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}^{H}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}.
 \]
 
 \end_inset
@@ -2615,10 +2648,7 @@ The price of consumption goods is
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-Consumption is 
+ Consumption is 
 \begin_inset Formula $C_{a,t}^{\bullet}$
 \end_inset
 
@@ -2639,7 +2669,7 @@ hands-to-mouth households are
 \begin_inset Formula 
 \begin{align*}
 C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\\
-A_{a,t}^{\text{HtM}} & 0.
+A_{a,t}^{\text{HtM}} & =0.
 \end{align*}
 
 \end_inset
@@ -2791,7 +2821,8 @@ Calculate
 \begin_inset Formula 
 \begin{align}
 \pi_{t}^{hh} & =\frac{P_{t}^{C}}{P_{t-1}^{C}}-1\label{eq:pi_hh}\\
-\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\label{eq:inc_a}\\
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }\label{eq:inc_a}\\
+ & +\frac{A_{t}^{q}}{N}\nonumber \\
 C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\label{eq:C_HtM}\\
 A_{a,t}^{\text{HtM}} & =0.\label{eq:A_HtM}
 \end{align}
@@ -2851,7 +2882,7 @@ Targets:
 \begin_inset Formula 
 \begin{align}
 0 & =A_{t}^{q}-\left(1+r_{t}^{hh}\right)\sum_{a=0}^{\#-1}\zeta_{a}N_{a}A_{a,t-1}\label{eq:A_q}\\
-0 & =\sum_{t_{0}=-\#+1}^{-1}\left(A_{-t_{0}-1,-1}^{R}-A_{-t_{0}-1,ss}\right)+\sum_{t_{0}=0}^{T-1-\#+1}\left(A_{-1,t_{0}}^{R}-0.0\right).\label{eq:Wealth of Households}
+0 & =\sum_{t_{0}=-\#+1}^{-1}\left(A_{-t_{0}-1,-1}^{R}-A_{-t_{0}-1,ss}\right)+\sum_{t_{0}=0}^{T-1-\#+1}\left(A_{-1,t_{0}}^{R}-0.0\right)\label{eq:Wealth of Households}
 \end{align}
 
 \end_inset
@@ -3234,12 +3265,30 @@ S_{a,ss} & =\begin{cases}
 (1-\zeta_{a-1})(N_{a-1}-L_{a-1,ss})+\delta_{a}^{L}L_{a-1,ss} & \text{if }a<\#_{\text{work}}\\
 0 & \text{else}
 \end{cases}\\
+S_{a,ss}^{H} & =\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})\left[(N_{a-1}^{H}-L_{a-1,ss}^{H})+\delta_{a}^{L}L_{a-1,ss}^{H}\right] & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}\\
 \underline{L}_{a,ss} & =\begin{cases}
 0 & \text{if }a=0\\
 (1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,ss} & \text{if }a<\#_{\text{work}}\\
 0 & \text{else}
 \end{cases}\\
+\underline{L}_{a,ss}^{H} & =\begin{cases}
+0 & \text{if }a=0\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,ss}^{H} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}\\
 L_{a,ss} & =\underline{L}_{a,ss}+m_{ss}^{s}S_{a,ss}\\
+L_{a,ss}^{H} & =\underline{L}_{a,ss}^{H}+m_{ss}^{s}S_{a,ss}^{H}H_{a}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
 U_{a,ss} & =\begin{cases}
 N_{a}-L_{a,ss} & \text{if }a<\#_{\text{work}}\\
 0 & \text{else}
@@ -3250,7 +3299,7 @@ U_{ss} & =\sum_{a}U_{a,ss}\\
 \delta_{ss}^{L} & =\frac{L_{ss}-\underline{L}_{ss}}{L_{ss}}\\
 \mathbb{\mathcal{M}}_{ss} & =\delta_{ss}^{L}L_{ss}\\
 v_{ss} & =\frac{\mathbb{\mathcal{M}}_{ss}}{m_{ss}^{v}}\\
-\nu & =\frac{1}{v_{ss}}\left(\frac{\left(m_{ss}^{s}\right)^{\frac{1}{\sigma^{m}}}S_{ss}^{\frac{1}{\sigma^{m}}}}{1-\left(m_{ss}^{s}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}.
+\nu & =\frac{1}{v_{ss}}\left(\frac{\left(m_{ss}^{s}\right)^{\frac{1}{\sigma^{m}}}S_{ss}^{\frac{1}{\sigma^{m}}}}{1-\left(m_{ss}^{s}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}
 \end{align*}
 
 \end_inset
@@ -5607,15 +5656,51 @@ Phillips Curve
 \begin_inset Formula 
 \begin{align*}
 p_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\frac{p_{t}^{Y}}{y_{t}}\left(\frac{\partial g_{t}}{\partial p_{t}^{Y}}+\frac{1}{1+r^{\text{firm}}}\frac{\partial g_{t+1}}{\partial p_{t}^{Y}}\right)\\
-p_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\frac{p_{t}^{Y}}{y_{t}}\left(\gamma\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]\left(\frac{1/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}\right)P_{t}^{Y}Y_{t}+\frac{1}{1+r^{\text{firm}}}\gamma\left[\frac{p_{t+1}^{Y}/p_{t}^{Y}}{p_{t}^{Y}/p_{t-1}^{Y}}-1\right]2\left(\frac{p_{t+1}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}\right)P_{t+1}^{Y}Y_{t+1}\right)\\
-P_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\left(\gamma\left[\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right]\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}\right)P_{t}^{Y}+\frac{2}{1+r^{\text{firm}}}\gamma\left[\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right]\left(\frac{P_{t+1}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}\right)P_{t+1}^{Y}\frac{Y_{t+1}}{Y_{t}}\right)\\
-P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}+\frac{2}{1+r^{\text{firm}}}\eta\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}\\
-\text{where} & \theta=\frac{1}{\sigma_{D}-1}\wedge
+p_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\frac{p_{t}^{Y}}{y_{t}}\Bigg(\gamma\left[\frac{p_{t}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}-1\right]\left(\frac{1/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}\right)P_{t}^{Y}Y_{t}\\
+ & +\frac{1}{1+r^{\text{firm}}}\gamma\left[\frac{p_{t+1}^{Y}/p_{t}^{Y}}{p_{t}^{Y}/p_{t-1}^{Y}}-1\right]2\left(\frac{p_{t+1}^{Y}/p_{t-1}^{Y}}{p_{t-1}^{Y}/p_{t-2}^{Y}}\right)P_{t+1}^{Y}Y_{t+1}\Bigg)\\
+P_{t}^{Y} & =\frac{\sigma_{D}}{\sigma_{D}-1}P_{t}^{Y,0}-\frac{1}{\sigma_{D}-1}\Bigg(\gamma\left[\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right]\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}\right)P_{t}^{Y}\\
+ & +\frac{2}{1+r^{\text{firm}}}\gamma\left[\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right]\left(\frac{P_{t+1}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}\right)P_{t+1}^{Y}\frac{Y_{t+1}}{Y_{t}}\Bigg)\\
+P_{t}^{Y} & =(1+\theta)P_{t}^{Y,0}-\eta\left(\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}-1\right)\frac{P_{t}^{Y}/P_{t-1}^{Y}}{P_{t-1}^{Y}/P_{t-2}^{Y}}P_{t}^{Y}\\
+ & +\frac{2}{1+r^{\text{firm}}}\eta\frac{Y_{t+1}}{Y_{t}}\left(\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}-1\right)\frac{P_{t+1}^{Y}/P_{t}^{Y}}{P_{t}^{Y}/P_{t-1}^{Y}}P_{t+1}^{Y}
 \end{align*}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+where 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\theta=\frac{1}{\sigma_{D}-1}$
+\end_inset
+
+.
 \end_layout
 
 \end_body

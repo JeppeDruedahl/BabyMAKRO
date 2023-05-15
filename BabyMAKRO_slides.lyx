@@ -2357,6 +2357,84 @@ Job-filling rate:
 status open
 
 \begin_layout Plain Layout
+Effective searchers and employment
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Human capital: 
+\begin_inset Formula $H_{a}=\rho_{1}\cdot a-\rho_{2}\cdot a^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Effective searchers:
+\series default
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+\begin_inset Formula 
+\[
+S_{a,t}^{H}=\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})\left[(N_{a-1}^{H}-L_{a-1,t-1}^{H})+\delta_{a}^{L}L_{a-1,t-1}^{H}\right] & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Effective employment 
+\series default
+(before and after matching):
+\begin_inset Formula 
+\begin{align*}
+\underline{L}_{a,t}^{H} & =\begin{cases}
+0 & \text{if }a=0\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1}^{H} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}\\
+L_{a,t}^{H} & =\underline{L}_{a,t}^{H}+m_{t}^{s}S_{a,t}^{H}H_{a}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Wage bargaining
 \end_layout
 
@@ -2462,7 +2540,7 @@ Income
 Post-tax labor income:
 \series default
  
-\begin_inset Formula $\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}$
+\begin_inset Formula $\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}^{H}}{N_{a}}$
 \end_inset
 
 
@@ -2508,7 +2586,7 @@ Equally divided inheritance
 The age specific income is
 \begin_inset Formula 
 \begin{align*}
-\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}\\
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}^{H}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}\\
  & +\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}.
 \end{align*}
 

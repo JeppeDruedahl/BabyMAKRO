@@ -263,5 +263,14 @@ def find_ss(model,do_print=True):
     ss.M = ss.C_M + ss.G_M + ss.I_M + ss.X_M
 
     if do_print: 
+
         print(Fonttype.HEADER + 'Market clearing:' + Fonttype.END)
         print(f'{ss.C/ss.Y = :.2f}, {ss.G/ss.Y = :.2f}, {ss.I/ss.Y = :.2f}, {ss.X/ss.Y = :.2f}, {ss.M/ss.Y = :.2f}')
+
+    # m. ratios
+    ss.C_ratio = ss.C/ss.Y
+    ss.G_ratio = ss.G/ss.Y
+    ss.I_ratio = ss.I/ss.Y
+    ss.L_ratio = ss.L/ss.Y
+    ss.M_ratio = ss.M/ss.Y
+    ss.X_ratio = ss.X/ss.Y

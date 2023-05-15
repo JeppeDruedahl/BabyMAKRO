@@ -635,3 +635,30 @@ def real_productivity(par,ini,ss,sol):
     real_inc[:] = inc/P_C
     real_Aq[:] = Aq/P_C
     
+@nb.njit
+def ratios(par,ini,ss,sol):
+
+    # inputs
+    Y = sol.Y
+    C = sol.C
+    G = sol.G
+    I = sol.I
+    L = sol.L
+    M = sol.M
+    X = sol.X
+
+    # outputs
+    C_ratio = sol.C_ratio
+    G_ratio = sol.G_ratio
+    I_ratio = sol.I_ratio
+    L_ratio = sol.L_ratio
+    M_ratio = sol.M_ratio
+    X_ratio = sol.X_ratio
+
+    #evaluations
+    C_ratio = C/Y
+    G_ratio = G/Y
+    I_ratio = I/Y
+    L_ratio = L/Y
+    M_ratio = M/Y
+    X_ratio = X/Y

@@ -50,6 +50,7 @@ class BabyMAKROModelClass(EconModelClass):
             'repacking_firms_components',
             'goods_market_clearing',
             'real_productivity',
+            'ratios',
         ]
         
         # c. variable lists
@@ -98,6 +99,7 @@ class BabyMAKROModelClass(EconModelClass):
             'C_M',
             'C_Y',
             'C',
+            'C_ratio',
             'C_HtM',
             'C_R',
             'chi',
@@ -110,18 +112,22 @@ class BabyMAKROModelClass(EconModelClass):
             'G_M',
             'G_Y',
             'G',
+            'G_ratio',
             'Gamma',
             'I_M',
             'I_Y',
             'I',
+            'I_ratio',
             'inc',
             'iota',
             'K',
             'L_ubar',
             'L',
+            'L_ratio',
             'm_s',
             'm_v',
             'M',
+            'M_ratio',
             'mkt_clearing',            
             'N',
             'PC',
@@ -154,6 +160,7 @@ class BabyMAKROModelClass(EconModelClass):
             'X_M',
             'X_Y',
             'X',
+            'X_ratio',
             'Y',
         ]
 
@@ -184,7 +191,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.T = 400 # number of time-periods
         
         # a. households
-        par.age_ini = 25 # initial age in model
+        par.age_ini = 22 # initial age in model
         par.life_span = 75 # maximum life-span
         par.work_life_span = 45 # work-life-span
         par.zeta = 4.0 # mortality parameter (-> inf then everybody dies in last period)
