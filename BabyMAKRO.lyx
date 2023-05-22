@@ -1327,7 +1327,7 @@ The wage,
 Inputs: 
 \series default
 
-\begin_inset Formula $\left\{ L_{t}\right\} ,\left\{ P_{t}^{C}\right\} $
+\begin_inset Formula $\left\{ L_{t}\right\} $
 \end_inset
 
 
@@ -1550,9 +1550,6 @@ L_{a,t}^{H} & =\underline{L}_{a,t}^{H}+m_{t}^{s}S_{a,t}^{H}H_{a}.
 
 \begin_layout Standard
 The effective quantity of searchers is
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
 S_{a,t}^{H} & =\begin{cases}
@@ -1697,7 +1694,7 @@ S_{a,t}^{H} & =\begin{cases}
 1 & \text{if }a=0\\
 (1-\zeta_{a-1})\left[(N_{a-1}^{H}-L_{a-1,t-1}^{H})+\delta_{a}^{L}L_{a-1,t-1}^{H}\right] & \text{if }a<\#_{\text{work}}\\
 0 & \text{if }a\geq\#_{\text{work}}
-\end{cases}\\
+\end{cases}\label{eq:SH_a}\\
 \underline{L}_{a,t} & =\begin{cases}
 0 & \text{if }a=0\\
 (1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<\#_{\text{work}}\\
@@ -1707,7 +1704,7 @@ S_{a,t}^{H} & =\begin{cases}
 0 & \text{if }a=0\\
 (1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1}^{H} & \text{if }a<\#_{\text{work}}\\
 0 & \text{if }a\geq\#_{\text{work}}
-\end{cases}\\
+\end{cases}\label{eq:LHubar_a}\\
 S_{t} & =\sum_{a=0}^{\#-1}S_{a,t}\label{eq:S}\\
 \underline{L}_{t} & =\sum_{a=0}^{\#-1}\underline{L}_{a,t}\label{eq:L_ubar}
 \end{align}
@@ -1827,7 +1824,7 @@ Labor follows the law-of-motion
 \end_layout
 
 \begin_layout Standard
-The labor agency problem then is:
+The labor agency problem is then:
 \begin_inset Formula 
 \begin{align*}
 V_{0}^{\text{labor}}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}\right]\\
@@ -1994,8 +1991,7 @@ The production firms use capital,
 \end_inset
 
 .
- The firms are price takers in all markets and free entry implies zero profits.
- The output price is denoted 
+ The marginal cost of output is denoted 
 \begin_inset Formula $P_{t}^{Y,0}$
 \end_inset
 
@@ -2106,26 +2102,45 @@ name "subsec:Block-VI.-Phillips"
 \end_layout
 
 \begin_layout Standard
-The final output price, 
+The output price, 
 \begin_inset Formula $P_{t}^{Y}$
 \end_inset
 
-, is a mark-up over the marginal cost price, 
+, is a mark-up over the marginal cost, 
 \begin_inset Formula $P_{t}^{Y,0}$
 \end_inset
 
 , to capture monopolistic behavior by the firms.
+ In addition, the final prices are sticky, and the firms pay a quadratic
+ adjustment cost, 
+\begin_inset Formula $g_{t}$
+\end_inset
+
+, to change them.
+ The adjustment costs are applied to changes in inflation such that if the
+ inflation in period 
+\begin_inset Formula $t$
+\end_inset
+
+ deviates from the inflation in period 
+\begin_inset Formula $t-1$
+\end_inset
+
+, then the firm faces positive price adjustment costs.
+ The adjustment costs are proportional to 
+\begin_inset Formula $P_{t}^{Y}$
+\end_inset
+
+and 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+implying that a higher price and output level increases the adjustment costs.
  The demand for each good is 
 \begin_inset Formula $y_{t}$
 \end_inset
 
 .
- The final prices are sticky, and the firms pay a quadratic adjustment cost,
- 
-\begin_inset Formula $g_{t}$
-\end_inset
-
-, to change them.
 \begin_inset Formula 
 \begin{align*}
 V_{t}^{\text{intermediary}}=\max_{\left\{ p_{t}^{Y}\right\} } & \left(p_{t}^{Y}-P_{t}^{Y,0}\right)y_{t}-\vartheta_{t}+\frac{1}{1+r^{\text{firm}}}V_{t+1}^{\text{intermediary}}\\
@@ -2553,7 +2568,9 @@ Outputs:
 \begin{align}
 \tilde{B}_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{ss})W_{U}W_{ss}U_{t}\label{eq:B_tilde}\\
  & +(1-\tau_{ss})W_{R}W_{ss}(N_{t}-N_{\text{work}})-\tau_{ss}W_{t}L_{t}\nonumber \\
+\nonumber \\
 \tau_{t} & =\tau_{ss}+\varepsilon_{B}\frac{\tilde{B}_{t}-B_{ss}}{W_{t}L_{t}+W_{U}W_{ss}U_{t}+W_{R}W_{ss}(N_{t}-N_{\text{work}})}\label{eq:tau}\\
+\nonumber \\
 B_{t} & =(1+r^{B})B_{t-1}+P_{t}^{G}G_{t}+(1-\tau_{t})W_{U}W_{ss}U_{t}\label{eq:B}\\
  & +(1-\tau_{t})W_{R}W_{ss}(N_{t}-N_{\text{work}})-\tau_{t}W_{t}L_{t}.\nonumber 
 \end{align}
@@ -2585,7 +2602,7 @@ name "subsec:Block-X.-Households"
 
 \begin_layout Standard
 The model has two types of households.
- A share of 
+ A share 
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -2665,7 +2682,7 @@ The price of consumption goods is
 \emph on
 surviving 
 \emph default
-hands-to-mouth households are
+hands-to-mouth households is
 \begin_inset Formula 
 \begin{align*}
 C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\\
@@ -2821,8 +2838,7 @@ Calculate
 \begin_inset Formula 
 \begin{align}
 \pi_{t}^{hh} & =\frac{P_{t}^{C}}{P_{t-1}^{C}}-1\label{eq:pi_hh}\\
-\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }\label{eq:inc_a}\\
- & +\frac{A_{t}^{q}}{N}\nonumber \\
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\label{eq:inc_a}\\
 C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\label{eq:C_HtM}\\
 A_{a,t}^{\text{HtM}} & =0.\label{eq:A_HtM}
 \end{align}
@@ -2857,6 +2873,7 @@ C_{a,t}^{R} & =\begin{cases}
 \left(\beta(1-\zeta_{a})\frac{1+r_{ss}^{hh}}{1+\pi_{ss}^{hh}}\left(C_{a+1,ss}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,ss}^{R}}{P_{ss}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{elif }t=T-1\\
 \left(\beta(1-\zeta_{a})\frac{1+r_{t+1}^{hh}}{1+\pi_{t+1}^{hh}}\left(C_{a+1,t+1}^{R,}\right)^{-\sigma}+\zeta_{a}\mu^{A^{q}}\left(\frac{A_{a,t}^{R}}{P_{t}^{C}}\right)^{-\sigma}\right)^{-\frac{1}{\sigma}} & \text{else}
 \end{cases}\\
+\\
 A_{a-1,t-1}^{R} & =\frac{A_{a,t}^{R}-\text{inc}_{a,t}+P_{t}^{C}C_{a,t}^{R}}{1+r_{t}^{hh}}.
 \end{align*}
 
@@ -3262,7 +3279,7 @@ The exogenous labor supply and search-and-matching imply
 \begin{align*}
 S_{a,ss} & =\begin{cases}
 1 & \text{if }a=0\\
-(1-\zeta_{a-1})(N_{a-1}-L_{a-1,ss})+\delta_{a}^{L}L_{a-1,ss} & \text{if }a<\#_{\text{work}}\\
+(1-\zeta_{a-1})\left[(N_{a-1}-L_{a-1,ss})+\delta_{a}^{L}L_{a-1,ss}\right] & \text{if }a<\#_{\text{work}}\\
 0 & \text{else}
 \end{cases}\\
 S_{a,ss}^{H} & =\begin{cases}
@@ -3333,7 +3350,7 @@ r_{ss}^{\ell} & =\frac{W_{ss}}{1-\left(1+\frac{1-\delta_{ss}^{L}}{1+r^{firm}}\ri
 \end_layout
 
 \begin_layout Enumerate
-Set the prices using the Phillipps-curve
+Set the prices using the Phillips-curve
 \begin_inset Formula 
 \begin{align*}
 P_{ss}^{Y,0} & =\frac{P_{ss}^{Y}}{1+\theta}\\
@@ -3350,12 +3367,12 @@ Determine the capital and output from the production firm
 \begin_inset Formula 
 \begin{align*}
 K_{ss} & =\frac{\mu_{K}}{1-\mu_{K}}\left(\frac{r_{ss}^{\ell}}{r_{ss}^{K}}\right)^{\sigma^{Y}}\ell_{ss}\\
-Y_{ss} & =\Gamma_{ss}\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}},
+Y_{ss} & =\Gamma_{ss}\left(\left(\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}K_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}+\left(1-\mu^{K}\right)^{\frac{1}{\sigma^{Y}}}\ell_{ss}^{\frac{\sigma^{Y}-1}{\sigma^{Y}}}\right)^{\frac{\sigma^{Y}}{\sigma^{Y}-1}}.
 \end{align*}
 
 \end_inset
 
-idiosyncratic.
+
 \end_layout
 
 \begin_layout Enumerate
@@ -3472,34 +3489,113 @@ M_{ss} & =C_{ss}^{M}+G_{ss}^{M}+I_{ss}^{M}+X_{ss}^{M}.
 \end_layout
 
 \begin_layout Subsection
+Data
+\end_layout
+
+\begin_layout Standard
+See 0b - steady state - data.ipynb.
+\end_layout
+
+\begin_layout Enumerate
+Download data: Data from Statistics Denmark is downloaded through DstApi
+ to calibrate the steady state.
+\end_layout
+
+\begin_layout Enumerate
+National account: Data for the national accounts used to calculate the historica
+l average ratios of 
+\begin_inset Formula $M_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $C_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $G_{t}$
+\end_inset
+
+ and 
+\begin_inset Formula $I_{t}$
+\end_inset
+
+ relative to 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Capital, employment and pouplation: Data for capital, employment and population
+ used to calculate the historical averages of capital and employment rate.
+\end_layout
+
+\begin_layout Enumerate
+Unemployment rate: Data for the unemployment rate used to calculate the
+ historical average.
+\end_layout
+
+\begin_layout Enumerate
+Steady state aggreate: Historical averages of the variables above.
+\end_layout
+
+\begin_layout Enumerate
+Income and wealth over life-cycle: Data for historical averages of income
+ and wealth over the life-cycle.
+ The regression below is perfomed to seperate time and life-cycle effects
+ on income.
+ The data and estimates are then used to calibrate the steady state life-cycle
+ income profile and wealth-income ratio.
+\begin_inset Formula 
+\[
+\text{inc}_{a,t}=\text{birth year}_{a}+\rho_{1}\text{age}_{a,t}+\rho_{2}\text{age}_{a,t}^{2}+\epsilon_{a,t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Aggregates
 \end_layout
 
 \begin_layout Standard
-See 0 - steady state - aggregates.ipynb.
+See 0c - steady state - aggregates.ipynb.
 \end_layout
 
-\begin_layout Standard
-1.
- Setup: An instance of the baseline model is created and called model.
+\begin_layout Enumerate
+Setup: An instance of the baseline model is created named 
+\begin_inset Quotes ald
+\end_inset
+
+model
+\begin_inset Quotes ard
+\end_inset
+
+.
  
 \end_layout
 
-\begin_layout Standard
-2.
- Find steady steady: The steady state values are found and printed for all
- blocks.
+\begin_layout Enumerate
+Find steady steady: The steady state values are found and printed.
+ In addition, steady state are compared to historical averages from the
+ data.
 \end_layout
 
-\begin_layout Standard
-3.
- Speed and error tests: The exogenous and unknown steady state variables
+\begin_layout Enumerate
+Speed and error tests: The exogenous and unknown steady state variables
  are specified.
  The blocks are evaluated using python evaluation, and it is verified that
  all targets are zero.
  Next, the blocks are evaluated using numba evaluation.
- The initial evaluation is slower when using numba, but additional evaluations
- are much faster than using python evaluation.
+ The initial evaluation is slower when using numba, but subsequent evaluations
+ are much faster than python evaluations.
  
 \end_layout
 
@@ -3508,23 +3604,32 @@ Households
 \end_layout
 
 \begin_layout Standard
-See 0 - steady state - households.ipynb.
+See 0d - steady state - households.ipynb.
 \end_layout
 
 \begin_layout Enumerate
-Setup: An instance of the baseline model is created and called model.
- The parameters, steady state and solution name-spaces are set.
+Setup: An instance of the baseline model is created named 
+\begin_inset Quotes ald
+\end_inset
+
+model
+\begin_inset Quotes ard
+\end_inset
+
+.
+ The parameters, steady state and solution namespaces are set.
  
 \end_layout
 
 \begin_layout Enumerate
 Mortality and population: First, a function for creating an interactive
- plot is defined, where it is possible to adjust the power of 
+ plot is defined, where it is possible to adjust the power of the mortality
+ rate 
 \begin_inset Formula $\zeta_{a}$
 \end_inset
 
 .
- Figures for the mortality rate and the population are plotted.
+ Then, figures showing the mortality rate and the population are plotted.
  The average life expectancy is increasing in the power of 
 \begin_inset Formula $\zeta_{a}$
 \end_inset
@@ -3560,7 +3665,7 @@ mployment levels are plotted.
  higher separation rate implies more workers loss their job; thus, they
  become unemployed and search for a new job.
  In the extreme case where the separation rate is 1, all workers loss their
- job at the end; thus, all workers search for a new job.
+ job at the end; all workers search for a new job.
  As such, the employment level will be equal to the job-finding rate, 
 \begin_inset Formula $m^{s}$
 \end_inset
@@ -3578,8 +3683,9 @@ Consumption-saving: Using the required inputs, its is possible to find the
  household consumption and savings behavior.
  The age-specific income, consumption and savings are plotted for the Ricardian
  and HtM households together with the aggregations.
- The Ricardian households consumption smooth by accumulating savings, while
- the HtM consume all their income.
+ The income and saving profiles is compared to historical data.
+ The Ricardian households smooth their consumption, while the HtM consume
+ all their income in every period.
  The aggregated consumption and savings are a weighted average determined
  by the share of each type, 
 \begin_inset Formula $\lambda$
@@ -3595,64 +3701,92 @@ Varying central inputs: A function for comparing to models is defined, which
 
 \begin_deeper
 \begin_layout Itemize
-If the households receive less bequest, their income are lower and they
- will consume and save less.
+\begin_inset Formula $A_{ss}^{q}$
+\end_inset
+
+: If the households receive less bequest, their income are lower and they
+ will consume less.
 \end_layout
 
 \begin_layout Itemize
-If the households have a lower preference for bequest, they will save less
+\begin_inset Formula $\mu^{A^{q}}:$
+\end_inset
+
+ If the households have a lower preference for bequest, they will save less
  and consume more.
 \end_layout
 
 \begin_layout Itemize
-If the households receive more wage, they will have more income which implies
- more consumption and savings.
+\begin_inset Formula $W_{ss}:$
+\end_inset
+
+ If the households receive a higher wage, they will have more income which
+ implies more consumption.
 \end_layout
 
 \begin_layout Itemize
-If the households receive more unemployment benefits, they will have more
- income before retirement; thus, they can consume and save more.
- This effect is much smaller than the effect from a higher wage, as the
- number of unemployed is much smaller than the number of employed.
+\begin_inset Formula $\tau_{ss}:$
+\end_inset
+
+ If the tax rate is lower, the households receive more after-tax wage.
+ Therefore, this is similar to increasing the wage.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $W_{U}$
+\end_inset
+
+: If the households receive a higher unemployment benefit, they will have
+ more income before retirement; thus, they can consume and save more.
+ However, this effect is much smaller than the effect from a higher wage,
+ as the number of unemployed is much smaller than the number of employed.
  
 \end_layout
 
 \begin_layout Itemize
-If the households receive more in retirement benefits, they will have more
- income once they retire.
- This implies that they need less savings for retirement, and they can consume
- more throughout their life.
+\begin_inset Formula $W_{R}$
+\end_inset
+
+: If the households receive more in retirement benefits, they will have
+ more income once they retire.
+ This implies that they save less, and they consume more throughout their
+ life.
 \end_layout
 
 \begin_layout Itemize
-If the tax rate is lower, the households receive more after-tax wage.
- Therefore, this is similar to increasing the wages.
-\end_layout
+\begin_inset Formula $\beta$
+\end_inset
 
-\begin_layout Itemize
-If beta decreases, the households prefer to consume more today relative
+: If beta decreases, the households prefer to consume more today relative
  to tomorrow.
- As such, they save less and they consume more in the first periods.
+ As such, they save less and they consume more in the first part of their
+ lifetime.
 \end_layout
 
 \begin_layout Itemize
-If the interest rate decreases, it is relatively more expensive to save
- compared to consumption.
+\begin_inset Formula $r_{hh}:$
+\end_inset
+
+ If the interest rate decreases, it is relatively more expensive to save
+ than consume.
  Therefore, the households will save less and consume more initially.
 \end_layout
 
 \begin_layout Itemize
-If the share of HtM households decreases, the aggregation of households
- will consumption smooth more by saving more.
- 
+\begin_inset Formula $\lambda$
+\end_inset
+
+: If the share of HtM households decreases, the aggregation of households
+ will smooth consumption more.
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
 Test household blocks: The solution variables are set to their steady state
  value, and the model is set to be in steady state.
- The search and match block and the household consumption behavior are evaluated
-, and it is checked that all variables remain at their steady state levels.
+ The search and matching block and the household consumption behavior are
+ evaluated, and it is checked that all variables remain at their steady
+ state levels.
 \end_layout
 
 \begin_layout Section
@@ -3715,10 +3849,10 @@ Initial effect
 \end_inset
 
 .
- This improves the government budget due to less payments related to unemploymen
-t benefits and a higher tax revenue.
- The effect on the government expenditures is ambigious as both the consumption
- and the tax revenue increases.
+ In isolation, this improves the government budget due to less payments
+ related to unemployment benefits and a higher tax revenue.
+ However, the overall effect on the government budget is ambigious as goverment
+ consumption increases as well.
  Overall, the debt decreases, 
 \begin_inset Formula $B\downarrow$
 \end_inset
@@ -3732,7 +3866,7 @@ t benefits and a higher tax revenue.
 \begin_inset Formula $P^{G}\uparrow$
 \end_inset
 
-, following the consumption shock.
+, following higher output demand and higher marginal costs.
  However, as prices are sticky, it does not fully adjust.
 \begin_inset Newline newline
 \end_inset
@@ -3741,14 +3875,13 @@ t benefits and a higher tax revenue.
 \series bold
 Transition path
 \series default
-: Government consumption decreases as per assumption.
+: Government consumption decreases as the shock fades.
  The debt grows due to a decline in the production and the employment, and
- the fact that prices continue to increase due to the adjustment process
- stemming from the stickyness of the prices.
+ the fact that prices continue to increase due to the adjustment costs.
  The government raises the tax rate as a consequence, which further decreases
  the excess demand.
- Eventuallyy, the debt desclines once the tax rate has grown sufficiently
- large and the excess demand stemming from the consumption shock has vanished.
+ Eventually, the debt is gradually reduced once the tax rate has grown sufficien
+tly large.
 \end_layout
 
 \end_deeper
@@ -3806,14 +3939,13 @@ Initial effect
 \end_inset
 
 .
- As the output price is a mark-up of the marginal cost price, this increases
- as well, 
+ As the output price is a mark-up of the marginal cost, the output prices
+ increase, 
 \begin_inset Formula $P^{Y}\uparrow$
 \end_inset
 
 .
- However, this increase is much smaller due to the stickyness of the output
- prices.
+ However, this increase is limited due to the stickyness of the output prices.
  A higher rent on capital implies that the capital agency has an incentive
  to accumulate more capital, 
 \begin_inset Formula $K\uparrow$
@@ -3831,10 +3963,14 @@ Initial effect
 \series bold
 Transition path
 \series default
-: The excess demand stemming from government consumption declines, such
- that the firms lowers production.
+: The excess demand stemming from government consumption shock declines,
+ such that the firms lower their production, 
+\begin_inset Formula $Y\downarrow$
+\end_inset
+
+.
  As such, less labor is needed, which makes capital less productive.
- Consequencely, the capital agency invests in less capital and the capital
+ Consequencely, the capital agency invests in less capital, and the capital
  stock declines.
  A lower stock of capital drives up the return on capital, such that this
  process eventually reverses.
@@ -3892,12 +4028,12 @@ Initial effect
 \begin_inset Formula $\mathbb{\mathcal{M}}\uparrow$
 \end_inset
 
-, which further implies an increase in the job-finding rate, 
-\begin_inset Formula $m^{s}\uparrow$
+, due to more job vancancies, 
+\begin_inset Formula $v\uparrow$
 \end_inset
 
-, and the vacancies, 
-\begin_inset Formula $v\uparrow$
+, which further implies an increase in the job-finding rate, 
+\begin_inset Formula $m^{s}\uparrow$
 \end_inset
 
 .
@@ -3906,10 +4042,7 @@ Initial effect
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
-
-The wage increases as it is increasing in the labor demand, 
+ The wage increases as it is increasing in the labor demand, 
 \begin_inset Formula $W\uparrow$
 \end_inset
 
@@ -3964,7 +4097,7 @@ Initial effect
 
 .
  The Ricardian households forsee that the government will raise the tax
- rate in future periods and in order to consumption smooth, they choose
+ rate in future periods and in order to smooth their consumption, they choose
  to save up, 
 \begin_inset Formula $A\uparrow$
 \end_inset
@@ -3984,7 +4117,7 @@ Initial effect
 \begin_inset Formula $P^{C}\uparrow$
 \end_inset
 
-, following the higher output prices, which implies inflaiton and thereby
+, following the higher output prices, which implies inflation and thereby
  a lower real interest rate, 
 \begin_inset Formula $r^{real}\downarrow$
 \end_inset
@@ -4003,7 +4136,7 @@ Transition path
  is futher enlarged by the fact that the real interest rate increases, making
  savings more attractive.
  Once, the price on consumption starts to decrease, so does the real interest
- rates, and the Ricardian households begin using their savigns to increase
+ rates, and the Ricardian households begin using their savings to increase
  consumption.
  The aggregated consumption decreases for a few periods, and once the government
  lowers its tax rate again, the real income increases and so does the consumptio
@@ -4032,8 +4165,7 @@ reference "subsec:Block-VII.-Foreign"
 \series bold
 Initial effect
 \series default
-: The domestic prices have increased relative to the foreign and import
- price.
+: The domestic prices have increased relative to the foreign price.
  As such, export decreases, 
 \begin_inset Formula $X\downarrow$
 \end_inset
@@ -4055,12 +4187,19 @@ Transition path
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-Further comments:
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Further comments:}$
+\end_inset
+
+
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
-The effect of the government spending shock is affected by how fast the
+\begin_inset Formula $\textbf{The effect of tax rate adjustment speed:}$
+\end_inset
+
+ The effect of the government spending shock is affected by how fast the
  government adjusts the tax rate, which is captured by the parameter 
 \begin_inset Formula $\varepsilon_{B}$
 \end_inset
@@ -4068,16 +4207,9 @@ The effect of the government spending shock is affected by how fast the
 .
  In 2 - sensitivity - technology.ipynb., a sensitivity analysis is conducted
  to analysis the effect of adjustment time.
- 
-\begin_inset Newline newline
-\end_inset
-
-The basaline case is compared to two different case; one where the adjustment
+ The basaline case is compared to two different case; one where the adjustment
  rate is higher, and one where it is lower.
-\end_layout
-
-\begin_layout Standard
-If 
+ If 
 \begin_inset Formula $\varepsilon_{B}$
 \end_inset
 
@@ -4087,18 +4219,10 @@ If
  Likewise, the government is also slower to adjust the tax rate once the
  debt starts growing, and as a consequence hereof the initial shock has
  long term effect on the government budget.
- 
-\begin_inset Newline newline
-\end_inset
-
-The slower adjustment of the tax rate also affects the households as the
+ The slower adjustment of the tax rate also affects the households as the
  initial effect on their income is smaller, but the future effect is much
  more persistent.
- 
-\end_layout
-
-\begin_layout Standard
-If 
+ If 
 \begin_inset Formula $\varepsilon_{B}$
 \end_inset
 
@@ -4106,6 +4230,7 @@ If
  
 \end_layout
 
+\end_deeper
 \begin_layout Subsection
 Productivity shock
 \end_layout
@@ -4169,10 +4294,10 @@ Initial effect
 \end_inset
 
 .
- The sticky nature of the output prices, however, implies that this price
- reduction is much smaller.
- As a consequence hereof, the gain of increasing production is much smaller
- for the firms, and they choose to demand less labor, 
+ However, the sticky nature of the output prices, implies that this price
+ reduction is much smaller initially.
+ As a consequence, the gain of increasing production is much smaller for
+ the firms, and they choose to demand less labor, 
 \begin_inset Formula $\ell\downarrow$
 \end_inset
 
@@ -4194,7 +4319,7 @@ Initial effect
 \series bold
 Transition path
 \series default
-: The productivity declines as per assumption.
+: The productivity declines as the shock fades.
  As the output prices slowly adjust, the higher productivity leads to higher
  real returns on labor and capital.
  Hence, the firms increase production by hiring labor and investing in capital.
@@ -4255,12 +4380,12 @@ Initial effect
 \begin_inset Formula $\mathbb{\mathcal{M}}\downarrow$
 \end_inset
 
-, which further implies a lower job-finding rate, 
-\begin_inset Formula $m^{s}\uparrow$
+, due to less vacancies, 
+\begin_inset Formula $v\downarrow$
 \end_inset
 
-, and less vacancies, 
-\begin_inset Formula $v\downarrow$
+, which further implies a lower job-finding rate, 
+\begin_inset Formula $m^{s}\uparrow$
 \end_inset
 
 .
@@ -4269,10 +4394,7 @@ Initial effect
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
-
-The wage is decresing in the lower labor demand, 
+ The wage is decreasing in the lower labor demand, 
 \begin_inset Formula $W\downarrow$
 \end_inset
 
@@ -4286,10 +4408,8 @@ The wage is decresing in the lower labor demand,
 Transition path
 \series default
 : The demand for labor increases, thus the labor agency hires more employees.
- This implies more matches, a higher job-filling rate and more vancancies.
- The real wage increases as well following the higher marginal product of
- labor.
- 
+ This implies more matches, a higher job-filling rate, more vancancies and
+ a higher wage.
 \end_layout
 
 \end_deeper
@@ -4314,10 +4434,10 @@ reference "subsec:Block-IX.-Government"
 \series bold
 Initial effect
 \series default
-: The government debt should decrase as the price on government consumption
- decreases, but increase as the payments to unemployment benefits increase.
- The overall effect of these two opposing channels is a higher government
- debt, 
+: The government debt is negatively affected by the the decreasing price
+ on government consumption, but positively affected by increasing payments
+ to unemployment benefits.
+ The overall effect is a higher government debt, 
 \begin_inset Formula $B\uparrow$
 \end_inset
 
@@ -4335,13 +4455,13 @@ Initial effect
 \series bold
 Transition path
 \series default
-: The debt continue to rise due to higher interest payments and more nominal
+: The debt continue to rise due to higher interest payments and more expensive
  government consumption.
- However, as the unemployment benefit payouts decrease due to a higher employmen
-t rate, and a higher tax revenue from the higher tax rate, the government
- debt decreases.
+ However, as the unemployment benefit payouts decrease due to an incrasing
+ employment rate, and as the tax revenue increases following the higher
+ tax rate, the government debt decreases.
  Due to the high employment rates, the government debt becomes negative,
- which allows the governemnt to lower its tax rate.
+ which allows the government to lower its tax rate.
  
 \end_layout
 
@@ -4377,9 +4497,10 @@ Initial effect
 \end_inset
 
 .
- The Ricardian households, however, consumption smooth.
- They know that their future income will increase due to the lower tax rate
- and the higher wage, thus they initially borrows, 
+ The Ricardian households, however, smooth their consumption.
+ They know that their future income will increase as the tax rate will decrease
+ and the wage will increase.
+ Thus, they initially borrow, 
 \begin_inset Formula $A\downarrow$
 \end_inset
 
@@ -4388,8 +4509,8 @@ Initial effect
 \end_inset
 
 .
- The effect on aggregated consumption is dominated by the drop in real income,
- such that it drops as well, 
+ The effect on aggregated consumption is dominated by the drop in consumption
+ from the HtM households and thus 
 \begin_inset Formula $C\downarrow$
 \end_inset
 
@@ -4413,11 +4534,11 @@ Transition path
 \series default
 : The real income increases due to a higher wage rate and a lower tax rate,
  thereby increasing the consumption of the HtM households.
- The Ricardian households increase consumption as well, which is enlargened
+ The Ricardian households increase consumption as well, which is reinforced
  by a falling real interest rate.
- As such, they subsitute towards consumption by borrowing even more.
- Once they start paying oout their debt, the consumption decreases to a
- level beneath its steady state level.
+ As such, they substitute towards consumption by borrowing even more.
+ Once they start paying their debt, the consumption decreases to a level
+ beneath its steady state.
  This is caused by increased interest rate payments following their higher
  debt.
  
@@ -4467,11 +4588,18 @@ Transition path
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-Further comments:
+\begin_layout Itemize
+\begin_inset Formula $\textbf{Further comments:}$
+\end_inset
+
+
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
+\begin_inset Formula $\textbf{The effect of price stickiness:}$
+\end_inset
+
 The effects of the productivity shock is affected by the stickiness of the
  output prices, which is captured by the parameter 
 \begin_inset Formula $\eta$
@@ -4486,15 +4614,11 @@ The effects of the productivity shock is affected by the stickiness of the
 \begin_inset Formula $\eta=\gamma=0$
 \end_inset
 
- corresponds to fullty flexible prices.
+ corresponds to fully flexible prices.
  In 2 - sensitivity - technology.ipynb., a sensitivity analysis is conducted,
- where the case of fully flexible prices as well as even stickier prices
- is examined.
-\end_layout
-
-\begin_layout Standard
-If prices are fully flexible, the real marginal product of capital and labor
- immidiately increase, such that the production firms higher more labor
+ where the case of fully flexible prices and sticky prices is examined.
+ If prices are fully flexible, the real marginal product of capital and
+ labor immidiately increase, such that the production firms hire more labor
  and invest in capital.
  As a consequence of more labor, the real wage increases and the government
  debt decreases, which allows the government to lower the tax rate.
@@ -4502,11 +4626,7 @@ If prices are fully flexible, the real marginal product of capital and labor
  such that they increase consumption immidiately.
  As such, the signs of these effects are opposite to the case of the baseline
  case with sticky prices, where the households were worse of.
- 
-\end_layout
-
-\begin_layout Standard
-If 
+ If 
 \begin_inset Formula $\eta$
 \end_inset
 
@@ -4514,6 +4634,7 @@ If
  
 \end_layout
 
+\end_deeper
 \begin_layout Subsection
 Export shock
 \end_layout
@@ -4577,9 +4698,9 @@ Initial effect
 \end_inset
 
 .
- These shocks are here decomposed into two channels; The foreign demand
- shock channel, containing the shock to the foreign demand shifter, and
- the price shock channel, containing the shock to foreign and import prices.
+ These shocks are here decomposed into two channels: The foreign demand
+ shock channel containing the shock to the foreign demand shifter, and the
+ price shock channel containing the shock to foreign and import prices.
  
 \end_layout
 
@@ -4594,12 +4715,11 @@ Examining the foreign demand shock channel, a higher foreign demand implies
 \end_inset
 
 .
- As a consequence hereof, the total demand and the output prices increase
- as well, 
+ As a consequence, the total demand and the output prices increase, 
 \begin_inset Formula $Y\uparrow$
 \end_inset
 
-, 
+ and 
 \begin_inset Formula $P^{Y}\uparrow$
 \end_inset
 
@@ -4614,8 +4734,9 @@ t consumption, such that these increase,
 \end_inset
 
 .
- As the import prices are unaffected in this channel, these becomes relatively
- cheaper compared to the domestic prices, such that import increases, 
+ As the import prices are unaffected in this channel, imports becomes relatively
+ cheaper compared to the domestic production, such that import increases,
+ 
 \begin_inset Formula $M\uparrow$
 \end_inset
 
@@ -4631,7 +4752,7 @@ Examining the price shock channel, higher foreign prices increase the foreign
 \begin_inset Formula $Y\uparrow$
 \end_inset
 
-,
+ and
 \begin_inset Formula $P^{\bullet}\uparrow$
 \end_inset
 
@@ -4660,7 +4781,13 @@ Examining the price shock channel, higher foreign prices increase the foreign
 Overall, the combination of the two channels suggests that export, total
  demand, and all prices unanimously increase, whereas the effect on import
  is ambiguous.
- However, the model suggests that the overall effect on import is positive.
+ However, the model suggests that the overall effect on import is positive,
+ as the import prices are exogenous and thus independent of the foreign
+ prices, 
+\begin_inset Formula $P^{F}$
+\end_inset
+
+.
  
 \begin_inset Newline newline
 \end_inset
@@ -4685,7 +4812,7 @@ Next, consider the price shock channel, where both foreign prices and import
  prices decrease as per assumption.
  Again, a lower foreign demand stemming from lower foreign prices implies
  less exported goods, and the domestic prices increase even further due
- to stickyness of the output prices.
+ to stickiness of the output prices.
  The import grows due to the declining import prices.
  As the import prices declines faster than the domestic prices, the import
  grows above its steady state value and export drops below its steady state
@@ -4731,7 +4858,7 @@ reference "subsec:Block-VIII.-Capital"
 \series bold
 Initial effect
 \series default
-: Trough both channels, the production firms increase production, 
+: Through both channels, the production firms increase production, 
 \begin_inset Formula $Y\uparrow$
 \end_inset
 
@@ -4751,20 +4878,20 @@ Initial effect
 \end_inset
 
 .
- The effects on capital and investment are different trough each of the
+ The effects on capital and investment are different through each of the
  channels.
- Taking a starting point in the foreign demand shock channel, the dominate
- effect is that firms want more capital as the real marginal product has
+ Taking a starting point in the foreign demand shock channel, the dominating
+ effect is that firms want more capital, as the real marginal product has
  increased, 
 \begin_inset Formula $K\uparrow$
 \end_inset
 
-, which is achieve by investing more, 
+, which is achived by investing more, 
 \begin_inset Formula $I\uparrow$
 \end_inset
 
 .
- However through the price shock channeæ, the effect from higher import
+ However through the price shock channel, the effect from higher import
  prices is a negative, domestic demand shock.
  The firms foresee that the lower future demand implies a lower future productio
 n.
@@ -4850,12 +4977,12 @@ Initial effect
 \begin_inset Formula $\mathbb{\mathcal{M}}\uparrow$
 \end_inset
 
-, which further implies an increase in the job-finding rate, 
-\begin_inset Formula $m^{s}\uparrow$
+, as job vacancies increase, 
+\begin_inset Formula $v\uparrow$
 \end_inset
 
-, and the vacancies, 
-\begin_inset Formula $v\uparrow$
+, which further implies an increase in the job-finding rate, 
+\begin_inset Formula $m^{s}\uparrow$
 \end_inset
 
 .
@@ -4978,7 +5105,7 @@ Initial effect
 \end_inset
 
 .
- The Ricardian household consumption smooths by initially increase their
+ The Ricardian household smooth consumption by initially increasing their
  savings, 
 \begin_inset Formula $A\uparrow$
 \end_inset
@@ -4991,7 +5118,7 @@ The price shock channel implies less import and thereby less consumption
  import.
  Additionally, the real income of the household decreases as the effects
  on the labor supply is significantly smaller combined with the fact that
- the real unemployment and retirement benefits decreases.
+ the real unemployment and retirement benefits decrease.
  Both of these effects suggest lower consumption, 
 \begin_inset Formula $C\downarrow$
 \end_inset

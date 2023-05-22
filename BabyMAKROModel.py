@@ -121,6 +121,7 @@ class BabyMAKROModelClass(EconModelClass):
             'inc',
             'iota',
             'K',
+            'K_ratio',
             'L_ubar',
             'L',
             'L_ratio',
@@ -192,7 +193,7 @@ class BabyMAKROModelClass(EconModelClass):
         
         # a. households
         par.age_ini = 22 # initial age in model
-        par.life_span = 75 # maximum life-span
+        par.life_span = 56 # maximum life-span
         par.work_life_span = 45 # work-life-span
         par.zeta = 4.0 # mortality parameter (-> inf then everybody dies in last period)
         par.Lambda = 0.30 # share of hands-to-mouth households
@@ -207,8 +208,8 @@ class BabyMAKROModelClass(EconModelClass):
 
         par.delta_L_a_fac = 0.10 # age-specific separation rate (common)
 
-        par.rho_1 = 0.015 # human capital - linear growth
-        par.rho_2 = 0.00025 # human capital - curvature
+        par.rho_1 = 0.09 # human capital - linear growth
+        par.rho_2 = 0.0018 # human capital - curvature
 
         # b. production firm and phillips curve
         par.r_firm = 0.02 # internal (nominal) rate of return
@@ -227,7 +228,7 @@ class BabyMAKROModelClass(EconModelClass):
         # e. government
         par.r_b = 0.02 # nominal rate of return on government debt
         par.epsilon_B = 0.15 # adjustment speed  
-        par.G_share_ss = 0.30 # share of government spending in Y
+        par.G_share_ss = 0.25 # share of government spending in Y
 
         # f. repacking
         par.mu_M_C = 0.30 # weight on imports in C

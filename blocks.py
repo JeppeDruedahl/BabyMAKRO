@@ -643,6 +643,7 @@ def ratios(par,ini,ss,sol):
     C = sol.C
     G = sol.G
     I = sol.I
+    K = sol.K
     L = sol.L
     M = sol.M
     X = sol.X
@@ -651,6 +652,7 @@ def ratios(par,ini,ss,sol):
     C_ratio = sol.C_ratio
     G_ratio = sol.G_ratio
     I_ratio = sol.I_ratio
+    K_ratio = sol.K_ratio
     L_ratio = sol.L_ratio
     M_ratio = sol.M_ratio
     X_ratio = sol.X_ratio
@@ -659,6 +661,7 @@ def ratios(par,ini,ss,sol):
     C_ratio = C/Y
     G_ratio = G/Y
     I_ratio = I/Y
-    L_ratio = L/Y
+    K_ratio = K/Y
+    L_ratio = L/par.N
     M_ratio = M/Y
     X_ratio = X/Y
