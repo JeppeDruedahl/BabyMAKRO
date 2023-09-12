@@ -222,10 +222,10 @@ baby
  version of the MAKRO model used by the Danish Ministry of Finance.
  The model is for a small open economy with a fixed exchange and overlapping
  generations.
- The model have perfect foresight, but is full of imperfections due to e.g.
+ The model has perfect foresight, but is full of imperfections due to e.g.
  frictions in the labor market and adjustment costs.
  The model is written and solved in terms of a series of ordered blocks.
- This clarifies the model dynamics and make it easier to solve for fluctuations
+ This clarifies the model dynamics and makes it easier to solve for fluctuations
  around the steady state using a numerical equation system solver.
  Online code is provided for solving the model in Python.
 \end_layout
@@ -244,7 +244,7 @@ literal "false"
 \end_inset
 
 ) and the model is thus relevant for further academic studies.
- The similarity to the grown-up MAKRO model make it relevant for potential
+ The similarity to the grown-up MAKRO model makes it relevant for potential
  future job tasks and the public debate.
 \end_layout
 
@@ -389,7 +389,7 @@ The
 \emph on
 foreign economy
 \emph default
- provides a fixed nominal rate of return, sell import goods at fixed prices,
+ provides a fixed nominal rate of return, sells import goods at fixed prices,
  and have a demand curve for the domestic export good.
 \end_layout
 
@@ -440,8 +440,18 @@ Labor is rented from a
 \emph on
 labor agency
 \emph default
-, which post vacancies a search-and-match labor market to purchase labor
- from the households.
+, which posts vacancies for a search-and-match labor market to purchase
+ labor from the households.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+forvirende sætning
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1767,7 +1777,7 @@ The labor agency firms post vacancies,
 \end_inset
 
 .
- The cost of each vacancy is 
+ The labor cost of posting each vacancy is 
 \begin_inset Formula $\kappa^{L}$
 \end_inset
 
@@ -2314,8 +2324,38 @@ The capital agency firm buys investment goods,
 \end_inset
 
  in the following period.
- The investment decision is subject to convex adjustment costs in terms
- of wasted investment goods, such that effective investment is 
+ The investment decision is subject to convex adjustment costs
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $\Psi$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ in terms of wasted investment goods, such that effective investment is
+ 
 \begin_inset Formula $\iota_{t}$
 \end_inset
 
@@ -2606,11 +2646,11 @@ The model has two types of households.
 \begin_inset Formula $\lambda$
 \end_inset
 
- of households is hands-to-mouth and a share of 
+ of households is hands-to-mouth and a share 
 \begin_inset Formula $1-\lambda$
 \end_inset
 
- households is unconstrained (Ricardian).
+ of households is unconstrained (Ricardian).
  All households have four sources of income:
 \end_layout
 
@@ -3562,49 +3602,11 @@ Income and wealth over life-cycle: Data for historical averages of income
 \end_layout
 
 \begin_layout Subsection
-Aggregates
-\end_layout
-
-\begin_layout Standard
-See 0c - steady state - aggregates.ipynb.
-\end_layout
-
-\begin_layout Enumerate
-Setup: An instance of the baseline model is created named 
-\begin_inset Quotes ald
-\end_inset
-
-model
-\begin_inset Quotes ard
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Enumerate
-Find steady steady: The steady state values are found and printed.
- In addition, steady state are compared to historical averages from the
- data.
-\end_layout
-
-\begin_layout Enumerate
-Speed and error tests: The exogenous and unknown steady state variables
- are specified.
- The blocks are evaluated using python evaluation, and it is verified that
- all targets are zero.
- Next, the blocks are evaluated using numba evaluation.
- The initial evaluation is slower when using numba, but subsequent evaluations
- are much faster than python evaluations.
- 
-\end_layout
-
-\begin_layout Subsection
 Households
 \end_layout
 
 \begin_layout Standard
-See 0d - steady state - households.ipynb.
+See 0c - steady state - households.ipynb.
 \end_layout
 
 \begin_layout Enumerate
@@ -3646,8 +3648,8 @@ Mortality and population: First, a function for creating an interactive
 \begin_inset Newline newline
 \end_inset
 
-Reset the demographic structure, such that it will not affect the other
- results.
+Reset the demographic structure (to 4), such that it will not affect the
+ other results.
 \end_layout
 
 \begin_layout Enumerate
@@ -3674,8 +3676,11 @@ mployment levels are plotted.
 \begin_inset Newline newline
 \end_inset
 
-Reset the demographic structure and household search, such that it will
- not affect the other results.
+Reset the demographic structure and household search (
+\begin_inset Formula $\delta_{a}^{L}=0.1$
+\end_inset
+
+), such that it will not affect the other results.
 \end_layout
 
 \begin_layout Enumerate
@@ -3787,6 +3792,44 @@ Test household blocks: The solution variables are set to their steady state
  The search and matching block and the household consumption behavior are
  evaluated, and it is checked that all variables remain at their steady
  state levels.
+\end_layout
+
+\begin_layout Subsection
+Aggregates
+\end_layout
+
+\begin_layout Standard
+See 0d - steady state - aggregate.ipynb
+\end_layout
+
+\begin_layout Enumerate
+Setup: An instance of the baseline model is created named 
+\begin_inset Quotes ald
+\end_inset
+
+model
+\begin_inset Quotes ard
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Find steady steady: The steady state values are found and printed.
+ In addition, steady state are compared to historical averages from the
+ data.
+\end_layout
+
+\begin_layout Enumerate
+Speed and error tests: The exogenous and unknown steady state variables
+ are specified.
+ The blocks are evaluated using python evaluation, and it is verified that
+ all targets are zero.
+ Next, the blocks are evaluated using numba evaluation.
+ The initial evaluation is slower when using numba, but subsequent evaluations
+ are much faster than python evaluations.
+ 
 \end_layout
 
 \begin_layout Section

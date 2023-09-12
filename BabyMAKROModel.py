@@ -568,7 +568,7 @@ class BabyMAKROModelClass(EconModelClass):
     # basic figures #
     #################
 
-    def plot_IRF(self,varlist,ncol=3,T_IRF=60, abs = None,Y_share = None):
+    def plot_IRF(self,varlist,ncol=3,T_IRF=25, abs = None,Y_share = None):
         """ plot IRFs """
 
         if abs is None:
