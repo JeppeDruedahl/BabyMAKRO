@@ -349,6 +349,25 @@ class BabyMAKROModelClass(EconModelClass):
         # d. allocate solution
         self.allocate_sol()
 
+        # e. labels
+        self.labels = {varname:varname for varname in self.varlist}
+        self.labels['Y'] =  'Output'
+        self.labels['G'] =  'Government Spending'
+        self.labels['C'] =  'Consumption'
+        self.labels['I'] =  'Investments'
+        self.labels['X'] =  'Exports'
+        self.labels['chi'] =  'Foreign Demand'
+        self.labels['P_F'] =  'Foreign Prices'
+        self.labels['r_hh'] =  'Foreign Interest rate'
+        self.labels['P_X'] =  'Export Prices'
+        self.labels['P_Y'] =  'Domestic Prices'
+        self.labels['P_C'] =  'Consumption Prices'
+        self.labels['real_W'] =  'Real Wages'
+        self.labels['U'] =  'Unemployment Rate'
+        
+
+
+
     def allocate_sol(self,ncol=1):
         """ allocate solution """
 
