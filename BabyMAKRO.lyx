@@ -3536,14 +3536,10 @@ Data
 See 0b - steady state - data.ipynb.
 \end_layout
 
-\begin_layout Enumerate
-Download data: Data from Statistics Denmark is downloaded through DstApi
- to calibrate the steady state.
-\end_layout
-
-\begin_layout Enumerate
-National account: Data for the national accounts used to calculate the historica
-l average ratios of 
+\begin_layout Standard
+The model's steady state is compared to data from Statistics Denmark which
+ is pulled in 0b - steady state - data.ipynb.
+ The ratios of 
 \begin_inset Formula $M_{t}$
 \end_inset
 
@@ -3567,34 +3563,90 @@ l average ratios of
 \begin_inset Formula $Y_{t}$
 \end_inset
 
-.
+ from the national accounts data are used for the comparison with the model's
+ steady state.
+ The employment and unemployment rates, and the capital stock relative to
+ output are also compared to the model.
+ The steady state ratios from the data are assumed to be given by the historical
+ averages.
+ Data for income and wealth over the life-cycle is used to calibrate the
+ steady state life-cycle income profile and wealth-income ratio using estimates
+ from the regression:
 \end_layout
 
-\begin_layout Enumerate
-Capital, employment and pouplation: Data for capital, employment and population
- used to calculate the historical averages of capital and employment rate.
-\end_layout
-
-\begin_layout Enumerate
-Unemployment rate: Data for the unemployment rate used to calculate the
- historical average.
-\end_layout
-
-\begin_layout Enumerate
-Steady state aggreate: Historical averages of the variables above.
-\end_layout
-
-\begin_layout Enumerate
-Income and wealth over life-cycle: Data for historical averages of income
- and wealth over the life-cycle.
- The regression below is perfomed to seperate time and life-cycle effects
- on income.
- The data and estimates are then used to calibrate the steady state life-cycle
- income profile and wealth-income ratio.
+\begin_layout Standard
 \begin_inset Formula 
 \[
 \text{inc}_{a,t}=\text{birth year}_{a}+\rho_{1}\text{age}_{a,t}+\rho_{2}\text{age}_{a,t}^{2}+\epsilon_{a,t}
 \]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/Life_cycle_income.png
+	width 35page%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/Life_cycle_income_cohort.png
+	width 35page%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Figure 1.
+ Data Points and Estimates used for Income Callibration
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
 
 \end_inset
 
@@ -3609,102 +3661,80 @@ Households
 See 0c - steady state - households.ipynb.
 \end_layout
 
-\begin_layout Enumerate
-Setup: An instance of the baseline model is created named 
-\begin_inset Quotes ald
-\end_inset
-
-model
-\begin_inset Quotes ard
-\end_inset
-
-.
- The parameters, steady state and solution namespaces are set.
- 
+\begin_layout Standard
+The household's employment status and consumption-saving behaviour in steady
+ state is derived and plotted in 0c - steady state - households.ipynb.
+ The resulting household income and wealth income ratio is compared to the
+ historical data (shown in figure 2).
 \end_layout
 
-\begin_layout Enumerate
-Mortality and population: First, a function for creating an interactive
- plot is defined, where it is possible to adjust the power of the mortality
- rate 
-\begin_inset Formula $\zeta_{a}$
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/data_model_income_comparison.png
+	width 70page%
+
 \end_inset
 
-.
- Then, figures showing the mortality rate and the population are plotted.
- The average life expectancy is increasing in the power of 
-\begin_inset Formula $\zeta_{a}$
-\end_inset
 
-, as this implies a lower mortality rate for all 
-\begin_inset Formula $a<\#$
-\end_inset
-
-.
- In the extreme case where the power is approaching infinity, everybody
- dies in the last period, and in the opposite case where the power is 0,
- everybody dies in the first period after retirement.
- 
-\begin_inset Newline newline
-\end_inset
-
-Reset the demographic structure (to 4), such that it will not affect the
- other results.
 \end_layout
 
-\begin_layout Enumerate
-Labor supply: Using the job-finding rate, it is possible to find the household
- search behavior in steady state.
- A function for an interactive figure is defined, where it is possible to
- adjust the separation rate, 
-\begin_inset Formula $\delta_{a}^{L}$
 \end_inset
+</cell>
+<cell multicolumn="2" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
 
-.
- Figures for the separation rate, the number of searchers and the employment/une
-mployment levels are plotted.
- The separation rate is constant throughout the work life period, and a
- higher separation rate implies more workers loss their job; thus, they
- become unemployed and search for a new job.
- In the extreme case where the separation rate is 1, all workers loss their
- job at the end; all workers search for a new job.
- As such, the employment level will be equal to the job-finding rate, 
-\begin_inset Formula $m^{s}$
-\end_inset
+\begin_layout Plain Layout
 
-.
-\begin_inset Newline newline
-\end_inset
-
-Reset the demographic structure and household search (
-\begin_inset Formula $\delta_{a}^{L}=0.1$
-\end_inset
-
-), such that it will not affect the other results.
 \end_layout
 
-\begin_layout Enumerate
-Consumption-saving: Using the required inputs, its is possible to find the
- household consumption and savings behavior.
- The age-specific income, consumption and savings are plotted for the Ricardian
- and HtM households together with the aggregations.
- The income and saving profiles is compared to historical data.
- The Ricardian households smooth their consumption, while the HtM consume
- all their income in every period.
- The aggregated consumption and savings are a weighted average determined
- by the share of each type, 
-\begin_inset Formula $\lambda$
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Figure 2.
+ Icome and Savings Comparison
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
 \end_inset
 
-.
+
 \end_layout
 
-\begin_layout Enumerate
-Varying central inputs: A function for comparing to models is defined, which
- plots the income, consumption and savings for varying inputs:
+\begin_layout Standard
+The notebook then compares model outcomes when certain paramterers are changed,
+ as an intuitive check of the model's behaviour:
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 \begin_inset Formula $A_{ss}^{q}$
 \end_inset
@@ -3785,15 +3815,6 @@ Varying central inputs: A function for comparing to models is defined, which
  will smooth consumption more.
 \end_layout
 
-\end_deeper
-\begin_layout Enumerate
-Test household blocks: The solution variables are set to their steady state
- value, and the model is set to be in steady state.
- The search and matching block and the household consumption behavior are
- evaluated, and it is checked that all variables remain at their steady
- state levels.
-\end_layout
-
 \begin_layout Subsection
 Aggregates
 \end_layout
@@ -3802,34 +3823,334 @@ Aggregates
 See 0d - steady state - aggregate.ipynb
 \end_layout
 
-\begin_layout Enumerate
-Setup: An instance of the baseline model is created named 
-\begin_inset Quotes ald
-\end_inset
-
-model
-\begin_inset Quotes ard
-\end_inset
-
-.
- 
+\begin_layout Standard
+The model's steady state is computed and the agregate ratios are compared
+ to those found in the data: 
 \end_layout
 
-\begin_layout Enumerate
-Find steady steady: The steady state values are found and printed.
- In addition, steady state are compared to historical averages from the
- data.
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Table 1.
+ Comparison of Aggregate Steady State Ratios
 \end_layout
 
-\begin_layout Enumerate
-Speed and error tests: The exogenous and unknown steady state variables
- are specified.
- The blocks are evaluated using python evaluation, and it is verified that
- all targets are zero.
- Next, the blocks are evaluated using numba evaluation.
- The initial evaluation is slower when using numba, but subsequent evaluations
- are much faster than python evaluations.
- 
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $M/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.42
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.46
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $X/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.29
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.52
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $C/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.62
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.47
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $G/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.25
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $I/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.22
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $K/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.56
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.44
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Employment to population ratio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.72
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.74
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Unemployment rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.67
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.93
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section

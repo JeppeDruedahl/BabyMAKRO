@@ -192,9 +192,9 @@ class BabyMAKROModelClass(EconModelClass):
         par.T = 400 # number of time-periods
         
         # a. households
-        par.age_ini = 22 # initial age in model
-        par.life_span = 56 # maximum life-span
-        par.work_life_span = 45 # work-life-span
+        par.age_ini = 25 # initial age in model
+        par.life_span = 65 # maximum life-span
+        par.work_life_span = 43 # work-life-span
         par.zeta = 4.0 # mortality parameter (-> inf then everybody dies in last period)
         par.Lambda = 0.30 # share of hands-to-mouth households
 
