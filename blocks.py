@@ -130,17 +130,17 @@ def search_and_match(par,ini,ss,sol):
     LH_a = sol.LH_a
     L_ubar = sol.L_ubar
     L_ubar_a = sol.L_ubar_a
-    LH_ubar_a = sol.LH_ubar_a
     m_s = sol.m_s
     m_v = sol.m_v
     S = sol.S
     S_a = sol.S_a
-    SH_a = sol.SH_a
+    x_a = sol.x_a
     U = sol.U
     U_a = sol.U_a
     v = sol.v
+    H_a = sol.H_a
 
-    # evaluations
+   # evaluations
     for t in range(par.T):
         
         # a. lagged employment
@@ -149,24 +149,26 @@ def search_and_match(par,ini,ss,sol):
         # b. searchers and employed before matching
         S[t] = 0
         L_ubar[t] = 0
+    
 
         S_a[0,t] = 1.0
-        SH_a[0,t] = 1.0
         L_ubar_a[0,t] = 0.0
-        LH_ubar_a[0,t] = 0.0
+        x_a[0,t] = 0
+        
 
         S_a[par.work_life_span:,t] = 0.0
-        SH_a[par.work_life_span:,t] = 0.0
         L_ubar_a[par.work_life_span:,t] = 0.0
-        LH_ubar_a[par.work_life_span:,t] = 0.0
+        x_a[par.work_life_span:,t] = 0.0
+
             
         for a in range(1,par.work_life_span):
             L_a_lag = prev_period(L_a[a-1],t,ini.L_a[a-1])
-            LH_a_lag = prev_period(LH_a[a-1],t,ini.LH_a[a-1])
+            x_a_lag = prev_period(x_a[a-1],t,ini.x_a[a-1])
+
             S_a[a,t] = (1-par.zeta_a[a])*((par.N_a[a-1]-L_a_lag) + par.delta_L_a[a]*L_a_lag)
-            SH_a[a,t] = (1-par.zeta_a[a])*((par.NH_a[a-1]-LH_a_lag) + par.delta_L_a[a]*LH_a_lag)
             L_ubar_a[a,t] = (1-par.zeta_a[a])*((1-par.delta_L_a[a])*L_a_lag)
-            LH_ubar_a[a,t] = (1-par.zeta_a[a])*((1-par.delta_L_a[a])*LH_a_lag)
+            x_a[a,t] = x_a_lag + (L_a_lag/par.N_a[a-1])**par.Phi * (ss.L_a[a-1]/par.N_a[a-1])**(1-par.Phi)
+        H_a = 1 + par.rho_1*x_a - par.rho_2*x_a**2
 
         S[t] = 0.0
         L_ubar[t] = 0.0
@@ -188,7 +190,7 @@ def search_and_match(par,ini,ss,sol):
         for a in range(par.life_span):
 
             L_a[a,t] = L_ubar_a[a,t] + m_s[t]*S_a[a,t]
-            LH_a[a,t] = LH_ubar_a[a,t] + m_s[t]*SH_a[a,t]*par.H_a[a]
+            LH_a[a,t] = L_a[a,t]*H_a[a,t]
 
             if a < par.work_life_span:
                 U_a[a,t] = par.N_a[a] - sol.L_a[a,t]

@@ -177,11 +177,12 @@ class BabyMAKROModelClass(EconModelClass):
             'L_a',
             'LH_a',
             'L_ubar_a',
-            'LH_ubar_a',
             'S_a',
             'SH_a',
             'U_a',
             'W_a',
+            'x_a',
+            'H_a'
         ]
 
     def setup(self):
@@ -210,6 +211,7 @@ class BabyMAKROModelClass(EconModelClass):
 
         par.rho_1 = 0.09 # human capital - linear growth
         par.rho_2 = 0.0018 # human capital - curvature
+        par.Phi = 0.6 #Experience effect vs age effect Human capitol
 
         # b. production firm and phillips curve
         par.r_firm = 0.02 # internal (nominal) rate of return
@@ -271,15 +273,7 @@ class BabyMAKROModelClass(EconModelClass):
             else:
                 par.zeta_a[a] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**par.zeta
 
-    def human_capital(self):
-        """ calculate human capital as function of age """
 
-        par = self.par
-
-        par.H_a = np.zeros(par.life_span)
-
-        for a in range(par.life_span):
-            par.H_a[a] = 1 + par.rho_1*a - par.rho_2*a**2
 
     def demographic_structure(self):
         """ calculate demographic structure """
@@ -289,18 +283,16 @@ class BabyMAKROModelClass(EconModelClass):
         par.N_a = np.zeros(par.life_span)
         par.N_a[0] = 1.0 # normalization
 
-        par.NH_a = np.zeros(par.life_span)
-        par.NH_a[0] = 1.0 # normalization
+
              
         for a in range(1,par.life_span):
             par.N_a[a] = (1-par.zeta_a[a-1])*par.N_a[a-1]
-            par.NH_a[a] = (1-par.zeta_a[a-1])*par.N_a[a-1]*par.H_a[a-1]
+            
                     
         par.N = np.sum(par.N_a)
         par.N_work = np.sum(par.N_a[:par.work_life_span])
 
-        par.NH = np.sum(par.NH_a)
-        par.NH_work = np.sum(par.NH_a[:par.work_life_span])
+
 
     def job_separation_rate(self):
         """ calcualte job-sepration rate by age """
@@ -321,9 +313,6 @@ class BabyMAKROModelClass(EconModelClass):
         
         # mortality
         self.mortality()
-
-        # human capital
-        self.human_capital() 
 
         # demographic structure
         self.demographic_structure()    
@@ -587,7 +576,7 @@ class BabyMAKROModelClass(EconModelClass):
     # basic figures #
     #################
 
-    def plot_IRF(self,varlist,ncol=3,T_IRF=25, abs = None,Y_share = None):
+    def plot_IRF(self,varlist,ncol=3,T_IRF= 60, abs = None,Y_share = None):
         """ plot IRFs """
 
         if abs is None:
