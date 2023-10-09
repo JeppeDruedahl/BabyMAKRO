@@ -2357,7 +2357,7 @@ Job-filling rate:
 status open
 
 \begin_layout Plain Layout
-Effective searchers and employment
+Effective employment
 \end_layout
 
 \end_inset
@@ -2369,52 +2369,32 @@ Effective searchers and employment
 \begin_layout Itemize
 
 \series bold
-Human capital: 
-\begin_inset Formula $H_{a}=\rho_{1}\cdot a-\rho_{2}\cdot a^{2}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Effective searchers:
+Human capital:
 \series default
- 
-\end_layout
-
-\end_deeper
-\begin_layout Frame
-\begin_inset Formula 
-\[
-S_{a,t}^{H}=\begin{cases}
-1 & \text{if }a=0\\
-(1-\zeta_{a-1})\left[(N_{a-1}^{H}-L_{a-1,t-1}^{H})+\delta_{a}^{L}L_{a-1,t-1}^{H}\right] & \text{if }a<\#_{\text{work}}\\
-0 & \text{if }a\geq\#_{\text{work}}
-\end{cases}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-Effective employment 
-\series default
-(before and after matching):
+ (Gained form work experience)
 \begin_inset Formula 
 \begin{align*}
-\underline{L}_{a,t}^{H} & =\begin{cases}
+H_{a,t}= & 1+\rho_{1}\cdot x_{a,t}-\rho_{2}\cdot x_{a,t}^{2}\\
+x_{a,t} & =\begin{cases}
 0 & \text{if }a=0\\
-(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1}^{H} & \text{if }a<\#_{\text{work}}\\
-0 & \text{if }a\geq\#_{\text{work}}
-\end{cases}\\
-L_{a,t}^{H} & =\underline{L}_{a,t}^{H}+m_{t}^{s}S_{a,t}^{H}H_{a}.
+x_{a-1,t-1}+\left(\frac{L_{a-1,t-1}}{N_{a-1}}\right)^{\Phi}\left(\frac{L_{a-1,ss}}{N_{a-1}}\right)^{1-\Phi} & \text{else}
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Effective employment:
+\series default
+
+\begin_inset Formula 
+\begin{align*}
+L_{a,t}^{H} & =L_{a,t}H_{a,t}
 \end{align*}
 
 \end_inset

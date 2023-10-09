@@ -1523,15 +1523,39 @@ In equilibrium, the number of matches must equal the number of new hires,
 
 \begin_layout Standard
 It is assumed that the households accumulate human capital as a function
- of their age
+ of their working experience, wich is partly cohort specific and partly
+ steady state driven
 \begin_inset Formula 
 \begin{align*}
-H_{a,t} & =\rho_{1}\cdot x_{a,t}-\rho_{2}\cdot x_{a,t}^{2}\\
+H_{a,t} & =1+\rho_{1}\cdot x_{a,t}-\rho_{2}\cdot x_{a,t}^{2}\\
 x_{a,t} & =\begin{cases}
 0 & \text{if }a=0\\
-x_{a-1,t-1}+\frac{L_{a-1,t-1}}{N_{a-1}} & \text{else}
+x_{a-1,t-1}+\left(\frac{L_{a-1,t-1}}{N_{a-1}}\right)^{\Phi}\left(\frac{L_{a-1,ss}}{N_{a-1}}\right)^{1-\Phi} & \text{else}
 \end{cases}
 \end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The amount of human capital affects the 
+\shape slanted
+effective
+\shape default
+ employment in cohort
+\shape slanted
+ a 
+\shape default
+such that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L_{a,t}^{H}=L_{a,t}H_{a,t}
+\]
 
 \end_inset
 
@@ -1622,7 +1646,7 @@ S_{a,t} & =\begin{cases}
 \end{cases}\label{eq:Lubar_a}\\
 x_{a,t} & =\begin{cases}
 0 & \text{if }a=0\\
-x_{a-1,t-1}+\left(\frac{L_{a-1,t-1}}{N_{a-1}}\right)^{\Phi}\left(\frac{L_{a,ss}}{N_{a-1}}\right)^{1-\Phi} & \text{else}
+x_{a-1,t-1}+\left(\frac{L_{a-1,t-1}}{N_{a-1}}\right)^{\Phi}\left(\frac{L_{a-1,ss}}{N_{a-1}}\right)^{1-\Phi} & \text{else}
 \end{cases}\label{eq:x}\\
 H_{a,t} & =1+\rho_{1}\cdot x_{a,t}-\rho_{2}\cdot x_{a,t}^{2}\label{eq:H}\\
 S_{t} & =\sum_{a=0}^{\#-1}S_{a,t}\label{eq:S}\\
@@ -1640,7 +1664,7 @@ m_{t}^{s} & =\frac{\mathcal{M}_{t}}{S_{t}}\label{eq:m_s}\\
 v_{t} & =\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}\label{eq:v}\\
 m_{t}^{v} & =\frac{\mathbb{\mathcal{M}}_{t}}{v_{t}}\label{eq:m_v}\\
 L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}\label{eq:L_a}\\
-L_{a,t}^{H} & =H_{a,t}L_{a,t}\\
+L_{a,t}^{H} & =L_{a,t}H_{a,t}\\
 U_{a,t} & =\begin{cases}
 N_{a}-L_{a,t} & \text{if }a<\#_{\text{work}}\\
 0 & \text{if }a\geq\#_{\text{work}}
@@ -2788,7 +2812,7 @@ Calculate
 \begin_inset Formula 
 \begin{align}
 \pi_{t}^{hh} & =\frac{P_{t}^{C}}{P_{t-1}^{C}}-1\label{eq:pi_hh}\\
-\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\label{eq:inc_a}\\
+\text{inc}_{a,t} & =\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}^{H}}{N_{a}}+\left(1-\tau_{t}\right)W^{U}W_{ss}\frac{U_{a,t}}{N_{a}}+\left(1-\tau_{t}\right)W^{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{t}^{q}}{N}\label{eq:inc_a}\\
 C_{a,t}^{\text{HtM}} & =\frac{\text{inc}_{a,t}}{P_{t}^{C}}\label{eq:C_HtM}\\
 A_{a,t}^{\text{HtM}} & =0.\label{eq:A_HtM}
 \end{align}
@@ -3232,23 +3256,18 @@ S_{a,ss} & =\begin{cases}
 (1-\zeta_{a-1})\left[(N_{a-1}-L_{a-1,ss})+\delta_{a}^{L}L_{a-1,ss}\right] & \text{if }a<\#_{\text{work}}\\
 0 & \text{else}
 \end{cases}\\
-S_{a,ss}^{H} & =\begin{cases}
-1 & \text{if }a=0\\
-(1-\zeta_{a-1})\left[(N_{a-1}^{H}-L_{a-1,ss}^{H})+\delta_{a}^{L}L_{a-1,ss}^{H}\right] & \text{if }a<\#_{\text{work}}\\
-0 & \text{if }a\geq\#_{\text{work}}
-\end{cases}\\
 \underline{L}_{a,ss} & =\begin{cases}
 0 & \text{if }a=0\\
 (1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,ss} & \text{if }a<\#_{\text{work}}\\
 0 & \text{else}
 \end{cases}\\
-\underline{L}_{a,ss}^{H} & =\begin{cases}
+x_{a,ss} & =\begin{cases}
 0 & \text{if }a=0\\
-(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,ss}^{H} & \text{if }a<\#_{\text{work}}\\
-0 & \text{if }a\geq\#_{\text{work}}
+x_{a-1,ss}+\frac{L_{a-1,ss}}{N_{a-1}} & \text{else}
 \end{cases}\\
+H_{a,ss} & =1+\rho_{1}\cdot x_{a,ss}-\rho_{2}\cdot x_{a,ss}^{2}\\
 L_{a,ss} & =\underline{L}_{a,ss}+m_{ss}^{s}S_{a,ss}\\
-L_{a,ss}^{H} & =\underline{L}_{a,ss}^{H}+m_{ss}^{s}S_{a,ss}^{H}H_{a}
+L_{a,ss}^{H} & =L_{a,ss}H_{a,ss}
 \end{align*}
 
 \end_inset
@@ -3388,7 +3407,7 @@ Guess on
  Find the consumption of Ricardian households and their assets backwards.
 \begin_inset Formula 
 \begin{align*}
-\text{inc}_{a,ss} & =\left(1-\tau_{ss}\right)W_{ss}\frac{L_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W_{U}W_{ss}\frac{U_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W_{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{ss}^{q}}{N}\\
+\text{inc}_{a,ss} & =\left(1-\tau_{ss}\right)W_{ss}\frac{L_{a,ss}^{H}}{N_{a}}+\left(1-\tau_{ss}\right)W_{U}W_{ss}\frac{U_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W_{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{ss}^{q}}{N}\\
 C_{a,ss}^{\text{HtM}} & =\frac{\text{inc}_{a,ss}}{P_{ss}^{C}}\\
 A_{a,ss}^{\text{HtM}} & =0\\
 C_{a,ss}^{R} & =\begin{cases}
