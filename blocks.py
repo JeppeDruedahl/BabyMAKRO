@@ -139,6 +139,7 @@ def search_and_match(par,ini,ss,sol):
     U_a = sol.U_a
     v = sol.v
     H_a = sol.H_a
+    LH = sol.LH
 
    # evaluations
     for t in range(par.T):
@@ -191,6 +192,7 @@ def search_and_match(par,ini,ss,sol):
 
             L_a[a,t] = L_ubar_a[a,t] + m_s[t]*S_a[a,t]
             LH_a[a,t] = L_a[a,t]*H_a[a,t]
+            LH[t] += par.N_a[a]*LH_a[a,t]
 
             if a < par.work_life_span:
                 U_a[a,t] = par.N_a[a] - sol.L_a[a,t]
@@ -208,13 +210,14 @@ def labor_agency(par,ini,ss,sol):
     m_v = sol.m_v
     v = sol.v
     W = sol.W
+    LH = sol.LH
 
     # outputs
     ell = sol.ell
     r_ell = sol.r_ell
     
     # evaluations
-    ell[:] = L-par.kappa_L*v
+    ell[:] = LH-par.kappa_L*v
 
     for k in range(par.T):
 
@@ -343,6 +346,7 @@ def government(par,ini,ss,sol):
     P_G = sol.P_G
     U = sol.U
     W = sol.W
+    LH = sol.LH
 
     # outputs
     B = sol.B
@@ -354,7 +358,7 @@ def government(par,ini,ss,sol):
         B_lag = prev_period(B,t,ini.B)
         
         expenditure = par.r_b*B_lag + P_G[t]*G[t] + par.W_U*ss.W*U[t] + par.W_R*ss.W*(par.N-par.N_work)
-        taxbase =  W[t]*L[t] + par.W_U*ss.W*U[t] + par.W_R*ss.W*(par.N-par.N_work)
+        taxbase =  W[t]*LH[t] + par.W_U*ss.W*U[t] + par.W_R*ss.W*(par.N-par.N_work)
 
         B_tilde = B_lag + expenditure - ss.tau*taxbase
         tau[t] = ss.tau + par.epsilon_B*(B_tilde-ss.B)/taxbase
@@ -370,6 +374,7 @@ def household_income(par,ini,ss,sol):
     tau = sol.tau
     U_a = sol.U_a
     W = sol.W
+    L_a = sol.L_a
 
     # outputs
     inc_a = sol.inc_a

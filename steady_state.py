@@ -132,6 +132,7 @@ def household_search_ss(par,ss):
     ss.S = np.sum(par.N_a*ss.S_a)
     ss.L_ubar = np.sum(par.N_a*ss.L_ubar_a)
     ss.L = np.sum(par.N_a*ss.L_a)
+    ss.LH = np.sum(par.N_a*ss.LH_a)
     ss.U = np.sum(par.N_a*ss.U_a)
 
 def find_ss(model,do_print=True):
@@ -200,11 +201,11 @@ def find_ss(model,do_print=True):
     # f. labor agency FOC
     ss.r_ell = ss.W / (1-par.kappa_L/ss.m_v + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
     ss.real_r_ell = ss.r_ell/ss.P_Y
-    ss.ell = ss.L - par.kappa_L*ss.v
+    ss.ell = ss.LH - par.kappa_L*ss.v
 
     if do_print: 
         print(Fonttype.HEADER + 'Labor agency FOC:' + Fonttype.END)
-        print(f'{ss.r_ell = :.2f}, {(ss.L-ss.ell)/par.N_work*100 = :.2f}')
+        print(f'{ss.r_ell = :.2f}, {(ss.LH-ss.ell)/par.N_work*100 = :.2f}')
     
     # g. production firm & phillips-curve
     ss.P_Y_0 = ss.P_Y/(1+par.theta)
@@ -229,7 +230,7 @@ def find_ss(model,do_print=True):
 
     # i. government
     ss.G = par.G_share_ss*ss.Y
-    ss.tau = (par.r_b*ss.B+ss.P_G*ss.G+par.W_U*ss.U*ss.W+par.W_R*ss.W*(par.N-par.N_work))/(ss.W*ss.L+par.W_U*ss.U*ss.W+par.W_R*ss.W*(par.N-par.N_work))     
+    ss.tau = (par.r_b*ss.B+ss.P_G*ss.G+par.W_U*ss.U*ss.W+par.W_R*ss.W*(par.N-par.N_work))/(ss.W*ss.LH+par.W_U*ss.U*ss.W+par.W_R*ss.W*(par.N-par.N_work))     
 
     if do_print: 
         print(Fonttype.HEADER + 'Government:' + Fonttype.END)

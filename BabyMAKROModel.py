@@ -124,6 +124,7 @@ class BabyMAKROModelClass(EconModelClass):
             'K_ratio',
             'L_ubar',
             'L',
+            'LH',
             'L_ratio',
             'm_s',
             'm_v',
@@ -222,7 +223,7 @@ class BabyMAKROModelClass(EconModelClass):
         par.gamma = 50.0 # price adjustment costs
 
         # c. labor agency
-        par.kappa_L = 0.05 # cost of vancies in labor units
+        par.kappa_L = 0.05 # 0.05 cost of vancies in labor units
 
         # d. capital agency
         par.Psi_0 = 5.0 # adjustment costs
