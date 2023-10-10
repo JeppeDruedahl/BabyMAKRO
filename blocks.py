@@ -232,6 +232,7 @@ def labor_agency(par,ini,ss,sol):
 
         r_ell[t] = fac*(W[t]-term)
     
+    
 @nb.njit
 def production_firm(par,ini,ss,sol):
 
@@ -256,6 +257,11 @@ def production_firm(par,ini,ss,sol):
     P_Y_0[:] = CES_P(r_K,r_ell,par.mu_K,par.sigma_Y,Gamma=Gamma)
 
     FOC_K_ell[:] = K_lag/ell - par.mu_K/(1-par.mu_K)*(r_ell/r_K)**par.sigma_Y
+
+    print(ell[0])
+    print(r_ell[0])
+    print(Y[0])
+    
 
 @nb.njit
 def phillips_curve(par,ini,ss,sol):

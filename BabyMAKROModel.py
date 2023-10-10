@@ -210,8 +210,8 @@ class BabyMAKROModelClass(EconModelClass):
 
         par.delta_L_a_fac = 0.10 # age-specific separation rate (common)
 
-        par.rho_1 = 0.09 # human capital - linear growth
-        par.rho_2 = 0.0018 # human capital - curvature
+        par.rho_1 = 0.09 #human capital - linear growth
+        par.rho_2 = 0.0018 #human capital - curvature
         par.Phi = 0.6 #Experience effect vs age effect Human capitol
 
         # b. production firm and phillips curve
