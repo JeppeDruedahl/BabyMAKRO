@@ -134,6 +134,7 @@ def household_search_ss(par,ss):
     ss.L = np.sum(par.N_a*ss.L_a)
     ss.LH = np.sum(par.N_a*ss.LH_a)
     ss.U = np.sum(par.N_a*ss.U_a)
+    ss.H = ss.LH/ss.L
 
 def find_ss(model,do_print=True):
 
@@ -199,7 +200,7 @@ def find_ss(model,do_print=True):
         print(f'{ss.r_K = :.2f}')
     
     # f. labor agency FOC
-    ss.r_ell = ss.W / (1-par.kappa_L/ss.m_v + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
+    ss.r_ell = ss.W / (1-par.kappa_L/(ss.m_v*ss.H) + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/(ss.m_v*ss.H))
     ss.real_r_ell = ss.r_ell/ss.P_Y
     ss.ell = ss.LH - par.kappa_L*ss.v
 

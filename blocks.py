@@ -140,6 +140,7 @@ def search_and_match(par,ini,ss,sol):
     v = sol.v
     H_a = sol.H_a
     LH = sol.LH
+    H = sol.H
 
    # evaluations
     for t in range(par.T):
@@ -189,11 +190,13 @@ def search_and_match(par,ini,ss,sol):
         # e. emplolyment and unemployment
         U[t] = 0.0
         LH[t] = 0.0
+        
         for a in range(par.life_span):
 
             L_a[a,t] = L_ubar_a[a,t] + m_s[t]*S_a[a,t]
             LH_a[a,t] = L_a[a,t]*H_a[a,t]
             LH[t] += par.N_a[a]*LH_a[a,t]
+        
 
             if a < par.work_life_span:
                 U_a[a,t] = par.N_a[a] - sol.L_a[a,t]
@@ -201,6 +204,7 @@ def search_and_match(par,ini,ss,sol):
                 U_a[a,t] = 0.0
 
             U[t] += par.N_a[a]*U_a[a,t]
+        H[t] = LH[t]/L[t]
 
 @nb.njit
 def labor_agency(par,ini,ss,sol):
@@ -212,6 +216,7 @@ def labor_agency(par,ini,ss,sol):
     v = sol.v
     W = sol.W
     LH = sol.LH
+    H = sol.H
 
     # outputs
     ell = sol.ell
@@ -227,9 +232,10 @@ def labor_agency(par,ini,ss,sol):
         r_ell_plus = next_period(r_ell,t,ss.r_ell)
         delta_L_plus = next_period(delta_L,t,ss.delta_L)
         m_v_plus = next_period(m_v,t,ss.m_v)
+        H_plus = next_period(H,t,ss.H)
         
-        fac = 1/(1-par.kappa_L/m_v[t])
-        term = r_ell_plus*(1-delta_L_plus)/(1+par.r_firm)*par.kappa_L/m_v_plus
+        fac = 1/(1-par.kappa_L/(m_v[t]*H[t]))
+        term = r_ell_plus*(1-delta_L_plus)/(1+par.r_firm)*par.kappa_L/(m_v_plus*H_plus)
 
         r_ell[t] = fac*(W[t]-term)
     

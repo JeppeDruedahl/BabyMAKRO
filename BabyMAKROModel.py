@@ -164,6 +164,7 @@ class BabyMAKROModelClass(EconModelClass):
             'X',
             'X_ratio',
             'Y',
+            'H',
         ]
 
         # all household variables
@@ -212,7 +213,7 @@ class BabyMAKROModelClass(EconModelClass):
 
         par.rho_1 = 0.09 #human capital - linear growth
         par.rho_2 = 0.0018 #human capital - curvature
-        par.Phi = 0.6 #Experience effect vs age effect Human capitol
+        par.Phi = 0.6 #Experience effect vs age effect Human capital
 
         # b. production firm and phillips curve
         par.r_firm = 0.02 # internal (nominal) rate of return

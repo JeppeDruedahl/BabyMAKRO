@@ -1,22 +1,22 @@
 import time
 import numpy as np
 
-def check_convergence(y,tol=1e-10,do_print=False,model=None):
+def check_convergence(y,tol=1e-8,do_print=False,model=None):
 
     abs_diff = np.max(np.abs(y))
-    #if do_print and abs_diff<tol: 
+    if do_print and abs_diff<tol: 
         
-    print(f'\n    max. abs. error = {abs_diff:8.2e}')
+        print(f'\n    max. abs. error = {abs_diff:8.2e}')
 
-    if not model is None:
+        if not model is None:
 
-        for target in model.targets:
-            errors = model.sol.__dict__[target]
-            print(f'    {np.max(np.abs(errors)):8.2e} in {target}')
+            for target in model.targets:
+                errors = model.sol.__dict__[target]
+                print(f'    {np.max(np.abs(errors)):8.2e} in {target}')
 
     return abs_diff < tol
 
-def broyden_solver(f,x0,jac,tol=1e-10,maxiter=100,do_print=False,model=None):
+def broyden_solver(f,x0,jac,tol=1e-8,maxiter=100,do_print=False,model=None):
     """ numerical equation system solver using the broyden method """
     
     t0 = time.time()
@@ -63,5 +63,3 @@ def broyden_solver(f,x0,jac,tol=1e-10,maxiter=100,do_print=False,model=None):
     else:
 
         raise ValueError(f'no convergence after {maxiter} iterations') 
-    
-
