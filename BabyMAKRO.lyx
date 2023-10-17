@@ -1513,7 +1513,7 @@ In equilibrium, the number of matches must equal the number of new hires,
 
 \begin_layout Standard
 It is assumed that the households accumulate human capital as a function
- of their working experience, wich is partly cohort specific and partly
+ of their working experience, which is partly cohort specific and partly
  steady state driven
 \begin_inset Formula 
 \begin{align*}
@@ -3567,7 +3567,7 @@ The model's steady state is compared to data from Statistics Denmark which
 
 \begin_layout Plain Layout
 Figure 1.
- Data Points and Estimates used for Income Callibration
+ Data Points and Estimates used for Income Calibration
 \end_layout
 
 \end_inset
@@ -3598,7 +3598,7 @@ See 0c - steady state - households.ipynb.
 \end_layout
 
 \begin_layout Standard
-The household's employment status and consumption-saving behaviour in steady
+The household's employment status and consumption-saving behavior in steady
  state is derived and plotted in 0c - steady state - households.ipynb.
  The resulting household income and wealth income ratio is compared to the
  historical data (shown in figure 2).
@@ -3644,7 +3644,7 @@ The household's employment status and consumption-saving behaviour in steady
 
 \begin_layout Plain Layout
 Figure 2.
- Icome and Savings Comparison
+ Income and Savings Comparison
 \end_layout
 
 \end_inset
@@ -3667,8 +3667,8 @@ Figure 2.
 \end_layout
 
 \begin_layout Standard
-The notebook then compares model outcomes when certain paramterers are changed,
- as an intuitive check of the model's behaviour:
+The notebook then compares model outcomes when certain parameters are changed,
+ as an intuitive check of the model's behavior:
 \end_layout
 
 \begin_layout Itemize
@@ -3755,16 +3755,12 @@ The notebook then compares model outcomes when certain paramterers are changed,
 Aggregates
 \end_layout
 
-\begin_layout Subsection
-Aggregates
-\end_layout
-
 \begin_layout Standard
 See 0d - steady state - aggregate.ipynb
 \end_layout
 
 \begin_layout Standard
-The model's steady state is computed and the agregate ratios are compared
+The model's steady state is computed and the aggregate ratios are compared
  to those found in the data: 
 \end_layout
 
@@ -4106,12 +4102,11 @@ name "sec:Shocks"
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
-In this section, we consider a number of shocks to central exogenous variables
- and analyze what happens to all other variables and the convergence back
- to steady state.
+See more shocks in 'More on Shocks'-file, with IRF's for all variables plotted,
+ but no empirical data comparison.
 \end_layout
 
 \begin_layout Subsection
@@ -5866,7 +5861,7 @@ Transition path
 
 \begin_layout Standard
 In this section we consider different shocks to exogenous variables and
- study the dynamics of the model compared to empiricle impulse responses.
+ study the dynamics of the model compared to empirical impulse responses.
  We use data from the report 
 \begin_inset Quotes ald
 \end_inset
@@ -5883,8 +5878,8 @@ Matching af impuls responser og øvrige kortsigtsmomenter: MAKRO ift.
  by DREAM.
  The report contains a foreign demand shock, a government spending shock
  and a foreign interest rate shock.
- We shock these exogenous variables in our model to best match the empiricle
- shocks, and compare the dynamics in the other variables to the empiricle
+ We shock these exogenous variables in our model to best match the empirical
+ shocks, and compare the dynamics of the other variables to the empirical
  impulse responses.
  
 \end_layout
@@ -5992,9 +5987,9 @@ Figure 3.
 
 \begin_layout Standard
 As seen above the model does reasonably well matching the empirical response
- in the national account variables with the exception of investemnts.
- Prices also follow a simmilar path as the empirical IRFs, but are more
- sticky and have a slower convergence back towards steady state.
+ in the national account variables with the exception of investments.
+ Prices also follow a similar path as the empirical IRFs, but are more sticky
+ and have a slower convergence back towards steady state.
  The labor market differs from the empirical response, and shows much larger
  initial fluctuations.
  Real wages rise more than expected and unemployment falls more than expected.
@@ -6154,7 +6149,8 @@ The interest rate channel affects the ricardian households who face an income
  effect and substitution effect.
  The substitution effect dominates in this model leading to lower domestic
  demand and higher savings.
- The lower domestic demand among ricardian houseolds leads to lower consumption,
+ The lower domestic demand among ricardian households leads to lower consumption
+,
 \family roman
 \series medium
 \shape up
@@ -6188,7 +6184,7 @@ The interest rate channel affects the ricardian households who face an income
  This leads to an increase in investments, but the positive effects from
  this channel and the foreign demand channel are dominated by the foreign
  price channel, so investments fall in the model.
- In the data investments initially increase substantialy as a result of
+ In the data investments initially increase substantially as a result of
  the higher demand.
  
 \end_layout
@@ -6285,8 +6281,8 @@ Figure 4.
 \begin_layout Standard
 The model struggles to match the empirical response in prices following
  higher government spending, with the model yielding to low inflation.
- The model mathces the national acount identities and labor market levels
- better, but the responses are to swift and decay faster than seen empiricaly.
+ The model matches the national account identities and labor market levels
+ better, but the responses are to swift and decay faster than seen empirically.
 \begin_inset Newline newline
 \end_inset
 
@@ -6299,7 +6295,7 @@ The government increases real consumption,
 \end_inset
 
 , which implies an increase in the demand for goods.
- The firms increases production to meet the higher demand.
+ The firms increase production to meet the higher demand.
  Since capital is fixed, the production firms can only produce more by hiring
  more labor, 
 \begin_inset Formula $\ell\uparrow$
@@ -6317,8 +6313,8 @@ The government increases real consumption,
 \end_inset
 
 .
- However, this increase is limited due to the stickyness of the output prices,
- and real wages increase.
+ However, this increase is limited due to the stickiness of the output prices,
+ so real wages increase.
  The higher real wage and the higher employment rate imply that the real
  income increases, 
 \begin_inset Formula $\text{inc}^{real}\uparrow$
@@ -6330,7 +6326,7 @@ The government increases real consumption,
 \end_inset
 
 .
- The Ricardian households forsee that the government will raise the tax
+ The Ricardian households foresee that the government will raise the tax
  rate in future periods and in order to smooth their consumption, they choose
  to save up, 
 \begin_inset Formula $A\uparrow$
@@ -6469,8 +6465,8 @@ As with the foreign demand shock, the model matches the empirical responses
  The model is once again affected by a foreign demand channel, a foreign
  price channel, and a foreign interest rate channel.
  All the channels now decreases output, employment, wages and consumption.
- Investments are postive in the model due to lower investment prices, and
- firms expecting higher output in the future.
+ Investments are positive in the model due to lower investment prices, higher
+ real interest rates and firms expecting higher output in the future.
  In the data investments are significantly bellow steady state due to the
  low demand.
 \end_layout

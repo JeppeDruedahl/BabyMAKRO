@@ -3273,7 +3273,7 @@ Post vacancies
 Labor:
 \series default
  Hires 
-\begin_inset Formula $L_{t}$
+\begin_inset Formula $L_{t}^{H}$
 \end_inset
 
  and rent out labor at rental price 
@@ -3297,7 +3297,7 @@ Exogenous match destruction:
 \end_inset
 
  and 
-\begin_inset Formula $L_{a,t-1}$
+\begin_inset Formula $L_{a,t-1}^{H}$
 \end_inset
 
 )
@@ -3323,10 +3323,10 @@ Profit maximization:
 
 \begin_inset Formula 
 \begin{align*}
-V_{0}^{\text{labor}}(L_{t-1})=\max_{\left\{ v_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}\right]\\
+V_{0}^{\text{labor}}(L_{t-1})=\max_{\left\{ v_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}^{H}\right]\\
  & \text{s.t.}\\
-L_{t} & =m_{t}^{v}v_{t}+\left(1-\delta_{t}^{L}\right)L_{t-1}\\
-\ell_{t} & =L_{t}-\kappa^{L}v_{t}.
+L_{t}^{H} & =m_{t}^{v}H_{t}v_{t}+\left(1-\delta_{t}^{L}\right)L_{t-1}^{H}\\
+\ell_{t} & =L_{t}^{H}-\kappa^{L}v_{t}.
 \end{align*}
 
 \end_inset
@@ -3364,7 +3364,7 @@ First order condition:
 
 \begin_inset Formula 
 \begin{align*}
-r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
+r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{H_{t}m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{H_{t+1}m_{t+1}^{v}}\right]
 \end{align*}
 
 \end_inset
@@ -4692,6 +4692,38 @@ status open
 \end_layout
 
 \end_deeper
+\end_deeper
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Impulse-responses model vs data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\begin_inset Graphics
+	filename figs/IRF Government spending.png
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
