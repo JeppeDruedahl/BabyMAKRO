@@ -3,8 +3,8 @@ import time
 import timeit
 import numpy as np
 
-from EconModel import EconModelClass, jit
-from consav import elapsed
+from EconModel import EconModelClass, jit # pip install EconModel
+from consav import elapsed # pip install consav
 
 import matplotlib.pyplot as plt   
 plt.rcParams.update({"axes.grid":True,"grid.color":"black","grid.alpha":"0.25","grid.linestyle":"--"})
@@ -96,12 +96,12 @@ class BabyMAKROModelClass(EconModelClass):
             'Aq_diff',
             'Aq',
             'B',
+            'C_HtM',
             'C_M',
+            'C_R',
+            'C_ratio',
             'C_Y',
             'C',
-            'C_ratio',
-            'C_HtM',
-            'C_R',
             'chi',
             'curlyM',
             'delta_L',
@@ -110,29 +110,29 @@ class BabyMAKROModelClass(EconModelClass):
             'FOC_capital_agency',
             'FOC_K_ell',
             'G_M',
+            'G_ratio',
             'G_Y',
             'G',
-            'G_ratio',
             'Gamma',
+            'H',
             'I_M',
+            'I_ratio',
             'I_Y',
             'I',
-            'I_ratio',
             'inc',
             'iota',
-            'K',
             'K_ratio',
+            'K',
+            'L_ratio',
             'L_ubar',
             'L',
             'LH',
-            'L_ratio',
+            'M_ratio',
             'm_s',
             'm_v',
             'M',
-            'M_ratio',
             'mkt_clearing',            
             'N',
-            'PC',
             'P_C',
             'P_F',
             'P_G',
@@ -142,29 +142,29 @@ class BabyMAKROModelClass(EconModelClass):
             'P_M_I',
             'P_M_X',
             'P_X',
-            'P_Y',
             'P_Y_0',
+            'P_Y',
+            'PC',
             'pi_hh',
             'r_ell',
-            'r_K',
             'r_hh',
+            'r_K',
             'real_Aq',
             'real_inc',
-            'real_r_K',
             'real_r_ell',
-            'real_W',
             'real_r_hh',
+            'real_r_K',
+            'real_W',
             'S',
             'tau',
             'U',
             'v',
             'W',
             'X_M',
+            'X_ratio',
             'X_Y',
             'X',
-            'X_ratio',
             'Y',
-            'H',
         ]
 
         # all household variables
@@ -175,16 +175,16 @@ class BabyMAKROModelClass(EconModelClass):
             'C_a',
             'C_HtM_a',
             'C_R_a',
+            'H_a',
             'inc_a',
             'L_a',
-            'LH_a',
             'L_ubar_a',
+            'LH_a',
             'S_a',
             'SH_a',
             'U_a',
             'W_a',
             'x_a',
-            'H_a'
         ]
 
     def setup(self):
@@ -275,8 +275,6 @@ class BabyMAKROModelClass(EconModelClass):
             else:
                 par.zeta_a[a] = ((a+1-par.work_life_span)/(par.life_span-par.work_life_span))**par.zeta
 
-
-
     def demographic_structure(self):
         """ calculate demographic structure """
         
@@ -293,8 +291,6 @@ class BabyMAKROModelClass(EconModelClass):
                     
         par.N = np.sum(par.N_a)
         par.N_work = np.sum(par.N_a[:par.work_life_span])
-
-
 
     def job_separation_rate(self):
         """ calcualte job-sepration rate by age """
@@ -342,23 +338,20 @@ class BabyMAKROModelClass(EconModelClass):
 
         # e. labels
         self.labels = {varname:varname for varname in self.varlist}
-        self.labels['Y'] =  'Output'
-        self.labels['G'] =  'Government Spending'
-        self.labels['C'] =  'Consumption'
-        self.labels['I'] =  'Investments'
-        self.labels['X'] =  'Exports'
-        self.labels['chi'] =  'Foreign Demand'
-        self.labels['P_F'] =  'Foreign Prices'
-        self.labels['r_hh'] =  'Foreign Interest rate'
-        self.labels['P_X'] =  'Export Prices'
-        self.labels['P_Y'] =  'Domestic Prices'
-        self.labels['P_C'] =  'Consumption Prices'
-        self.labels['real_W'] =  'Real Wages'
-        self.labels['U'] =  'Unemployment Rate'
-        
-
-
-
+        self.labels['Y'] = 'Output'
+        self.labels['G'] = 'Government Spending'
+        self.labels['C'] = 'Consumption'
+        self.labels['I'] = 'Investments'
+        self.labels['X'] = 'Exports'
+        self.labels['chi'] = 'Foreign Demand'
+        self.labels['P_F'] = 'Foreign Prices'
+        self.labels['r_hh'] = 'Foreign Interest rate'
+        self.labels['P_X'] = 'Export Prices'
+        self.labels['P_Y'] = 'Domestic Prices'
+        self.labels['P_C'] = 'Consumption Prices'
+        self.labels['real_W'] = 'Real Wages'
+        self.labels['U'] = 'Unemployment Rate'
+   
     def allocate_sol(self,ncol=1):
         """ allocate solution """
 
@@ -482,7 +475,11 @@ class BabyMAKROModelClass(EconModelClass):
             if py: # python version for debugging
                 func.py_func(model.par,model.ini,model.ss,model.sol)
             else:
-                func(model.par,model.ini,model.ss,model.sol)
+                try:
+                    func(model.par,model.ini,model.ss,model.sol)
+                except:
+                    func.py_func(model.par,model.ini,model.ss,model.sol)
+                    raise ValueError(f'error in {block} block, python version used instead')
 
     def evaluate_blocks(self,ini=None,do_print=False,py=False):
         """ evaluate all blocks """
@@ -578,7 +575,7 @@ class BabyMAKROModelClass(EconModelClass):
     # basic figures #
     #################
 
-    def plot_IRF(self,varlist,ncol=3,T_IRF= 60, abs = None,Y_share = None):
+    def plot_IRF(self,varlist,ncol=3,T_IRF= 60,abs=None,Y_share=None):
         """ plot IRFs """
 
         if abs is None:
@@ -678,7 +675,7 @@ class BabyMAKROModelClass(EconModelClass):
 
         return models
 
-    def plot_IRF_models(self,models,parameter,varlist,ncol=3,T_IRF=50,abs = None,Y_share = None):
+    def plot_IRF_models(self,models,parameter,varlist,ncol=3,T_IRF=50,abs=None,Y_share=None):
         """ plot IRFs """
 
         if abs is None:
@@ -724,176 +721,9 @@ class BabyMAKROModelClass(EconModelClass):
 
         fig.tight_layout(pad=1.0)
 
-    def multi_model_extra(self,parameters,parvalues_0,parvalues_1):
-        """ create two models with different values for several parameters """
-        
-        par = self.par
-        models = []  
-
-        model_0 = self.copy()
-        model_1 = self.copy()
-
-        for i,parameter in enumerate(parameters):
-
-            setattr(model_0.par,parameter,parvalues_0[i])
-            setattr(model_1.par,parameter,parvalues_1[i])
-        
-        model_0.find_ss()
-        model_0.calc_jac(do_print=True)
-
-        model_1.find_ss()
-        model_1.calc_jac(do_print=True)
-
-        models.append(model_0)
-        models.append(model_1)
-
-        return models
-
-    def plot_IRF_models_extra(self,models,varlist,ncol=3,T_IRF=50,abs = None,Y_share = None):
-        """ plot IRFs for models with different parameters """
-
-        if abs is None:
-            abs = []
-        if Y_share is None:
-            Y_share = []
-
-        nrow = len(varlist)//ncol
-        if len(varlist) > nrow*ncol: nrow+=1 
-
-        fig = plt.figure(figsize=(ncol*6,nrow*6/1.5))
-
-        for i,varname in enumerate(varlist):
-            
-            ax = fig.add_subplot(nrow,ncol,1+i)
-            for j,model_ in enumerate(models):
-
-                par = model_.par
-                ss = model_.ss
-                sol = model_.sol
-
-                ssvalue = ss.__dict__[varname]
-                path = sol.__dict__[varname]
-
-                if varname in abs:
-                    ax.axhline(ssvalue,color='black',linewidth=0.75)
-                    ax.plot(path[:T_IRF],'-o',markersize=2)
-                elif varname in Y_share:
-                    ax.plot(path[:T_IRF]/sol.Y[:T_IRF],'-o',markersize=2, label='Model ' + str(j), linewidth=0.75)   
-                    ax.set_ylabel('share of Y')         
-                elif np.isclose(ssvalue,0.0):
-                    ax.plot(path[:T_IRF]-ssvalue,'-o',markersize=2, label='Model ' + str(j), linewidth=0.75)
-                    ax.set_ylabel('diff.to ss')
-                else:
-                    ax.plot((path[:T_IRF]/ssvalue-1)*100,'-o',markersize=2, label='Model ' + str(j), linewidth=0.75)
-                    ax.set_ylabel('% diff.to ss')
-                
-                handles, labels = ax.get_legend_handles_labels()
-            
-            ax.set_title(varname)
-            fig.legend(handles,labels,loc='upper right',frameon=True)
-
-        fig.tight_layout(pad=1.0)
-
-    ######################
-    # multi-shock-models #
-    ######################
-
-    def multi_shock_model(self,Tshock,persistence,shock1_values,shock2_values,shock1_size=0.01,shock2_size=0.005, shock1 = None, shock2 = None):
-        """ create multiple models with different shocks """
-        
-        if shock1 is None:
-            shock1 = []
-            shock1.extend(shock1_values)
-        if shock2 is None:
-            shock2 = []
-            shock2.extend(shock2_values)
-        
-        shocks = [shock1,shock2]
-        shock_size = [shock1_size,shock2_size]
-               
-        self.find_ss()
-        self.compile(do_print=True)
-        self.calc_jac(do_print=True)
-        jac = self.jac
-        self.set_exo_ss()
-        
-        for i,shock_index in enumerate(shocks):
-            for shock_ in shock_index:
-                ss_shock_ = getattr(self.ss, shock_)
-                sol_shock_ = getattr(self.sol, shock_)
-                var_shock_ = shock_size[i]*ss_shock_
-                sol_shock_[:Tshock,:] = ss_shock_ + var_shock_*persistence    
-
-        self.find_IRF()   
-        
-        models = [self]  
-
-        for i, shock_index in enumerate(shocks):
-            model_ = self.copy()
-            ss = model_.ss
-            sol = model_.sol
-            model_.find_ss()
-            model_.jac = jac.copy()
-            model_.set_exo_ss()
-
-            for shock_ in shock_index:
-                ss_shock_ = getattr(ss, shock_)
-                sol_shock_ = getattr(sol, shock_)
-                var_shock_ = shock_size[i]*ss_shock_
-                sol_shock_[:Tshock,:] = ss_shock_ + var_shock_*persistence
-
-            model_.find_IRF()
-            models.append(model_)
-
-        return models    
-
-    def multi_shock_IRF(self,models,shocks,varlist,ncol=3,T_IRF=50,abs = None,Y_share = None):
-        """ plot IRFs """
-
-        if abs is None:
-            abs = []
-        if Y_share is None:
-            Y_share = []
-
-        nrow = len(varlist)//ncol
-        if len(varlist) > nrow*ncol: nrow+=1 
-
-        fig = plt.figure(figsize=(ncol*6,nrow*6/1.5))
-        for i,varname in enumerate(varlist):
-            ss = []
-            sol = []
-            path = []
-            ssvalue = []
-            
-            ax = fig.add_subplot(nrow,ncol,1+i)
-            for j, model in enumerate(models):
-                ss.append(model.ss)
-                sol.append(model.sol)
-                path.append(sol[j].__dict__[varname])
-                ssvalue.append(ss[j].__dict__[varname])
-
-                if varname in abs:
-                    ax.axhline(ssvalue[j],color='black', label=f'Shock to {shocks[j]}',linewidth=0.75)
-                    ax.plot(path[j][:T_IRF],'-o',markersize=2)
-                elif varname in Y_share:
-                    ax.plot(path[j][:T_IRF]/sol[j].Y[:T_IRF],'-o',markersize=2, label=f'Shock to {shocks[j]}',linewidth=0.75)   
-                    ax.set_ylabel('share of Y')         
-                elif np.isclose(ssvalue[j],0.0):
-                    ax.plot(path[j][:T_IRF]-ssvalue[j],'-o',markersize=2, label=f'Shock to {shocks[j]}',linewidth=0.75)
-                    ax.set_ylabel('diff.to ss')
-                else:
-                    ax.plot((path[j][:T_IRF]/ssvalue[j]-1)*100,'-o',markersize=2, label=f'Shock to {shocks[j]}',linewidth=0.75)
-                    ax.set_ylabel('% diff.to ss')
-                handles, labels = ax.get_legend_handles_labels()
-            ax.set_title(varname)
-            fig.legend(handles, labels, loc='upper right', frameon = True)
-
-        fig.tight_layout(pad=1.0)        
-
-
-    ################
+    #####################################
     # Varying central input - long term #
-    ################
+    #####################################
 
     def plot_long_term_IRFs(self,Tshock,persistence,shocks,shock_size,parameter,value,varlist,ncol=3,abs = None,Y_share = None):
         """ plot IRFs """
@@ -912,10 +742,11 @@ class BabyMAKROModelClass(EconModelClass):
         self.compile()
         self.calc_jac()
         self.set_exo_ss() 
+
         for i,shock_ in enumerate(shocks):
             self.sol.__dict__[shock_][:Tshock,:] = self.ss.__dict__[shock_]*(1 + shock_size[i]*persistence)
-        self.find_IRF(do_print=False)  
 
+        self.find_IRF(do_print=False)  
 
         model_ = self.copy()
         model_.par.__dict__[parameter] = value
@@ -925,6 +756,7 @@ class BabyMAKROModelClass(EconModelClass):
         model_.set_exo_ss()
         for i,shock_ in enumerate(shocks):
             model_.sol.__dict__[shock_][:Tshock,:] = model_.ss.__dict__[shock_]*(1 + shock_size[i]*persistence) 
+            
         model_.find_IRF(do_print=False) 
     
         models = [self,model_]

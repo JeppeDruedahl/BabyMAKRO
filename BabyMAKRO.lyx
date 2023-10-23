@@ -178,12 +178,13 @@ vspace{-20mm}
 \series bold
 Baby-MAKRO
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Help from Martin Kirk Bonde and Peter Stephensen from the DREAM group have
  been invaluable for writing this note.
- Anders Buch Jürs has provided excellent research assistance.
+ Anders Buch Jürs, Andreas Marius Laursen, and Martin Andreas Kildemark
+ have provided excellent research assistance.
  Comments from students working with the model has also improved it considerably
  (Andreas Marius Laursen, Hans Christian Jul Lehmann, Mathias Held Berg,
  Nicholas Stampe Meier, Olivier Ding, Ufuk Yasin).
@@ -192,18 +193,6 @@ Help from Martin Kirk Bonde and Peter Stephensen from the DREAM group have
 \end_inset
 
 
-\series default
-\size normal
-\emph on
-
-\begin_inset Newline newline
-\end_inset
-
-DISCLAIMER: WORK-IN-PROGRESS 
-\begin_inset Formula $\Rightarrow$
-\end_inset
-
- BEWARE OF ERRORS!
 \end_layout
 
 \begin_layout Author
@@ -751,6 +740,13 @@ P & =\frac{P_{i}X_{i}+P_{j}X_{j}}{X}\nonumber \\
 P & =\frac{1}{\Gamma}\left(\mu_{i}P_{i}^{1-\sigma}+\mu_{j}P_{j}^{1-\sigma}\right)^{\frac{1}{1-\sigma}}.\label{eq:CES_P}
 \end{align}
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -1317,7 +1313,7 @@ The wage,
 \begin_inset Formula $W_{t}$
 \end_inset
 
-, is determined by an unmodeled bargaining mechanism, and it is set such
+, is determined by an non-modeled bargaining mechanism, and it is set such
  that it is increasing in the labor demand.
 \end_layout
 
@@ -1392,10 +1388,6 @@ S_{t} & =\sum_{a}S_{a,t}.
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 The quantity of households with a job 
 \emph on
 before matching
@@ -1439,7 +1431,15 @@ matching function
 status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Formula $\mathbb{\mathcal{M}}_{t}=\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}=v_{t}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}v_{t}^{\frac{1}{\sigma^{m}}}=\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}\Leftrightarrow v_{t}^{\frac{1}{\sigma^{m}}}=\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\Leftrightarrow v_{t}=\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}$
+\begin_inset Formula 
+\begin{align*}
+\mathbb{\mathcal{M}}_{t} & =\frac{S_{t}v_{t}}{\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}}}\Leftrightarrow=v_{t}\Leftrightarrow\\
+\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)^{\sigma^{m}} & =v_{t}\Leftrightarrow\\
+v_{t}^{\frac{1}{\sigma^{m}}} & =\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}\left(S_{t}^{\frac{1}{\sigma^{m}}}+v_{t}^{\frac{1}{\sigma^{m}}}\right)\Leftrightarrow\\
+v_{t}^{\frac{1}{\sigma^{m}}}-\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}^{\frac{1}{\sigma^{m}}}v_{t}^{\frac{1}{\sigma^{m}}} & =\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}\Leftrightarrow\\
+v_{t}^{\frac{1}{\sigma^{m}}} & =\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\Leftrightarrow v_{t}=\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}
+\end{align*}
+
 \end_inset
 
 
@@ -1455,10 +1455,6 @@ status collapsed
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 The job-filling rate, 
 \begin_inset Formula $m_{t}^{v}$
 \end_inset
@@ -1476,10 +1472,6 @@ m_{t}^{s} & =\frac{\mathcal{M}_{t}}{S_{t}}.
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 The number of employed therefore is
 \begin_inset Formula 
 \begin{align*}
@@ -1508,28 +1500,20 @@ In equilibrium, the number of matches must equal the number of new hires,
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 It is assumed that the households accumulate human capital as a function
  of their working experience, which is partly cohort specific and partly
- steady state driven
+ steady state driven,
 \begin_inset Formula 
 \begin{align*}
 H_{a,t} & =1+\rho_{1}\cdot x_{a,t}-\rho_{2}\cdot x_{a,t}^{2}\\
 x_{a,t} & =\begin{cases}
 0 & \text{if }a=0\\
 x_{a-1,t-1}+\left(\frac{L_{a-1,t-1}}{N_{a-1}}\right)^{\Phi}\left(\frac{L_{a-1,ss}}{N_{a-1}}\right)^{1-\Phi} & \text{else}
-\end{cases}
+\end{cases}.
 \end{align*}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 The amount of human capital affects the 
 \shape slanted
 effective
@@ -1538,13 +1522,13 @@ effective
 \shape slanted
  a 
 \shape default
-such that
+such that,
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-L_{a,t}^{H}=L_{a,t}H_{a,t}
+L_{a,t}^{H}=H_{a,t}L_{a,t}.
 \]
 
 \end_inset
@@ -1654,6 +1638,8 @@ S_{t} & =\sum_{a=0}^{\#-1}S_{a,t}\label{eq:S}\\
 \end_inset
 
 
+\series default
+
 \begin_inset Formula 
 \begin{align}
 \delta_{t}^{L} & =\frac{L_{t-1}-\underline{L}_{t}}{L_{t-1}}\label{eq:delta_L}\\
@@ -1662,14 +1648,14 @@ m_{t}^{s} & =\frac{\mathcal{M}_{t}}{S_{t}}\label{eq:m_s}\\
 v_{t} & =\left(\frac{\mathbb{\mathcal{M}}_{t}^{\frac{1}{\sigma^{m}}}}{1-\left(\frac{\mathbb{\mathcal{M}}_{t}}{S_{t}}\right)^{\frac{1}{\sigma^{m}}}}\right)^{\sigma^{m}}\label{eq:v}\\
 m_{t}^{v} & =\frac{\mathbb{\mathcal{M}}_{t}}{v_{t}}\label{eq:m_v}\\
 L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}\label{eq:L_a}\\
-L_{a,t}^{H} & =L_{a,t}H_{a,t}\\
+L_{a,t}^{H} & =H_{a,t}L_{a,t}\label{eq:LH_a}\\
 U_{a,t} & =\begin{cases}
 N_{a}-L_{a,t} & \text{if }a<\#_{\text{work}}\\
 0 & \text{if }a\geq\#_{\text{work}}
 \end{cases}\label{eq:U_a}\\
 U_{t} & =\sum_{a=0}^{\#-1}U_{a,t}.\label{eq:U}\\
 L_{t}^{H} & =\sum_{a=0}^{\#-1}L_{a,t}^{H}.\label{eq:LH}\\
-H_{t} & =\frac{L_{t}^{H}}{L_{t}}
+H_{t} & =\frac{L_{t}^{H}}{L_{t}}\label{eq:H-1}
 \end{align}
 
 \end_inset
@@ -1707,7 +1693,7 @@ The labor agency firms post vacancies,
 \end_inset
 
 , to hire effective labor 
-\begin_inset Formula $L_{t}^{H}$
+\begin_inset Formula $L_{t}$
 \end_inset
 
 .
@@ -1717,10 +1703,10 @@ The labor agency firms post vacancies,
 
  in units of labor.
  The firms can therefore rent out 
-\begin_inset Formula $\ell_{t}=L_{t}^{H}-\kappa^{L}v_{t}$
+\begin_inset Formula $\ell_{t}=H_{t}L_{t}-\kappa^{L}v_{t}$
 \end_inset
 
- units of labor to the production firms at the rental price 
+ effective units of labor to the production firms at the rental price 
 \begin_inset Formula $r_{t}^{\ell}$
 \end_inset
 
@@ -1729,8 +1715,8 @@ The labor agency firms post vacancies,
 \end_layout
 
 \begin_layout Standard
-Effective labor follows the law-of-motion 
-\begin_inset Formula $L_{t}^{H}=\left(1-\delta_{t}^{L}\right)L_{t-1}^{H}+m_{t}^{v}H_{t}v_{t}$
+Labor follows the law-of-motion 
+\begin_inset Formula $L_{t}=\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}$
 \end_inset
 
 , and the wage, 
@@ -1738,6 +1724,11 @@ Effective labor follows the law-of-motion
 \end_inset
 
 , is determined by the bargaining mechanism.
+ Productivity, 
+\begin_inset Formula $H_{t}$
+\end_inset
+
+, is taken as given.
  Matching occurs according to the matching function, and the firms take
  the separation rate, 
 \begin_inset Formula $\delta_{t}^{L}$
@@ -1749,11 +1740,11 @@ Effective labor follows the law-of-motion
 
  as given.
  Since lagged employment, 
-\begin_inset Formula $L_{t-1}^{H}$
+\begin_inset Formula $L_{t-1}$
 \end_inset
 
 , is pre-determined, we consider 
-\begin_inset Formula $L_{t}^{H}$
+\begin_inset Formula $L_{t}$
 \end_inset
 
  to be the choice value and derive the required number of vacancies, 
@@ -1771,24 +1762,24 @@ Effective labor follows the law-of-motion
 The labor agency problem is then:
 \begin_inset Formula 
 \begin{align*}
-V_{0}^{\text{labor}}(L_{t-1})=\max_{\left\{ L_{t}^{H}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}^{H}\right]\\
+V_{0}^{\text{labor}}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}H_{t}L_{t}\right]\\
  & \text{s.t.}\\
-v_{t} & =\frac{L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}}{H_{t}m_{t}^{v}}\\
-\ell_{t} & =L_{t}^{H}-\kappa^{L}v_{t}.
+v_{t} & =\frac{L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}}{m_{t}^{v}}\\
+\ell_{t} & =H_{t}L_{t}-\kappa^{L}v_{t}.
 \end{align*}
 
 \end_inset
 
 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{align*}
-V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell(L_{t},L_{t-1})-W_{t}L_{t}^{H}\right]\\
+V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell(L_{t},L_{t-1})-W_{t}H_{t}L_{t}\right]\\
  & \text{s.t.}\\
-\ell(L_{t},L_{t-1}) & =L_{t}-\frac{\kappa^{L}}{H_{t}m_{t}^{v}}\left[L_{t}^{H}-\left(1-\delta_{t}^{L}\right)L_{t-1}^{H}\right]
+\ell(L_{t},L_{t-1}) & =H_{t}L_{t}-\frac{\kappa^{L}}{m_{t}^{v}}\left[L_{t}-\left(1-\delta_{t}^{L}\right)L_{t-1}\right]
 \end{align*}
 
 \end_inset
@@ -1797,11 +1788,11 @@ V_{0}(L_{t-1}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\left(1+r^{\te
 \begin_inset Formula 
 \begin{align*}
 \frac{\partial V_{0}}{\partial L_{t}^{H}} & =0\Leftrightarrow\\
-\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}^{H}}-W_{t}\right]+\left(1+r^{\text{firm}}\right)^{-(t+1)}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}^{H}} & =0\Leftrightarrow\\
-\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}^{H}}-W_{t}\right]+\left(1+r^{\text{firm}}\right)^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}^{H}} & =0\Leftrightarrow\\
-r_{t}^{\ell} & =\frac{W_{t}-(1+r^{\text{firm}})^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}^{H}}}{\frac{\partial\ell_{t}}{\partial L_{t}^{H}}}\\
-r_{t}^{\ell} & =\frac{W_{t}-(1+r^{\text{firm}})^{-1}r_{t+1}^{\ell}\frac{\kappa^{L}}{H_{t+1}m_{t+1}^{v}}(1-\delta_{t+1}^{L})}{1-\frac{\kappa^{L}}{H_{t}m_{t}^{v}}}\\
-r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{H_{t}m_{t}^{v}}}\left[W-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{H_{t+1}m_{t+1}^{v}}\right]
+\left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-W_{t}H_{t}\right]+\left(1+r^{\text{firm}}\right)^{-(t+1)}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\Leftrightarrow\\
+\left[r_{t}^{\ell}\frac{\partial\ell_{t}}{\partial L_{t}}-W_{t}H_{t}\right]+\left(1+r^{\text{firm}}\right)^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}} & =0\Leftrightarrow\\
+r_{t}^{\ell} & =\frac{W_{t}H_{t}-(1+r^{\text{firm}})^{-1}r_{t+1}^{\ell}\frac{\partial\ell_{t+1}}{\partial L_{t}}}{\frac{\partial\ell_{t}}{\partial L_{t}}}\\
+r_{t}^{\ell} & =\frac{W_{t}H_{t}-(1+r^{\text{firm}})^{-1}r_{t+1}^{\ell}\frac{\kappa^{L}}{m_{t+1}^{v}}(1-\delta_{t+1}^{L})}{H_{t}-\frac{\kappa^{L}}{m_{t}^{v}}}\\
+r_{t}^{\ell} & =\frac{1}{H_{t}-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}H_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
 \end{align*}
 
 \end_inset
@@ -1848,7 +1839,7 @@ Inputs:
 \end_inset
 
 , 
-\begin_inset Formula $\left\{ \underline{H}_{t}\right\} $
+\begin_inset Formula $\left\{ H_{t}\right\} $
 \end_inset
 
 
@@ -1870,8 +1861,8 @@ Outputs:
 
 \begin_inset Formula 
 \begin{align}
-r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{H_{t}m_{t}^{v}}}\left[W-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{H_{t+1}m_{t+1}^{v}}\right]\label{eq:r_ell}\\
-\ell_{t} & =L_{t}^{H}-\kappa^{L}v_{t}.\label{eq:ell}
+r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}H_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]\label{eq:r_ell}\\
+\ell_{t} & =H_{t}L_{t}-\kappa^{L}v_{t}.\label{eq:ell}
 \end{align}
 
 \end_inset
@@ -1886,9 +1877,9 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{align*}
-r_{ss}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{m_{ss}^{v}}}\left[W_{ss}-r_{ss}^{\ell}\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right]\Leftrightarrow\\
+r_{ss}^{\ell} & =\frac{1}{H_{ss}-\frac{\kappa^{L}}{m_{ss}^{v}}}\left[W_{ss}H_{ss}-r_{ss}^{\ell}\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right]\Leftrightarrow\\
 \left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right)r_{ss}^{\ell} & =W_{ss}\Leftrightarrow\\
-r_{ss}^{\ell} & =\frac{W_{ss}}{\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right)}
+r_{ss}^{\ell} & =\frac{W_{ss}H_{ss}}{\left(H_{ss}-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\delta_{ss}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{ss}^{v}}\right)}
 \end{align*}
 
 \end_inset
@@ -1899,7 +1890,7 @@ r_{ss}^{\ell} & =\frac{W_{ss}}{\left(1-\frac{\kappa^{L}}{m_{ss}^{v}}+\frac{1-\de
 \end_inset
 
 The variable 
-\begin_inset Formula $L_{-1}^{H}$
+\begin_inset Formula $L_{-1}$
 \end_inset
 
  is pre-determined.
@@ -2595,7 +2586,7 @@ The model has two types of households.
 
 \begin_layout Enumerate
 Post-tax labor income, 
-\begin_inset Formula $\left(1-\tau_{t}\right)W_{t}\frac{H_{a,t}L_{a,t}^{H}}{N_{a}}$
+\begin_inset Formula $\left(1-\tau_{t}\right)W_{t}\frac{L_{a,t}^{H}}{N_{a}}$
 \end_inset
 
 
@@ -3159,6 +3150,13 @@ noprefix "false"
 , which is equal to number of unknowns.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Steady state
 \begin_inset CommandInset label
@@ -3316,8 +3314,8 @@ r_{ss}^{K}=r^{\text{firm}}+\delta^{K}.
 Labor agency behavior implies
 \begin_inset Formula 
 \begin{align*}
-r_{ss}^{\ell} & =\frac{W_{ss}}{1-\left(1+\frac{1-\delta_{ss}^{L}}{1+r^{firm}}\right)\frac{\kappa^{L}}{H_{ss}m_{ss}^{v}}}\\
-\ell_{ss} & =L_{ss}^{H}-\kappa^{L}v_{ss}.
+r_{ss}^{\ell} & =\frac{W_{ss}H_{ss}}{H_{ss}-\frac{\kappa^{L}}{m_{ss}^{v}}-\frac{1-\delta_{ss}^{L}}{1+r^{firm}}}\\
+\ell_{ss} & =H_{ss}L_{ss}-\kappa^{L}v_{ss}.
 \end{align*}
 
 \end_inset
@@ -3411,7 +3409,7 @@ Guess on
 \end_inset
 
 .
- Find the consumption of Ricardian households and their assets backwards.
+ Find the consumption of Ricardian households and their assets backwards
 \begin_inset Formula 
 \begin{align*}
 \text{inc}_{a,ss} & =\left(1-\tau_{ss}\right)W_{ss}\frac{L_{a,ss}^{H}}{N_{a}}+\left(1-\tau_{ss}\right)W_{U}W_{ss}\frac{U_{a,ss}}{N_{a}}+\left(1-\tau_{ss}\right)W_{R}W_{ss}1_{\left\{ a\geq\#_{\text{work}}\right\} }+\frac{A_{ss}^{q}}{N}\\
@@ -3469,12 +3467,12 @@ Data
 \end_layout
 
 \begin_layout Standard
-See 0b - steady state - data.ipynb.
-\end_layout
-
-\begin_layout Standard
 The model's steady state is compared to data from Statistics Denmark which
- is pulled in 0b - steady state - data.ipynb.
+ is downloaded in 
+\emph on
+0b - steady state - data.ipynb
+\emph default
+.
  The ratios of 
 \begin_inset Formula $M_{t}$
 \end_inset
@@ -3508,12 +3506,9 @@ The model's steady state is compared to data from Statistics Denmark which
  Data for income and wealth over the life-cycle is used to calibrate the
  steady state life-cycle income profile and wealth-income ratio using estimates
  from the regression:
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-\text{inc}_{a,t}=\text{birth year}_{a}+\rho_{1}\text{age}_{a,t}+\rho_{2}\text{age}_{a,t}^{2}+\epsilon_{a,t}
+\text{inc}_{a,t}=\text{birth year}_{a}+\alpha_{1}\text{age}_{a,t}+\alpha_{2}\text{age}_{a,t}^{2}+\epsilon_{a,t}
 \]
 
 \end_inset
@@ -3522,20 +3517,56 @@ The model's steady state is compared to data from Statistics Denmark which
 \end_layout
 
 \begin_layout Standard
+This is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Data-Points-and"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Data Points and Estimates used for Income Calibration
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Data-Points-and"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \noindent
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="2">
+<lyxtabular version="3" rows="1" columns="2">
 <features booktabs="true" tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0pt">
 <column alignment="center" valignment="top">
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename figs/Life_cycle_income.png
+	filename figs/Life_cycle_income.pdf
 	width 35page%
 
 \end_inset
@@ -3545,37 +3576,16 @@ The model's steady state is compared to data from Statistics Denmark which
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename figs/Life_cycle_income_cohort.png
+	filename figs/Life_cycle_income_cohort.pdf
 	width 35page%
 
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Figure 1.
- Data Points and Estimates used for Income Calibration
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -3583,6 +3593,15 @@ Figure 1.
 </cell>
 </row>
 </lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -3594,72 +3613,70 @@ Households
 \end_layout
 
 \begin_layout Standard
-See 0c - steady state - households.ipynb.
-\end_layout
-
-\begin_layout Standard
 The household's employment status and consumption-saving behavior in steady
- state is derived and plotted in 0c - steady state - households.ipynb.
+ state is derived and plotted in 
+\emph on
+0c - steady state - households.ipynb
+\emph default
+.
  The resulting household income and wealth income ratio is compared to the
- historical data (shown in figure 2).
-\end_layout
+ historical data (shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Income-and-Savings"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_layout Standard
-\noindent
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="2">
-<features booktabs="true" tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<row>
-<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
+\end_inset
+
+).
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Income and Savings Comparison
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Income-and-Savings"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename figs/data_model_income_comparison.png
+	filename figs/data_model_income_comparison.pdf
 	width 70page%
 
 \end_inset
 
 
 \end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Figure 2.
- Income and Savings Comparison
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
 
 \end_inset
 
@@ -3756,35 +3773,63 @@ Aggregates
 \end_layout
 
 \begin_layout Standard
-See 0d - steady state - aggregate.ipynb
-\end_layout
+In 
+\emph on
+0d - steady state - aggregate.ipynb,
+\emph default
+ the model's steady state is computed and the aggregate ratios are compared
+ to those found in the data.
+ See Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Comparison-of-Aggregate"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_layout Standard
-The model's steady state is computed and the aggregate ratios are compared
- to those found in the data: 
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \noindent
 \align center
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of Aggregate Steady State Ratios
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Comparison-of-Aggregate"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="10" columns="3">
-<features tabularvalignment="middle">
+<lyxtabular version="3" rows="9" columns="3">
+<features booktabs="true" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="0pt">
 <row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Table 1.
- Comparison of Aggregate Steady State Ratios
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3793,27 +3838,7 @@ Table 1.
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3822,7 +3847,7 @@ Model
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3833,7 +3858,7 @@ Data
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3845,7 +3870,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3854,7 +3879,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3865,7 +3890,7 @@ Data
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3877,7 +3902,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3886,7 +3911,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3897,7 +3922,7 @@ Data
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3909,7 +3934,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3918,7 +3943,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3929,7 +3954,7 @@ Data
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3941,7 +3966,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3950,7 +3975,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3961,7 +3986,7 @@ Data
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3973,7 +3998,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3982,7 +4007,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3993,7 +4018,7 @@ Data
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4005,7 +4030,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4014,7 +4039,7 @@ Data
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4025,7 +4050,7 @@ Data
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4034,7 +4059,7 @@ Employment to population ratio
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4043,7 +4068,7 @@ Employment to population ratio
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4054,7 +4079,7 @@ Employment to population ratio
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4063,7 +4088,7 @@ Unemployment rate
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4072,7 +4097,7 @@ Unemployment rate
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4089,11 +4114,9 @@ Unemployment rate
 
 \end_layout
 
-\begin_layout Section
-Shocks
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Shocks"
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -4101,1759 +4124,18 @@ name "sec:Shocks"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-See more shocks in 'More on Shocks'-file, with IRF's for all variables plotted,
- but no empirical data comparison.
-\end_layout
-
-\begin_layout Subsection
-Government spending shock
-\end_layout
-
-\begin_layout Plain Layout
-See 1 - shock - government spending.ipynb.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Effect on Government
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-IX.-Government"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The government increases real consumption, 
-\begin_inset Formula $G\uparrow$
-\end_inset
-
-, which implies an increase in the demand for goods.
- The firms increase their production to satisfy the excess demand, 
-\begin_inset Formula $Y\uparrow$
-\end_inset
-
-, and as such they have to employ more workers, 
-\begin_inset Formula $L\uparrow$
-\end_inset
-
-.
- In isolation, this improves the government budget due to less payments
- related to unemployment benefits and a higher tax revenue.
- However, the overall effect on the government budget is ambigious as goverment
- consumption increases as well.
- Overall, the debt decreases, 
-\begin_inset Formula $B\downarrow$
-\end_inset
-
-, which allows the government to lower its tax rate, 
-\begin_inset Formula $\tau\downarrow$
-\end_inset
-
-.
- The price increases, 
-\begin_inset Formula $P^{G}\uparrow$
-\end_inset
-
-, following higher output demand and higher marginal costs.
- However, as prices are sticky, it does not fully adjust.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: Government consumption decreases as the shock fades.
- The debt grows due to a decline in the production and the employment, and
- the fact that prices continue to increase due to the adjustment costs.
- The government raises the tax rate as a consequence, which further decreases
- the excess demand.
- Eventually, the debt is gradually reduced once the tax rate has grown sufficien
-tly large.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Production firms, Phillips-curve and Investments
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-V.-Production"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VI.-Phillips"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VIII.-Capital"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The firms increases production to meet the higher demand.
- Since capital is fixed, the production firms can only produce more by hiring
- more labor, 
-\begin_inset Formula $\ell\uparrow$
-\end_inset
-
-.
- This makes the capital more productive, 
-\begin_inset Formula $r^{K}\uparrow$
-\end_inset
-
-, but also drives up the marginal cost price, 
-\begin_inset Formula $P^{Y,0}\uparrow$
-\end_inset
-
-.
- As the output price is a mark-up of the marginal cost, the output prices
- increase, 
-\begin_inset Formula $P^{Y}\uparrow$
-\end_inset
-
-.
- However, this increase is limited due to the stickyness of the output prices.
- A higher rent on capital implies that the capital agency has an incentive
- to accumulate more capital, 
-\begin_inset Formula $K\uparrow$
-\end_inset
-
-, which it achieve throguh more investment 
-\begin_inset Formula $I\uparrow$
-\end_inset
-
- .
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Transition path
-\series default
-: The excess demand stemming from government consumption shock declines,
- such that the firms lower their production, 
-\begin_inset Formula $Y\downarrow$
-\end_inset
-
-.
- As such, less labor is needed, which makes capital less productive.
- Consequencely, the capital agency invests in less capital, and the capital
- stock declines.
- A lower stock of capital drives up the return on capital, such that this
- process eventually reverses.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Labor agency, Labor search and match and Wage
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-III.-Households"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-IV.-Labor"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-II.-Wage determination"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The increase in demand for 
-\begin_inset Formula $\ell$
-\end_inset
-
- implies that the labor agency hires more labor, 
-\begin_inset Formula $L\uparrow$
-\end_inset
-
-.
- More hired labor implies more matches, 
-\begin_inset Formula $\mathbb{\mathcal{M}}\uparrow$
-\end_inset
-
-, due to more job vancancies, 
-\begin_inset Formula $v\uparrow$
-\end_inset
-
-, which further implies an increase in the job-finding rate, 
-\begin_inset Formula $m^{s}\uparrow$
-\end_inset
-
-.
- However, the job-filling rate decreases, 
-\begin_inset Formula $m^{v}\downarrow$
-\end_inset
-
-.
- The wage increases as it is increasing in the labor demand, 
-\begin_inset Formula $W\uparrow$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: The employment decreases from its initial spike, as the demand for labor
- decreases.
- This implies that the amount of searchers and the job-filling rate increase.
- As the employment rate is higher, both the amount of matches and vacancies
- decrease to a level, which is lower than their steady state levels.
- The wage decreases, as the excess demand for labor decreases.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Consumption
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-X.-Households"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The higher real wage and the higher employment rate imply that the real
- income increases, 
-\begin_inset Formula $\text{inc}^{real}\uparrow$
-\end_inset
-
-.
- As such, the HtM households increase their consumption, 
-\begin_inset Formula $C^{HtM}\uparrow$
-\end_inset
-
-.
- The Ricardian households forsee that the government will raise the tax
- rate in future periods and in order to smooth their consumption, they choose
- to save up, 
-\begin_inset Formula $A\uparrow$
-\end_inset
-
-.
- This implies that they can afford less consumption, 
-\begin_inset Formula $C^{R}\downarrow$
-\end_inset
-
-.
- Overall, total consumption increases, 
-\begin_inset Formula $C\uparrow$
-\end_inset
-
-.
- The price on consumption increases, 
-\begin_inset Formula $P^{C}\uparrow$
-\end_inset
-
-, following the higher output prices, which implies inflation and thereby
- a lower real interest rate, 
-\begin_inset Formula $r^{real}\downarrow$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Transition path
-\series default
-: The real income decreases following the declining real wage and the increase
- in the tax rate, thus the consumption of the HtM households decreases.
- Likewise, the consumption of the Ricardian households decreases, which
- is futher enlarged by the fact that the real interest rate increases, making
- savings more attractive.
- Once, the price on consumption starts to decrease, so does the real interest
- rates, and the Ricardian households begin using their savings to increase
- consumption.
- The aggregated consumption decreases for a few periods, and once the government
- lowers its tax rate again, the real income increases and so does the consumptio
-n.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Foreign economy
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VII.-Foreign"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The domestic prices have increased relative to the foreign price.
- As such, export decreases, 
-\begin_inset Formula $X\downarrow$
-\end_inset
-
-, and import increases, 
-\begin_inset Formula $M\uparrow$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: As the excess domestic demand declines, so does the domestic prices.
- This implies that import decreases and export increases.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-\begin_inset Formula $\textbf{Further comments:}$
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-\begin_inset Formula $\textbf{The effect of tax rate adjustment speed:}$
-\end_inset
-
- The effect of the government spending shock is affected by how fast the
- government adjusts the tax rate, which is captured by the parameter 
-\begin_inset Formula $\varepsilon_{B}$
-\end_inset
-
-.
- In 2 - sensitivity - technology.ipynb., a sensitivity analysis is conducted
- to analysis the effect of adjustment time.
- The basaline case is compared to two different case; one where the adjustment
- rate is higher, and one where it is lower.
- If 
-\begin_inset Formula $\varepsilon_{B}$
-\end_inset
-
- decreases, the govenrment initially decreases the tax rate less.
- Hence, it receives less tax payments, and the government debt is higher
- than the baseline case.
- Likewise, the government is also slower to adjust the tax rate once the
- debt starts growing, and as a consequence hereof the initial shock has
- long term effect on the government budget.
- The slower adjustment of the tax rate also affects the households as the
- initial effect on their income is smaller, but the future effect is much
- more persistent.
- If 
-\begin_inset Formula $\varepsilon_{B}$
-\end_inset
-
- increases, it has the opposite effect.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Subsection
-Productivity shock
-\end_layout
-
-\begin_layout Plain Layout
-See 1 - shock - technology.ipynb.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Effect on Production firms, Phillips-curve and Investments
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-V.-Production"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VI.-Phillips"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VIII.-Capital"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The productivity increases due to the technology shock, 
-\begin_inset Formula $\Gamma\uparrow$
-\end_inset
-
-, such that the production increases, 
-\begin_inset Formula $Y\uparrow$
-\end_inset
-
-, marginal cost prices decrease, 
-\begin_inset Formula $P^{Y,0}\downarrow$
-\end_inset
-
-, and output prices decrease, 
-\begin_inset Formula $P^{Y}\downarrow$
-\end_inset
-
-.
- However, the sticky nature of the output prices, implies that this price
- reduction is much smaller initially.
- As a consequence, the gain of increasing production is much smaller for
- the firms, and they choose to demand less labor, 
-\begin_inset Formula $\ell\downarrow$
-\end_inset
-
-.
- Less labor makes capital less productive, such that the firms decrease
- the stock of capital, 
-\begin_inset Formula $K\downarrow$
-\end_inset
-
-, which they achieve by investing less, 
-\begin_inset Formula $I\downarrow$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: The productivity declines as the shock fades.
- As the output prices slowly adjust, the higher productivity leads to higher
- real returns on labor and capital.
- Hence, the firms increase production by hiring labor and investing in capital.
- As, the labor force and the capital stock increase, the marginal products
- decrease, which leads to a reduction of both inputs and a reduction in
- the production.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Labor agency, Labor search & match and Wage
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-III.-Households"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-IV.-Labor"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-II.-Wage determination"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The labor agency hires less labor, 
-\begin_inset Formula $L\downarrow$
-\end_inset
-
-, following the decrease in demand for 
-\begin_inset Formula $\ell$
-\end_inset
-
-.
- Less labor implies less matches, 
-\begin_inset Formula $\mathbb{\mathcal{M}}\downarrow$
-\end_inset
-
-, due to less vacancies, 
-\begin_inset Formula $v\downarrow$
-\end_inset
-
-, which further implies a lower job-finding rate, 
-\begin_inset Formula $m^{s}\uparrow$
-\end_inset
-
-.
- However, the job-filling rate increases, 
-\begin_inset Formula $m^{v}\uparrow$
-\end_inset
-
-.
- The wage is decreasing in the lower labor demand, 
-\begin_inset Formula $W\downarrow$
-\end_inset
-
-.
- 
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: The demand for labor increases, thus the labor agency hires more employees.
- This implies more matches, a higher job-filling rate, more vancancies and
- a higher wage.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Government
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-IX.-Government"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The government debt is negatively affected by the the decreasing price
- on government consumption, but positively affected by increasing payments
- to unemployment benefits.
- The overall effect is a higher government debt, 
-\begin_inset Formula $B\uparrow$
-\end_inset
-
-.
- Therefore, the government to raise the tax rate, 
-\begin_inset Formula $\tau\uparrow$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Transition path
-\series default
-: The debt continue to rise due to higher interest payments and more expensive
- government consumption.
- However, as the unemployment benefit payouts decrease due to an incrasing
- employment rate, and as the tax revenue increases following the higher
- tax rate, the government debt decreases.
- Due to the high employment rates, the government debt becomes negative,
- which allows the government to lower its tax rate.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Consumption
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-X.-Households"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The real income drops, 
-\begin_inset Formula $\text{inc}^{real}\downarrow$
-\end_inset
-
-, following the drop in the wage, which implies lower consumption for the
- HtM households, 
-\begin_inset Formula $C^{HtM}\downarrow$
-\end_inset
-
-.
- The Ricardian households, however, smooth their consumption.
- They know that their future income will increase as the tax rate will decrease
- and the wage will increase.
- Thus, they initially borrow, 
-\begin_inset Formula $A\downarrow$
-\end_inset
-
-, to increase consumption, 
-\begin_inset Formula $C^{R}\uparrow$
-\end_inset
-
-.
- The effect on aggregated consumption is dominated by the drop in consumption
- from the HtM households and thus 
-\begin_inset Formula $C\downarrow$
-\end_inset
-
-.
- The price on consumption decreases, 
-\begin_inset Formula $P^{C}\downarrow$
-\end_inset
-
-, following the lower output prices, which implies deflation and thereby
- a higher real interest rate, 
-\begin_inset Formula $r^{real}\uparrow$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Transition path
-\series default
-: The real income increases due to a higher wage rate and a lower tax rate,
- thereby increasing the consumption of the HtM households.
- The Ricardian households increase consumption as well, which is reinforced
- by a falling real interest rate.
- As such, they substitute towards consumption by borrowing even more.
- Once they start paying their debt, the consumption decreases to a level
- beneath its steady state.
- This is caused by increased interest rate payments following their higher
- debt.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Foreign economy
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VII.-Foreign"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The domestic firm is relatively more productive than the foreign firms,
- hence the export increases, 
-\begin_inset Formula $X\uparrow$
-\end_inset
-
-, and import decreases, 
-\begin_inset Formula $M\downarrow$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: As the excess domestic productiveity declines, so does the export.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-\begin_inset Formula $\textbf{Further comments:}$
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-\begin_inset Formula $\textbf{The effect of price stickiness:}$
-\end_inset
-
-The effects of the productivity shock is affected by the stickiness of the
- output prices, which is captured by the parameter 
-\begin_inset Formula $\eta$
-\end_inset
-
- (determined by 
-\begin_inset Formula $\gamma$
-\end_inset
-
-).
- The case where 
-\begin_inset Formula $\eta=\gamma=0$
-\end_inset
-
- corresponds to fully flexible prices.
- In 2 - sensitivity - technology.ipynb., a sensitivity analysis is conducted,
- where the case of fully flexible prices and sticky prices is examined.
- If prices are fully flexible, the real marginal product of capital and
- labor immidiately increase, such that the production firms hire more labor
- and invest in capital.
- As a consequence of more labor, the real wage increases and the government
- debt decreases, which allows the government to lower the tax rate.
- This implies an unanimous increase in the real income of the households,
- such that they increase consumption immidiately.
- As such, the signs of these effects are opposite to the case of the baseline
- case with sticky prices, where the households were worse of.
- If 
-\begin_inset Formula $\eta$
-\end_inset
-
- increases, the effects are qualitatively similar to the baseline model.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Subsection
-Export shock
-\end_layout
-
-\begin_layout Plain Layout
-See 3 - shock decomposition - export.ipynb.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Effect on Foreign economy, Prices and Goods market clearing
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VII.-Foreign"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-I.-Repacking"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-XII.-Goods"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: Initially, there is a shock to the foreign demand shifter, 
-\begin_inset Formula $\chi\uparrow$
-\end_inset
-
-, the foreign prices,
-\begin_inset Formula $P^{F}\uparrow$
-\end_inset
-
-, and the import prices,
-\begin_inset Formula $P^{M,\bullet}\uparrow$
-\end_inset
-
- for 
-\begin_inset Formula $\bullet\in\{C,G,I,X\}$
-\end_inset
-
-.
- These shocks are here decomposed into two channels: The foreign demand
- shock channel containing the shock to the foreign demand shifter, and the
- price shock channel containing the shock to foreign and import prices.
- 
-\end_layout
-
-\begin_layout Plain Layout
-Examining the foreign demand shock channel, a higher foreign demand implies
- more goods are exported, 
-\begin_inset Formula $X\uparrow$
-\end_inset
-
-, and additionally an increasing price of export, 
-\begin_inset Formula $P^{X}\uparrow$
-\end_inset
-
-.
- As a consequence, the total demand and the output prices increase, 
-\begin_inset Formula $Y\uparrow$
-\end_inset
-
- and 
-\begin_inset Formula $P^{Y}\uparrow$
-\end_inset
-
-.
- The higher output prices affect prices on consumption, investment and governmen
-t consumption, such that these increase, 
-\begin_inset Formula $P^{\bullet}\uparrow$
-\end_inset
-
- for 
-\begin_inset Formula $\bullet\in\{C,G,I\}$
-\end_inset
-
-.
- As the import prices are unaffected in this channel, imports becomes relatively
- cheaper compared to the domestic production, such that import increases,
- 
-\begin_inset Formula $M\uparrow$
+\begin_inset Newpage newpage
 \end_inset
 
-.
- 
-\begin_inset Newline newline
-\end_inset
-
-Examining the price shock channel, higher foreign prices increase the foreign
- demand for domestic goods.
- As such, it is qualitatively similar to an increase in the demand shifter,
- and the total demand as well as domestic prices increase, 
-\begin_inset Formula $Y\uparrow$
-\end_inset
-
- and
-\begin_inset Formula $P^{\bullet}\uparrow$
-\end_inset
-
- for 
-\begin_inset Formula $\bullet\in\{Y,C,G,I\}$
-\end_inset
-
-.
- However, the higher import prices make import less attractive, 
-\begin_inset Formula $M\downarrow$
-\end_inset
-
-, via direct effects from domestic demand 
-\begin_inset Formula $\bullet_{t}^{M}\downarrow$
-\end_inset
-
- for 
-\begin_inset Formula $\bullet\in\{C,G,I,X\}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Plain Layout
-Overall, the combination of the two channels suggests that export, total
- demand, and all prices unanimously increase, whereas the effect on import
- is ambiguous.
- However, the model suggests that the overall effect on import is positive,
- as the import prices are exogenous and thus independent of the foreign
- prices, 
-\begin_inset Formula $P^{F}$
-\end_inset
-
-.
- 
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: Taking a starting point in the foreign demand shock channel, the foreign
- demand shifter decreases as per assumption.
- A lower foreign demand implies less exported goods.
- The domestic prices increase even further which is caused by the stickiness
- of the output prices and as a consequence the total demand drops.
- The import declines by a smaller rate as the domestic prices are now even
- higher relative to the import prices.
- Hereafter, prices declines as the foreign demand shock decreases implying
- that the import declines as well.
-\begin_inset Newline newline
-\end_inset
-
-Next, consider the price shock channel, where both foreign prices and import
- prices decrease as per assumption.
- Again, a lower foreign demand stemming from lower foreign prices implies
- less exported goods, and the domestic prices increase even further due
- to stickiness of the output prices.
- The import grows due to the declining import prices.
- As the import prices declines faster than the domestic prices, the import
- grows above its steady state value and export drops below its steady state
- value.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Production firms, Phillips-curve and Investments
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-V.-Production"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VI.-Phillips"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VIII.-Capital"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: Through both channels, the production firms increase production, 
-\begin_inset Formula $Y\uparrow$
-\end_inset
-
-, to meet the increased demand stemming from the more export.
- As capital is fixed for the production firms, they increase the labor,
- 
-\begin_inset Formula $\ell\uparrow$
-\end_inset
-
-, to produce more.
- The real marginal product of capital is increasing in labor 
-\begin_inset Formula $\frac{r^{K}}{P^{Y}}\uparrow$
-\end_inset
-
- as well as the real marginal product of labor, 
-\begin_inset Formula $\frac{r^{\ell}}{P^{Y}}\uparrow$
-\end_inset
-
-.
- The effects on capital and investment are different through each of the
- channels.
- Taking a starting point in the foreign demand shock channel, the dominating
- effect is that firms want more capital, as the real marginal product has
- increased, 
-\begin_inset Formula $K\uparrow$
-\end_inset
-
-, which is achived by investing more, 
-\begin_inset Formula $I\uparrow$
-\end_inset
-
-.
- However through the price shock channel, the effect from higher import
- prices is a negative, domestic demand shock.
- The firms foresee that the lower future demand implies a lower future productio
-n.
- Hence, less investments are made, 
-\begin_inset Formula $I\downarrow$
-\end_inset
-
-, such that there is a drop in the capital, 
-\begin_inset Formula $K\downarrow$
-\end_inset
-
-.
- Overall, the effect from higher real marginal product of capital seems
- to dominate, such that investments and capital initially increase.
- 
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: The production decreases as the excess demand diminishes, which implies
- that the labor demand decreases.
- Likewise, the capital declines due to a low real marginal product of capital,
- but eventually a higher domestic demand implies a higher real marginal
- product of capital, implying more capital.
- This low level of capital also implies that the production and labor demand
- drops below their steady state levels.
- The effects stemming from each channel are qualitatively similar, even
- though the quantitative effects on capital is much greater through the
- price shock channel.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Labor agency, Labor search & match and Wage
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-III.-Households"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-IV.-Labor"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-II.-Wage determination"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The initial effect on the demand for labor from each shock channel is
- qualitatively the same.
- The demand for labor increases as a consequence of higher foreign demand,
- implying that the labor agency hires more labor, 
-\begin_inset Formula $L\uparrow$
-\end_inset
-
-.
- More hired labor implies more matches, 
-\begin_inset Formula $\mathbb{\mathcal{M}}\uparrow$
-\end_inset
-
-, as job vacancies increase, 
-\begin_inset Formula $v\uparrow$
-\end_inset
-
-, which further implies an increase in the job-finding rate, 
-\begin_inset Formula $m^{s}\uparrow$
-\end_inset
-
-.
- However, the job-filling rate decreases, 
-\begin_inset Formula $m^{v}\uparrow$
-\end_inset
-
-.
- The wage as well as the real wage is increasing in the labor demand, 
-\begin_inset Formula $W\uparrow$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: As the production declines, so does the labor.
- Less labor implies more searchers, less vacancies and less matches.
- The wage is also declining due to less labor demand.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Government
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-IX.-Government"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The initial effects on the government budget are qualitatively the same
- through each of the two channels.
- A higher foreign demand implies a higher price on government consumption,
- hence increasing the government expenditures.
- On the other hand, a higher demand initially implies that more people becomes
- employed.
- Hence, the government receives more in tax revenue and pays less in unemploymen
-t benefits, which suggests lower government expenditures.
- The overall effect seems to reduce the expenditures of the government,
- 
-\begin_inset Formula $B\downarrow$
-\end_inset
-
-, which allows the government to lower its tax rate, 
-\begin_inset Formula $\tau\downarrow$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Transition path
-\series default
-: After the initial reduction of government debt, it starts to increase
- due to an increase in the unemployment as described in 
-\begin_inset Quotes ald
-\end_inset
-
-Labor agency, Labor search & match and Wage
-\begin_inset Quotes ard
-\end_inset
-
-, a lower tax rate, and the fact that the price on government consumption
- remains high.
- However, the growth in the debt is limited due to a decrease in the interest
- payments following the initial drop in debt.
- The debt continues to increase as the foreign demand diminshes.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Consumption
-\series default
- (see
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-X.-Households"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: Both shocks increase the foreign demand which implies more labor, a lower
- tax rate and thereby a higher real income for the households, 
-\begin_inset Formula $\text{inc}^{\text{real}}\uparrow$
-\end_inset
-
-.
- Therefore, the HtM increases consumption, 
-\begin_inset Formula $C^{HtM}\uparrow$
-\end_inset
-
-.
- The Ricardian household smooth consumption by initially increasing their
- savings, 
-\begin_inset Formula $A\uparrow$
-\end_inset
-
-, as they foresee that the tax rate will increase in the future.
-\end_layout
-
-\begin_layout Plain Layout
-The price shock channel implies less import and thereby less consumption
- import.
- Additionally, the real income of the household decreases as the effects
- on the labor supply is significantly smaller combined with the fact that
- the real unemployment and retirement benefits decrease.
- Both of these effects suggest lower consumption, 
-\begin_inset Formula $C\downarrow$
-\end_inset
-
-.
- The initial price shock implies future deflation, and thereby an increase
- in the real interest rate, 
-\begin_inset Formula $\text{inc}^{\text{real}}\uparrow$
-\end_inset
-
-.
- As such, Ricardian households substitute towards savings, 
-\begin_inset Formula $A\uparrow$
-\end_inset
-
-, which also implies they consume less than the HtM households initially.
- 
-\end_layout
-
-\begin_layout Plain Layout
-The combined effect of both channels suggests an increase in both the real
- interest rate and savings.
- The effect on consumption and real income is ambiguous, but the overall
- effect is a reduction in both.
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Transition path
-\series default
-: Taking a starting point in the foreign demand shock, the real income continues
- to rise due to a lower tax rate.
- This allows for more consumption as well as more savings.
- As the savings increase so does the related interest payments, which over
- time allows the Ricardian households to have consumption above their real
- income.
- Once, the tax rate starts converging towards its steady state level, so
- does the real income and thereby the consumption.
- 
-\end_layout
-
-\begin_layout Plain Layout
-Turning to the price shock channel, the real interest decreases from its
- initial high level, which induces the Ricardian households to save up less
- than initially, thus consuming more.
- The higher interest payment allows the Ricardian household to increase
- consumption even though the real income continues to decline due to an
- increase in the tax rate.
- Eventually, the real interest rate has decreased too much for the interest
- payment to be sufficient to cover the excess consumption (consumption above
- the real wage), thus the Ricardian households start to use their savings
- to cover their consumption.
- Once, the real income converges, so will the consumption and the savings.
-\end_layout
-
-\end_deeper
-\begin_layout Subsection
-Interest rate shock
-\end_layout
-
-\begin_layout Plain Layout
-See 1 - shock - interest rate.ipynb.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Effect on Consumption
-\series default
- (see
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-X.-Households"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: Initially, the foreign interest increases, 
-\begin_inset Formula $r^{hh}\uparrow$
-\end_inset
-
-.
- This has two effects on the Ricardian households' savings - namely an income
- and a substitution effect.
- The income effect is an increase return on savings already held by the
- households.
- As such, they can reach the same savings level even if they decrease future
- savings.
- Overall, this income effect implies that the consumption would initially
- increase.
- The substitution effect is that the interest rate for future savings are
- higher.
- This makes it more attractive to build up savings, which implies an initial
- drop in consumption.
- Overall, the substitution effect seems to be dominant as consumption for
- the Ricardian households initially decreases, 
-\begin_inset Formula $C^{R}\downarrow$
-\end_inset
-
-, and savings increases, 
-\begin_inset Formula $A\uparrow$
-\end_inset
-
-.
- The real income decreases whch is cause by a production and thereby less
- labor demand.
- As such, the HtM households can afford less consumption, 
-\begin_inset Formula $C^{HtM}\downarrow$
-\end_inset
-
-.
- Aggregated consumption decreases, 
-\begin_inset Formula $C\downarrow$
-\end_inset
-
-, which drives down the price on consumption 
-\begin_inset Formula $P^{C}\downarrow$
-\end_inset
-
-.
- There is an initial increase in bequests, as these are affected by the
- interest rate 
-\begin_inset Formula $Aq\uparrow$
-\end_inset
-
-.
- 
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: The foreign interest rate decreases as per assumption.
- After the initial drop, the Ricardians' consumption increases as they need
- to save less due to higher interest payments.
- Higher demand for consumption drives up prices, but also implies higher
- output levels and thereby higher employment levels.
- Higher employment has two positive effects for consumption; higher wage
- income compared to unemployment benefits and a lower tax rate (even though
- this effect is small).
- These two effects also increase the HtM households' consumption, so overall
- the aggregated consumption continues to grow.
- Eventually, the decline in interest payment implies that the consumption
- as well as the savings converge back to its steady state level.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Production firms, Phillips-curve and Investments
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-V.-Production"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VI.-Phillips"
-
-\end_inset
-
-,
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VIII.-Capital"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The production firms decrease production, 
-\begin_inset Formula $Y\downarrow$
-\end_inset
-
-, to meet the lower demand stemming from the less consumption.
- As the capital is fixed, they must fire workers, 
-\begin_inset Formula $\ell\downarrow$
-\end_inset
-
-, which drives down return on capital, 
-\begin_inset Formula $r^{K}\downarrow$
-\end_inset
-
-.
- This implies a lower marginal cost price, 
-\begin_inset Formula $P^{Y,0}\downarrow$
-\end_inset
-
-, and a lower output price, 
-\begin_inset Formula $P^{Y}\downarrow$
-\end_inset
-
-s.
- The output price is sticky, thus the decrease is relatively smaller.
- A lower output price implies that the price on investment also decreases,
- 
-\begin_inset Formula $P^{I}\downarrow$
-\end_inset
-
-.
- The investments increase, 
-\begin_inset Formula $I\uparrow$
-\end_inset
-
-, as the firms foresee a higher real return on capital in the future stemming
- from higher future demand for consumption.
- More investments implies an increase in the capital, 
-\begin_inset Formula $K\uparrow$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: The production firms increase production due to the higher demand stemming
- from the more consumption.
- As such, more workers are hired, which drives up the return on capital
- as well as the marginal cost and output prices.
- These converge toward their steady state level as the excess demand diminishes.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Labor agency, Labor search & match and Wage
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-III.-Households"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-IV.-Labor"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-II.-Wage determination"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The decrease in demand for 
-\begin_inset Formula $\ell$
-\end_inset
-
- implies that the labor agency fires labor, 
-\begin_inset Formula $L\downarrow$
-\end_inset
-
-.
- Less hired labor implies less matches, 
-\begin_inset Formula $\mathbb{\mathcal{M}}\downarrow$
-\end_inset
-
-, which further implies an decrease in the job-finding rate, 
-\begin_inset Formula $m^{s}\downarrow$
-\end_inset
-
-, and the vacancies, 
-\begin_inset Formula $v\downarrow$
-\end_inset
-
-.
- However, the job-filling rate increase, 
-\begin_inset Formula $m^{v}\uparrow$
-\end_inset
-
-.
- The real wage is held constant, thus the nominal wage follows the consumer
- prices.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Transition path
-\series default
-: Higher output production implies a higher demand for workers.
- Therefore, more labor is hired which implies more matches, a higher job-finding
- rate, more vacancies, less searches and a lower job-filling rate.
- Once, the excess demand diminishes so does employment rate and all variables
- converge towards their steady state levels.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Government
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-IX.-Government"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The government debt increase when the employment rates decrease as the
- government receives less in tax revenue and pays more in unemployment benefits.
- On the other hand, the nominal expenditures decrease as the price on government
- consumption decreases.
- Overall, the initial effect on debt seems to be slightly positive, such
- that the government raises the tax rate.
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Transition path
-\series default
-: The increasing employment rate implies a declining debt, which is not
- counteracted by the increasing prices.
- As such, the debt becomes negative, and the government receives increasing
- interest rate payments.
- The government reacts by lowering the tax rate, which increases the demand
- for consumption even further; thus, raising the employment rates further.
- Eventually, the excess demand diminishes, such that both the government
- and the tax rate increase towards their steady state levels.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-Effect on Foreign economy
-\series default
- (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Block-VII.-Foreign"
-
-\end_inset
 
-)
 \end_layout
 
-\begin_deeper
-\begin_layout Plain Layout
-
-\series bold
-Initial effect
-\series default
-: The price on exports decreases initially, which is caused by the lower
- output prices.
- As the foreign prices are unaffected, the foreign demand for domestic goods
- increases, such that more goods are exported, 
-\begin_inset Formula $X\uparrow$
-\end_inset
-
-.
- It also implies that imported goods are relatively more expensive compared
- to domestic goods, thus less goods are imported, 
-\begin_inset Formula $M\downarrow$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Transition path
-\series default
-: As the domestic demand increases, so does the domestic prices, which reduces
- the competitiveness of the domestic firms.
- Therefore, less goods are exported and more goods are imported.
- The export and import normalizes once the excess domestic demand vanishes.
-\end_layout
+\begin_layout Section
+Impulse Responses to Shocks
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Impulse-Responses-to"
 
-\end_deeper
 \end_inset
 
 
@@ -5889,7 +4171,15 @@ Foreign demand shock
 \end_layout
 
 \begin_layout Standard
-See 1b - IRF export market.ipynb.
+
+\series bold
+Code:
+\series default
+ See 
+\emph on
+1b - IRF export market.ipynb
+\emph default
+.
 \end_layout
 
 \begin_layout Standard
@@ -5920,65 +4210,58 @@ and the foreign interest rate,
 .
  These are chosen exogenously to match the empirical shocks.
  
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="2">
-<features booktabs="true" tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<row>
-<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Foreign demand shock
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Foreign-demand-shock"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename figs/IRF Export.png
+	filename figs/IRF_export_market.pdf
 	lyxscale 40
-	scale 35
+	width 100text%
 
 \end_inset
 
 
 \end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
 
 \begin_layout Plain Layout
 
 \end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Figure 3.
- Foreign demand shock
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
 
 \end_inset
 
@@ -5998,10 +4281,6 @@ As seen above the model does reasonably well matching the empirical response
  foreign interest rate.
  We look at the effects from the channels one by one.
  
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -6083,10 +4362,6 @@ t consumption, such that these increase,
 \color inherit
  The higher employment increases the real marginal product of capital inducing
  more investments.
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -6097,7 +4372,7 @@ Examining the price shock channel, higher foreign prices increase the foreign
 \begin_inset Formula $Y\uparrow$
 \end_inset
 
- and
+ and 
 \begin_inset Formula $P^{\bullet}\uparrow$
 \end_inset
 
@@ -6138,18 +4413,14 @@ n.
 
 .
  
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
-The interest rate channel affects the ricardian households who face an income
+The interest rate channel affects the Ricardian households who face an income
  effect and substitution effect.
  The substitution effect dominates in this model leading to lower domestic
  demand and higher savings.
- The lower domestic demand among ricardian households leads to lower consumption
+ The lower domestic demand among Ricardian households leads to lower consumption
 ,
 \family roman
 \series medium
@@ -6171,7 +4442,7 @@ The interest rate channel affects the ricardian households who face an income
 \begin_inset Formula $Y\downarrow$
 \end_inset
 
- and demand for labour 
+ and demand for labor 
 \begin_inset Formula $U\uparrow$
 \end_inset
 
@@ -6194,7 +4465,15 @@ Government spending shock
 \end_layout
 
 \begin_layout Standard
-See 1C - IRF government spending.ipynb.
+
+\series bold
+Code:
+\series default
+ See 
+\emph on
+1c - IRF government spending.ipynb
+\emph default
+.
 \end_layout
 
 \begin_layout Standard
@@ -6216,62 +4495,50 @@ Initial effect
 \end_layout
 
 \begin_layout Standard
-\noindent
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="2">
-<features booktabs="true" tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<row>
-<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Government spending shock
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Government-spending-shock"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename figs/IRF Government spending.png
+	filename figs/IRF_GovSpending.pdf
 	lyxscale 40
-	scale 35
+	width 100text%
 
 \end_inset
 
 
 \end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Figure 4.
- Government spending shock
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
 
 \end_inset
 
@@ -6283,10 +4550,6 @@ The model struggles to match the empirical response in prices following
  higher government spending, with the model yielding to low inflation.
  The model matches the national account identities and labor market levels
  better, but the responses are to swift and decay faster than seen empirically.
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -6362,7 +4625,15 @@ Foreign interest rate shock
 \end_layout
 
 \begin_layout Standard
-See 1d - IRF interest rate.ipynb.
+
+\series bold
+Code:
+\series default
+ See 
+\emph on
+1d - IRF interest rate.ipynb
+\emph default
+.
 \end_layout
 
 \begin_layout Standard
@@ -6396,62 +4667,50 @@ Initial effect
 \end_layout
 
 \begin_layout Standard
-\noindent
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="2">
-<features booktabs="true" tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<row>
-<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Foreign interest rate shock
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Foreign-interest-rate"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
-	filename figs/IRF Interest rate.png
+	filename figs/IRF_InterestRate.pdf
 	lyxscale 40
-	scale 35
+	width 100text%
 
 \end_inset
 
 
 \end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Figure 5.
- Foreign interest rate shock
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
 
 \end_inset
 
@@ -6471,6 +4730,13 @@ As with the foreign demand shock, the model matches the empirical responses
  low demand.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Status report
 \begin_inset CommandInset label
@@ -6483,30 +4749,15 @@ name "sec:Status-report"
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-Status:
-\series default
- The described model is implemented in Python.
- Results are still not understood in detail.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Tasks:
+The model can improved in many ways:
 \end_layout
 
 \begin_layout Enumerate
-Clarify steady state calibration.
+Better steady state calibration.
 \end_layout
 
 \begin_layout Enumerate
-Perform impulse-response matching.
-\end_layout
-
-\begin_layout Enumerate
-Improve detailed accounting of main shocks.
+Better impulse-response matching.
 \end_layout
 
 \begin_layout Enumerate
@@ -6519,7 +4770,8 @@ Add financial flows accounts wrt.
 \end_layout
 
 \begin_layout Enumerate
-Add more government with taxes and spending.
+Add more government actions wrt.
+ with taxes and spending.
 \end_layout
 
 \begin_layout Enumerate
@@ -6527,7 +4779,7 @@ Add endogenous labor supply.
 \end_layout
 
 \begin_layout Enumerate
-Add multiple sectors and input-output structure.
+Add multiple sectors and an input-output structure.
 \end_layout
 
 \begin_layout Enumerate
@@ -6535,22 +4787,10 @@ Make the model quarterly.
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-Computational improvements: 
-\series default
-Improve calculation of Jacobian (e.g..
- automatic differentiation)
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Investigate what is done efficiently in MAKRO (GAMS+CONOPT)
-\end_layout
-
+\begin_inset Newpage newpage
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Section
@@ -6638,10 +4878,10 @@ Labor agency
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-V(L_{t-1}^{H}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{(1+r^{\text{firm}})^{t}}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}^{H}\right]\\
+V(L_{t-1}^{H}) & =\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{(1+r^{\text{firm}})^{t}}\left[r_{t}^{\ell}\ell_{t}-W_{t}H_{t}L_{t}\right]\\
  & \text{s.t.}\\
-\ell_{t} & =L_{t}^{H}-\kappa^{L}v_{t}\\
-L_{t}^{H} & =\left(1-\delta_{t}^{L}\right)L_{t-1}^{H}+m_{t}^{v}H_{t}v_{t}
+\ell_{t} & =H_{t}L_{t}-\kappa^{L}v_{t}\\
+L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}
 \end{align*}
 
 \end_inset
@@ -6656,7 +4896,7 @@ Inserting constraints:
 \begin_layout Standard
 \begin_inset Formula 
 \[
-V(L_{t-1}^{H})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{(1+r^{\text{firm}})^{t}}\left[r_{t}^{\ell}\left(L_{t}^{H}-\kappa^{L}\frac{L_{t}-(1-\delta_{t}^{L})L_{t-1}}{m_{t}^{v}H_{t}}\right)-W_{t}L_{t}^{H}\right]
+V(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty}\frac{1}{(1+r^{\text{firm}})^{t}}\left[r_{t}^{\ell}\left(H_{t}L_{t}-\kappa^{L}\frac{L_{t}-(1-\delta_{t}^{L})L_{t-1}}{m_{t}^{v}}\right)-W_{t}H_{t}L_{t}\right]
 \]
 
 \end_inset
@@ -6671,7 +4911,7 @@ First order condition:
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\frac{\partial V(L_{t-1}^{H})}{\partial L_{t}^{H}}=\frac{1}{(1+r^{\text{firm}})^{t}}\left(r_{t}^{\ell}\left(1-\frac{\kappa^{L}}{m_{t}^{v}H_{t}}\right)-W_{t}\right)+\frac{1}{(1+r^{\text{firm}})^{t+1}}\left(r_{t+1}^{\ell}\frac{\kappa^{L}}{m_{t+1}^{v}H_{t+1}}(1-\delta_{t+1}^{L})\right)=0
+\frac{\partial V(L_{t-1})}{\partial L_{t}}=\frac{1}{(1+r^{\text{firm}})^{t}}\left(r_{t}^{\ell}\left(H_{t}-\frac{\kappa^{L}}{m_{t}^{v}}\right)-W_{t}H_{t}\right)+\frac{1}{(1+r^{\text{firm}})^{t+1}}\left(r_{t+1}^{\ell}\frac{\kappa^{L}}{m_{t+1}^{v}}(1-\delta_{t+1}^{L})\right)=0
 \]
 
 \end_inset
@@ -6686,8 +4926,8 @@ From which it follows:
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-\left(r_{t}^{\ell}\left(1-\frac{\kappa^{L}}{m_{t}^{v}H_{t}}\right)-W_{t}\right)+\frac{1}{(1+r^{\text{firm}})}\left(r_{t+1}^{\ell}\frac{\kappa^{L}}{m_{t+1}^{v}H_{t+1}}(1-\delta_{t+1}^{L})\right) & =0\\
-\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}H_{t}}}\left[W_{t}-\frac{1}{(1+r^{\text{firm}})}\left(r_{t+1}^{\ell}\frac{\kappa^{L}}{m_{t+1}^{v}H_{t+1}}(1-\delta_{t+1}^{L})\right)\right]= & r_{t}^{\ell}
+\left(r_{t}^{\ell}\left(H_{t}-\frac{\kappa^{L}}{m_{t}^{v}}\right)-W_{t}\right)+\frac{1}{(1+r^{\text{firm}})}\left(r_{t+1}^{\ell}\frac{\kappa^{L}}{m_{t+1}^{v}}(1-\delta_{t+1}^{L})\right) & =0\\
+\frac{1}{1-\frac{\kappa^{L}}{m_{t}^{v}}}\left[W_{t}H_{t}-\frac{1}{(1+r^{\text{firm}})}\left(r_{t+1}^{\ell}\frac{\kappa^{L}}{m_{t+1}^{v}}(1-\delta_{t+1}^{L})\right)\right]= & r_{t}^{\ell}
 \end{align*}
 
 \end_inset

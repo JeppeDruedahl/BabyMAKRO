@@ -148,35 +148,31 @@ def search_and_match(par,ini,ss,sol):
         # a. lagged employment
         L_lag = prev_period(L,t,ini.L)
 
-        # b. searchers and employed before matching
-        S[t] = 0
-        L_ubar[t] = 0
-    
-
+        # b. searchers and employed before matching   
         S_a[0,t] = 1.0
         L_ubar_a[0,t] = 0.0
         x_a[0,t] = 0
         
-
-        S_a[par.work_life_span:,t] = 0.0
-        L_ubar_a[par.work_life_span:,t] = 0.0
-        x_a[par.work_life_span:,t] = 0.0
-
-            
         for a in range(1,par.work_life_span):
+
             L_a_lag = prev_period(L_a[a-1],t,ini.L_a[a-1])
             x_a_lag = prev_period(x_a[a-1],t,ini.x_a[a-1])
 
             S_a[a,t] = (1-par.zeta_a[a])*((par.N_a[a-1]-L_a_lag) + par.delta_L_a[a]*L_a_lag)
             L_ubar_a[a,t] = (1-par.zeta_a[a])*((1-par.delta_L_a[a])*L_a_lag)
             x_a[a,t] = x_a_lag + (L_a_lag/par.N_a[a-1])**par.Phi * (ss.L_a[a-1]/par.N_a[a-1])**(1-par.Phi)
-        H_a = 1 + par.rho_1*x_a - par.rho_2*x_a**2
+
+        S_a[par.work_life_span:,t] = 0.0
+        L_ubar_a[par.work_life_span:,t] = 0.0
+        x_a[par.work_life_span:,t] = 0.0
+
+        H_a[:,t] = 1 + par.rho_1*x_a[:,t] - par.rho_2*x_a[:,t]**2
 
         S[t] = 0.0
         L_ubar[t] = 0.0
         for a in range(par.life_span):
-            S[t] += par.N_a[a]*S_a[a,t]
-            L_ubar[t] += par.N_a[a]*L_ubar_a[a,t]
+            S[t] += S_a[a,t]
+            L_ubar[t] += L_ubar_a[a,t]
 
         # c. aggregate separation rate
         delta_L[t] = (L_lag-L_ubar[t])/L_lag
@@ -194,16 +190,16 @@ def search_and_match(par,ini,ss,sol):
         for a in range(par.life_span):
 
             L_a[a,t] = L_ubar_a[a,t] + m_s[t]*S_a[a,t]
-            LH_a[a,t] = L_a[a,t]*H_a[a,t]
-            LH[t] += par.N_a[a]*LH_a[a,t]
-        
+            LH_a[a,t] = H_a[a,t]*L_a[a,t]
 
             if a < par.work_life_span:
                 U_a[a,t] = par.N_a[a] - sol.L_a[a,t]
             else:
                 U_a[a,t] = 0.0
+    
+            LH[t] += LH_a[a,t]
+            U[t] += U_a[a,t]
 
-            U[t] += par.N_a[a]*U_a[a,t]
         H[t] = LH[t]/L[t]
 
 @nb.njit
@@ -215,7 +211,6 @@ def labor_agency(par,ini,ss,sol):
     m_v = sol.m_v
     v = sol.v
     W = sol.W
-    LH = sol.LH
     H = sol.H
 
     # outputs
@@ -223,7 +218,7 @@ def labor_agency(par,ini,ss,sol):
     r_ell = sol.r_ell
     
     # evaluations
-    ell[:] = LH-par.kappa_L*v
+    ell[:] = H*L-par.kappa_L*v
 
     for k in range(par.T):
 
@@ -232,12 +227,11 @@ def labor_agency(par,ini,ss,sol):
         r_ell_plus = next_period(r_ell,t,ss.r_ell)
         delta_L_plus = next_period(delta_L,t,ss.delta_L)
         m_v_plus = next_period(m_v,t,ss.m_v)
-        H_plus = next_period(H,t,ss.H)
         
-        fac = 1/(1-par.kappa_L/(m_v[t]*H[t]))
-        term = r_ell_plus*(1-delta_L_plus)/(1+par.r_firm)*par.kappa_L/(m_v_plus*H_plus)
+        fac = 1/(H[t]-par.kappa_L/m_v[t])
+        term = r_ell_plus*(1-delta_L_plus)/(1+par.r_firm)*par.kappa_L/m_v_plus
 
-        r_ell[t] = fac*(W[t]-term)
+        r_ell[t] = fac*(W[t]*H[t]-term)
     
 @nb.njit
 def production_firm(par,ini,ss,sol):
@@ -349,7 +343,6 @@ def government(par,ini,ss,sol):
 
     # inputs
     G = sol.G
-    L = sol.L
     P_G = sol.P_G
     U = sol.U
     W = sol.W

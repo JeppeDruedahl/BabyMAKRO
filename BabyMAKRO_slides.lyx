@@ -151,7 +151,7 @@ vspace{-2mm}}
 
 
 \backslash
-subtitle{Spring 2023} 
+subtitle{Autumn 2023} 
 \end_layout
 
 \begin_layout Plain Layout
@@ -505,7 +505,11 @@ vspace{1mm}
 \series bold
 Beta-version
 \series default
-: RAs Anders Buch Jürs + Andreas Marius Laursen.
+: RAs Anders Buch Jürs + Andreas Marius Laursen
+\begin_inset Newline newline
+\end_inset
+
++ Martin Andreas Kildemark.
 \begin_inset ERT
 status open
 
@@ -533,22 +537,6 @@ You?
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-[]
-\end_layout
-
-\end_inset
-
-
-\emph on
-[still work-in-progress]
-\end_layout
-
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
@@ -2269,6 +2257,101 @@ L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}.
 status open
 
 \begin_layout Plain Layout
+Labor market flows
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Employed and unemployed:
+\series default
+ 
+\begin_inset Formula $L_{a,t}$
+\end_inset
+
+ and 
+\begin_inset Formula $U_{a,t}=N_{a}-L_{a,t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Job-separation and finding rate:
+\series default
+ 
+\begin_inset Formula $\delta_{a}^{L}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{t}^{s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Searchers 
+\series default
+(everybody search = exogenous labor supply):
+\begin_inset Formula 
+\begin{align*}
+S_{a,t} & =\begin{cases}
+1 & \text{if }a=0\\
+(1-\zeta_{a-1})\left[U_{a-1,t-1}+\delta_{a}^{L}L_{a-1,t-1}\right] & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}.
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Employed 
+\series default
+(before and after matching):
+\begin_inset Formula 
+\begin{align*}
+\underline{L}_{a,t} & =\begin{cases}
+0 & \text{if }a=0\\
+(1-\zeta_{a-1})(1-\delta_{a}^{L})L_{a-1,t-1} & \text{if }a<\#_{\text{work}}\\
+0 & \text{if }a\geq\#_{\text{work}}
+\end{cases}\\
+L_{a,t} & =\underline{L}_{a,t}+m_{t}^{s}S_{a,t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Search-and-matching
 \end_layout
 
@@ -2371,7 +2454,7 @@ Effective employment
 \series bold
 Human capital:
 \series default
- (Gained form work experience)
+ Gained form work experience.
 \begin_inset Formula 
 \begin{align*}
 H_{a,t}= & 1+\rho_{1}\cdot x_{a,t}-\rho_{2}\cdot x_{a,t}^{2}\\
@@ -3323,10 +3406,10 @@ Profit maximization:
 
 \begin_inset Formula 
 \begin{align*}
-V_{0}^{\text{labor}}(L_{t-1})=\max_{\left\{ v_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}L_{t}^{H}\right]\\
+V_{0}^{\text{labor}}(L_{t-1})=\max_{\left\{ L_{t}\right\} }\sum_{t=0}^{\infty} & \left(1+r^{\text{firm}}\right)^{-t}\left[r_{t}^{\ell}\ell_{t}-W_{t}H_{t}L_{t}\right]\\
  & \text{s.t.}\\
-L_{t}^{H} & =m_{t}^{v}H_{t}v_{t}+\left(1-\delta_{t}^{L}\right)L_{t-1}^{H}\\
-\ell_{t} & =L_{t}^{H}-\kappa^{L}v_{t}.
+L_{t} & =\left(1-\delta_{t}^{L}\right)L_{t-1}+m_{t}^{v}v_{t}\\
+\ell_{t} & =H_{t}L_{t}-\kappa^{L}v_{t}.
 \end{align*}
 
 \end_inset
@@ -3364,7 +3447,7 @@ First order condition:
 
 \begin_inset Formula 
 \begin{align*}
-r_{t}^{\ell} & =\frac{1}{1-\frac{\kappa^{L}}{H_{t}m_{t}^{v}}}\left[W_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{H_{t+1}m_{t+1}^{v}}\right]
+r_{t}^{\ell} & =\frac{1}{H_{t}-\frac{\kappa^{L}}{m_{t}^{v}}}\left[H_{t}-r_{t+1}^{\ell}\frac{1-\delta_{t+1}^{L}}{1+r^{\text{firm}}}\frac{\kappa^{L}}{m_{t+1}^{v}}\right]
 \end{align*}
 
 \end_inset
@@ -4489,13 +4572,385 @@ Notebooks:
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
 
-\series bold
-Status: 
-\series default
-\emph on
-Very ad hoc still.
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Aggregates
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of Aggregate Steady State Ratios
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Comparison-of-Aggregate"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="3">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $M/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.46
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.46
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $X/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.60
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.52
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $C/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.36
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.47
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $G/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.25
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $I/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.22
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $K/Y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.56
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.44
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Employment to population ratio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.72
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.74
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Unemployment rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.67
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.93
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Life-cycle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename figs/data_model_income_comparison.pdf
+	width 70page%
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -4534,24 +4989,6 @@ Substitution elasticities:
 Impulse-responses: 
 \series default
 Match to data independently.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Status:
-\series default
- 
-\emph on
-Not done
-\emph default
- 
-\begin_inset Formula $\rightarrow$
-\end_inset
-
- 
-\emph on
-example of government spending shock.
 \end_layout
 
 \end_deeper
@@ -4712,12 +5149,10 @@ Impulse-responses model vs data
 
 \begin_deeper
 \begin_layout Standard
-
-\series bold
 \begin_inset Graphics
-	filename figs/IRF Government spending.png
+	filename figs/IRF_GovSpending.pdf
 	lyxscale 50
-	scale 25
+	width 90text%
 
 \end_inset
 
@@ -5620,15 +6055,11 @@ Tasks
 
 \begin_deeper
 \begin_layout Enumerate
-Clarify steady state calibration.
+Better steady state calibration.
 \end_layout
 
 \begin_layout Enumerate
-Perform impulse-response matching.
-\end_layout
-
-\begin_layout Enumerate
-Improve detailed accounting of main shocks.
+Better impulse-response matching.
 \end_layout
 
 \begin_layout Enumerate
@@ -5641,7 +6072,8 @@ Add financial flows accounts wrt.
 \end_layout
 
 \begin_layout Enumerate
-Add more government with taxes and spending.
+Add more government actions wrt.
+ with taxes and spending.
 \end_layout
 
 \begin_layout Enumerate
@@ -5649,11 +6081,11 @@ Add endogenous labor supply.
 \end_layout
 
 \begin_layout Enumerate
-Add multiple sectors and input-output structure.
+Add multiple sectors and an input-output structure.
 \end_layout
 
 \begin_layout Enumerate
-Make the model quarterly.
+Make the model quarterly
 \end_layout
 
 \end_deeper

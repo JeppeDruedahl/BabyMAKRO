@@ -104,36 +104,38 @@ def household_search_ss(par,ss):
     for a in range(par.life_span):
         
         if a == 0:
+
             ss.S_a[a] = 1.0
             ss.L_ubar_a[a] = 0.0
             ss.x_a[a] = 0
 
         elif a >= par.work_life_span:
+
             ss.S_a[a] = 0.0
             ss.L_ubar_a[a] = 0.0
             ss.x_a[a] = 0
           
         else:
+
             ss.S_a[a] = (1-par.zeta_a[a])*((par.N_a[a-1]-ss.L_a[a-1]) + par.delta_L_a[a]*ss.L_a[a-1])          
             ss.L_ubar_a[a] = (1-par.zeta_a[a])*(1-par.delta_L_a[a])*ss.L_a[a-1]
             ss.x_a[a] = ss.x_a[a-1]+ss.L_a[a-1]/par.N_a[a-1]
         
         ss.H_a[a] = 1 + par.rho_1*ss.x_a[a] - par.rho_2*ss.x_a[a]**2
 
-
         ss.L_a[a] = ss.L_ubar_a[a] + ss.m_s*ss.S_a[a]
-        ss.LH_a[a] = ss.L_a[a]*ss.H_a[a]
+        ss.LH_a[a] = ss.H_a[a]*ss.L_a[a]
         
         if a >= par.work_life_span:
             ss.U_a[a] = 0.0
         else:
             ss.U_a[a] = par.N_a[a]-ss.L_a[a]
 
-    ss.S = np.sum(par.N_a*ss.S_a)
-    ss.L_ubar = np.sum(par.N_a*ss.L_ubar_a)
-    ss.L = np.sum(par.N_a*ss.L_a)
-    ss.LH = np.sum(par.N_a*ss.LH_a)
-    ss.U = np.sum(par.N_a*ss.U_a)
+    ss.L_ubar = np.sum(ss.L_ubar_a)
+    ss.S = np.sum(ss.S_a)
+    ss.L = np.sum(ss.L_a)
+    ss.LH = np.sum(ss.H_a*ss.L_a)
+    ss.U = np.sum(ss.U_a)
     ss.H = ss.LH/ss.L
 
 def find_ss(model,do_print=True):
@@ -200,9 +202,9 @@ def find_ss(model,do_print=True):
         print(f'{ss.r_K = :.2f}')
     
     # f. labor agency FOC
-    ss.r_ell = ss.W / (1-par.kappa_L/(ss.m_v*ss.H) + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/(ss.m_v*ss.H))
+    ss.r_ell = ss.W*ss.H / (ss.H-par.kappa_L/ss.m_v + (1-ss.delta_L)/(1+par.r_firm)*par.kappa_L/ss.m_v)
     ss.real_r_ell = ss.r_ell/ss.P_Y
-    ss.ell = ss.LH - par.kappa_L*ss.v
+    ss.ell = ss.H*ss.L - par.kappa_L*ss.v
 
     if do_print: 
         print(Fonttype.HEADER + 'Labor agency FOC:' + Fonttype.END)
